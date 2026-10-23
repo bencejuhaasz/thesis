@@ -17,6 +17,12 @@ Notes on the labels (matter for evaluation):
     photos (leftovers) carry no nutrients of their own.
   * A few item rows have no photo (filename NaN); they stay in `items`
     with has_image=False and are excluded from `images`.
+
+Point `root` at snapme/snapme_cs_db: snapme_nut_db holds a second copy of
+every photo. Inside snapme_cs_db a few file names occur in two folders as
+different photos; the linkfile has no folder, so the folder is chosen from the
+photo's role: front_photos/ for packaged foods, before_photos/ otherwise
+(see _pick; the choice is in `photo_dir`).
 """
 from __future__ import annotations
 
@@ -54,23 +60,47 @@ def _find_linkfile(root: Path) -> Path:
     return hits[0]
 
 
-def _index_images(root: Path) -> dict[str, Path]:
-    """filename -> path for every image under root (first hit wins)."""
-    idx: dict[str, Path] = {}
+# Folder each photo role lives in (snapme_cs_db layout, per the README).
+ROLE_DIRS = {
+    "before": "before_photos", "front": "front_photos",
+    "after": "after_photos", "ingredients": "ingredients_photos",
+}
+
+
+def _index_images(root: Path) -> dict[str, list[Path]]:
+    """filename -> every path with that name under root (sorted)."""
+    idx: dict[str, list[Path]] = {}
     for dirpath, _, files in os.walk(root):
         for f in files:
             if os.path.splitext(f)[1].lower() in IMG_EXT:
-                idx.setdefault(f, Path(dirpath) / f)
-    return idx
+                idx.setdefault(f, []).append(Path(dirpath) / f)
+    return {f: sorted(ps) for f, ps in idx.items()}
 
 
-def _companion(name: str, suffix: str, idx: dict[str, Path]) -> Path | None:
+def _pick(name: str, roles: list[str], idx: dict[str, list[Path]]) -> Path | None:
+    """Path for `name`. The same file name can be a different photo in another
+    role folder (e.g. before_photos/ and front_photos/), so the folder of the
+    wanted role decides; the roles are tried in order. A single hit is used
+    as is; several hits outside the role folders are an error."""
+    ps = idx.get(name, [])
+    if len(ps) <= 1:
+        return ps[0] if ps else None
+    for r in roles:
+        hit = [p for p in ps if p.parent.name == ROLE_DIRS[r]]
+        if len(hit) == 1:
+            return hit[0]
+    raise ValueError(f"{name} exists in {len(ps)} places and none is in "
+                     f"{[ROLE_DIRS[r] for r in roles]}: {[str(p) for p in ps]}. "
+                     "Point root at snapme_cs_db.")
+
+
+def _companion(name: str, suffix: str, idx: dict[str, list[Path]]) -> Path | None:
     # Paper: "{before_filename}_after.jpeg"; accept both readings of that.
     stem, ext = os.path.splitext(name)
     for cand in (f"{stem}_{suffix}{ext}", f"{name}_{suffix}{ext}",
                  f"{stem}_{suffix}.jpeg", f"{stem}_{suffix}.jpg"):
         if cand in idx:
-            return idx[cand]
+            return _pick(cand, [suffix], idx)
     return None
 
 
@@ -114,13 +144,19 @@ def load_snapme(root: str | Path, linkfile: str | Path | None = None
         raise ValueError(f"images linked to several subject-days: {bad[:5]}")
 
     # ---- image paths ---------------------------------------------------
+    # the main photo of a packaged food is its package FRONT, otherwise the
+    # BEFORE photo; that decides between same-named photos in different folders
     idx = _index_images(root)
-    images["path"] = [idx.get(f) for f in images.index]
+    images["path"] = [_pick(f, ["front", "before"] if p else ["before", "front"], idx)
+                      for f, p in zip(images.index, images["packaged"])]
     images["has_file"] = images["path"].notna()
+    images["photo_dir"] = [p.parent.name if p is not None else None
+                           for p in images["path"]]
     images["companion_path"] = [
         _companion(f, "ingredients" if p else "after", idx)
         for f, p in zip(images.index, images["packaged"])
     ]
+    images["name_in_several_dirs"] = [len(idx.get(f, [])) > 1 for f in images.index]
     images.index.name = "filename"
     return items, images
 
@@ -138,5 +174,11 @@ if __name__ == "__main__":
           f"{len(images)} images ({images.has_file.sum()} found on disk, "
           f"{images.packaged.sum()} packaged), "
           f"{images.subject_id.nunique()} participants")
-    print(f"companion photos found: {images.companion_path.notna().sum()}")
+    print(f"companion photos found: {images.companion_path.notna().sum()}; "
+          f"photo folders: {images.photo_dir.value_counts(dropna=False).to_dict()}")
+    amb = images[images.name_in_several_dirs]
+    if len(amb):
+        print(f"{len(amb)} file names exist in several folders; folder chosen by "
+              "the packaged flag:")
+        print(amb[["packaged", "photo_dir"]].to_string())
     print(images[list(NUTRIENTS.values())].describe().round(1))
