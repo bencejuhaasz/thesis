@@ -87,7 +87,7 @@ TARGETS = ["kcal", "mass_g", "carb_g", "protein_g", "fat_g"]
 #              "both" did before; not comparable with the other three)
 # "both" / "overhead" / "oblique" use only 2-photo meals and, with select "by":
 # "meal_key", the same meals -> the three runs are paired.
-DFOOD_VIEWS = "both"
+DFOOD_VIEWS = "oblique"
 # Which view the LOWER image_id of a pair is. Assumed, not documented:
 # VERIFY with `python benchmark.py --sheet dfood_tj` before using "overhead"/"oblique".
 DFOOD_PAIR_ORDER = ("overhead", "oblique")
@@ -250,6 +250,9 @@ MODELS = [
     dict(label="claude-sonnet", provider="anthropic", model="claude-sonnet-5-5",
          enabled=False, temperature=None, extra={}, price={"in": 2.00, "out": 10.00},
          min_interval_s=0.0),
+    dict(label="claude-sonnet-low", provider="anthropic", model="claude-sonnet-5-5",
+         enabled=False, temperature=None, extra={"effort": "low", "max_tokens": 4000},
+         price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
     # ---- DeepSeek (key: DEEPSEEK_API_KEY) -------------------------------------
     # Only deepseek-flash (V4.1-Flash) takes images; deepseek-v4-pro is text-only.
     # OpenAI-compatible API, but JSON only as json_object (no schema) -> json_mode:
