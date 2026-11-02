@@ -269,6 +269,9 @@ MODELS = [
     dict(label="gpt-sol", provider="openai", model="gpt-6.1-sol", enabled=False,
      temperature=None, extra={"reasoning_effort": "low"},
      price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
+    dict(label="gpt-sol-med", provider="openai", model="gpt-6.1-sol", enabled=False,
+     temperature=None, extra={"reasoning_effort": "medium", "max_completion_tokens": 1000},
+     price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
 ]
 
 # --- Prompt ------------------------------------------------------------
@@ -380,7 +383,25 @@ def _replace_once(text: str, old: str, new: str) -> str:
 # A run with an empty prompt stops before any API call.
 # With OUTPUT_MODE "json_mode"/"none" the prompt itself must ask for this JSON
 # structure (MACROS_JSON_SCHEMA_EXAMPLE); with "schema" it is enforced anyway.
-PROMPT_NUTRIBENCH = """"""
+PROMPT_NUTRIBENCH = """You are a clinical nutrition assistant. A person has described a meal they ate. Estimate the nutrient content of exactly that meal.
+
+CRITICAL INSTRUCTIONS:
+1. List EVERY food and drink mentioned in the description as a separate item, including beverages, spreads, condiments and anything added (sugar, milk, butter, dressing). Do not skip items and do not add items that are not mentioned.
+2. Use the EXACT quantity stated for each item - NOT a standard serving.
+3. If the quantity is given in grams, use it as the weight. If it is given in household measures (cup, slice, tablespoon, piece, bowl, can, bottle), convert it to grams using the typical weight of that measure for THAT food (a cup of cooked rice weighs far more than a cup of salad leaves).
+4. Only if no quantity is given at all, assume one typical serving of that food.
+5. Take each food as described and as eaten in its cuisine, including its preparation: fried, breaded, sweetened, creamed or buttered foods carry the energy of the added fat and sugar.
+
+For each item, estimate:
+- Weight in grams (the stated amount)
+- Calories (for the stated amount, consistent with the macronutrients: about 4 kcal per gram of carbohydrate and protein, 9 kcal per gram of fat, 7 kcal per gram of alcohol)
+- Carbohydrate, protein and fat in grams (for the stated amount; carbohydrate = total carbohydrate: sugars, starch and fiber)
+
+Return ONLY valid JSON (no markdown, no extra text) matching this structure:
+""" + MACROS_JSON_SCHEMA_EXAMPLE + """
+
+Meal description:
+\"\"\"{description}\"\"\""""
 
 # --- Energy-density prompt (own method, not from a paper) --------------------
 # P3's portion instructions verbatim; the per-item block is replaced by explicit
