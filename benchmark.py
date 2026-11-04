@@ -122,7 +122,7 @@ DATASETS = {
         # images only from the CS copy (snapme_nut_db holds a second copy of every
         # photo); the loader still lives one level up, in snapme/
         enabled=True, root="snapme/snapme_cs_db", loader="../loader.py",
-        fn="load_snapme", pick=1,        # returns (items, images)
+        fn="load_snapme", pick=1, prepare="snapme_names",        # returns (items, images)
         colmap={"sample_id": "__index__", "image_path": "path", "text": "description"},
         # "has_file and not packaged" drops package-front photos (a different task)
         query="has_file", use_text=False,  # NOTE: description contains grams ->
@@ -469,6 +469,7 @@ VARIANTS = {
     "P3": dict(base=PROMPT_P3_ANTI_SNAP, kind="image", fields={
         "kcal": "estimated_calories", "mass_g": "estimated_weight_grams"}),
     "P3_macros": dict(base=PROMPT_P3_MACROS, kind="image", fields=MACRO_FIELDS),
+    "P3_macros_hint": dict(base=PROMPT_P3_MACROS, kind="image", fields=MACRO_FIELDS),
     "P3_density": dict(base=PROMPT_P3_DENSITY, kind="image",
                        fields={"mass_g": "estimated_weight_grams"},
                        props=DENSITY_PROPS, density_field="kcal_per_100g"),
@@ -693,7 +694,22 @@ def omnifood_views(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-PREPARE = {"dfood_views": dfood_views, "omnifood_views": omnifood_views}
+def snapme_names(df):
+    """SNAPMe text = the food names the participant chose in ASA24, WITHOUT the
+    '(N g)' amounts (they are the portion ground truth). Only used with use_text."""
+    import re
+    def names(s):
+        if not isinstance(s, str):
+            return s
+        parts = [re.sub(r"\s*\(\d+(?:\.\d+)?\s*g\)\s*$", "", x.strip()) for x in s.split(";")]
+        parts = [x for x in parts if x]
+        return "Foods in this meal: " + "; ".join(parts) if parts else None
+    df = df.copy()
+    df["text"] = df["text"].map(names)
+    return df
+
+
+PREPARE = {"snapme_names": snapme_names, "dfood_views": dfood_views, "omnifood_views": omnifood_views}
 
 
 def _unit_rank(value, seed) -> int:
@@ -1308,6 +1324,10 @@ def main():
     ap.add_argument("--prompt", help="prompt variant for all selected datasets "
                     f"(overrides config): {list(VARIANTS)}")
     ap.add_argument("--n", type=int, help="random selection size (overrides config n)")
+    ap.add_argument("--use-text", action="store_true",
+                    help="send the text column too (image+text) for the selected datasets")
+    ap.add_argument("--repeats", type=int, metavar="K",
+                    help="calls per photo and model (overrides REPEATS; consistency runs)")
     ap.add_argument("--dry-run", action="store_true", help="use the dummy model")
     ap.add_argument("--summary", action="store_true", help="only re-summarize a run")
     ap.add_argument("--sheet", metavar="DATASET", help="contact sheet of photos by meal")
@@ -1341,6 +1361,10 @@ def main():
     if a.n is not None:                 # same seed/pool: n=50 is a prefix of n=350
         ds = {n: {**c, "select": {**c.get("select", {}), "mode": "random", "n": a.n}}
               for n, c in ds.items()}
+    if a.use_text:
+        ds = {n: {**c, "use_text": True} for n, c in ds.items()}
+    if a.repeats:
+        globals()["REPEATS"] = a.repeats
     if a.dry_run:
         ms = [dict(label="dummy", provider="dummy", model="dummy", min_interval_s=0)]
         if a.run_name == RUN_NAME:
