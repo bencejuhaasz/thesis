@@ -1,0 +1,57 @@
+% Ez a fájl felelős azért, hogy a projekt fájljait összefűzze egy kimeneti pdf-fé.
+
+% Ezeket írd át...
+\def\tipus{SZAKDOLGOZAT} % --> ha MSc-s vagy, írd át "DIPLOMAMUNKA"-ra!
+\def\nev{Juhász Bence}
+\def\kepzes{mérnökinformatikus BSc}
+\def\cim{Multimodális, AI-alapú ételfelismerés pontosságának optimalizálása}
+\def\temavezetok{Témavezetők: Dr.\ Tornai Kálmán}
+
+% címlap generálása
+\cimlap
+
+% A kötelező részeket római oldalszámozással tünteti fel a tartalomjegyzékben. Ha nagy betűvel írod a "Roman"-t, akkor nagy római számokkal fog számozni.
+\pagenumbering{roman}
+
+% Kötelező részek
+% Ha nem szeretnéd ezeket a részeket feltüntetni a tartalomjegyzékben, akkor egyszerűen töröld az \addcontentsline kezdetű sorokat.
+\addcontentsline{toc}{chapter}{Témabejelentő}
+
+% Hogy kétoldalas nyomtatás esetén a témabejelentő közvetlenül a címlap után lehessen
+% \ureslap
+
+% A témabejelentő beszúrása
+\includepdf[pages=-]{mandatory_parts/temabejelento.pdf}
+
+% A kétoldalas témabejelentő miatt a nyilatkozat oldalszáma 3
+\setcounter{page}{3}
+
+\addcontentsline{toc}{chapter}{Nyilatkozat} 
+\input{contents/1-nyilatkozat}
+\addcontentsline{toc}{chapter}{Kivonat}
+\input{contents/2-kivonat}
+%% Vedd ki a százalék-jelet a következő két sor elől, ha szeretnél köszönetnyilvánítást beleírni a szakdogádba/diplomamunkádba.
+%\addcontentsline{toc}{chapter}{Köszönetnyilvánítás}
+%\input{contents/3-koszonet}
+
+% Tartalomjegyzék legenerálása
+\tableofcontents
+\clearpage
+
+% Az innentől következő részek arab számozással kerülnek feltüntetésre a tartalomjegyzékben
+\pagenumbering{arabic}
+
+% Tartalmi részek - módosítsd nyugodtan
+\input{contents/4-bevezetes}
+\input{contents/5-elozmenyek}
+\input{contents/6-tervezes}
+\input{contents/7-eredmenyek}
+\input{contents/8-osszefoglalas}
+
+% Hivatkozásjegyzék/bibliográfia
+\printbibliography
+\addcontentsline{toc}{chapter}{Felhasznált irodalom}
+
+% Mellékletek - ha nincs mellékleted, töröld az alábbi részt
+\appendix
+\input{contents/melleklet}

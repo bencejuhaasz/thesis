@@ -1,0 +1,183 @@
+%% Ez a fájl felelős azért, hogy beállítsa, hogy hogyan nézzen ki a dokumentum, leírja az összes formázást. A fájl végén található rész pedig elindítja a pdf generálását a contents.tex importálásával.
+
+% Általános formázások
+% -------------------------------------------------------
+
+% twoside: kétoldalas nyomtatás --> írd át oneside-ra, ha egyoldalasan nyomtatod (de ne nyomtasd egyoldalasan, mert a TVSZ is kétoldalas nyomtatást javasol)
+% 11pt: betűméret
+\documentclass[a4paper,11pt,twoside]{report}
+
+% Betűtípus váltása
+%\renewcommand{\familydefault}{ppl}
+% További betűtípusok: https://www.sharelatex.com/learn/Font_typefaces
+
+% Tartalomjegyzék formázásához
+\usepackage{tocloft}
+% Tartalomjegyzékben az al-alfejezetek (\section) indentálása
+\setlength{\cftsecindent}{.9cm}
+% Tartalomjegyzékben az al-alfejezetek (\subsection) indentálása
+\setlength{\cftsubsecindent}{1.4cm}
+
+% Ezzel ha két bekezdés közé üres sort teszel, akkor a kimeneti pdf-ben is megjelenik térköz a két bekezdés közt
+%\usepackage{parskip}
+% -------------------------------------------------------
+
+
+% Fejezetcímek formázása
+% -------------------------------------------------------
+\usepackage{titlesec}
+
+% Milyen mélységig legyenek számozva az fejezetek
+% 0: csak a fejezetek (\chapter) vannak számozva (bevezetés, irodalomkutatás stb.)
+% 1: alfejezetek (\section) is számozva vannak
+% 2: al-alfejezetek (\subsection) is számozva vannak
+\setcounter{secnumdepth}{2} 
+
+% Fejezetcímek formázása
+\newcommand{\titleformatting}{
+    % Közvetlenül a fejezetcím előtt legyen a szám, "fejezet" szó pedig nem kell.
+    %\titleformat{\chapter}{\normalfont\huge}{\thechapter.}{1em}{\huge\textbf}
+    
+    % Maradjon a két soros fejezetcím (1. fejezet, és új sorban a fejezetcím), viszont a -5pt lecserélésével állítható az "1. fejezet" és a fejezetcím közti térköz
+    %\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\thechapter.\ \chaptertitlename}{-5pt}{\Huge}
+    
+    % Fejezetcím körüli térköz módosítása (a 0pt a bal oldali térköz, a -10pt a fejezetcím előtti, az 5pt pedig az utáni térköz
+    % FONTOS! Ez a beállítás csak akkor működik, ha a fenti titleformat parancsok közül valamelyik elől kitörlöd a kommentjelet.
+    %\titlespacing{\chapter}{0pt}{-10pt}{5pt}
+}
+%\titleformat{\chapter}[display]   
+%{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+% Az alfejezet-címek (\section) száma előtt ne szerepeljen a fejezet (\chapter) száma (pl 2.1 helyett csak simán 1)
+%\renewcommand\thesection{\arabic{section}}
+
+% Alfejezetcímek formázása:
+%\titleformat{melyik elem}[block/wrap]{számozás formázásai}{számozás maga}{térköz a számozás és a cím között}{cím formázásai}
+% méretek: \large, \Large, \huge, \Huge
+% további formázási lehetőségek: \bfseries (vastag), \it (dőlt), \underline (aláhúzott)
+% \thesection: Az adott cím sorszámát helyettesíti be (épp ezért kell a pont a \thesection parancs után, hogy a cím sorszáma után legyen pont)
+\titleformat{\section}[block] {\normalfont\Large\bfseries}{\thesection.}{1em}{\Large}
+% -------------------------------------------------------
+
+
+% Kötelező formázás
+% -------------------------------------------------------
+
+% margók
+\usepackage[margin=2.5cm, bindingoffset=1.25cm]{geometry}
+
+% másfeles sorköz
+\linespread{1.5}
+% -------------------------------------------------------
+
+
+% Hasznos csomagok
+% -------------------------------------------------------
+
+% ékezetes betűk kezelése
+\usepackage[utf8]{inputenc}
+
+% ékezetes betűknél is legyen automatikus elválasztás
+\usepackage[T1]{fontenc}
+
+% nyelvi csomag
+\usepackage[english, magyar]{babel}
+
+% képletekhez kell
+\usepackage{mathtools}                        
+
+% bibliográfia (IEEE formátumban)
+\usepackage[style=ieee, backend=biber]{biblatex}
+
+% ez az ITK logó pozicionálásához kell
+\usepackage[export]{adjustbox}
+
+% kattintható tartalomjegyzék és hivatkozások
+\usepackage[hidelinks, unicode, pdfusetitle]{hyperref}
+
+% PDF könyvjelzők
+\usepackage{bookmark}
+
+% Színes cellák táblázatokban
+\usepackage[table,xcdraw]{xcolor}
+
+% Hyperlinks - URL-ek a szövegben
+\usepackage{url}
+
+% Hosszabb idézetek
+\usepackage{csquotes}
+
+% a bibliográfiában megfelelően legyenek formázva az idézőjelek
+\DeclareQuoteAlias{german}{magyar}
+
+% Kódrészletek
+\usepackage{listings}
+\usepackage{sourcecodepro} % egy jó betűtípus
+\lstset{captionpos=b, numberbychapter=false, basicstyle=\ttfamily, showstringspaces=false, columns=fullflexible}
+
+% Kódrészletek magyar stílusú számozása
+\renewcommand\lstlistingname{kódrészlet}
+\makeatletter
+\renewcommand\fnum@lstlisting{\ifx\lst@@caption\@empty\else\thelstlisting.~\fi\lstlistingname}%
+\makeatother
+
+% Képek beszúrásakor automatikusan ebben a mappában fogja a képeket keresni
+\graphicspath{ {images/} }
+
+% Hivatkozásokat tartalmazó fájl
+\addbibresource{hivatkozasok.bib}
+
+% Random szövegek generálása - nyugodtan töröld
+\usepackage{lipsum}
+
+% Csak hogy ne sírjon amiatt, hogy a BibLatex 3.12-es verziója rengeteg változtatást tartalmaz az előző verzióhoz képest
+\BiblatexHungarianWarningOff
+% Ez meg egy másik felesleges warning-ot némít el (https://tex.stackexchange.com/a/451193)
+\usepackage{silence}
+\WarningFilter{biblatex}{File 'english-ieee.lbx'}
+% -------------------------------------------------------
+
+% Pdf fájlok beszúrásához, mint pl. a témabejelentő
+\usepackage{pdfpages}
+
+
+% Címoldal + üres lap utána
+% -------------------------------------------------------
+\author{\nev\\\kepzes}
+\title{\Huge{\tipus}\\[1cm]
+    \huge{\cim}}
+\date{\the\year}
+
+\newcommand{\cimlap}{
+    \includegraphics[valign=m, width=50pt]{ITK_logo} \parbox[c]{0.8\textwidth}{
+    Pázmány Péter Katolikus Egyetem\\
+    Információs Technológiai és Bionikai Kar}
+    \vspace*{\fill}
+    
+    {\let\newpage\relax\maketitle}
+    \vspace*{\fill}
+    \begin{center}
+    \bigskip
+    
+    \temavezetok
+    \end{center}
+}
+
+\newcommand{\ureslap}{
+    \begingroup
+        \pagestyle{empty}
+        \cleardoublepage
+    \endgroup
+    \clearpage
+}
+% -------------------------------------------------------
+
+
+% ------------- Dokumentum legenerálása -----------------
+\begin{document}
+
+\titleformatting
+
+\input{contents.tex}
+
+\end{document}

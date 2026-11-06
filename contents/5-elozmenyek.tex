@@ -1,0 +1,104 @@
+\chapter{Előzmények}
+\paragraph{} irodalomkutatás, hasonló alkotások bemutatása, az ezekből a dolgozat készítője által levonható következtetések. A szakirodalom önálló, kritikai elemzése.
+
+
+\section{Kapcsolódó publikációk}
+\subsection{DietAI24 (Yan et al. 2025)}
+\paragraph{}Ennek a tanulmánynak \cite{yan2025dietai24} az volt a célja, hogy az AI-alapú tápértékfelismerés során
+megvizsgálják, hogyan hat a becsült értékek pontosságára, ha egy ellenőrzött adatbázissal támogatják a folyamat során a nagy nyelvi modellt. Az ehhez használt FNDDS adatbázis ételleírásokat és hozzájuk tartozó tápértékeket tartalmaz. A becslési folyamatot úgy tervezték meg, hogy a GPT Vision modellel először leírást készíttettek az ételről beérkező képről, majd a langchain ágens keretrendszert használva lekérdezéseket intéztek az előfeldolgozott FNDDS adatbázis felé.
+Az előfeldolgozás egy vektoradatbázisba történő indexelést jelent, hogy a hasonló rekordok könnyen elérhetőek legyenek.
+Az adatbázisból történő lekérdezés által kaptak egy 65 komponensű tápértékleíró vektort, ami 100g tömegre vonatkozik az adott típusú étellel kapcsolatban.
+A végső lépésben azt vizsgálja a nagy nyelvi modell, hogy a megtalált lehetséges ételtípusok közül
+melyek vannak valóban jelen a képen, minden egyes típushoz kiválasztja az FNDDS szabványos adagleírói közül a megfelelő adagméretet, majd a találatok és
+a mennyiségek kombinációját felhasználva előállít egy a képre vonatkozó 65 elemű tápértékvektort.
+Ezzel a módszerrel az ASA24 és Nutrition5k adathalmazon végzett kiértékelés során, valós vegyes ételeken, az ételtömeg és négy kulcstápanyag becslésében 63\%-os Mean Absolute Error csökkenést mértek a korábbi megoldásokhoz képest. 
+
+Az ASA24 adathalmazon az energiabecslés átlagos abszolút hibája ételenként 47,7 kcal volt. Korlátként megemlítendő, hogy csak OpenAI GPT-modelleket vizsgáltak, és hogy az ASA24 képeinek címkéi ugyanabból az FNDDS adatbázisból származnak, amelyből a módszer is dolgozik, ami ezen az adathalmazon előnyös helyzetbe hozza. A későbbi Open-KNEAD vizsgálatban a módszer újraimplementálva, modern modellekkel, energiabecslésben mindhárom vizsgált adathalmazon a leggyengébbnek bizonyult, a Gemma-MoE modellel mérve.
+
+\subsection{Comprehensive Evaluation of LMMs with Contextual Metadata}
+\paragraph{}Ez a tanulmány \cite{coburn2025acetada} azzal foglalkozik, hogy a tápértékbecslési feladat során hogyan tudja az eredményt pontosítani, ha a kép mellett további metaadatokat is megkap a nagy nyelvi modell.
+Ennek vizsgálatához az ACETADA adathalmazt (lásd~\ref{subsec:ACETADA}.~alfejezet) használták, amely GPS koordinátákat, dietetikus által ellenőrzött szöveges felsorolást az ételekről és időbélyeget tartalmaz az ételekről készült képekhez kapcsolódóan. A GPS koordinátákból szöveges kategórialeírást állítottak elő, ami jellemzi az adott helyszínt.
+Emellett igyekeztek bővíteni a témában vizsgált nagy nyelvi modellek változatainak számát, ezért a négy zárt súlyú (closed-weight) modell (GPT4o, GPT-4.1, Claude 3.7 Sonnet, Gemini 2.5 Pro) mellett további négy, nyílt súlyú (open weight) modell teljesítményét is megvizsgálták (DeepSeek Janus-Pro-VL, Google Gemma-3-IT, Meta Llama-3.2-VI, Qwen 2.5-VL).
+A szerzők munkájuk során arra a következtetésre jutottak, hogy a Mean Absolute Error a felhasznált kiegészítő metaadatokkal csökkenthető a vizsgált nagy nyelvi modellek használatával az ACETADA adathalmazon. 
+A kontextuális metaadatok használatával, mint kiegészítő bemeneti adat, különböző érvelési promptmódszerekkel kombinálva, modellekre átlagolva a kalóriabecslés Mean Absolute Percentage Error (MAPE) értékében 4,26--10,38 százalékpontos csökkenést értek el.
+További vizsgálandó területként több típusú metaadat gyűjtését említik, valamint a modellek belső adatreprezentációinak ezekhez való igazítását. 
+Korlátként megemlítendő, hogy az ételfelsorolás nem a képtől független kontextus, hanem a dietetikusok által készített referenciaannotáció része, amelyből a becslések kiértékeléséhez használt tömeg- és tápértékadatok is származnak. Ennek megadásával a modell az ételek felismerését lényegében készen kapja, egy valós alkalmazásban pedig ez az információ csak a felhasználótól származhatna. Emellett modellenként a legjobb metaadat-kombinációt ugyanazon az adathalmazon választották ki, amelyen a javulást mérték, külön tesztrész nélkül, ezért a közölt javulás felső becslésnek tekinthető.
+
+
+
+\subsection{DietDelta}
+\paragraph{}Ez a tanulmány ~\cite{vinod2026dietdelta} azzal foglalkozik, hogy hogyan támogatható a képalapú tápértékbecslési feladat, ha a modell nem csak egyetlen, elfogyasztás előtti, hanem emellett egy elfogyasztás utáni képet is kap bemenetként az adott ételről. A módszerükkel kiváltani igyekeznek a mélységadatok gyűjtését. Módszerük nem nagy nyelvi modell, hanem egy CLIP (ViT-L/14) alapú képi és szöveges kódolóra épülő, keresztfigyelést és regressziós fejet használó tanított modell, amely a valós ételnevekből képzett szöveges prompt alapján ételtételenként tömeget becsül, az elfogyasztott mennyiséget pedig az elfogyasztás előtti és utáni RGB kép közötti tömegkülönbségként adja meg.
+Ehhez az ACETADA, az FPB és a Nutrition5k adathalmazokat használták. Az abszolút tömegbecslésben a három adathalmazon átlagosan 14.42\%-os, az átlagos valós tömegre normalizált Mean Absolute Errort (PMAE) értek el, az elfogyasztott tömeg becslésében az ACETADA adathalmazon 14.17\%-ot.
+Korlátként megemlítendő, hogy a modell a valós ételneveket kapja meg bemenetként, az ACETADA ugyanazon adathalmazának felosztásán tanították és tesztelték, valamint csak tömeget becsül, energiát nem.
+
+
+\subsection{NutriMLLM (Yan et al., 2026)}
+\paragraph{}Ez a tanulmány ~\cite{yan2026nutrimllm} arra keres megoldást, hogy a kereskedelmi nagy nyelvi modelleknél pontosabban oldja meg a tápértékbecslési feladatot, olyan modellekkel, amelyek szabadon elérhetőek. A szerzők szerint a kereskedelmi modellek nem alkalmasak erre a feladatra, és mérésekkel igyekeztek alátámasztani, hogy ezek olyan eredményeket adnak, amelyek helyessége statisztikailag valószínűtlen. A saját megoldásuk kidolgozásában korlátozta őket a kellő méretű tanító adathalmaz szakértők általi előállításának költsége, illetve a szükséges adathalmaz nagysága. Ezért a szintetikus adathalmaz előállítása mellett döntöttek. 1.1 millió képből álló adathalmazt hoztak létre, amelyben 65 tápérték paraméter ír le minden egyes ételről generált képet, amelyeket az NHANES 24 órás étkezési naplóinak szöveges ételleírásaiból generáltak, a tápértékcímkéket pedig az FNDDS adatbázisból vették.
+
+Ezután ennek segítségével finomhangolták a Qwen3-VL és GLM-4.6V-Flash szabadon elérhető nagy nyelvi modelleket, ezzel létrehozva a NutriMLLM modellt. 
+Ennek a legnagyobb változata elérte, illetve esetenként meghaladta a kereskedelmi modellek (GPT-5, Gemini 3, and Claude Sonnet 4.5) teljesítményét a feladatban.
+A szöveges ételleírásokat tartalmazó NutriBench adathalmazon végzett kiértékelés során a NutriMLLM legnagyobb (Qwen3-VL-30B alapú) változatának használhatatlan becslések aránya 0-0.4\% tartományra csökkent, amíg a kereskedelmi modellek 0.1-0.8\%-os tartományban mozogtak. A nem finomhangolt szabadon elérhető modellek esetében a használhatatlan becslések aránya magasabb, 5.9-39.2\% tartományban mozgott.
+A numerikus pontosságot a szerzők az elutasításra korrigált szimmetrikus átlagos abszolút százalékos hibával mérték (SMAPE).
+Ez 0\% és 200\% között mozog, és a hiányzó becsléseket büntetve megakadályozza, hogy a modell a nehéz esetekre való válaszmegtagadással javítson az eredményén.
+A finomhangolás hatására az ASA24 adathalmazon a Qwen3-VL-30B 65 tápanyagra átlagolt SMAPE értéke 133.3\%-ról 109.8\%-ra csökkent. Ez alacsonyabb, mint a kereskedelmi modellek SMAPE értékei: Claude Sonnet 4.5: 118.0\%; Gemini 3: 125.5\%; GPT-5: 137.9\%. A SNAPMe adathalmazon a Qwen3-VL-30B finomhangolt modell SMAPE értéke 108.5\%-ról 91.2\%-ra csökkent, szintén a kereskedelmi modelleknél alacsonyabb értéket elérve. A kereskedelmi modellek SMAPE értékei a fentebb megadott sorrendet követve a SNAPMe adathalmazon: 94.7\%, 95.7\%, és 102.6\%.
+Korlátként megemlítendő, hogy a 65 tápanyagra átlagolt SMAPE-t főként a mikrotápanyagok határozzák meg, így az energiabecslés pontosságáról keveset mond. A NutriBench energiabecslésében a kereskedelmi modellek pontosabbak voltak (például Gemini 3: 25,3\%, NutriMLLM-30B: 47,4\% SMAPE). A tanulmányt a DietAI24 szerzőcsoportja készítette.
+
+
+
+\subsection{Open-KNEAD (Coburn et al., 2026)}
+\paragraph{}Ez a tanulmány ~\cite{coburn2026openknead} azt a kérdést veti fel a nagy nyelvi modellekkel végzett tápértékbecslési feladat során, hogy egy tápértéksűrűség-adatbázis vajon minden esetben hozzájárul-e a feladat megoldásának pontosságához. Ennek vizsgálatára olyan folyamatot terveztek és futtattak, amely egyaránt végez közvetlen, prompt-alapú és ún. RAG módszeres becslést egy tetszőleges, szabadon elérhető nagy nyelvi modell segítségével.
+Azt, hogy az energiabecslést RAG módszerrel vagy közvetlenül a bemeneti képből becslik, előre rögzítették aszerint, hogy a tápértékadatbázis mennyire fedi le az adott adathalmaz konyháját. Az adagbecslés minden esetben az adatbázisra támaszkodó ágból származik.
+Méréseik alapján összehasonlítható a közvetlen és az ún. RAG alapú becslés hat különböző kombinációja a fenti megközelítéssel a Nutrition5k, az OmniFood8K és az ACETADA adathalmazokon, Gemma-E4B, Qwen-9B, Gemma-MoE, Gemma-31B, Qwen-35B modellekkel. 
+Az energiabecslést csak az ACETADA esetén vették a közvetlen becslésből.
+Megállapították, hogy a mai nagy nyelvi modellek közvetlen becslése energiában eléri vagy meghaladja a teljes RAG-alapú folyamatét. Az adatbázis haszna az adagbecslésben és a tételesen ellenőrizhető eredményben jelentkezik.
+A legnagyobb pontosságjavulást az ACETADA adathalmazon tudták elérni a módszerükkel: a helyben futó Gemma-31B 147g teljes étkezésadagondként számított Mean Absolute Errort ért el, ami ~30\%-kal jobb a gpt-5.5 direkt becslésénél (212 g).
+A tanulmány az ACETADA és a DietDelta szerzőivel közös kutatócsoportból származik.
+
+
+\subsection{Vision-Language Models for Image-Based Dietary Assessment: A Benchmark of Accuracy, Cost, and Prompt Strategies Across Ten Models}
+\paragraph{}Ez a tanulmány ~\cite{sterling2026vlm} prompt stratégiák és nagy nyelvi modellek kombinációjának hatékonyságát mérte: öt promptolási megközelítést a Gemini 2.0 Flash modellel vizsgáltak, majd a legjobbat kilenc különböző nagy nyelvi modellen alkalmazták. Emellett egy kereskedelmi API-t is használtak egy esetben a nagy nyelvi modellek helyett. A mérés során a Nutrition5k adathalmaz RGB adatokat tartalmazó, felülnézeti képeit használták. 
+
+Ezen képek közül metaadat-alapú kritériumokat figyelembe véve  3229-at választottak ki (31 elavult összetevő, 2 üres tányér, 228 nulla vagy hiányzó tömeg).
+
+A kereskedelmi modellek közül nyolc félét vizsgáltak: Gemini 2.0 Flash, 2.5 Flash, 3.0 Flash és 3.1 Flash Lite; GPT-4o, GPT-4o-mini és GPT-5 Mini; Claude Haiku 4.5. A szabadon elérhetőek közül kizárólag a Qwen2-VL-7B-t.
+A mérések során használt ételfelismerésre készült kereskedelmi szolgáltatás a FatSecret API volt. A modellek a felismert összetevőket, azok becsült tömegét és kalóriatartalmát adták válaszul a bemeneti képre.
+A promptolási stratégiák a következőek voltak:
+P1 - Csak a feladatot és a kimeneti formátumot adja meg;
+P2 - Először a tömeg becslése, ebből a tápérték;
+P3 - Nem használ sztenderd adagtömeg-értékeket az adatbázisból, hanem a képen látható adagot közvetlenül a becsli, ebből tápértéket számol;
+P4 - Korlátokat adtak meg, amiken belül a becslés elfogadható, reális;
+P5 - Első lépésben P3, majd egy önellenőrzés a modell által.
+
+A legjobb eredményeket a P3 prompttal érték el. A teljes összehasonlításban a Gemini 3.0 Flash érte el a legjobb kalóriabecslést (CCC 0,767, MAE 80,7 kcal).
+Korlátként megemlítendő, hogy a promptokat csak egy modellen vizsgálták, és a nem feldolgozható válaszokat kizárták a kiértékelésből (a GPT-5 Mini 213 képre nem adott értelmezhető választ).
+
+\section{Kapcsolódó adathalmazok}
+
+\subsection{ASA24}
+\paragraph{}Az ASA24 \cite{subar2012asa24} az amerikai National Cancer Institute által fejlesztett, webalapú 24 órás étkezési napló vezetését támogató szoftver. Kitöltéskor a felhasználó az elfogyasztott mennyiséget referenciaképek közül választva adja meg. A tanulmányban használt adathalmaz ezeket a porcióméret-képeket és a hozzájuk tartozó FNDDS kódokat tartalmazza. A képeket az eszköz fejlesztői egységes, kontrollált körülmények között készítették, és mindegyik egy FNDDS-ételkódhoz és egy meghatározott porcióhoz tartozik, így minden képhez pontos tápanyagérték rendelhető. Ugyanazt az ételt jellemzően több, fokozatosan növekvő adagban is ábrázolják, ezért a porcióbecslés külön is vizsgálható. Fontos korlát, hogy a képek nem valós étkezési helyzetben készültek, hanem jellemzően egyetlen ételt mutatnak ideális fotózási körülmények között.
+
+\subsection{NutriBench}
+\paragraph{}A NutriBench \cite{dhaliwal2025nutribench} szöveges adathalmaz, amely képek helyett étkezések természetes nyelvű leírásait tartalmazza. A 11857 leírás valós étkezési felmérésekből készült, az amerikai What We Eat in America felmérésből, valamint a FAO/WHO GIFT adatbázisból, összesen 11 ország adataival. A leírásokat GPT-4o-mini fogalmazta meg a felmérésekben rögzített ételekből és mennyiségekből, a szerzők pedig ellenőrizték, hogy minden étel és adag szerepeljen bennük. A mennyiségek egy része grammban, más része hétköznapi mértékegységben (például „fél csésze") van megadva. Minden leíráshoz szénhidrát-, fehérje-, zsír- és energiaérték tartozik, az amerikai részben az FNDDS adatbázis 2017--2018-as kiadása alapján.
+
+\subsection{DFood-TJ}
+\paragraph{}A DFood-TJ adathalmaz~\cite{jin2026dfoodtj} négy részből áll: 3932 képet tartalmaz 187 ételtípusról kézi poligonannotációval, 284 933 képet 351 kategóriába rendezve, ételfelismerési, kategorizálási feladatokhoz, 351 ételtípus sűrűség- és tápanyagsűrűség-értékeit adja meg, valamint szénhidrát-, zsír-, fehérje-, rost- és energiatartalmat ad meg 3280 képhez, amelyek 91 kórházban kezelt beteg étkezéseiről, 101 ételtípusról készültek; ezek tápértékét a mért ételtömegekből számították. Az adathalmaz kifejezetten a cukorbetegség kezelését támogató táplálkozáselemzés céljából készült. A szerzők indoklása szerint a legtöbb adathalmazzal foglalkozó publikáció a témában felismerési vagy szegmentálási feladatokra készült, és a kínai konyhára vonatkozó, tápanyagbecslésre alkalmas adat különösen ritka. Ennek a hiányát igyekeztek pótolni.
+
+\subsection{ACETADA}
+\label{subsec:ACETADA}
+\paragraph{}Az ACETADA adathalmaz \cite{coburn2025acetada} egy ausztráliai, kontrollált étkeztetéses vizsgálatból származik, amelyben 152 felnőtt résztvevő három, egymástól egy hétre eső napon napon át laboratóriumban elkészített reggelit, ebédet és vacsorát fogyasztott, az elfogyasztott mennyiséget pedig a kutatók 0,1g pontossággal megmérték. A résztvevők az étkezések előtt és után telefonnal fényképezték le az ételt. A képeken méretarány-jelölő is szerepel, és mindegyikhez időbélyeg, valamint, ha elérhető volt, GPS-koordináta tartozik. A képeket dietetikusok ellenőrizték: azonosították a látható ételeket, és az ausztrál AUSNUT 2011--2013 adatbázis alapján meghatározták azok tömegét, energia- és makrotápanyag-tartalmát. A címkék az elfogyasztott mennyiséget írják le, ezért az étkezés előtti képen látható adag ennél nagyobb is lehet. Az Open-KNEAD szerzői~\cite{coburn2026openknead} ugyanezt az adathalmazt dietetikus által ellenőrzött tálalt mennyiségként írják le, ami ellentmond a forráscikknek.
+
+\subsection{Nutrition5k}
+\paragraph{}A Nutrition5k \cite{thames_nutrition5k_2021} adathalmaz nagyjából húsz ezer rövid videót tartalmaz megközelítőleg öt ezer különböző ételről. Az ételek több mint 250-féle hozzávalóból készültek. Mindegyikhez tartozik lista a hozzávalóikról és azok mennyiségéről. Emellett tartalmazza minden étel makronutriens-információit a USDA Food and Nutrient Database \cite{usda_fndds_2010} formátumának megfelelően. 3500 ételhez az adathalmazban tartozik úgynevezett RGB-D kép, amely mélységadatot biztosít, ezeket egy Intel RealSense kamerával rögzítették. Az adathalmazt a készítők tanító és teszt részre osztották, 90\%-10\% arányban.
+Az ételek tömegének szórása 161g, energiatartalmuk szórása 220 kcal, átlagosan 5.7 eltérő hozzávalót tartalmaznak, a legtöbbet tartalmazó 35-féléből készült.
+Sterling et al.~\cite{sterling2026vlm} humán validációja szerint az összetevőlisták az összetettebb ételeknél gyakran hiányosak, ezért az összetevő-felismerés ezekhez mért pontossága alulbecsli a modellek valós teljesítményét.
+
+\subsection{OmniFood8k}
+\paragraph{}Az OmniFood8K \cite{yu2026omnifood8k} 8036 kínai ételt tartalmazó, multimodális adathalmaz, amely a nyugati ételekre épülő adathalmazok hiányosságát hivatott pótolni. Az ételek elkészítése előtt a szerzők minden hozzávalót lemértek és lefényképeztek, a főzést videóra vették, a receptet szövegesen rögzítették, a kész ételt pedig hat kamerával, egyszerre több nézőpontból fényképezték le. A tápértékadatok (energia, tömeg, fehérje, zsír és szénhidrát) a hozzávalók mért tömegéből, tápanyag-adatbázis alapján számított értékek. A felvételek egységes, rögzített kameraállásokból készültek.
+
+\subsection{SNAPMe}
+\paragraph{}A SNAPMe \cite{larke2023snapme} hétköznapi körülmények között készült étkezési fotókat tartalmaz. A vizsgálat 95 résztvevője legfeljebb három napon át minden elfogyasztott ételt lefényképezett mobiltelefonos alkalmazással, és ezzel párhuzamosan az ASA24 2020-as változatában étkezési naplót vezetett. A nem csomagolt ételekről evés előtt és után is készült fotó, az egyadagos csomagolt termékekről pedig a csomagolás elejéről és az összetevőlistáról. Az adatbázis 3311 fotót és 275 étkezési naplót tartalmaz. A referenciaértékek így nem mérlegelésből, hanem a résztvevők önbevallásából származnak.
+
+\subsection{FNDDS}
+\paragraph{}Az FNDDS (Food and Nutrient Database for Dietary Studies) \cite{usda_fndds_2010} az amerikai mezőgazdasági minisztérium (USDA) által fenntartott tápanyag-adatbázis, amely a What We Eat in America / NHANES felmérésekben rögzített ételek tápértékét adja meg. Minden ételhez nyolcjegyű ételkód, szöveges leírás, szabványos adagméretek és 65 tápanyag- és ételkomponens-érték tartozik 100 grammra vonatkoztatva. A 2019--2020-as kiadás 5624 ételt tartalmaz. A bemutatott tanulmányok közül a DietAI24, a NutriMLLM és az Open-KNEAD erre épül, és az ASA24, a SNAPMe, valamint a NutriBench amerikai részének címkéi is ebből származnak. Mivel az adatbázis az amerikai étrendet fedi le, más konyhák ételeinél szisztematikus eltéréssel kell számolni.
+
+\clearpage % Ez azért kell, hogy nehogy képek átcsússzanak a következő fejezethez

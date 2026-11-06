@@ -1,0 +1,61 @@
+Ez egy LaTeX sablon szakdolgozathoz, ez a fájl pedig a sablon használati útmutatója. A sablon a PPKE ITK TVSZ-ének 1. számú melléklete alapján készült, és megfelel a szakdolgozati tartalmi és formai előírásoknak 
+Ide vágó TVSZ rendelkezések:
+ - A szakdolgozat minimális terjedelme (címoldal, témabejelentő, nyilatkozat, köszönetnyilvánítás, mellékletek, tartalomjegyzék és irodalomjegyzék nélkül) BSc képzésben 30 számozott oldal és, minimum 50 000 karakter szóközök nélkül. A diplomamunka minimális terjedelme (címoldal, témabejelentő, nyilatkozat, köszönetnyilvánítás, mellékletek, tartalomjegyzék és irodalomjegyzék nélkül) MSc képzésen 40 számozott oldal és, minimum 65 000 karakter szóközök nélkül. A maximális terjedelem mellékletekkel együtt sem haladhatja meg a 120 oldalt.
+ - Nagyobb terjedelmű program forráskód, kapcsolási rajz, mérési adatok, stb. mellékletként csatolandó. Forráskódokat egy publikusan elérhető tárhelyre kell feltölteni, minden szükséges projektfájl és beállítás megadásával, és ennek URL-jét kell megadni.
+ - Szó szerinti idézetek csak különösen indokolt esetben (tételkimondás, definíciók stb.) szerepelhetnek. A tételkimondás kivételével a szó szerinti idézetet, vagy a fordítást idézőjelek között kell szerepeltetni, a forrást közvetlenül az idézett szakasz mögött pontosan megadva.
+ - Minden nem saját ábra, táblázat esetén kötelező a táblázat/ábra címében a forrást pontosan megjelölni.
+ - A felhasznált irodalmak jegyzékét a szakterület konvencióit követve, egységes formában, a dolgozat végén kell megadni. (Például IEEE, Nature formátuma) Az irodalomjegyzékben szereplő valamennyi publikációra hivatkozni kell a szövegben a megfelelő helyen.
+
+Mi az a LaTeX?
+A LaTeX lényegében egy fordító: szövegfájlokból pdf-et (meg sok más egyebet) generál. Amit a Word-ben a menükben való kattintgatással tudsz beállítani azt itt mindig különböző utasításokkal tudsz elérni. Ha relatíve gyorsan gépelsz, és megtanultad azt az 5-15 utasítást, amit használni fogsz, akkor borzasztóan be tud gyorsulni a munka...
+Megjegyzés: A LaTeX szót "latek"-nek kell ejteni, mivel az "X" a nevében igazából nem X, hanem a görög Khi betű.
+
+Miért jó a LaTeX?
+A LaTeX arra jó, hogy egyszer megírod a kód elején, hogy hogyan kell kinéznie majd a pdf-nek, és onnantól ha ez kész van, semmi egyéb dolgod sincs, minthogy a tartalomra koncentrálj, a többit megcsinálja helyetted a LaTeX. Na persze az nem egy egyszerű feladat, hogy kóddal leírd a kód elején, hogy hogy nézzen majd ki a pdf, viszont jelen sablon pont ezt a terhet szeretné levenni a válladról. Igyekeztem logikusan felépíteni, és sok kommentet elhelyezni. Egy-két helyen hagytam kikommentelve sorokat Rád bízva, hogy eldöntsd, kell-e az adott formázás vagy sem.
+
+Hogyan használd ezt a sablont?
+
+1. Másold le ezt a projektet. Ehhez hozz létre egy fiókot itt a overleaf-en, és jelentkezz be, majd az ablak bal felső sarkában található "Menu" gombra kattintva találsz egy olyan lehetőséget, hogy "Copy project". Ezután már neki is állhatsz módosítani a sablont.
+
+2. Kezdéskor a contents.tex fájlba kell beleírnod a neved, a dolgozatod címét, és a témavezetőid nevét.
+
+3. A style.tex tartalmazza a formázásokat, a contents.tex pedig összefogja a fájlokat. A contents mappába raktam azokat a fájlokat, amik az egyes fejezeteket írják le, az images mappába pedig a képeket. A contents mappában a fájlnevek elejére egy számot írtam aszerint, hogy milyen sorrendben szerepelnek a szakdolgozatban. Nem lenne kötelező sem a mappákba rendezés, sem a fájlnevek számmal kezdése, de szerintem így átláthatóbb az egész.
+
+4. Az images mappában található kutyás és macskás képeket nyugodtan töröld. :) A contents mappában is nyugodtan átnevezheted a fájlokat, törölheted őket, újakat létrehozhatsz, csak fontos, hogy a változtatásoknak megfelelően a contents.tex fájl tartalmát módosítsd értelemszerűen. A contents mappában található z_example.py fájl is csak egy példafájl ahhoz, hogy bemutassam, hogy hogyan lehet forráskódot beilleszteni a dokumentumba. Nyugodtan töröld. Ha nincs mellékleted, akkor a contents/melleklet.tex fájl is törölheted, csak akkor a contents.tex fájlból is töröld a megfelelő részt.
+
+5. A hivatkozasok.bib fájlt érdemes a következő oldal segítségével legenerálni: http://www.citethisforme.com/ieee. A "More" menü alatt található az "Export" almenüben az "Export as BibTeX" parancs, amivel le lehet tölteni a megfelelő formátumban. Másik opció valamilyen referencia kezelő, például a zotero használata, ami talán még egyszerűbb, cserébe telepíteni kell: https://www.zotero.org/support/getting_stuff_into_your_library
+
+6. Táblázatokat a https://www.tablesgenerator.com/ oldal segítségével szoktam elkészíteni.
+
+7. Cikkre való hivatkozásra, és képek, táblázatok, egyenletek illetve forráskód beillesztésére példát a 8-eredmenyek fájlban találsz.
+
+8. Olyan rövidítés után, ami nem végig nagybetűs, a pont miatt a LaTeX azt hiszi majd, mondat vége van, és nagyobb szóközt rak. Normál szóköz lesz, ha elé írsz egy visszaperjelet:
+... mint pl.\ itt
+Ha a rövidítés végig nagybetűs, de a mondat végén áll, \ használandó a pont előtt:
+... ezt tartalmazza a PDF\.
+
+9. Tudományos szövegben az ábrák és táblázatok nincsenek fix helyre beszúrva a szövegbe, tehát nincs olyan, hogy „... amint az az alábbi ábrán látható:”, hanem „... amint az a 2.1. ábrán látható”. A table és figure környezeteknek éppen az a lényege, hogy az ábra ne ott jelenjen meg, ahol te gondolod, hanem azt majd a LateX jobban tudja. (Ezek úgynevezett floatok.) A LateXnek lehet tippeket adni, hogy hova tegye ezeket:
+\begin{figure}[htbp]
+A következő tippeket (engedélyeket) adhatod, érdemes többet is:
+    h Futó szövegbe beszúrás
+    t Elhelyezés egy oldal tetején
+    b Elhelyezés egy oldal alján
+    p Elhelyezés külön oldalon
+
+Így hivatkozz az ábrára:
+    \begin{figure}
+    \centering
+    \includegraphics{kep.png}
+    \caption{informativ kepalairas}
+    \label{abraneve} % ez csak belso hasznalatra
+    \end{figure}
+majd a futó szövegben:
+... amint az \az{\ref{abraneve}}.~abran lathato.
+A \az parancsot a magyar Babel csomag definiálja, a megfelelő névelőt illeszti be a sorszám elé. A ~ nem törhető szóközt szúr be.
+
+10. Az egyik leghasznosabb overleaf funkció (szerintem) az az, hogy Ctrl+Enter-re legenerálja a pdf fájlt. A másik nagyon hasznos funkció, hogy megoszthatod a konzulenseddel, aki commenteket tud elhelyezni a latex kódban.
+
+Végül köszönet Hakkel Tamásnak a szakdolgozat sablonért, amin ezen sablon és leírás is alapul (https://www.overleaf.com/project/5dad881f11bfc90001735144).
+
+Zsedrovits Tamás
+2026
