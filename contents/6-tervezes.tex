@@ -1,5 +1,48 @@
 \chapter{Tervezés}
-Alkamazmazott módszertan/technológiák ismertetése: A dolgozat témájához illeszkedve kell részletezni a feladat megoldásához, megvalósításához kapcsolódó szakmai hátteret.
+\section{Az adathalmazok kiválasztása és előkészítése}
+Az előzmények között ismertetett adathalmazok közül a Nutrition5K, OmniFood8k, DFood-Tj, ACETADA, SNAPMe és NutriBench adathalmazokat tudtam beszerezni.
+A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem az a meglemlített tanulmány címét, szerzőit az előzményekben
+idézett publikációkkal, hogy meggyőződjek róla, valóban a megfelelő adathalmazokat találtam meg. Az ASA24-ből cask hiányos változatot találtam, ezért ezt nem vizsgáltam
+tovább.
+%Ez így nem szép meg kéne mondani honnan vannak
+
+Ezután kialakítottam egy mappaszerkezetet, amiben minden adathalmaz külön mappát kapott, és ezekbe elkészítettem egy "loader.py" Python programot mindegyik számára,
+amelyekben az adatok egységes betöltését és elérhetővé tételét implementáltam. Az adathalmazok fölött a mappaszerkezetben előkészítettem egy "benchmark.py" nevű Python
+programot, amely azért felelős, hogy a tápértékbecslési feladat méréseit végrehajtsa. Az almappából ez a komponens be tudja tölteni az adathalmazok adatait kezelő
+függvényeket. Ezeket az adatokat a függvények visszatérési értékeiként kapja meg.
+
+Az adatok feldolgozásához a Pandas programkönyvtárat használtam, a Pythonnak pedig a 3.14-es verzióját.
+
+\section{A mérési környezet kialakítása}
+A benchmark.py a következő argumentumokkal rendelkezik:
+A benchmark.py a tesztméréseket a következő módon valósítja meg:
+Megkeresi és betölti a loader.py programokat az alkönyvtárakból.
+Betölti a választott adathalmazokat egy Pandas dataframe objektumba. A fájl konfigurációs változói segítségével
+lehetőség van az adathalmazok részhalmazát használni. A részhalmazok  kiválasztása egy véletlenszerű sorbarendezés után, vagy állítható tartománnyal történik. A véletlenszerű kiválasztáshoz megadható a
+reprodukálhatóság érdekében egy seed érték, valamint a méret meghatározására egy "n" paraméter szolgál, amely megadja, hogy hányadik indexig kell a kiválasztást
+végezni. A véletlenszerű sorbarendezést a numpy könyvtár végzi. Az állítható tartomány módot választva aszerint a sorrend szerint lehet indexelni a használandó
+résztartományt, amely az adathalmaz rekordjainak eredeti sorrendje.
+A program ezután fájlba írja a mérés konfigurációs paramétereit.
+Betölti az adathalmazhoz tartozó képeket és a konfigurációs változók valamint a megadott argumentumok szerint megformázza a mérni kívánt nagy nyelvi modellek
+felé küldendő szöveges prompt utasítást. 
+Változók segítségével konfigurálható, hogy mely nagy nyelvi modellek milyen paraméterekkel dolgozzák fel a kéréseket, milyen API végponton.
+Ezután elküldi a kérést a program az API végpont felé. Állítható, hogy sikertelen válasz esetén hány újrapróbálkozás megengedett.
+A prompt utasítások szerint json formátumban kell a nagy nyelvi modelleknek válaszolniuk a kérésekre, a következő lépésben ezen formátum szerinttörténik a szöveges
+válasz feldolgozása. Ha ebben hiba történik, abban az esetben már nincs újrapróbálkozás, hanem nem értelmezhetőként naplózásra kerül a kapott válasz.
+Miután az adathalmaz minden kiválasztott rekordjához megtörténtek a kérések az API végpont felé, a kapott eredményekről egy összefoglaló csv fájlt ír ki a program.
+
+Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges számú adathalmazt és modellt lehet mérni, minden megadott adathalmazon minden meadott modell
+válaszai mentésre és kiértékelésre kerülnek.
+
+\section{A mért paraméterek kiválasztása}
+
+\section{A vizsgált nagy nyelvi modellek kiválasztása}
+Az előzmények fejezetben bemutatott tanulmányokban
+
+\section{A mérési eredmények összehasonlításához használható módszerek kiválasztása}
+A pvalues.py program arra szolgál, hogy statisztikai próba segítségével lehessen vizsgálni, hogy az elkészült mérések pMAE eredményei között van-e
+szignifikáns eltérés, normál eloszlást feltételezve. A program Holm-korrekciót használ annak érdekében, hogy az összehasonlítások számának növekedésével
+
 
 \section{Döntési lehetőségek értékelése}
 \paragraph{}
