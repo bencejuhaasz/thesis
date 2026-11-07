@@ -35,14 +35,83 @@ Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges sz�
 válaszai mentésre és kiértékelésre kerülnek.
 
 \section{A mért paraméterek kiválasztása}
+A feladatkiírásban megfogalmazottak szerint
 
 \section{A vizsgált nagy nyelvi modellek kiválasztása}
-Az előzmények fejezetben bemutatott tanulmányokban
+\paragraph{}A nagy nyelvi modellek kiválasztásával kapcsolatban a feladatkiírás
+a következő követelményeket fogalmazza meg:
+A modelleknek elérhetőnek kell lenniük kereskedelmi API végponton keresztül,
+támogatnia kell képi bemenetet és strukturált kimeneti formátumot.
+Emellett figyelembe kell venni az elérés késleltetését és árazását is a vizsgálat
+során.
+
+Szolgáltatónként egy olcsóbb és egy drágább modell mérése mellett döntöttem, hogy
+vizsgálni tudjam, a modellek árazása hogyan hat az eredmények pontosságára.
+A kereskedelmi modellek felépítése nem publikus, de egy drágább modell mögött
+nagyobb paraméterszámot vagy több erőforrást feltételeztem. %Ilyet mondhatok?
+
+
+Az előzmények fejezetben bemutatott tanulmányokban 
 
 \section{A mérési eredmények összehasonlításához használható módszerek kiválasztása}
 A pvalues.py program arra szolgál, hogy statisztikai próba segítségével lehessen vizsgálni, hogy az elkészült mérések pMAE eredményei között van-e
 szignifikáns eltérés, normál eloszlást feltételezve. A program Holm-korrekciót használ annak érdekében, hogy az összehasonlítások számának növekedésével
 
+\section{A mérési protokoll kialakítása}
+\paragraph{}Annak érdekében, hogy egy adott mérési beállítás hatása vizsgálható legyen,
+kontrollálni kell, hogy miben térhetnek el az egyes mérések. Egy nem várt körülmény
+változása önmagában, vagy a szándékosan változtatott, vizsgált paraméterrel együtt hatva
+olyan eredményt hozhat, amely javulást idéz elő a mérés pontosságában.
+Ha ezeket a körülményeket nem ismerem, téves következtetésre juthatok a vizsgált
+paraméter állításával kapcsolatban.
+
+\paragraph{}Ennek elkerülése érdekében egységes mérési protokollt alakítottam ki.
+Egy mérési protokoll feladata rögzíteni minél több nem vizsgált paramétert azok közül,
+amelyeknek hatása van a mérésre.
+A nagy nyelvi modellek nem determinisztikus működéséből adódóan azonban nincs lehetőség
+minden ilyen paraméter rögzítésére. Ezek hatásának váltakozását a mérések ismétlésével
+és az eredmények együttes kiértékelésével lehet kezelni.
+
+\subsection{Előmérési protokoll}
+\paragraph{}Az előmérési protokoll feladata, hogy minél több mérési paraméter
+hatását feltérhatóvá tegye, miközben kontrollálja az ebből adódó többletköltség
+nagyságát. Ennek érdekében a mintaszámot ezen mérések során a döntési mérési protokollhoz
+képest kisebb, $n=50$ értékben rögzítettem. Ez több összehasonlítást tesz lehetővé, viszont
+kisebb pontossággal teszi megismerhetővé a vizsgált paraméter hatását. A kisebb elemszám
+hatására adódhatnak olyan mérések, amelyek során a mérésre kiválasztott minták az adathalmazból
+kedveznek a mért paraméter pontosságának, vagy rontják azt.
+Az előmérési protokoll célja azon paraméterek hatásának feltárása, amelyek olyan
+mértékben határozzák meg a mérések pontosságát, hogy ilyen elemszám mellett is képesek
+szignifikáns eltérést produkálni.
+
+\subsection{Döntési mérési protokoll}
+A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt szignifikáns
+hibajavulást hozó paraméterváltoztatások hatását nagyobb mintaelemszám mellett végzett
+mérések segítségével pontosabban mérje meg, ezzel támogatva azt a döntést, hogy
+mely paraméterkombinációk alkalmasak a kialakítandó becslési pipeline-ba történő 
+beépítésre.
+
+
+\section{Az utólagos kalibráció elvetése}
+A modellek becslései szisztematikus torzítást mutatnak: a nagyobb adagokat
+rendre alulbecsülik, és az energiaértékek átlagos előjeles hibája adathalmazonként
+jelentősen eltér. Az első mérési körben ez a torzítás
+az ACETADA adathalmazon elhanyagolható volt (\mbox{$-1{,}6\%$}), a Nutrition5k-n
+mérsékelt (\mbox{$-11{,}1\%$}), az OmniFood8k-n viszont jelentős (\mbox{$-45{,}0\%$}).
+Egy adott adathalmazon illesztett utólagos korrekció, például a becsült és a valós érték
+közötti lineáris vagy izotonikus leképezés a logaritmikus skálán, ezt a rendszeres
+eltérést csökkenteni képes.
+% TODO bizonyítani.
+Viszont amellett döntöttem, hogy ezt az elkészítendő becslést végző pipeline-ba nem fogom
+beépíteni.
+\paragraph{}A döntés oka, hogy a korrekció csak abban a helyzetben érvényes, amelyből
+illesztették. A torzítás nagysága és előjele függ az adathalmaztól, az ételek jellegétől, a használt modelltől és az adag méretétől,
+ezért egyetlen rögzített korrekciós függvény az egyik helyzetben javítana, a másikban
+viszont ronthatna. A mérések ezt alátámasztják %TODO biz
+: a modellek előjele is eltérhet ugyanazon
+az adathalmazon belül, a kalibráció pedig a Nutrition5k-n kismértékben rontott az eredményen. Egy valós alkalmazásban a bemenetek
+eloszlása ismeretlen és változó, a kalibrációhoz szükséges címkézett minták pedig nem
+állnak rendelkezésre, így a korrekció nem lenne megbízhatóan beállítható.
 
 \section{Döntési lehetőségek értékelése}
 \paragraph{}
