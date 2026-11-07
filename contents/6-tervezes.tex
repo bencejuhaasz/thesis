@@ -34,9 +34,18 @@ Miután az adathalmaz minden kiválasztott rekordjához megtörténtek a kérés
 Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges számú adathalmazt és modellt lehet mérni, minden megadott adathalmazon minden meadott modell
 válaszai mentésre és kiértékelésre kerülnek.
 
-\section{A mért paraméterek kiválasztása}
-A feladatkiírásban megfogalmazottak szerint
-
+\section{A mért mennyiségek kiválasztása}
+\paragraph{}A feladatkiírásban megfogalmazottak szerint a becslés pontossága mellett a válaszidőt, a
+költséget, a válaszok konzisztenciáját, a strukturált kimenet megbízhatóságát és az
+adatvédelmet is vizsgálni kell. A következő mennyiségek mérése mellett döntöttem:
+\begin{enumerate}
+    \item Pontosság: a becsült tömeg, energia, szénhidrát, fehérje és zsír eltérése az
+    adathalmaz szerinti értéktől.
+    \item Válaszidő: Az API hívás elküldése és a válasz teljes megérkezése között eltelt idő
+    \item Költség: a bemeneti tokenszám és a hívások költsége, a szolgáltatók leírását követve dollárban
+    \item A válaszok megbízhatósága: a sikertelen API-hívások és a
+    fel nem dolgozható (például hibás struktúrával érkező) válaszok száma.
+\end{enumerate}
 \section{A vizsgált nagy nyelvi modellek kiválasztása}
 \paragraph{}A nagy nyelvi modellek kiválasztásával kapcsolatban a feladatkiírás
 a következő követelményeket fogalmazza meg:
@@ -52,6 +61,14 @@ nagyobb paraméterszámot vagy több erőforrást feltételeztem. %Ilyet mondhat
 
 
 Az előzmények fejezetben bemutatott tanulmányokban 
+
+\section{A vizsgált prompt utasítások összeállítása}
+\paragraph{}Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
+hogy annak bemeneteként meghatározza annak számára az elvégzendő feladatot.
+A méréseimhez a Sterling és társai \cite{sterling2026vlm} által közölt P3 promptból indultam ki,
+amely arra kéri a  nagy nyelvi modellt, hogy a fényképen látható tényleges adagot becsülje, és
+ne egy feltételezett szokásos adagméretre kerekítsen.
+
 
 \section{A mérési eredmények összehasonlításához használható módszerek kiválasztása}
 A pvalues.py program arra szolgál, hogy statisztikai próba segítségével lehessen vizsgálni, hogy az elkészült mérések pMAE eredményei között van-e
@@ -84,7 +101,7 @@ Az előmérési protokoll célja azon paraméterek hatásának feltárása, amel
 mértékben határozzák meg a mérések pontosságát, hogy ilyen elemszám mellett is képesek
 szignifikáns eltérést produkálni.
 
-\subsubsection{Az előmérési protokoll által vizsgált paraméterek bemutatása}
+\subsubsection{Az előmérési protokoll által vizsgált konfigurációs paraméterek bemutatása}
 Ezek azok a konfigurácós beállítások, amelyek hatását össze lehet hasonlítani
 a mérési protokoll segítségével:
 \begin{enumerate}
@@ -108,9 +125,9 @@ a mérési protokoll segítségével:
     A DFood-Tj adathalmaz esetén felül- és oldalnézeti, az OmniFood8k adathalmaz esetén a hat különböző szögből készült kép használatának kombinációját lehet a paraméterrel konfigurálni
 \end{enumerate}
 
-\subsubsection{Az előmérési protokoll által mért paraméterek bemutatása}
-Ezek azok az értékek, amelyek segítségével lehetővé teszi a mérések kiértékelését,
-összehasonlítását a mérési protokoll.
+\subsubsection{Az előmérési protokoll által mért kimeneti paraméterek bemutatása}
+Ezek azok az értékek, amelyekre hatást gyakorolnak a konfigurációs beállítások,
+és változásuk vizsgálhatóvá teszi, hogyan teljesített a feladatban az adott konfiguráció.
 \begin{enumerate}
     \item API hívások száma
     \item Választ nem kapó API hívások száma
@@ -134,9 +151,6 @@ mérések segítségével pontosabban mérje meg, ezzel támogatva azt a dönté
 mely paraméterkombinációk alkalmasak a kialakítandó becslési pipeline-ba történő 
 beépítésre.
 
-\section{A prompt utasítások összeállítása}
-Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
-hogy annak bemeneteként meghatározza annak számára az elvégzendő feladatot.
 
 
 \section{Az utólagos kalibráció elvetése}
