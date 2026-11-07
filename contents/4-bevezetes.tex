@@ -1,19 +1,58 @@
 \chapter{Bevezetés}
 % Csak példaként, hogy hogy működik a dolog:
 \section{Szakmai háttér}
-\paragraph{} Az elvégzett munka kontextusa, szakmai indoklása, motivációk, célkitűzés és az elvégzett feladatok összefoglalása.
-\lipsum[5-6] % 2 random bekezdés - töröld ki
+\paragraph{}A cukorbetegség kezelésében az elfogyasztott ételek mennyiségének és
+tápanyagtartalmának ismerete alapvető fontosságú, mivel az étkezés közvetlenül
+befolyásolja a vércukorszintet. % TODO: hivatkozás (pl. szakmai irányelv vagy áttekintő cikk)
+Az étkezések naplózása ugyanakkor időigényes és hibára hajlamos feladat, mert a
+felhasználónak az ételek összetevőit, az adagok tömegét és a tápértékét is meg kell
+becsülnie. % TODO: hivatkozás a kézi naplózás terheiről
+Az ezt támogató alkalmazásokban ezért kézenfekvő igény, hogy az étkezés rögzíthető
+legyen fényképpel vagy szöveges leírással, és a rendszer ebből automatikusan
+meghatározza az ételeket, az adagméretet és a becsült tápértéket.
 
+\paragraph{}A nagy nyelvi modellek kereskedelmi API-n keresztül elérhetők, képből, szövegből vagy a kettő
+kombinációjából strukturált szöveges kimenetet is képesek előállítani. Egy konkrét alkalmazás
+szempontjából azonban nem csak a becslés pontossága számít: a válaszidő, az üzemeltetési
+költség, a strukturált kimenet megbízhatósága és az adatvédelem is meghatározza, hogy egy modell használható-e. A szakirodalomban
+számos vizsgálat foglalkozik az ételfelismeréssel és a tápértékbecsléssel
+(\ref{ch:elozmenyek}.~fejezet), ezek azonban jellemzően egy vagy két
+adathalmazra és kevés modellre korlátozódnak.
+
+\section{Célkitűzés}
+\paragraph{}A dolgozat célja, hogy egy cukorbetegség kezelését támogató alkalmazás
+étkezésnaplózó funkciójához kereskedelmi API-n keresztül elérhtő multimodális nagy nyelvi modellek és
+feldolgozási stratégiák pontosságát értékelje, összehasonlítsa, és megvizsgálja,
+hogy a becslés pontossága javítható-e. A vizsgálat kiterjed az ételek és
+összetevők %TODO összetevő felismerés mérése
+felismerésére, az adagméret becslésére, valamint az energia-, szénhidrát-,
+fehérje- és zsírtartalom meghatározására.
+A következő kérdésekre keresem a választ:
+\begin{enumerate}
+    \item Mennyire pontosan becsülik a vizsgált kereskedelmi modellek az étkezések
+    tömegét, energia- és makrotápanyag-tartalmát képek alapján, és ez hogyan függ az
+    adathalmaztól?
+    \item A becslési hiba mekkora része származik az adag tömegének, és mekkora az
+    étel energiasűrűségének hibájából?
+    \item Javítja-e a pontosságot több nézőpontból készült kép megadása, illetve az
+    eltérő prompt-stratégiák alkalmazása?
+    \item Hogyan viszonyulnak egymáshoz a modellek a válaszidő, a költség és a
+    strukturált kimenet megbízhatósága szempontjából?
+\end{enumerate}
 % -------------------------------------------------------------
+
 \section{A szakdolgozat felépítése}
-A szakdolgozat/diplomamunka felépítésének rövid összefoglalása:
+A szakdolgozat felépítésének rövid összefoglalása:
 
-\paragraph{2. Fejezet} Valamiről szól és most itt részletezem egy-két mondatban, hogy miről is van szó ebben a fejezetben. És most írok még egy mondatot.
+\paragraph{2. Fejezet}Bemutatja a témához kapcsolódó publikációkat
+és a vizsgálatban érintett adathalmazokat.
 
-\paragraph{3. Fejezet} Valamiről szól és most itt részletezem egy-két mondatban, hogy miről is van szó ebben a fejezetben. És most írok még egy mondatot.
+\paragraph{3. Fejezet}A tervezési döntéseket ismerteti: a vizsgált modellek és
+adathalmazok kiválasztását, a mérési keretrendszer felépítését, a használt
+promptokat és az értékelési módszertant.
 
-\paragraph{4. Fejezet} Valamiről szól és most itt részletezem egy-két mondatban, hogy miről is van szó ebben a fejezetben. És most írok még egy mondatot.
+\paragraph{4. Fejezet}Közli a mérések eredményeit, és elemzi a becslési hiba okait.
 
-\paragraph{5. Fejezet} Valamiről szól és most itt részletezem egy-két mondatban, hogy miről is van szó ebben a fejezetben. És most írok még egy mondatot.
-
+\paragraph{5. Fejezet}Összefoglalja az elért eredményeket a célkitűzések
+fényében, és megadja a továbblépési lehetőségeket.
 \clearpage % Ez azért kell, hogy nehogy képek átcsússzanak a következő fejezethez

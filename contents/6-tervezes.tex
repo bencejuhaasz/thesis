@@ -84,12 +84,47 @@ Az előmérési protokoll célja azon paraméterek hatásának feltárása, amel
 mértékben határozzák meg a mérések pontosságát, hogy ilyen elemszám mellett is képesek
 szignifikáns eltérést produkálni.
 
+\subsubsection{Az előmérési protokoll által vizsgált paraméterek bemutatása}
+Ezek azok a konfigurácós beállítások, amelyek hatását össze lehet hasonlítani
+a mérési protokoll segítségével:
+\begin{enumerate}
+    \item Prompt utasítás:
+    \item Nagy nyelvi modell:
+    \item Token keret:
+    \item Temperature paraméter:
+    \item "Reasoning" kapcsoló:
+    \item Kép típus: 
+\end{enumerate}
+
+\subsubsection{Az előmérési protokoll által mért paraméterek bemutatása}
+Ezek azok az értékek, amelyek segítségével lehetővé teszi a mérések kiértékelését,
+összehasonlítását a mérési protokoll.
+\begin{enumerate}
+    \item API hívások száma
+    \item Választ nem kapó API hívások száma
+    \item Fel nem dolgozható API válaszok száma
+    \item Válaszok medián válaszideje
+    \item P50 válaszidő
+    \item Bemeneti tokenszám
+    \item Kimeneti tokenszám
+    \item Költség
+    \item Becsült energiatartalom
+    \item Becsült tömeg
+    \item Becsült szénhidráttömeg
+    \item Becsült fehérjetömeg
+    \item Becsült zsírtömeg
+\end{enumerate}
+
 \subsection{Döntési mérési protokoll}
 A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt szignifikáns
 hibajavulást hozó paraméterváltoztatások hatását nagyobb mintaelemszám mellett végzett
 mérések segítségével pontosabban mérje meg, ezzel támogatva azt a döntést, hogy
 mely paraméterkombinációk alkalmasak a kialakítandó becslési pipeline-ba történő 
 beépítésre.
+
+\section{A prompt utasítások összeállítása}
+Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
+hogy annak bemeneteként meghatározza annak számára az elvégzendő feladatot.
 
 
 \section{Az utólagos kalibráció elvetése}
