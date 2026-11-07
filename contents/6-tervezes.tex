@@ -68,6 +68,30 @@ hogy annak bemeneteként meghatározza annak számára az elvégzendő feladatot
 A méréseimhez a Sterling és társai \cite{sterling2026vlm} által közölt P3 promptból indultam ki,
 amely arra kéri a  nagy nyelvi modellt, hogy a fényképen látható tényleges adagot becsülje, és
 ne egy feltételezett szokásos adagméretre kerekítsen.
+\paragraph{}A vizsgált változatok a következők:
+\begin{enumerate}
+    \item \textbf{P3:} az átvett utasítás. Ételenként a tömeg és az energia becslését kéri.
+    \item \textbf{P3\_macros:} ugyanaz a szöveg, kiegészítve a szénhidrát-, fehérje- és
+    zsírtartalom kérésével tételenként, valamint a kimeneti szerkezet megfelelő
+    bővítésével.
+    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étel szöveges leírásával a vizsgált adathalmazból. 
+    \item \textbf{NutriBench:} Csak szöveges bemenetet használó prompt. Előírja, hogy a
+    leírás minden ételét és italát külön tételként kell felsorolni, a megadott
+    mennyiséget kell használni (a háztartási mértékeket az adott étel jellemző
+    tömegére átváltva), és az energiaérték a makrótápanyagokkal összhangban kell hogy legyen.
+    \item \textbf{P3\_prep:} a P3\_macros szövege kiegészítve egy utasítással, amely szerint
+    minden tételt konkrétan kell megnevezni, az elkészítési módjával és a látható
+    hozzáadott összetevőkkel együtt, a látható szószokat, öntetet, olajat, kenhető zsiradékot és italokat pedig
+    külön tételként kell felsorolni. Egyetlen hívás, a kimenet azonos a P3\_macros
+    kimenetével.
+    \item \textbf{P3\_prep\_textcalc:} kétlépéses eljárás. Az első lépés a P3\_prep a
+    fényképen. A második lépés csak szöveget használ: az első lépés tételeit
+    a NutriBench-hez használt utasításba helyezi, amely a
+    megadott tömegekből újra megbecsüli a tápértékeket. A végső előrejelzésben az
+    energia és a makrók a második lépésből, a tömeg az első lépésből származik. A válaszidő, a tokenszám és a
+    költség a két hívás összege. A kimenet szerkezete itt is azonos a P3\_macros
+    kimenetével.
+\end{enumerate}
 
 
 \section{A mérési eredmények összehasonlításához használható módszerek kiválasztása}
