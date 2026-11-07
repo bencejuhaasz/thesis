@@ -89,11 +89,23 @@ Ezek azok a konfigurácós beállítások, amelyek hatását össze lehet hasonl
 a mérési protokoll segítségével:
 \begin{enumerate}
     \item Prompt utasítás:
+    A becslési feladat szöveges megfogalmazása a mért nagy nyelvi modell számára.
     \item Nagy nyelvi modell:
+    A vizsgált nagy nyelvi modell kiválasztására szolgál.
     \item Token keret:
+    A generálható kimeneti tokenek maximális száma becslésenként, a költség limitálása
+    céljából
     \item Temperature paraméter:
+    Azt szabályozza, hogy a nagy nyelvi modell a
+    következő token kiválasztásakor mennyire véletlenszerűen választ a lehetséges tokenek
+    közül.
     \item "Reasoning" kapcsoló:
-    \item Kép típus: 
+    Azt szabályozza, hogy a nagy nyelvi modell a
+    végső válasz előtt mennyi belső következtetést állít elő. Ezek az úgynevezett
+    érvelési tokenek a válaszban nem jelennek meg, de a modell ezekre támaszkodva
+    alakítja ki a kimenetet.
+    \item Kép típus:
+    A DFood-Tj adathalmaz esetén felül- és oldalnézeti, az OmniFood8k adathalmaz esetén a hat különböző szögből készült kép használatának kombinációját lehet a paraméterrel konfigurálni
 \end{enumerate}
 
 \subsubsection{Az előmérési protokoll által mért paraméterek bemutatása}
