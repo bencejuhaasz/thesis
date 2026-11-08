@@ -40,12 +40,19 @@ költséget, a válaszok konzisztenciáját, a strukturált kimenet megbízható
 adatvédelmet is vizsgálni kell. A következő mennyiségek mérése mellett döntöttem:
 \begin{enumerate}
     \item Pontosság: a becsült tömeg, energia, szénhidrát, fehérje és zsír eltérése az
-    adathalmaz szerinti értéktől.
-    \item Válaszidő: Az API hívás elküldése és a válasz teljes megérkezése között eltelt idő
-    \item Költség: a bemeneti tokenszám és a hívások költsége, a szolgáltatók leírását követve dollárban
-    \item A válaszok megbízhatósága: a sikertelen API-hívások és a
-    fel nem dolgozható (például hibás struktúrával érkező) válaszok száma.
+    adathalmaz szerinti referenciaértéktől. % TODO: élelmi rost (témavezetővel egyeztetni)
+    \item Válaszidő: az API-hívás elküldése és a válasz teljes megérkezése között eltelt idő.
+    Újrapróbálkozás esetén csak a sikeres kísérlet ideje számít.
+    \item Költség: a hívás bemeneti és kimeneti tokenszámából a szolgáltató által a mérés
+    idején közzétett listaárak alapján számított költség, dollárban.
+    \item A strukturált kimenet megbízhatósága: az újrapróbálkozások után is sikertelen
+    API-hívások száma, a fel nem dolgozható válaszok száma, valamint azon válaszok száma, amelyek nem teljesen JSON formátumban érkeztek, 
+    és csak a JSON-objektum szövegből való kiemelése után váltak feldolgozhatóvá.
+    % TODO: konzisztencia (ismételt mérések után)
+    % TODO: adatvédelem (információgyűjtés után)
 \end{enumerate}
+
+
 \section{A vizsgált nagy nyelvi modellek kiválasztása}
 \paragraph{}A nagy nyelvi modellek kiválasztásával kapcsolatban a feladatkiírás
 a következő követelményeket fogalmazza meg:
