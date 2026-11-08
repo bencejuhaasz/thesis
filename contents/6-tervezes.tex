@@ -61,13 +61,49 @@ támogatnia kell képi bemenetet és strukturált kimeneti formátumot.
 Emellett figyelembe kell venni az elérés késleltetését és árazását is a vizsgálat
 során.
 
-Szolgáltatónként egy olcsóbb és egy drágább modell mérése mellett döntöttem, hogy
-vizsgálni tudjam, a modellek árazása hogyan hat az eredmények pontosságára.
-A kereskedelmi modellek felépítése nem publikus, de egy drágább modell mögött
-nagyobb paraméterszámot vagy több erőforrást feltételeztem. %Ilyet mondhatok?
+\paragraph{}A három legnagyobb szolgáltató, a Google, az OpenAI és az Anthropic
+modellkínálata egyaránt három szintre tagolódik: egy olcsó, nagy tokenszám mellett is gazdaságosra tervezett
+modellre, egy közepes árú általános modellre és egy csúcsmodellre. A kereskedelmi
+modellek felépítése és paraméterszáma nem nyilvános, ezért a modellek képességét nem a
+méretük, hanem a szolgáltató által meghatározott termékkategória és ár alapján tudom meghatározni.
+Szolgáltatónként a legolcsóbb és a középső szint vizsgálata mellett döntöttem. Egy étkezésnaplózó
+alkalmazás felhasználónként naponta több hívást indít, ezért a működtetés költsége
+szempontjából releváns kérdés, hogy az olcsóbb szint mennyit veszít a pontosságból a
+középsőhöz képest. A csúcsszintet csak az Anthropicnál mértem, kiegészítő felső
+korlátként, mert ott a csúcsmodell ára a középső szintnek csak kétszerese. A többi
+szolgáltató csúcsmodelljét költségkeret miatt nem vizsgáltam.
 
+\paragraph{}A promptok és a mérést meghatározó további paraméterek hatásának vizsgálatát többségében a Gemini Flash-Lite modellen
+végeztem. Ennek oka, hogy a vizsgált modellek közül ez érhető el a legkisebb költséggel, és Sterling és társai \cite{sterling2026vlm} is ezt a modellcsaládot vizsgálták 
+ugyan azon az adathalmazon és hasonló prompttal. Annak ellenére, hogy a minták kiválasztása eltérő, az eredmények nagyságrendi viszonyítási alapot adnak a mérési környezet ellenőrzéséhez.
 
-Az előzmények fejezetben bemutatott tanulmányokban 
+\paragraph{}A reasoning-szintet minden olyan modellnél, ahol ez állítható, alacsonyra
+állítottam, hogy a szolgáltatók modelljei összevethető beállítással fussanak, a válaszidő
+és a költség pedig korlátozott maradjon. % TODO: további indoklás az adatok alapján
+A vizsgált modelleket és beállításaikat a \ref{tab:modellek}.~táblázat foglalja össze.
+
+\begin{table}[h]
+\centering
+\caption{A vizsgált modellek. Az árak a szolgáltatók által a mérés idején (2026.
+október--november) közzétett listaárak, millió bemeneti/kimeneti tokenenként.}
+\label{tab:modellek}
+\begin{tabular}{llllr}
+\hline
+Szolgáltató & Szint & API-azonosító & Beállítás & Ár (\$) \\
+\hline
+Google    & olcsó & \texttt{gemini-3.5-flash-lite} & temperature 0,1 & 0,30 / 2,50 \\
+Google    & olcsó & \texttt{gemini-3.1-flash-lite} & temperature 0,1 & 0,25 / 1,50 \\
+Google    & közép & \texttt{gemini-3.8-flash} & thinking: low & 0,75 / 3,75 \\
+OpenAI    & olcsó & \texttt{gpt-6-luna} & reasoning: low & 0,10 / 0,50 \\
+OpenAI    & közép & \texttt{gpt-6.1-sol} & reasoning: low & 2,00 / 10,00 \\
+Anthropic & olcsó & \texttt{claude-haiku-5-5} & effort: low & 0,10 / 0,50 \\
+Anthropic & közép & \texttt{claude-sonnet-5-5} & effort: low & 2,00 / 10,00 \\
+Anthropic & csúcs & \texttt{claude-opus-5-5} & effort: low & 4,00 / 20,00 \\
+\hline
+\end{tabular}
+\end{table}
+
+A \texttt{gemini-3.1-flash-lite} modellt csak a DFood-Tj adathalmazon végzett fejlesztési mérésekben használtam.
 
 \section{A vizsgált prompt utasítások összeállítása}
 \paragraph{}Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
@@ -114,12 +150,10 @@ A pMAE előnyösebb a feladat szempontjából, mint A MAPE mérték (étkezésen
 referenciaértékek összegéhez viszonyítja, így minden étkezés a tápértékével arányos súllyal számít. Ez megfelel az étkezésnaplózás céljának, amely egy adott időszak összesített 
 tápanyagbevitelének minél pontosabb követése.
 
-MAE: az abszolút hiba, energiatartalom esetén kilokalóriában, a többi esetben grammban
-Az előjeles torzítás (bias) megengedi, hogy az ellentétes előjelű hibák kioltsák egymást, ezért ez a mennyiság nem a hiba nagyságának a vizsgálatára szolgál,
-hanem azt mutatja meg, van-e a becslés során szisztematikus torzítás, konzisztens alá- vagy fölébecslés és milyen mértékben:
-\begin{equation}
-  \mathrm{bias} = 100\cdot\frac{\sum_i (p_i - t_i)}{\sum_i t_i}.
-\end{equation}
+MAE (Mean Absolute Error): az átlagos abszolút hiba, energiatartalom esetén kilokalóriában, a többi esetben grammban.
+
+Az előjeles torzítás (bias) megengedi, hogy az ellentétes előjelű hibák kioltsák egymást, ezért ez a mennyiség nem a hiba nagyságának a vizsgálatára szolgál,
+hanem azt mutatja meg, van-e a becslés során szisztematikus torzítás, konzisztens alá- vagy fölébecslés és milyen mértékben.
 
 
 
