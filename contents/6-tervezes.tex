@@ -115,6 +115,7 @@ hanem azt mutatja meg, van-e a becslés során szisztematikus torzítás, konzis
 \end{equation}
 
 
+
 \section{A mérési protokoll kialakítása}
 \paragraph{}Annak érdekében, hogy egy adott mérési beállítás hatása vizsgálható legyen,
 kontrollálni kell, hogy miben térhetnek el az egyes mérések. Egy nem várt körülmény
@@ -129,6 +130,22 @@ amelyeknek hatása van a mérésre.
 A nagy nyelvi modellek nem determinisztikus működéséből adódóan azonban nincs lehetőség
 minden ilyen paraméter rögzítésére. Ezek hatásának váltakozását a mérések ismétlésével
 és az eredmények együttes kiértékelésével lehet kezelni.
+
+A konfigurációs paramétereket az egyetlen, vizsgált paraméteren kívül rögzítve, azt az egyet változtatva
+összevethető méréspárokat lehet előállítani.
+Páros összehasonlítások során rögzítendő paraméter a mintaelemszám ($n$), és az úgynevezett
+seed érték.
+Az ételek kiválaaztása az adathalmazból egy véletlenszerű sorbarendezés után történik,
+az első $n$ adathalmazrekord kerül bele a vizsgált halmazba.
+A seed érték rögzítésével elérhető, hogy a véletlenszerű kiválasztás reprodukálhatóan
+működjön, tehát az egyes mérések ugyan azokat az ételeket fogják tartalmazni, az ételek kiválasztása
+így nem torzítja a vizsgált különbséget a két mérés eredménye között.
+A véletlenszerű sorbarendezés biztosítja, hogy amennyiben az adathalmaz eredeti sorrendje valamilyen rendszer
+szerint épül fel, annak a hatását kontrollálja a mérésekre nézve.
+Például ha növekvő sorrendben lennének tömeg szerint az ételek az adathalmazban, így nem csak a kisebb tömegűek kerülnének
+bele a mérésre kiválasztott részhalmazba.
+A véletlen sorbarendezés alkalmazása miatt eltekintek annak vizsgálatától, hogy tartalmaznak-e valóban az adathalmazok
+ilyen, sorrend-függő torzítást a validációs értékekre nézve.
 
 \subsection{Előmérési protokoll}
 \paragraph{}Az előmérési protokoll feladata, hogy minél több mérési paraméter
