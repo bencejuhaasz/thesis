@@ -95,8 +95,25 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
 
 
 \section{A mérési eredmények összehasonlításához használható módszerek kiválasztása}
-A pvalues.py program arra szolgál, hogy statisztikai próba segítségével lehessen vizsgálni, hogy az elkészült mérések pMAE eredményei között van-e
-szignifikáns eltérés, normál eloszlást feltételezve. A program Holm-korrekciót használ annak érdekében, hogy az összehasonlítások számának növekedésével
+
+\subsection{Hibamértékek}
+
+pMAE: Minden célmennyiségre (energia, szénhidrát, fehérje, zsír, tömeg) étkezésenként összevetésre kerül a modell becslése a referenciaértékkel. A pMAE érték az abszolút hibák összegét a referenciaértékek összegéhez viszonyítja:
+\begin{equation}
+  \mathrm{pMAE} = 100\cdot\frac{\sum_i |p_i - t_i|}{\sum_i t_i}.
+\end{equation}
+A pMAE előnyösebb a feladat szempontjából, mint A MAPE mérték (étkezésenkénti százalékos hiba átlaga). A MAPE minden étkezés hibáját a saját referenciaértékéhez (a referenciaérték az adathalmazban megadott, a becslés validációrjára szolgáló érték) viszonyítja, ezért a kis referenciaértékű 
+étkezések már kis abszolút eltérés mellett is nagy relatív hibát adnak, és ez aránytalanul befolyásolják az átlagot. A pMAE ezzel szemben az abszolút hibák összegét a 
+referenciaértékek összegéhez viszonyítja, így minden étkezés a tápértékével arányos súllyal számít. Ez megfelel az étkezésnaplózás céljának, amely egy adott időszak összesített 
+tápanyagbevitelének minél pontosabb követése.
+
+MAE: az abszolút hiba, energiatartalom esetén kilokalóriában, a többi esetben grammban
+Az előjeles torzítás (bias) megengedi, hogy az ellentétes előjelű hibák kioltsák egymást, ezért ez a mennyiság nem a hiba nagyságának a vizsgálatára szolgál,
+hanem azt mutatja meg, van-e a becslés során szisztematikus torzítás, konzisztens alá- vagy fölébecslés és milyen mértékben:
+\begin{equation}
+  \mathrm{bias} = 100\cdot\frac{\sum_i (p_i - t_i)}{\sum_i t_i}.
+\end{equation}
+
 
 \section{A mérési protokoll kialakítása}
 \paragraph{}Annak érdekében, hogy egy adott mérési beállítás hatása vizsgálható legyen,
