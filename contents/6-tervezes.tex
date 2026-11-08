@@ -147,6 +147,18 @@ bele a mérésre kiválasztott részhalmazba.
 A véletlen sorbarendezés alkalmazása miatt eltekintek annak vizsgálatától, hogy tartalmaznak-e valóban az adathalmazok
 ilyen, sorrend-függő torzítást a validációs értékekre nézve.
 
+\paragraph{}A képeket a modelleknek küldés előtt egységes előfeldolgozáson esnek át. A benchmark.py program a kép EXIF-metaadataiban rögzített tájolás szerint elforgatja a képet, 
+hogy ha a képek nem a megjelenítési irányban vannak tárolva, abban az esetben is egységes legyen az elforgatásuk. Ezután RGB színtérbe alakítja, és a képarány megtartásával úgy 
+kicsinyíti, hogy a hosszabbik oldala legfeljebb 1024 képpont legyen. Az ennél kisebb képeket nem nagyítja. Végül a képet 90-es minőségi beállítással JPEG formátumba kódolja. 
+Az egységes előfeldolgozás biztosítja, hogy az eltérő forrású adathalmazok képei azonos felbontásban és formátumban jussanak el a modellekhez, és a bemeneti tokenszám, ezzel 
+a költség, felülről korlátozott legyen. % TODO: miért éppen 1024 / 90?
+
+\paragraph{}Ha egy API-hívás hibával tér vissza (például hálózati hiba, túlterhelés vagy a kérések számának korlátozása miatt), a program legfeljebb háromszor újrapróbálkozik, 
+vagyis hívásonként legfeljebb négy kísérletet tesz. A kísérletek között exponenciálisan növekvő ideig vár (5, 10, majd 20 másodpercig), hogy a szolgáltató átmeneti túlterhelése 
+ne okozzon azonnali újabb hibát. Ha a négy kísérlet egyike sem sikeres, a hívást sikertelenként naplózza. A válaszidőt mindig csak a sikeres kísérletre méri, így a válaszidő a 
+hibás kísérletek és a várakozások idejét nem tartalmazza.
+%Ez biztosan jó így?
+
 \subsection{Előmérési protokoll}
 \paragraph{}Az előmérési protokoll feladata, hogy minél több mérési paraméter
 hatását feltérhatóvá tegye, miközben kontrollálja az ebből adódó többletköltség
