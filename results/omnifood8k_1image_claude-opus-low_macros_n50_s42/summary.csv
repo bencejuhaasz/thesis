@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+omnifood8k,claude-opus-low,P3_macros,schema,50,0,0,0,4.85,4.82,1.0,1297.0,0.7221,50,151.01,38.8,-71.95,50,70.75,40.0,68.06,50,16.28,74.9,8.38,50,9.91,77.4,4.67,50,15.56,55.1,-13.76

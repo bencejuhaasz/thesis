@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+snapme,gemini-flash-lite,P3_prep,schema,49,0,0,0,1.34,1.23,1.0,1414.0,0.0479,49,112.04,40.5,-34.65,49,95.1,35.1,-43.54,49,12.0,40.0,-4.42,49,4.59,38.0,-0.9,49,6.72,54.0,-2.02

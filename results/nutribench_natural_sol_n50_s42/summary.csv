@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+nutribench_natural,gpt-sol,NUTRIBENCH,schema,50,0,0,0,5.12,4.76,0.0,541.0,0.1669,50,59.76,19.6,13.63,50,7.12,20.3,2.59,50,2.14,19.9,-0.14,50,4.08,30.9,0.12

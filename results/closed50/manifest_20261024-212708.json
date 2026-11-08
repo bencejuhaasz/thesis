@@ -1,0 +1,149 @@
+{
+  "run_name": "closed50",
+  "started": "2026-10-24T21:27:08",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "both",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-3.1-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "enabled": true,
+      "temperature": 0.1,
+      "extra": {},
+      "price": {
+        "in": 0.25,
+        "out": 1.5
+      },
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "dfood_tj": {
+      "enabled": false,
+      "root": "DFood-Tj",
+      "loader": "loader.py",
+      "fn": "load_fnutr",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "image_id",
+        "image_path": "path"
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- food_id: the matching entry of the FOOD LIST below\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"food_id\": 12,\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}\n\nFOOD LIST (format \"id: name\"). Match every food item to one entry:\n- Put the id of the entry that best matches the food you SEE into \"food_id\"; keep a short descriptive \"name\".\n- If the list has an entry for a whole mixed dish you see, use that one entry; otherwise list the components as separate items.\n- Use each id at most once: all of one food goes into one item.\n- If no entry fits at all, use food_id -1.\n\n0: Rice\n1: Spiced goose\n2: Sauteed lettuce\n3: Spinach\n4: Braised duck with soy sauce\n5: Buckwheat bread\n6: Egg\n7: Sea cucumber\n8: Sweet potato leaves\n9: Steamed vegetable bun\n10: Pork and vegetable wonton\n11: Double cooked pork\n12: Green pepper\n13: Steamed egg custard\n14: Eggplant\n15: Coarse grain\n16: Pumpkin\n17: Lettuce shredded meat\n18: Sauteed vegetable\n19: Sauteed bean sprouts\n20: Steamed chicken\n21: Cucumber fried pork\n22: Steamed bun\n23: Grilled pork ribs\n24: Braised fish fillets\n25: Steamed bream\n26: Eggplant with mince pork\n27: Shredded Pork with Vegetables\n28: Carrot Braised Short Ribs\n29: Squash\n30: Scallion oil winter melon\n31: Shredded pork in Beijing sauce\n32: Zizania carrot shredded pork\n33: Leaf lettuce\n34: Shepherd\n35: Cut white duck\n36: Roast meat with white radish\n37: Shredded pork and green pepper\n38: fried cauliflower\n39: Steamed meatball\n40: Scrambled egg with tomato\n41: Sauteed Shrimp meat\n42: Chinese cabbage\n43: Pork stuffed green pepper\n44: Green pepper meat\n45: Steamed Chicken with Mushroom\n46: tumis kangkung\n47: Stir-fry celery\n48: Stir-fried pork with egg and fungus\n49: White rice shrimp\n50: Fried cabbage\n51: Steamed pomfret\n52: Braised Fungus with pork slice\n53: Steamed Perch\n54: Fry pea\n55: cowpea\n56: Braised Shrimp in chili oil\n57: Sirloin tomatoes\n58: Beer duck\n59: Braised pork with tofu skin knot\n60: Fried towel gourd\n61: chicken braised with brown sauce\n62: Chinese cabbage meatballs\n63: Amaranth\n64: Fried lotus root\n65: Braise in soy sauce carp\n66: Steamed Perch\n67: White radish with scallion oil\n68: Sauteed Beef Fillet with Hot Green Pepper\n69: Stewed Chicken with Three Cups Sauce\n70: Dumplings\n71: Chicken drumsticks\n72: Cucumber in sauce\n73: Steamed spare ribs in black bean sauce\n74: White gourd soup\n75: Fried fungus mushroom\n76: Dried bean curd\n77: Ginger slice\n78: Pumpkin pie\n79: Pine cake with Diced Scallion\n80: Nuts\n81: Steamed Fish Head with Diced Hot Red Peppers\n82: Mapo Tofu\n83: Braised pork in brown sauce\n84: Pear\n85: Fruit salad\n86: Fried meat with onion\n87: Pork ribs soup with radish\n88: Bread\n89: Croissant\n90: toast\n91: Skin of bean curd\n92: White fungus soup\n93: Sandwich\n94: Soybean milk\n95: Preserved eggs\n96: Luncheon meat\n97: Scrambled eggs\n98: Steamed Baby Cabbage\n99: Steamed pork with rice powder\n100: Celery and tofu\n101: Boiled chicken\n102: Coffee\n103: Black pepper beef\n104: Corn Cob\n105: Braised water bamboo\n106: Milk\n107: Braised beef\n108: Steamed Pork Dumplings\n109: Black Fungus in Vinegar Sauce\n110: Fried Yam\n111: Shredded chicken\n112: Scrambled Egg with cucumber\n113: Sweet potato\n114: spaghetti with meat sauce\n115: Hamburger\n116: Oats\n117: Marinated Egg\n118: Sauced beef\n119: Sauerkraut fish\n120: Sichuan noodles with peppery sauce\n121: Grilled chicken kebab\n122: Spicy cabbage\n123: Bacon roll stuffed with golden needle mushroom\n124: grilled fish\n125: Milk pudding\n126: Roast sheep bone rods\n127: Salad with shredded carrots\n128: Pork and bean curd\n129: Curry vermicelli beef soup\n130: Green soybean\n131: Cripsy sweet & sour pork slices\n132: Qishan noodles\n133: Sauteed Sweet Corn with Pine Nuts\n134: Fried Sweet and Sour Tenderloin\n135: sauteed bitter melon\n136: Broccoli with Oyster Sauce\n137: Oyster mushroom\n138: Fried beans\n139: Pickles\n140: Shredded cabbage\n141: Sesame paste\n142: Spicy crayfish\n143: Braised beef noodles\n144: Salmon\n145: Abalone\n146: Fried Tofu\n147: Cabbage soup\n148: Sauteed Sliced Lamb with Scallion\n149: Garlic moss\n150: Scallop in Shell\n151: Tomato salad\n152: Kung Pao Chicken\n153: Scrambled Egg with Leek\n154: Pot bag meat\n155: Shredded pork with cabbage and winter bamboo shoot\n156: Oats porridge\n157: Hot and Sour Soup\n158: Tang-yuan\n159: Spring rolls\n160: Sweet and sour spare ribs\n161: Stewed sirloin potatoes\n162: Sweet and sour fish\n163: roast pork\n164: Chicken breast\n165: Millet congee\n166: rice dumpling\n167: Yangzhou fried rice\n168: Bean curd\n169: buck wheat noodle\n170: Poached Egg\n171: Chinese chive pockets\n172: Seaweed and Egg Soup\n173: Turnip cake\n174: Black rice oatmeal\n175: Asparagus\n176: Rice crust\n177: fried noodles\n178: Noodles with egg and tomato\n179: Carrot and mung bean porridge\n180: Tomato and Egg Soup\n181: Home style sauteed Tofu\n182: Vegetable salad\n183: Fried okra\n184: Shredded pork with bean\n185: Potato silk\n186: Fish-flavored shredded pork\n187: The cod period\n188: Corn and sparerib soup\n189: Saute Spicy Chicken\n190: Black bone chicken soup\n191: West Lake beef soup\n192: Seaweed tofu soup\n193: Spinach and pork liver soup\n194: Borsch\n195: Miso soup\n196: Fish Filets in Hot Chili Oil\n197: Chongqing Hot and Sour Rice Noodles\n198: Noodles with tomato sauce\n199: Crucian and Bean Curd Soup\n200: Dough Drop and Assorted Vegetable Soup\n201: Lotus Root and Rib soup\n202: Duck Blood in Chili Sauce\n203: Taro\n204: Pan fried potato\n205: Pan fried potato\n206: Braised beans with potato\n207: Fried Potato, Green Pepper & Eggplant\n208: French fries\n209: Mashed garlic eggplant\n210: Sauteed broad beans\n211: Deep Fried lotus root\n212: Gizzard\n213: peanut\n214: Seaweed salad\n215: Chinese Yam in Hot Toffee\n216: stuffed bitter melon\n217: Yuba salad\n218: Sauteed Chinese Greens with Mushrooms\n219: Spiced mushroom\n220: Sauteed Lily Bulbs and Celery\n221: Leak and tofu\n222: Pork liver\n223: Pig ears\n224: Braised spareribs with kelp\n225: Cola Chicken wings\n226: Chicken Feet with Pickled Peppers\n227: Chicken Feet with black bean sauce\n228: Steamed Chicken with Chili Sauce\n229: Soy sauce chicken\n230: Spicy Chicken\n231: Scalloped pork or lamb kidneys\n232: Pork with salted vegetable\n233: Braised Pork with Vermicelli\n234: Boiled Shredded pork in chili oil\n235: Braised pig feet with soy sauce\n236: Tripe\n237: Sauteed Vermicelli with Spicy Minced Pork\n238: Fried Lamb with Cumin\n239: Lamb shashlik\n240: Sweet and Sour Mandarin Fish\n241: Braised Hairtail in Brown Sauce\n242: Cheese Shrimp Meat\n243: Shrimp broccoli\n244: Spicy shrimp\n245: Shrimp Duplings\n246: Steamed shrimp with garlic and vermicelli\n247: Pipi shrimp\n248: Oysters\n249: squid\n250: Crab\n251: Turtle\n252: eel\n253: Omelette\n254: Steamed Bun Stuffed\n255: egg omelet\n256: Potato omelet\n257: Egg pie cake\n258: Sesame seed cake\n259: Chinese hamburger\n260: steamed bun with purple potato and pumpkin\n261: Pizza\n262: Deep-fried dough stick\n263: sauteed noodles with minced meat\n264: Cold noodles\n265: Cold Rice Noodles\n266: fried rice noodles\n267: Steamed vermicelli roll\n268: Fried Dumplings\n269: Sweet potato porridge\n270: Jellyfish\n271: Minced Pork Congee with Preserved Egg\n272: Rice porridge\n273: Laver rice\n274: Stone pot of rice\n275: Pork Lungs in Chili Sauce\n276: Spicy pot\n277: Golden meat rolls\n278: Chiffon Cake\n279: Egg Tart\n280: Biscuits\n281: cookies\n282: Soda biscuit\n283: Double skin milk\n284: Stinky tofu\n285: Egg pudding\n286: Sweet stewed snow pear\n287: ice cream\n288: Grilled Ribs\n289: Pan-fried Hairtail\n290: Crab Roe Salad\n291: Baked Sweet Potato with Cheese\n292: Tomato Pasta\n293: Shredded Pickled Mustard Greens\n294: Pork Brains Wrapped in Foil\n295: Fish Skin Dumplings\n296: Pan fried bun\n297: Fruit Ice Powder\n298: Rainbow Cake\n299: Tofu Wrapped in Foil\n300: Corn Pudding Pastry\n301: Stir-fried Sponge Gourd with Eggs\n302: Stir-fried Dutch Beans with Cured Meat\n303: Salt and Pepper Pleurotus Eryngii\n304: Crystal Shrimp\n305: Hand-grabbed Seafood\n306: Ham Fried Rice\n307: Meat Floss Buns\n308: Pickled Pepper Fish Skin\n309: Fresh Pepper Fish\n310: Stir-fried Eggs with Onions\n311: Grilled Beef Ribs\n312: Glutinous Rice Cake\n313: Dry Pot Duck\n314: Spicy Cabbage with Pork Belly\n315: Creamy Bacon Pasta\n316: Stir-fried Noodles with Shredded Meat\n317: Deep-fried spare ribs with spicy salt\n318: Dry Pot Bullfrog\n319: Sesame Sauce Green Beans\n320: Salmon Fried Rice\n321: Stir-fried Crab with Rice Cake\n322: Stir-fried Noodles with Three Kinds of Shredded Ingredients\n323: Salted Egg Yolk and Pork Zongzi\n324: Crispy Skin Pigeon\n325: Heart-shaped Chicken Cutlet\n326: Black Chicken Roll\n327: Teppanyaki Japanese Tofu\n328: Fruit Cake\n329: Stir-fried Noodles\n330: Grilled Eggplant\n331: Sour Cabbage Shredded Pork Noodles\n332: Sour Soup with Beef\n333: Baked Prawns with Cheese\n334: Pumpkin Porridge\n335: Tapioca Flour\n336: Baked Pasta with Italian Meat Sauce\n337: Roast Pork Rice\n338: Beauty-enhancing Papaya\n339: Papaya and White Fungus Soup\n340: Spicy Chopped Preserved Egg\n341: Red Date and White Fungus Soup\n342: Chinese Broccoli with Beef\n343: Taro Balls with Sago\n344: Sausage Fried Rice\n345: Beef Congee\n346: Garlic Flavored Chicken Feet\n347: Braised Pork Rice\n348: Cold Noodle Salad\n349: Fried Pork Chop\n350: Pot-style Lamb",
+      "prepare": "dfood_views",
+      "query": "has_file and view == 'both'",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42,
+        "by": "meal_key"
+      },
+      "prompt_variant": "P3_closed",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "food_id": {
+                  "type": "integer"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "food_id",
+                "estimated_calories",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "food_table": "/home/sandbox/datasets/DFood-Tj/DFoodTJ-Nutr/density.xlsx",
+      "sample_ids": [
+        "1536+1537",
+        "384+385",
+        "976+977",
+        "1457+1458",
+        "990+991",
+        "544+545",
+        "2428+2429",
+        "1765+1766",
+        "3005+3006",
+        "226+227",
+        "693+694",
+        "877+878",
+        "65+66",
+        "639+640",
+        "2623+2624",
+        "2769+2770",
+        "930+931",
+        "286+287",
+        "653+654",
+        "2405+2406",
+        "657+658",
+        "889+890",
+        "835+836",
+        "2091+2092",
+        "536+537",
+        "1593+1594",
+        "1009+1010",
+        "1776+1777",
+        "354+355",
+        "2915+2916",
+        "331+332",
+        "1491+1492",
+        "3135+3136",
+        "3237+3238",
+        "899+900",
+        "1961+1962",
+        "1485+1486",
+        "875+876",
+        "2277+2278",
+        "1873+1874",
+        "125+126",
+        "488+489",
+        "59+60",
+        "220+221",
+        "1582+1583",
+        "2316+2317",
+        "669+670",
+        "3203+3204",
+        "3192+3193",
+        "21+22"
+      ]
+    }
+  }
+}

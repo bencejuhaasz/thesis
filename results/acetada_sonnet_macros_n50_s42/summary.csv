@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+acetada,claude-sonnet-low,P3_macros,schema,50,0,0,0,4.11,4.14,1.0,1919.0,0.4635,50,164.88,23.0,15.08,50,131.87,17.3,36.0,50,27.62,33.1,9.41,50,10.28,28.2,-7.21,50,6.69,27.4,3.06

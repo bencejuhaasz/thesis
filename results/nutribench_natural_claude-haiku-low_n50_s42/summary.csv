@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+nutribench_natural,claude-haiku-low,NUTRIBENCH,schema,50,0,0,0,2.0,1.55,0.0,1183.5,0.0135,50,71.52,23.5,25.11,50,8.47,24.2,2.79,50,2.62,24.3,0.07,50,4.16,31.5,0.53

@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+nutribench_natural,gpt-luna,NUTRIBENCH,schema,50,0,0,0,2.94,2.67,0.0,541.0,0.0095,50,65.75,21.6,19.17,50,7.88,22.5,2.73,50,2.66,24.7,0.76,50,4.48,34.0,0.43

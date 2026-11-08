@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+nutribench_natural,claude-opus-low,NUTRIBENCH,schema,50,0,0,0,2.9,2.69,0.0,1183.5,0.4535,50,52.05,17.1,21.13,50,6.95,19.9,3.19,50,2.34,21.7,0.46,50,3.69,27.9,0.79

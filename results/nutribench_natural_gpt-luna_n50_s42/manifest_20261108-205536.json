@@ -1,0 +1,160 @@
+{
+  "run_name": "nutribench_natural_gpt-luna_n50_s42",
+  "started": "2026-11-08T20:55:36",
+  "benchmark_sha256": "836960280a5c19864110f27ed420246a670b793e6aa0231ecf0ce84de52f8ae1",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "oblique",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "omnifood_views": [
+    0
+  ],
+  "omnifood_min_views": 2,
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gpt-luna",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "enabled": false,
+      "temperature": null,
+      "extra": {
+        "reasoning_effort": "low"
+      },
+      "price": {
+        "in": 0.1,
+        "out": 0.5
+      },
+      "min_interval_s": 0.0
+    }
+  ],
+  "datasets": {
+    "nutribench_natural": {
+      "enabled": false,
+      "root": "nutribench",
+      "loader": "loader.py",
+      "fn": "load_nutribench",
+      "pick": null,
+      "colmap": {
+        "text": "meal_description"
+      },
+      "query": "serving_type == 'natural'",
+      "use_text": true,
+      "prompt": "You are a clinical nutrition assistant. A person has described a meal they ate. Estimate the nutrient content of exactly that meal.\n\nCRITICAL INSTRUCTIONS:\n1. List EVERY food and drink mentioned in the description as a separate item, including beverages, spreads, condiments and anything added (sugar, milk, butter, dressing). Do not skip items and do not add items that are not mentioned.\n2. Use the EXACT quantity stated for each item - NOT a standard serving.\n3. If the quantity is given in grams, use it as the weight. If it is given in household measures (cup, slice, tablespoon, piece, bowl, can, bottle), convert it to grams using the typical weight of that measure for THAT food (a cup of cooked rice weighs far more than a cup of salad leaves).\n4. Only if no quantity is given at all, assume one typical serving of that food.\n5. Take each food as described and as eaten in its cuisine, including its preparation: fried, breaded, sweetened, creamed or buttered foods carry the energy of the added fat and sugar.\n\nFor each item, estimate:\n- Weight in grams (the stated amount)\n- Calories (for the stated amount, consistent with the macronutrients: about 4 kcal per gram of carbohydrate and protein, 9 kcal per gram of fat, 7 kcal per gram of alcohol)\n- Carbohydrate, protein and fat in grams (for the stated amount; carbohydrate = total carbohydrate: sugars, starch and fiber)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45,\n      \"estimated_carbohydrate_grams\": 12,\n      \"estimated_protein_grams\": 8,\n      \"estimated_fat_grams\": 5\n    }\n  ]\n}\n\nMeal description:\n\"\"\"{description}\"\"\"",
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt_variant": "NUTRIBENCH",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                },
+                "estimated_carbohydrate_grams": {
+                  "type": "number"
+                },
+                "estimated_protein_grams": {
+                  "type": "number"
+                },
+                "estimated_fat_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams",
+                "estimated_carbohydrate_grams",
+                "estimated_protein_grams",
+                "estimated_fat_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "13923",
+        "12542",
+        "12134",
+        "11113",
+        "15493",
+        "14445",
+        "12810",
+        "15007",
+        "14788",
+        "11862",
+        "11163",
+        "14637",
+        "13273",
+        "13709",
+        "14634",
+        "12063",
+        "11256",
+        "10809",
+        "13480",
+        "15137",
+        "11178",
+        "12705",
+        "13387",
+        "11459",
+        "11461",
+        "15523",
+        "11269",
+        "14128",
+        "14039",
+        "11037",
+        "14707",
+        "12481",
+        "11308",
+        "10702",
+        "14140",
+        "10468",
+        "13977",
+        "10600",
+        "15122",
+        "11050",
+        "11298",
+        "10979",
+        "13557",
+        "15381",
+        "11046",
+        "11197",
+        "12224",
+        "12287",
+        "13337",
+        "14022"
+      ]
+    }
+  }
+}

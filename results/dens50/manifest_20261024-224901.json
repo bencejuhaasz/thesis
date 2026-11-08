@@ -1,0 +1,163 @@
+{
+  "run_name": "dens50",
+  "started": "2026-10-24T22:49:01",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "both",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-3.1-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "enabled": true,
+      "temperature": 0.1,
+      "extra": {},
+      "price": {
+        "in": 0.25,
+        "out": 1.5
+      },
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "dfood_tj": {
+      "enabled": false,
+      "root": "DFood-Tj",
+      "loader": "loader.py",
+      "fn": "load_fnutr",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "image_id",
+        "image_path": "path"
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, work in this order:\n1. name: what the food is\n2. cooking_method: how it was prepared (e.g. raw, steamed, boiled, stir-fried, deep-fried, braised, roasted, baked)\n3. visible_added_fat: oil, butter, fat or sauce you can SEE on or under the food (sheen, pooled oil, glossy sauce, crispy fried surface, fatty cut): none, light, moderate or heavy\n4. reference_food: the closest entry of a standard food composition table, as prepared (e.g. \"pork belly, braised\", \"rice, white, cooked\")\n5. kcal_per_100g: the energy density of THIS item as served: start from the reference food, then adjust for the cooking method and the fat or sauce you see\n6. estimated_weight_grams: the actual visible amount\n\nENERGY DENSITY RULES:\n- Energy density differs more than 20-fold between foods. Do NOT default to a middle value: decide where this item lies.\n- Hidden energy counts: oil absorbed in stir-frying or frying, fat in sauces and braising liquid, sugar in glazes.\n- A food that looks glossy, oily or sits in fat or sauce belongs at the upper end of its range.\n- Typical energy density, kcal per 100 g as served:\n  plain leafy or watery vegetables 15-40; vegetables stir-fried or dressed with oil 50-150;\n  clear soups and broths 10-60; fruit 30-90; cooked rice, noodles, grains, potatoes 100-160;\n  bread, buns, flatbreads 220-300; eggs 140-200; lean meat, poultry, fish (cooked) 110-200;\n  fatty meat, ribs, pork belly, sausages, braised or glazed meat 250-500;\n  fried or breaded foods 250-350; pastries, cakes, sweets 300-450; nuts, seeds 500-650\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"cooking_method\": \"stir-fried\",\n      \"visible_added_fat\": \"moderate\",\n      \"reference_food\": \"closest food composition table entry\",\n      \"kcal_per_100g\": 120,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}",
+      "prepare": "dfood_views",
+      "query": "has_file and view == 'both'",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42,
+        "by": "meal_key"
+      },
+      "prompt_variant": "P3_density",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "cooking_method": {
+                  "type": "string"
+                },
+                "visible_added_fat": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "light",
+                    "moderate",
+                    "heavy"
+                  ]
+                },
+                "reference_food": {
+                  "type": "string"
+                },
+                "kcal_per_100g": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "cooking_method",
+                "visible_added_fat",
+                "reference_food",
+                "kcal_per_100g",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "food_table": null,
+      "sample_ids": [
+        "1536+1537",
+        "384+385",
+        "976+977",
+        "1457+1458",
+        "990+991",
+        "544+545",
+        "2428+2429",
+        "1765+1766",
+        "3005+3006",
+        "226+227",
+        "693+694",
+        "877+878",
+        "65+66",
+        "639+640",
+        "2623+2624",
+        "2769+2770",
+        "930+931",
+        "286+287",
+        "653+654",
+        "2405+2406",
+        "657+658",
+        "889+890",
+        "835+836",
+        "2091+2092",
+        "536+537",
+        "1593+1594",
+        "1009+1010",
+        "1776+1777",
+        "354+355",
+        "2915+2916",
+        "331+332",
+        "1491+1492",
+        "3135+3136",
+        "3237+3238",
+        "899+900",
+        "1961+1962",
+        "1485+1486",
+        "875+876",
+        "2277+2278",
+        "1873+1874",
+        "125+126",
+        "488+489",
+        "59+60",
+        "220+221",
+        "1582+1583",
+        "2316+2317",
+        "669+670",
+        "3203+3204",
+        "3192+3193",
+        "21+22"
+      ]
+    }
+  }
+}

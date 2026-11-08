@@ -1,0 +1,4 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+nutrition5k,claude-haiku-low,P3_macros,schema,1,0,0,0,4.53,4.53,1.0,1297.0,0.0003,1,1.59,2.1,-1.59,1,49.0,44.1,49.0,1,0.02,0.1,0.02,1,0.02,3.0,0.02,1,0.08,35.1,0.08
+nutrition5k,claude-opus-low,P3_macros,schema,1,0,0,0,3.26,3.26,1.0,1297.0,0.0093,1,19.41,25.3,19.41,1,28.0,25.2,28.0,1,5.12,25.6,5.12,1,0.22,28.7,0.22,1,0.02,9.9,-0.02
+nutrition5k,gpt-luna,P3_macros,schema,1,0,0,0,6.05,6.05,1.0,703.0,0.0002,1,13.41,17.5,13.41,1,19.0,17.1,19.0,1,3.42,17.1,3.42,1,0.12,15.8,0.12,1,0.08,35.1,0.08

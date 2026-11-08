@@ -1,0 +1,1300 @@
+sample_id,pred_name,pred_g,pred_kcal,table_id,table_name,score,in_true_foods,table_kcal
+1536+1537,braised pork ribs with carrots,130.0,280.0,23,Grilled pork ribs,100.0,False,309.3
+1536+1537,purple rice,160.0,240.0,0,Rice,100.0,False,185.6
+1536+1537,stir-fried leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+1536+1537,sautéed chayote with pork,150.0,60.0,349,Fried Pork Chop,76.2,False,291.0
+384+385,purple rice,180.0,280.0,0,Rice,100.0,False,208.8
+384+385,stir-fried pork,80.0,160.0,21,Cucumber fried pork,100.0,False,140.6
+384+385,cooked cabbage,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+976+977,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+976+977,braised pork and tofu skin,120.0,350.0,59,Braised pork with tofu skin knot,100.0,True,537.8
+976+977,stir-fried greens with shredded pork,100.0,80.0,43,Pork stuffed green pepper,100.0,False,92.3
+976+977,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+1457+1458,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+1457+1458,pork meatballs,90.0,160.0,39,Steamed meatball,100.0,True,233.3
+1457+1458,stir-fried bean sprouts,120.0,45.0,19,Sauteed bean sprouts,100.0,True,41.1
+1457+1458,cabbage and carrot salad,120.0,35.0,127,Salad with shredded carrots,100.0,False,60.1
+990+991,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+990+991,stir-fried zucchini with carrots and meat,100.0,70.0,127,Salad with shredded carrots,66.7,False,50.1
+990+991,cooked chayote,80.0,25.0,281,cookies,46.2,False,436.8
+990+991,scrambled eggs with fish or chicken,90.0,110.0,97,Scrambled eggs,100.0,False,140.1
+544+545,steamed white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+544+545,stir-fried fish with cucumber and black fungus,120.0,120.0,124,grilled fish,100.0,False,182.3
+544+545,sautéed bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+544+545,stir-fried pumpkin with minced meat,110.0,110.0,16,Pumpkin,100.0,True,23.0
+2428+2429,white rice,170.0,220.0,49,White rice shrimp,100.0,False,137.7
+2428+2429,stir-fried pork with snow peas,150.0,180.0,54,Fry pea,100.0,True,38.4
+2428+2429,sautéed bean sprouts,140.0,45.0,19,Sauteed bean sprouts,100.0,True,47.9
+2428+2429,stir-fried celery with minced meat,139.0,60.0,47,Stir-fry celery,100.0,True,23.6
+1765+1766,steamed chicken drumstick,90.0,140.0,71,Chicken drumsticks,100.0,True,159.4
+1765+1766,white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+1765+1766,stir-fried bok choy,150.0,45.0,194,Borsch,57.1,False,84.4
+1765+1766,mixed vegetables with wood ear mushrooms,100.0,35.0,18,Sauteed vegetable,100.0,True,18.0
+3005+3006,black rice,200.0,280.0,174,Black rice oatmeal,100.0,False,140.4
+3005+3006,glazed chicken,150.0,250.0,101,Boiled chicken,100.0,False,135.4
+3005+3006,"stir-fried vegetables (cauliflower, carrots, cabbage)",120.0,60.0,38,fried cauliflower,100.0,True,64.2
+3005+3006,sautéed leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+226+227,multi-grain rice,130.0,180.0,0,Rice,100.0,True,150.8
+226+227,steamed chicken,100.0,140.0,20,Steamed chicken,100.0,False,235.9
+226+227,sautéed leafy greens (left),80.0,35.0,44,Green pepper meat,60.6,False,73.8
+226+227,sautéed leafy greens (right),80.0,35.0,44,Green pepper meat,58.8,False,73.8
+693+694,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+693+694,stir-fried cucumber with pork,100.0,130.0,21,Cucumber fried pork,100.0,True,175.8
+693+694,stir-fried cabbage,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+693+694,mixed vegetable stir-fry with wood ear mushrooms,80.0,60.0,18,Sauteed vegetable,100.0,False,14.4
+877+878,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+877+878,stir-fried cabbage,120.0,60.0,50,Fried cabbage,100.0,False,41.8
+877+878,stir-fried beef with green peppers,100.0,180.0,68,Sauteed Beef Fillet with Hot Green Pepper,100.0,False,81.0
+877+878,stir-fried shredded green vegetable,80.0,40.0,18,Sauteed vegetable,100.0,False,14.4
+65+66,white rice,150.0,180.0,49,White rice shrimp,100.0,False,121.5
+65+66,herb meatballs,60.0,110.0,39,Steamed meatball,100.0,False,155.5
+65+66,stir-fried shredded vegetables,80.0,60.0,18,Sauteed vegetable,100.0,False,14.4
+65+66,sautéed leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+639+640,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+639+640,stir-fried green beans with minced meat,120.0,140.0,138,Fried beans,100.0,False,77.3
+639+640,sautéed bok choy,100.0,45.0,194,Borsch,57.1,False,56.3
+639+640,stir-fried pork with onions,90.0,180.0,310,Stir-fried Eggs with Onions,71.4,False,100.8
+2623+2624,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+2623+2624,chicken and vegetable stew,150.0,180.0,18,Sauteed vegetable,100.0,True,27.0
+2623+2624,stir-fried cauliflower,130.0,60.0,38,fried cauliflower,100.0,True,69.5
+2623+2624,leafy greens,106.0,30.0,130,Green soybean,66.7,False,138.9
+2769+2770,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2769+2770,braised chicken,130.0,250.0,101,Boiled chicken,100.0,False,117.3
+2769+2770,stir-fried green vegetables (left),120.0,45.0,18,Sauteed vegetable,100.0,True,21.6
+2769+2770,stir-fried green vegetables (right),110.0,40.0,18,Sauteed vegetable,100.0,True,19.8
+930+931,fried fish,100.0,220.0,124,grilled fish,100.0,False,151.9
+930+931,purple rice,120.0,180.0,0,Rice,100.0,False,139.2
+930+931,sautéed leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+930+931,stewed cabbage with tomatoes,120.0,50.0,140,Shredded cabbage,100.0,False,50.6
+286+287,cooked white rice,150.0,180.0,49,White rice shrimp,100.0,False,121.5
+286+287,pork and vegetable stir-fry,200.0,220.0,10,Pork and vegetable wonton,100.0,False,446.0
+653+654,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+653+654,steamed white fish,100.0,110.0,124,grilled fish,100.0,False,151.9
+653+654,stir-fried leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+653+654,braised eggplant,90.0,80.0,330,Grilled Eggplant,100.0,False,39.6
+2405+2406,fried chicken,110.0,280.0,101,Boiled chicken,100.0,False,99.3
+2405+2406,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2405+2406,stir-fried cabbage with minced meat,150.0,110.0,50,Fried cabbage,100.0,False,52.2
+2405+2406,stir-fried bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+657+658,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+657+658,sautéed green bell peppers and onions,80.0,45.0,12,Green pepper,100.0,False,17.6
+657+658,cooked leafy greens,70.0,30.0,130,Green soybean,66.7,False,91.7
+657+658,meatballs with vegetables,60.0,110.0,18,Sauteed vegetable,100.0,False,10.8
+889+890,steamed white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+889+890,steamed fish,100.0,130.0,119,Sauerkraut fish,100.0,False,79.2
+889+890,stir-fried eggplant with minced meat,120.0,180.0,330,Grilled Eggplant,100.0,False,52.8
+889+890,sautéed leafy green vegetables,80.0,40.0,18,Sauteed vegetable,100.0,False,14.4
+835+836,steamed whole wheat bun,90.0,220.0,22,Steamed bun,100.0,False,200.7
+835+836,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+835+836,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+2091+2092,white rice,250.0,350.0,49,White rice shrimp,100.0,False,202.5
+2091+2092,stir-fried pork with broccoli,150.0,220.0,243,Shrimp broccoli,76.2,False,53.0
+2091+2092,cucumber salad,120.0,60.0,7,Sea cucumber,84.6,False,93.6
+2091+2092,sautéed leafy greens,117.5,40.0,130,Green soybean,66.7,False,153.9
+536+537,pan-seared pomfret fish,120.0,180.0,51,Steamed pomfret,100.0,True,162.6
+536+537,purple multi-grain rice,100.0,150.0,0,Rice,100.0,False,116.0
+536+537,stir-fried bok choy,80.0,30.0,194,Borsch,57.1,False,45.0
+536+537,sautéed cabbage,70.0,40.0,140,Shredded cabbage,100.0,False,29.5
+1593+1594,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1593+1594,pork and snow pea stir-fry,110.0,140.0,54,Fry pea,100.0,True,28.1
+1593+1594,sautéed onions,100.0,90.0,310,Stir-fried Eggs with Onions,100.0,False,112.0
+1593+1594,stir-fried cabbage with carrots,120.0,60.0,50,Fried cabbage,100.0,False,41.8
+1009+1010,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1009+1010,pork stir-fry with mushrooms and carrots,160.0,280.0,32,Zizania carrot shredded pork,73.3,False,145.6
+1009+1010,bean sprout and carrot salad,140.0,60.0,19,Sauteed bean sprouts,100.0,True,47.9
+1009+1010,sautéed cabbage,140.0,50.0,140,Shredded cabbage,100.0,False,59.0
+1776+1777,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1776+1777,stuffed green pepper,90.0,120.0,43,Pork stuffed green pepper,100.0,True,83.1
+1776+1777,sautéed leafy greens,80.0,35.0,130,Green soybean,66.7,False,104.8
+1776+1777,cabbage and carrot stir-fry,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+354+355,black beans,100.0,110.0,138,Fried beans,100.0,False,64.4
+354+355,sautéed cabbage,120.0,35.0,140,Shredded cabbage,100.0,False,50.6
+354+355,stewed pumpkin,80.0,60.0,16,Pumpkin,100.0,True,16.7
+354+355,tomato-based meat stew,90.0,140.0,40,Scrambled egg with tomato,75.0,False,64.0
+2915+2916,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2915+2916,stir-fried cabbage,70.0,45.0,50,Fried cabbage,100.0,False,24.4
+2915+2916,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+331+332,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+331+332,chicken and vegetable stir-fry,120.0,180.0,18,Sauteed vegetable,100.0,False,21.6
+331+332,glass noodles with vegetables,80.0,110.0,18,Sauteed vegetable,100.0,False,14.4
+331+332,shredded vegetable salad,50.0,30.0,182,Vegetable salad,100.0,False,19.5
+1491+1492,braised pork with potatoes,150.0,280.0,161,Stewed sirloin potatoes,73.7,False,275.7
+1491+1492,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1491+1492,shredded daikon radish,100.0,30.0,87,Pork ribs soup with radish,63.2,False,98.7
+1491+1492,stir-fried cabbage,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+3135+3136,purple rice,220.0,320.0,0,Rice,100.0,False,255.2
+3135+3136,stir-fried chicken with chayote,180.0,180.0,20,Steamed chicken,100.0,False,424.7
+3135+3136,sautéed leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+3237+3238,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+3237+3238,cauliflower with meat,150.0,110.0,38,fried cauliflower,100.0,True,80.2
+3237+3238,steamed leafy greens,150.0,30.0,130,Green soybean,66.7,False,196.5
+3237+3238,meatballs,80.0,120.0,39,Steamed meatball,100.0,True,207.4
+899+900,whole wheat steamed bun,90.0,220.0,22,Steamed bun,100.0,False,200.7
+899+900,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+899+900,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+1961+1962,white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+1961+1962,braised pork ribs,150.0,380.0,23,Grilled pork ribs,100.0,True,356.9
+1961+1962,sautéed bok choy,130.0,45.0,194,Borsch,57.1,False,73.2
+1961+1962,stir-fried cabbage,125.0,60.0,50,Fried cabbage,100.0,False,43.5
+1485+1486,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1485+1486,stir-fried corn with carrots and meat,130.0,140.0,127,Salad with shredded carrots,66.7,False,65.1
+1485+1486,tomato-based fish,140.0,160.0,124,grilled fish,100.0,False,212.6
+1485+1486,sautéed leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+875+876,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+875+876,stir-fried bok choy,120.0,45.0,194,Borsch,57.1,False,67.5
+875+876,"chicken and vegetable stir-fry (with wood ear mushrooms, cabbage, and carrots)",140.0,180.0,45,Steamed Chicken with Mushroom,100.0,False,260.8
+2277+2278,brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+2277+2278,stir-fried luffa with carrots and meat,160.0,90.0,127,Salad with shredded carrots,66.7,False,80.1
+2277+2278,steamed winter melon,110.0,25.0,30,Scallion oil winter melon,100.0,True,27.2
+2277+2278,stir-fried chicken with carrots,169.0,165.0,20,Steamed chicken,100.0,False,398.7
+1873+1874,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+1873+1874,stir-fried cabbage with carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+1873+1874,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+125+126,cooked white rice,140.0,180.0,49,White rice shrimp,100.0,False,113.4
+125+126,stir-fried cabbage with pork,150.0,160.0,314,Spicy Cabbage with Pork Belly,100.0,False,277.5
+125+126,sautéed broccoli and carrots,120.0,70.0,342,Chinese Broccoli with Beef,69.6,False,90.0
+488+489,brown rice,100.0,150.0,0,Rice,100.0,True,116.0
+488+489,pork stir-fry with vegetables,200.0,220.0,232,Pork with salted vegetable,100.0,False,778.3
+59+60,steamed fish,150.0,180.0,119,Sauerkraut fish,100.0,False,118.9
+59+60,stir-fried eggplant,100.0,120.0,330,Grilled Eggplant,100.0,False,44.0
+59+60,cooked leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+59+60,white rice,120.0,160.0,49,White rice shrimp,100.0,False,97.2
+220+221,pan-fried fish,120.0,180.0,124,grilled fish,100.0,False,182.3
+220+221,purple rice,130.0,160.0,0,Rice,100.0,False,150.8
+220+221,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+220+221,mixed vegetable stir-fry,100.0,60.0,9,Steamed vegetable bun,100.0,False,139.9
+1582+1583,steamed whole wheat bun,100.0,210.0,22,Steamed bun,100.0,False,223.0
+1582+1583,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1582+1583,stir-fried cabbage and carrots,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+2316+2317,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2316+2317,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2316+2317,stir-fried cabbage and carrots,75.0,35.0,50,Fried cabbage,100.0,False,26.1
+669+670,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+669+670,braised pork,120.0,280.0,347,Braised Pork Rice,100.0,False,214.8
+669+670,stir-fried leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+669+670,stir-fried chayote with meat,120.0,80.0,154,Pot bag meat,66.7,False,264.8
+3203+3204,purple rice,250.0,320.0,0,Rice,100.0,False,290.0
+3203+3204,sautéed leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+3203+3204,cauliflower with shredded meat,150.0,110.0,38,fried cauliflower,100.0,True,80.2
+3203+3204,spinach meatballs,80.0,120.0,39,Steamed meatball,100.0,False,207.4
+3192+3193,stir-fried beef with onions and peppers,130.0,210.0,107,Braised beef,100.0,False,210.9
+3192+3193,purple rice,130.0,185.0,0,Rice,100.0,False,150.8
+3192+3193,sliced cucumbers,100.0,25.0,7,Sea cucumber,100.0,False,78.0
+3192+3193,cooked daikon radish,91.0,30.0,87,Pork ribs soup with radish,63.2,False,89.8
+21+22,steamed white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+21+22,stir-fried pork with potatoes and carrots,120.0,180.0,32,Zizania carrot shredded pork,73.3,True,109.2
+21+22,stir-fried shredded vegetables with meat,100.0,90.0,18,Sauteed vegetable,100.0,False,18.0
+21+22,steamed cabbage,80.0,25.0,98,Steamed Baby Cabbage,100.0,False,28.9
+157+158,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+157+158,stir-fried leafy greens with ginkgo nuts,120.0,80.0,80,Nuts,100.0,False,650.8
+157+158,stir-fried shredded chayote and carrots,130.0,70.0,127,Salad with shredded carrots,66.7,False,65.1
+711+712,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+711+712,stir-fried cabbage,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+711+712,"stir-fried cucumber, wood ear mushroom, carrot, and pork",140.0,130.0,21,Cucumber fried pork,100.0,True,246.1
+93+94,purple rice,120.0,180.0,0,Rice,100.0,False,139.2
+93+94,stir-fried eggplant,100.0,110.0,330,Grilled Eggplant,100.0,False,44.0
+93+94,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+93+94,stir-fried meat with tomatoes,70.0,130.0,292,Tomato Pasta,75.0,False,102.2
+873+874,whole wheat steamed bun,100.0,220.0,22,Steamed bun,100.0,False,223.0
+873+874,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+873+874,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+2266+2267,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2266+2267,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2266+2267,steamed whole wheat bun,150.0,230.0,22,Steamed bun,100.0,False,334.5
+206+207,black rice,100.0,140.0,174,Black rice oatmeal,100.0,False,70.2
+206+207,meatballs,60.0,110.0,39,Steamed meatball,100.0,True,155.5
+206+207,stir-fried bok choy,80.0,30.0,194,Borsch,57.1,False,45.0
+206+207,sautéed cauliflower and carrots,80.0,35.0,38,fried cauliflower,100.0,True,42.8
+1043+1044,braised chicken,150.0,280.0,101,Boiled chicken,100.0,False,135.4
+1043+1044,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1043+1044,stir-fried leafy greens (top),120.0,45.0,44,Green pepper meat,62.5,False,110.7
+1043+1044,stir-fried greens with shredded meat (bottom right),150.0,70.0,44,Green pepper meat,74.1,False,138.4
+573+574,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+573+574,meatball patties,90.0,160.0,39,Steamed meatball,100.0,True,233.3
+573+574,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+573+574,mixed vegetables (cabbage and carrots),60.0,30.0,18,Sauteed vegetable,100.0,True,10.8
+1321+1322,purple rice,180.0,250.0,0,Rice,100.0,False,208.8
+1321+1322,stir-fried leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+1321+1322,meatball with cabbage and wood ear mushrooms,110.0,160.0,50,Fried cabbage,100.0,False,38.3
+1321+1322,stir-fried shredded onions,100.0,70.0,310,Stir-fried Eggs with Onions,100.0,False,112.0
+1140+1141,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+1140+1141,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1140+1141,stir-fried cabbage with carrots,60.0,25.0,50,Fried cabbage,100.0,False,20.9
+737+738,cooked rice,150.0,180.0,337,Roast Pork Rice,100.0,False,297.0
+737+738,stir-fried pork with tomatoes,100.0,160.0,57,Sirloin tomatoes,73.7,False,84.1
+737+738,sautéed green vegetables,80.0,40.0,18,Sauteed vegetable,100.0,False,14.4
+737+738,sautéed napa cabbage with carrots,80.0,35.0,140,Shredded cabbage,100.0,False,33.7
+859+860,black rice,150.0,180.0,174,Black rice oatmeal,100.0,False,105.3
+859+860,meatball patties,80.0,140.0,39,Steamed meatball,100.0,True,207.4
+859+860,stir-fried chayote with carrots and pork,120.0,90.0,32,Zizania carrot shredded pork,73.3,False,109.2
+859+860,sautéed leafy greens,80.0,30.0,130,Green soybean,66.7,False,104.8
+77+78,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+77+78,stir-fried water spinach,80.0,45.0,3,Spinach,100.0,False,22.4
+77+78,stir-fried cabbage with tomatoes and minced meat,100.0,70.0,50,Fried cabbage,100.0,False,34.8
+77+78,stir-fried chicken with vegetables,90.0,110.0,18,Sauteed vegetable,100.0,False,16.2
+591+592,purple multi-grain rice,150.0,210.0,0,Rice,100.0,False,174.0
+591+592,pan-fried fish,80.0,140.0,124,grilled fish,100.0,False,121.5
+591+592,stir-fried leafy greens,70.0,35.0,130,Green soybean,66.7,False,91.7
+591+592,stir-fried cabbage,90.0,45.0,50,Fried cabbage,100.0,False,31.3
+1759+1760,breaded fried pork cutlet,110.0,320.0,23,Grilled pork ribs,66.7,True,261.7
+1759+1760,white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+1759+1760,stir-fried zucchini with meat,120.0,90.0,96,Luncheon meat,69.2,False,274.8
+1759+1760,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+2546+2547,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2546+2547,braised chicken with onions,150.0,250.0,101,Boiled chicken,100.0,False,135.4
+2546+2547,stir-fried leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+2546+2547,winter melon stir-fry with minced meat,150.0,90.0,30,Scallion oil winter melon,82.8,True,37.1
+1638+1639,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1638+1639,corn-pork meatballs,100.0,180.0,39,Steamed meatball,100.0,True,259.2
+1638+1639,stir-fried cabbage with carrots,120.0,60.0,50,Fried cabbage,100.0,False,41.8
+1638+1639,stir-fried bok choy,120.0,40.0,194,Borsch,57.1,False,67.5
+853+854,meatballs,140.0,320.0,39,Steamed meatball,100.0,True,362.9
+853+854,steamed white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+853+854,stir-fried leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+853+854,mixed vegetable and meat stir-fry,90.0,80.0,18,Sauteed vegetable,100.0,False,16.2
+1719+1720,white rice,180.0,220.0,49,White rice shrimp,100.0,False,145.8
+1719+1720,stir-fried cabbage with carrots,150.0,80.0,50,Fried cabbage,100.0,False,52.2
+1719+1720,sautéed leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+1719+1720,tofu and fried item,100.0,130.0,146,Fried Tofu,100.0,False,92.0
+1673+1674,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1673+1674,pork meatballs,70.0,140.0,39,Steamed meatball,100.0,True,181.5
+1673+1674,stir-fried bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+1673+1674,stir-fried chayote with pork,120.0,70.0,349,Fried Pork Chop,76.2,False,232.8
+787+788,black rice,130.0,180.0,174,Black rice oatmeal,100.0,False,91.3
+787+788,stir-fried fish with carrots,100.0,140.0,124,grilled fish,100.0,False,151.9
+787+788,stir-fried cucumber with shredded pork,80.0,90.0,21,Cucumber fried pork,100.0,False,140.6
+787+788,cooked white cabbage,70.0,30.0,140,Shredded cabbage,100.0,False,29.5
+2798+2799,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2798+2799,steamed whole wheat mantou,60.0,130.0,169,buck wheat noodle,62.9,False,90.0
+2798+2799,stir-fried cabbage with carrots,80.0,40.0,50,Fried cabbage,100.0,False,27.8
+2892+2893,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2892+2893,stir-fried chicken with cauliflower,150.0,180.0,38,fried cauliflower,100.0,False,80.2
+2892+2893,sautéed bok choy,130.0,40.0,194,Borsch,57.1,False,73.2
+2892+2893,cucumber salad with minced meat,135.0,60.0,112,Scrambled Egg with cucumber,80.0,False,117.4
+613+614,braised pork with winter melon,130.0,220.0,30,Scallion oil winter melon,82.8,False,32.1
+613+614,black rice,120.0,180.0,174,Black rice oatmeal,100.0,False,84.3
+613+614,sautéed leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+613+614,stir-fried green peppers and onions,90.0,50.0,12,Green pepper,100.0,False,19.8
+779+780,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+779+780,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+779+780,sautéed cabbage and carrots,80.0,35.0,140,Shredded cabbage,100.0,False,33.7
+691+692,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+691+692,pomfret fish,100.0,130.0,124,grilled fish,100.0,False,151.9
+691+692,stir-fried green leafy vegetables,80.0,45.0,18,Sauteed vegetable,100.0,False,14.4
+691+692,cooked cabbage,80.0,35.0,50,Fried cabbage,100.0,False,27.8
+1508+1509,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1508+1509,stir-fried beef with peppers,120.0,180.0,68,Sauteed Beef Fillet with Hot Green Pepper,100.0,False,97.2
+1508+1509,stir-fried zucchini with pork,150.0,110.0,23,Grilled pork ribs,66.7,False,356.9
+1508+1509,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+1929+1930,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1929+1930,stuffed green bell pepper,120.0,150.0,12,Green pepper,100.0,False,26.4
+1929+1930,stir-fried cabbage with carrots,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+1929+1930,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+1021+1022,whole wheat mantou,130.0,220.0,169,buck wheat noodle,62.9,False,195.0
+1021+1022,stir-fried cabbage with carrots,125.0,45.0,50,Fried cabbage,100.0,False,43.5
+1021+1022,hard-boiled egg,50.0,75.0,97,Scrambled eggs,100.0,False,77.8
+984+985,white rice,150.0,220.0,49,White rice shrimp,100.0,False,121.5
+984+985,braised beef with carrots,140.0,280.0,107,Braised beef,100.0,False,227.2
+984+985,stir-fried eggplant with minced meat,120.0,160.0,330,Grilled Eggplant,100.0,False,52.8
+984+985,sautéed green leafy vegetables,80.0,40.0,18,Sauteed vegetable,100.0,False,14.4
+3169+3170,brown rice,200.0,280.0,0,Rice,100.0,False,232.0
+3169+3170,stir-fried leafy greens,120.0,60.0,130,Green soybean,66.7,False,157.2
+3169+3170,mushroom and meat stir-fry,140.0,180.0,137,Oyster mushroom,76.2,False,174.9
+3169+3170,cabbage and carrot stir-fry,110.0,45.0,50,Fried cabbage,100.0,False,38.3
+2209+2210,purple rice,250.0,320.0,0,Rice,100.0,False,290.0
+2209+2210,stir-fried cabbage with carrots,150.0,60.0,50,Fried cabbage,100.0,False,52.2
+2209+2210,sautéed leafy greens,140.0,45.0,130,Green soybean,66.7,False,183.4
+2209+2210,tofu with savory topping,101.0,120.0,146,Fried Tofu,100.0,False,92.9
+1259+1260,whole wheat mantou,100.0,220.0,169,buck wheat noodle,62.9,False,150.0
+1259+1260,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1259+1260,stir-fried cabbage with carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+3181+3182,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+3181+3182,steamed whole wheat mantou,150.0,220.0,169,buck wheat noodle,62.9,False,225.0
+3181+3182,stir-fried napa cabbage with carrots,100.0,30.0,50,Fried cabbage,100.0,False,34.8
+1884+1885,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+1884+1885,stir-fried beef with onions,120.0,180.0,107,Braised beef,100.0,False,194.7
+1884+1885,sautéed bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+1884+1885,zucchini and carrot stir-fry with meat,178.0,90.0,127,Salad with shredded carrots,66.7,False,89.2
+1995+1996,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+1995+1996,stir-fried pork with celery,160.0,220.0,47,Stir-fry celery,100.0,False,27.2
+1995+1996,sautéed bok choy,130.0,45.0,194,Borsch,57.1,False,73.2
+1995+1996,cabbage stir-fry,123.0,40.0,147,Cabbage soup,100.0,False,17.2
+1083+1084,black rice,180.0,220.0,174,Black rice oatmeal,100.0,False,126.4
+1083+1084,stir-fried pork,150.0,280.0,21,Cucumber fried pork,100.0,False,263.7
+1083+1084,sautéed leafy greens,130.0,45.0,130,Green soybean,66.7,False,170.3
+1083+1084,cabbage side dish,120.0,35.0,147,Cabbage soup,100.0,False,16.8
+1667+1668,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1667+1668,braised chicken with potatoes,140.0,280.0,101,Boiled chicken,100.0,False,126.3
+1667+1668,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+1667+1668,caramelized onions,80.0,70.0,310,Stir-fried Eggs with Onions,71.4,False,89.6
+1559+1560,mixed purple and white rice,200.0,280.0,0,Rice,100.0,False,232.0
+1559+1560,stir-fried meat with greens,120.0,180.0,44,Green pepper meat,100.0,False,110.7
+1559+1560,cooked winter melon,150.0,35.0,30,Scallion oil winter melon,100.0,True,37.1
+1559+1560,sautéed zucchini with meat,80.0,70.0,96,Luncheon meat,69.2,False,183.2
+2870+2871,white rice,180.0,260.0,49,White rice shrimp,100.0,False,145.8
+2870+2871,stir-fried beef with onions,110.0,180.0,107,Braised beef,100.0,False,178.5
+2870+2871,sautéed leafy greens,90.0,45.0,130,Green soybean,66.7,False,117.9
+2870+2871,potato and meat stew,100.0,150.0,204,Pan fried potato,75.0,False,113.0
+843+844,whole wheat steamed bun,100.0,220.0,22,Steamed bun,100.0,False,223.0
+843+844,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+843+844,shredded cabbage and carrot salad,60.0,30.0,140,Shredded cabbage,100.0,False,25.3
+919+920,brown rice,100.0,160.0,0,Rice,100.0,False,116.0
+919+920,stir-fried pork with vegetables,90.0,180.0,27,Shredded Pork with Vegetables,100.0,False,174.9
+919+920,zucchini stir-fry,80.0,60.0,101,Boiled chicken,53.3,False,72.2
+919+920,cooked winter melon,70.0,25.0,30,Scallion oil winter melon,100.0,True,17.3
+2903+2904,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2903+2904,beef and carrot stew,110.0,180.0,107,Braised beef,100.0,False,178.5
+2903+2904,chayote squash with pork,130.0,90.0,29,Squash,100.0,False,46.4
+2903+2904,stir-fried leafy greens,70.0,40.0,130,Green soybean,66.7,False,91.7
+333+334,steamed white rice,180.0,260.0,49,White rice shrimp,100.0,False,145.8
+333+334,"stir-fried zucchini, carrots, and pork",120.0,140.0,32,Zizania carrot shredded pork,82.1,False,109.2
+333+334,sautéed cucumber with pork,90.0,80.0,21,Cucumber fried pork,100.0,True,158.2
+333+334,steamed cabbage,80.0,30.0,98,Steamed Baby Cabbage,100.0,False,28.9
+1032+1033,cooked white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+1032+1033,stir-fried leafy greens with carrots,80.0,45.0,127,Salad with shredded carrots,66.7,False,40.1
+1032+1033,stir-fried mushrooms in dark sauce,90.0,70.0,75,Fried fungus mushroom,72.7,False,67.5
+1032+1033,cooked white onions,70.0,30.0,310,Stir-fried Eggs with Onions,71.4,False,78.4
+785+786,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+785+786,stir-fried cabbage with pork,120.0,180.0,314,Spicy Cabbage with Pork Belly,100.0,False,222.0
+785+786,steamed bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+785+786,cooked shrimp,80.0,90.0,244,Spicy shrimp,100.0,False,113.7
+807+808,boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+807+808,steamed napa cabbage with carrots,100.0,25.0,140,Shredded cabbage,100.0,False,42.2
+807+808,steamed whole wheat mantou,80.0,180.0,169,buck wheat noodle,62.9,False,120.0
+815+816,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+815+816,stir-fried napa cabbage with carrots,80.0,30.0,50,Fried cabbage,100.0,False,27.8
+815+816,whole wheat steamed bun,60.0,150.0,22,Steamed bun,100.0,False,133.8
+97+98,whole wheat steamed bun,80.0,180.0,22,Steamed bun,100.0,False,178.4
+97+98,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+97+98,stir-fried cabbage and carrots,70.0,45.0,50,Fried cabbage,100.0,False,24.4
+2519+2520,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2519+2520,steamed whole wheat mantou,60.0,150.0,169,buck wheat noodle,62.9,False,90.0
+2519+2520,stir-fried cabbage with carrots,80.0,30.0,50,Fried cabbage,100.0,False,27.8
+266+267,steamed whole wheat bun,90.0,180.0,22,Steamed bun,100.0,False,200.7
+266+267,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+266+267,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+1822+1823,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+1822+1823,stir-fried cabbage with carrots,100.0,40.0,50,Fried cabbage,100.0,False,34.8
+1822+1823,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1270+1271,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1270+1271,stir-fried tomato and egg,120.0,130.0,180,Tomato and Egg Soup,100.0,False,28.5
+1270+1271,sautéed cabbage with carrots,100.0,45.0,140,Shredded cabbage,100.0,False,42.2
+1270+1271,sautéed cabbage with meat,100.0,70.0,140,Shredded cabbage,100.0,False,42.2
+2159+2160,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+2159+2160,stir-fried beef with green peppers,140.0,280.0,68,Sauteed Beef Fillet with Hot Green Pepper,100.0,False,113.4
+2159+2160,stir-fried cabbage with carrots,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+2159+2160,stir-fried zucchini with meat,110.0,90.0,96,Luncheon meat,69.2,False,251.9
+1850+1851,steamed white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+1850+1851,braised chicken,120.0,180.0,101,Boiled chicken,100.0,False,108.3
+1850+1851,cucumber and pork stir-fry,150.0,90.0,21,Cucumber fried pork,100.0,True,263.7
+1850+1851,sautéed napa cabbage,138.0,45.0,140,Shredded cabbage,100.0,False,58.2
+388+389,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+388+389,stir-fried pork with bok choy,120.0,180.0,349,Fried Pork Chop,72.7,False,232.8
+388+389,sautéed cabbage with carrots,100.0,60.0,140,Shredded cabbage,100.0,False,42.2
+799+800,black rice,120.0,180.0,174,Black rice oatmeal,100.0,False,84.3
+799+800,stuffed green pepper,90.0,110.0,43,Pork stuffed green pepper,100.0,True,83.1
+799+800,stir-fried bok choy,100.0,35.0,194,Borsch,57.1,False,56.3
+799+800,stir-fried cabbage with pork,110.0,120.0,314,Spicy Cabbage with Pork Belly,100.0,False,203.5
+494+495,brown rice,140.0,160.0,0,Rice,100.0,True,162.4
+494+495,chicken and mushroom stir-fry,110.0,145.0,45,Steamed Chicken with Mushroom,100.0,False,204.9
+494+495,sautéed cabbage,90.0,45.0,140,Shredded cabbage,100.0,False,37.9
+494+495,bean sprouts and carrot stir-fry,80.0,35.0,19,Sauteed bean sprouts,100.0,False,27.4
+2063+2064,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+2063+2064,cooked chicken,150.0,220.0,101,Boiled chicken,100.0,False,135.4
+2063+2064,cucumber salad,130.0,45.0,7,Sea cucumber,84.6,False,101.4
+2063+2064,sautéed onions,130.0,40.0,310,Stir-fried Eggs with Onions,100.0,False,145.6
+41+42,purple rice,180.0,280.0,0,Rice,100.0,False,208.8
+41+42,pork and vegetable stir-fry,120.0,160.0,10,Pork and vegetable wonton,100.0,False,267.6
+41+42,bean sprouts,80.0,30.0,19,Sauteed bean sprouts,100.0,True,27.4
+41+42,shredded cabbage and carrot salad,70.0,40.0,140,Shredded cabbage,100.0,False,29.5
+1111+1112,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1111+1112,braised tofu skin with meat,90.0,160.0,146,Fried Tofu,100.0,False,82.8
+1111+1112,stir-fried cabbage with carrots,110.0,60.0,50,Fried cabbage,100.0,False,38.3
+1111+1112,steamed winter melon,80.0,25.0,30,Scallion oil winter melon,100.0,True,19.8
+2686+2687,whole wheat steamed bun,90.0,180.0,22,Steamed bun,100.0,False,200.7
+2686+2687,stir-fried cabbage with carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2686+2687,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+506+507,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+506+507,braised chicken,120.0,250.0,101,Boiled chicken,100.0,False,108.3
+506+507,sautéed spinach,80.0,40.0,3,Spinach,100.0,False,22.4
+506+507,stir-fried mixed vegetables,90.0,60.0,18,Sauteed vegetable,100.0,False,16.2
+3101+3102,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+3101+3102,steamed fish,115.0,120.0,119,Sauerkraut fish,100.0,False,91.1
+3101+3102,stir-fried bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+3101+3102,cabbage and carrot stir-fry,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+179+180,white rice,100.0,160.0,49,White rice shrimp,100.0,False,81.0
+179+180,stir-fried cauliflower with sausage,110.0,140.0,38,fried cauliflower,100.0,True,58.8
+179+180,cucumber and carrot salad,90.0,45.0,127,Salad with shredded carrots,100.0,False,45.1
+179+180,stir-fried potato dish,80.0,110.0,204,Pan fried potato,100.0,False,90.4
+117+118,purple rice,100.0,150.0,0,Rice,100.0,False,116.0
+117+118,stir-fried spinach,80.0,40.0,3,Spinach,100.0,False,22.4
+117+118,stir-fried cabbage,90.0,45.0,50,Fried cabbage,100.0,False,31.3
+117+118,pork with wood ear mushrooms,80.0,130.0,75,Fried fungus mushroom,72.7,False,60.0
+2926+2927,brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+2926+2927,stir-fried zucchini with carrots and meat,150.0,85.0,127,Salad with shredded carrots,66.7,False,75.1
+2926+2927,steamed fish or chicken with egg,160.0,140.0,20,Steamed chicken,100.0,True,377.5
+2926+2927,steamed chayote,108.0,25.0,55,cowpea,46.2,False,34.6
+605+606,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+605+606,stir-fried shredded pork with green beans,100.0,180.0,184,Shredded pork with bean,100.0,False,92.7
+605+606,stir-fried cucumber with pork,100.0,110.0,21,Cucumber fried pork,100.0,False,175.8
+605+606,steamed winter melon,80.0,25.0,30,Scallion oil winter melon,100.0,True,19.8
+809+810,boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+809+810,steamed cabbage with carrots,80.0,35.0,140,Shredded cabbage,100.0,False,33.7
+809+810,steamed bun,70.0,180.0,22,Steamed bun,100.0,False,156.1
+2384+2385,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+2384+2385,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2384+2385,stir-fried cabbage and carrots,60.0,30.0,50,Fried cabbage,100.0,False,20.9
+1690+1691,meatballs,110.0,220.0,39,Steamed meatball,100.0,True,285.2
+1690+1691,white rice,180.0,260.0,49,White rice shrimp,100.0,False,145.8
+1690+1691,sautéed onions,120.0,90.0,310,Stir-fried Eggs with Onions,100.0,False,134.4
+1690+1691,stir-fried cabbage and carrots,130.0,40.0,50,Fried cabbage,100.0,True,45.3
+2434+2435,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2434+2435,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2434+2435,steamed whole wheat bun,150.0,230.0,22,Steamed bun,100.0,False,334.5
+1525+1526,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1525+1526,stir-fried cauliflower with meat,120.0,160.0,38,fried cauliflower,100.0,True,64.2
+1525+1526,savory onion meat dish,130.0,180.0,86,Fried meat with onion,100.0,True,149.8
+1525+1526,stir-fried radish,100.0,45.0,36,Roast meat with white radish,100.0,False,429.4
+1861+1862,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+1861+1862,braised pork meatballs with bean curd skin,150.0,250.0,184,Shredded pork with bean,100.0,False,139.0
+1861+1862,stir-fried shredded pork with onions,150.0,180.0,310,Stir-fried Eggs with Onions,71.4,False,168.0
+1861+1862,sautéed bok choy,115.0,40.0,194,Borsch,57.1,False,64.7
+2490+2491,mixed white and brown rice,220.0,280.0,0,Rice,100.0,False,255.2
+2490+2491,spinach meatballs,90.0,140.0,39,Steamed meatball,100.0,False,233.3
+2490+2491,sautéed bok choy,120.0,45.0,194,Borsch,57.1,False,67.5
+2490+2491,sautéed cabbage,114.0,40.0,140,Shredded cabbage,100.0,False,48.1
+2473+2474,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2473+2474,stir-fried eggplant with minced meat,150.0,180.0,330,Grilled Eggplant,100.0,False,66.0
+2473+2474,"corn, pea, and shrimp mix",120.0,90.0,54,Fry pea,100.0,False,30.7
+2473+2474,stir-fried choy sum,100.0,40.0,56,Braised Shrimp in chili oil,50.0,False,93.6
+3079+3080,white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+3079+3080,braised pork with carrots,90.0,180.0,32,Zizania carrot shredded pork,100.0,False,81.9
+3079+3080,stir-fried leafy greens,70.0,35.0,130,Green soybean,66.7,False,91.7
+3079+3080,sautéed cabbage,60.0,30.0,140,Shredded cabbage,100.0,False,25.3
+1100+1101,steamed meatballs,80.0,160.0,39,Steamed meatball,100.0,True,207.4
+1100+1101,stir-fried red onions,90.0,70.0,310,Stir-fried Eggs with Onions,77.8,False,100.8
+1100+1101,sautéed cabbage and carrots,100.0,45.0,140,Shredded cabbage,100.0,False,42.2
+1100+1101,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1400+1401,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1400+1401,stir-fried beef with onions,140.0,180.0,107,Braised beef,100.0,False,227.2
+1400+1401,pork and potato stew,150.0,160.0,204,Pan fried potato,75.0,False,169.5
+1400+1401,sautéed cabbage,100.0,40.0,140,Shredded cabbage,100.0,False,42.2
+1162+1163,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1162+1163,stir-fried pork with mushrooms,150.0,240.0,137,Oyster mushroom,78.6,False,187.4
+1162+1163,bean sprout salad,110.0,45.0,19,Sauteed bean sprouts,100.0,True,37.6
+1162+1163,sautéed cabbage,150.0,60.0,140,Shredded cabbage,100.0,False,63.2
+1157+1158,whole wheat mantou,100.0,220.0,169,buck wheat noodle,62.9,False,150.0
+1157+1158,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1157+1158,stir-fried cabbage with carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+3249+3250,whole wheat steamed bun,130.0,220.0,22,Steamed bun,100.0,False,289.9
+3249+3250,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+3249+3250,stir-fried napa cabbage with carrots,135.0,65.0,50,Fried cabbage,100.0,False,47.0
+1332+1333,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+1332+1333,stir-fried chicken with mushrooms and green bell peppers,150.0,220.0,45,Steamed Chicken with Mushroom,100.0,False,279.5
+1332+1333,cabbage and carrot stir-fry,125.0,60.0,50,Fried cabbage,100.0,False,43.5
+1332+1333,bean sprout and carrot stir-fry,125.0,40.0,19,Sauteed bean sprouts,100.0,True,42.8
+667+668,steamed white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+667+668,vegetable meatballs,60.0,90.0,39,Steamed meatball,100.0,False,155.5
+667+668,stir-fried shredded daikon and carrots,100.0,60.0,127,Salad with shredded carrots,66.7,False,50.1
+667+668,sautéed leafy greens,80.0,35.0,130,Green soybean,66.7,False,104.8
+51+52,black rice,150.0,180.0,174,Black rice oatmeal,100.0,False,105.3
+51+52,bitter melon stir-fry with carrots and meat,120.0,90.0,135,sauteed bitter melon,100.0,True,46.7
+51+52,steamed cabbage roll,80.0,45.0,140,Shredded cabbage,100.0,False,33.7
+51+52,sautéed leafy green vegetables,90.0,35.0,18,Sauteed vegetable,100.0,False,16.2
+1708+1709,whole grain steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+1708+1709,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1708+1709,stir-fried cabbage and carrots,120.0,40.0,50,Fried cabbage,100.0,False,41.8
+950+951,fried chicken,110.0,320.0,101,Boiled chicken,100.0,False,99.3
+950+951,purple rice,160.0,240.0,0,Rice,100.0,False,185.6
+950+951,stir-fried leafy greens with meat and carrots,150.0,90.0,44,Green pepper meat,74.1,False,138.4
+2707+2708,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2707+2708,meatball,80.0,150.0,39,Steamed meatball,100.0,False,207.4
+2707+2708,stir-fried cabbage,150.0,45.0,50,Fried cabbage,100.0,False,52.2
+2707+2708,vegetable stir-fry with wood ear mushrooms,120.0,60.0,18,Sauteed vegetable,100.0,False,21.6
+2707+2708,mixed vegetables with egg,110.0,40.0,18,Sauteed vegetable,100.0,False,19.8
+813+814,whole wheat steamed bun,100.0,220.0,22,Steamed bun,100.0,False,223.0
+813+814,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+813+814,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+1406+1407,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1406+1407,stir-fried bean sprouts,100.0,45.0,19,Sauteed bean sprouts,100.0,True,34.2
+1406+1407,pork with snow peas and carrots,120.0,160.0,54,Fry pea,100.0,True,30.7
+1406+1407,braised winter melon with pork,150.0,130.0,30,Scallion oil winter melon,82.8,True,37.1
+631+632,pan-fried fish,85.0,140.0,124,grilled fish,100.0,False,129.1
+631+632,purple multi-grain rice,130.0,180.0,0,Rice,100.0,False,150.8
+631+632,sautéed leafy greens,80.0,35.0,130,Green soybean,66.7,False,104.8
+631+632,stir-fried cabbage with tomatoes,90.0,45.0,50,Fried cabbage,100.0,False,31.3
+581+582,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+581+582,stir-fried tomato and egg,100.0,140.0,180,Tomato and Egg Soup,100.0,False,23.8
+581+582,sautéed bok choy,80.0,30.0,194,Borsch,57.1,False,45.0
+581+582,"stir-fried green bell pepper, carrot, and meat",90.0,90.0,44,Green pepper meat,100.0,False,83.1
+280+281,braised chicken,150.0,320.0,101,Boiled chicken,100.0,False,135.4
+280+281,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+280+281,stir-fried bean sprouts with carrots,100.0,60.0,19,Sauteed bean sprouts,100.0,True,34.2
+280+281,sautéed leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+2540+2541,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2540+2541,braised chicken,120.0,180.0,101,Boiled chicken,100.0,False,108.3
+2540+2541,stir-fried cabbage,150.0,60.0,50,Fried cabbage,100.0,False,52.2
+2540+2541,sautéed leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+1656+1657,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1656+1657,daikon and carrot stir-fry,100.0,60.0,127,Salad with shredded carrots,66.7,False,50.1
+1656+1657,sautéed leafy greens,70.0,30.0,130,Green soybean,66.7,False,91.7
+1656+1657,meatballs,80.0,140.0,39,Steamed meatball,100.0,True,207.4
+2035+2036,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+2035+2036,broccoli with meat stir-fry,120.0,110.0,136,Broccoli with Oyster Sauce,76.2,True,56.9
+2035+2036,vegetable stir-fry with meat and snow peas,130.0,130.0,18,Sauteed vegetable,100.0,False,23.4
+2035+2036,sautéed cabbage with carrots,100.0,60.0,140,Shredded cabbage,100.0,False,42.2
+2557+2558,brown rice,220.0,250.0,0,Rice,100.0,False,255.2
+2557+2558,braised pork with potatoes,160.0,320.0,161,Stewed sirloin potatoes,73.7,False,294.1
+2557+2558,stir-fried eggplant with minced meat,150.0,180.0,330,Grilled Eggplant,100.0,False,66.0
+2557+2558,sautéed bok choy,130.0,40.0,194,Borsch,57.1,False,73.2
+1474+1475,brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+1474+1475,stir-fried pork with vegetables,150.0,180.0,27,Shredded Pork with Vegetables,100.0,False,291.5
+1474+1475,sautéed onions,100.0,60.0,310,Stir-fried Eggs with Onions,100.0,False,112.0
+1474+1475,stir-fried cabbage and carrots,160.0,50.0,50,Fried cabbage,100.0,False,55.7
+885+886,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+885+886,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+885+886,stir-fried cabbage and carrots,60.0,35.0,50,Fried cabbage,100.0,False,20.9
+928+929,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+928+929,whole-wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+928+929,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+938+939,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+938+939,stir-fried eggplant with minced meat,120.0,180.0,330,Grilled Eggplant,100.0,False,52.8
+938+939,shrimp and vegetable mix,100.0,110.0,18,Sauteed vegetable,100.0,True,18.0
+938+939,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+2606+2607,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+2606+2607,cooked white fish,120.0,150.0,124,grilled fish,100.0,False,182.3
+2606+2607,sautéed onions,100.0,60.0,310,Stir-fried Eggs with Onions,100.0,False,112.0
+2606+2607,steamed leafy greens,100.0,30.0,130,Green soybean,66.7,False,131.0
+526+527,black rice,120.0,180.0,174,Black rice oatmeal,100.0,False,84.3
+526+527,stir-fried water spinach,100.0,60.0,3,Spinach,100.0,False,28.0
+526+527,stir-fried cabbage with tomatoes,100.0,50.0,50,Fried cabbage,100.0,False,34.8
+526+527,stir-fried chicken with wood ear mushrooms and carrots,110.0,140.0,45,Steamed Chicken with Mushroom,100.0,False,204.9
+825+826,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+825+826,glazed pork chop,100.0,280.0,349,Fried Pork Chop,100.0,False,194.0
+825+826,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+825+826,stir-fried winter melon with minced meat,100.0,90.0,30,Scallion oil winter melon,82.8,True,24.7
+1565+1566,whole grain steamed bun,130.0,220.0,22,Steamed bun,100.0,False,289.9
+1565+1566,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1565+1566,stir-fried cabbage with carrots,137.0,45.0,50,Fried cabbage,100.0,False,47.7
+2524+2525,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+2524+2525,stir-fried bok choy,100.0,45.0,194,Borsch,57.1,False,56.3
+2524+2525,steamed meat patties,90.0,180.0,17,Lettuce shredded meat,69.6,False,68.9
+2524+2525,"cauliflower, wood ear mushroom, and pork stir-fry",120.0,110.0,38,fried cauliflower,100.0,False,64.2
+1576+1577,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1576+1577,braised chicken,100.0,160.0,101,Boiled chicken,100.0,True,90.2
+1576+1577,stir-fried bean sprouts with carrots,120.0,45.0,19,Sauteed bean sprouts,100.0,True,41.1
+1576+1577,cooked winter melon,100.0,25.0,30,Scallion oil winter melon,100.0,True,24.7
+53+54,white rice,150.0,180.0,49,White rice shrimp,100.0,False,121.5
+53+54,cucumber and carrot stir-fry,120.0,60.0,7,Sea cucumber,80.0,False,93.6
+53+54,cauliflower and meat stir-fry,100.0,150.0,38,fried cauliflower,100.0,True,53.5
+53+54,braised radish,110.0,70.0,36,Roast meat with white radish,100.0,False,472.3
+609+610,purple rice,120.0,180.0,0,Rice,100.0,False,139.2
+609+610,stir-fried leafy greens,100.0,60.0,130,Green soybean,66.7,False,131.0
+609+610,shredded papaya salad,80.0,50.0,217,Yuba salad,72.7,False,129.3
+609+610,vegetable dumplings,60.0,90.0,268,Fried Dumplings,100.0,False,165.0
+222+223,mixed grain rice,150.0,180.0,0,Rice,100.0,True,174.0
+222+223,stir-fried wood ear mushrooms with chicken,100.0,120.0,111,Shredded chicken,100.0,False,134.6
+222+223,cucumber salad,80.0,40.0,7,Sea cucumber,84.6,False,62.4
+222+223,sautéed cabbage,80.0,35.0,140,Shredded cabbage,100.0,False,33.7
+619+620,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+619+620,stir-fried pork with carrots,100.0,180.0,32,Zizania carrot shredded pork,100.0,False,91.0
+619+620,sautéed cabbage,80.0,30.0,140,Shredded cabbage,100.0,False,33.7
+619+620,stir-fried bok choy with minced meat,90.0,70.0,154,Pot bag meat,64.0,False,198.6
+747+748,mung bean rice,150.0,220.0,0,Rice,100.0,True,174.0
+747+748,stir-fried zucchini with minced meat,120.0,110.0,96,Luncheon meat,69.2,False,274.8
+747+748,stuffed eggplant,70.0,90.0,330,Grilled Eggplant,100.0,False,30.8
+747+748,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+2479+2480,black rice,150.0,180.0,174,Black rice oatmeal,100.0,False,105.3
+2479+2480,scrambled eggs with tomatoes,120.0,140.0,97,Scrambled eggs,100.0,False,186.8
+2479+2480,stir-fried zucchini with meat,140.0,90.0,96,Luncheon meat,69.2,False,320.6
+2479+2480,sautéed leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+1833+1834,brown rice,275.0,330.0,0,Rice,100.0,False,319.0
+1833+1834,stir-fried zucchini with beef,120.0,110.0,107,Braised beef,100.0,False,194.7
+1833+1834,tomato and egg stir-fry,115.0,130.0,180,Tomato and Egg Soup,100.0,False,27.3
+1833+1834,sautéed leafy greens,110.0,45.0,130,Green soybean,66.7,False,144.1
+867+868,whole wheat steamed bun,100.0,220.0,22,Steamed bun,100.0,False,223.0
+867+868,boiled egg,50.0,75.0,97,Scrambled eggs,100.0,False,77.8
+867+868,stir-fried cabbage and carrots,80.0,40.0,50,Fried cabbage,100.0,False,27.8
+911+912,braised pork ribs with carrots,120.0,280.0,23,Grilled pork ribs,100.0,False,285.5
+911+912,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+911+912,stir-fried eggplant,100.0,110.0,330,Grilled Eggplant,100.0,False,44.0
+911+912,sautéed green leafy vegetables,90.0,45.0,18,Sauteed vegetable,100.0,False,16.2
+841+842,boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+841+842,steamed whole wheat mantou,80.0,180.0,169,buck wheat noodle,62.9,False,120.0
+841+842,sautéed cabbage and carrots,70.0,35.0,140,Shredded cabbage,100.0,False,29.5
+2652+2653,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2652+2653,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2652+2653,stir-fried cabbage and carrots,60.0,35.0,50,Fried cabbage,100.0,False,20.9
+91+92,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+91+92,stir-fried beef with peppers and onions,120.0,250.0,107,Braised beef,100.0,False,194.7
+91+92,bean sprouts,80.0,30.0,19,Sauteed bean sprouts,100.0,True,27.4
+91+92,stir-fried cabbage and carrots,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+881+882,steamed chicken,120.0,180.0,20,Steamed chicken,100.0,True,283.1
+881+882,black rice,150.0,210.0,174,Black rice oatmeal,100.0,False,105.3
+881+882,stir-fried cabbage,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+881+882,sautéed leafy greens,80.0,30.0,130,Green soybean,66.7,False,104.8
+909+910,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+909+910,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+909+910,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+1389+1390,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1389+1390,stir-fried zucchini with carrots,120.0,60.0,127,Salad with shredded carrots,66.7,False,60.1
+1389+1390,braised vegetable and meat dish,100.0,110.0,18,Sauteed vegetable,100.0,False,18.0
+1389+1390,steamed winter melon,90.0,25.0,30,Scallion oil winter melon,100.0,True,22.2
+2361+2362,steamed white rice,200.0,260.0,49,White rice shrimp,100.0,False,162.0
+2361+2362,beef with tomatoes,150.0,180.0,107,Braised beef,100.0,False,243.4
+2361+2362,stir-fried bok choy,120.0,45.0,194,Borsch,57.1,False,67.5
+2361+2362,sautéed napa cabbage,125.0,40.0,140,Shredded cabbage,100.0,False,52.7
+554+555,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+554+555,stir-fried chicken,100.0,180.0,20,Steamed chicken,100.0,False,235.9
+554+555,stir-fried leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+554+555,shredded vegetable salad,100.0,60.0,182,Vegetable salad,100.0,False,39.0
+2249+2250,whole wheat steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+2249+2250,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2249+2250,stir-fried cabbage and carrots,120.0,40.0,50,Fried cabbage,100.0,False,41.8
+926+927,stir-fried beef with sauce,120.0,280.0,107,Braised beef,100.0,False,194.7
+926+927,steamed white rice,150.0,220.0,49,White rice shrimp,100.0,False,121.5
+926+927,stir-fried cabbage with carrots,100.0,60.0,50,Fried cabbage,100.0,True,34.8
+926+927,stir-fried celtuce with pork,100.0,90.0,21,Cucumber fried pork,72.0,False,175.8
+793+794,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+793+794,braised meat with potatoes,120.0,250.0,256,Potato omelet,80.0,False,176.9
+793+794,stir-fried leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+793+794,stir-fried shredded vegetables with meat,100.0,120.0,18,Sauteed vegetable,100.0,True,18.0
+1610+1611,white rice,150.0,180.0,49,White rice shrimp,100.0,False,121.5
+1610+1611,stir-fried cabbage with carrots,150.0,45.0,50,Fried cabbage,100.0,True,52.2
+1610+1611,stir-fried glass noodles,120.0,130.0,329,Stir-fried Noodles,100.0,False,153.6
+1610+1611,meatball with cabbage and tofu,187.5,160.0,50,Fried cabbage,100.0,True,65.3
+2983+2984,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2983+2984,steamed whole wheat mantou bun,85.0,160.0,22,Steamed bun,100.0,False,189.6
+2983+2984,stir-fried cabbage and carrots,100.0,40.0,50,Fried cabbage,100.0,False,34.8
+451+452,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+451+452,braised pork with radish,150.0,280.0,87,Pork ribs soup with radish,100.0,False,148.0
+451+452,stir-fried bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+451+452,stir-fried shredded vegetables with meat,100.0,90.0,18,Sauteed vegetable,100.0,True,18.0
+946+947,brown rice,150.0,220.0,0,Rice,100.0,False,174.0
+946+947,fried pork chop,100.0,350.0,349,Fried Pork Chop,100.0,False,194.0
+946+947,stir-fried bok choy,80.0,40.0,194,Borsch,57.1,False,45.0
+946+947,stewed chayote with minced meat,100.0,60.0,154,Pot bag meat,66.7,False,220.7
+500+501,cooked white rice,115.0,150.0,49,White rice shrimp,100.0,False,93.2
+500+501,stir-fried shredded cabbage with meat,130.0,110.0,140,Shredded cabbage,100.0,False,54.8
+500+501,sautéed broccoli and carrots,100.0,60.0,342,Chinese Broccoli with Beef,69.6,False,75.0
+1219+1220,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1219+1220,stir-fried pork with vegetables,100.0,160.0,27,Shredded Pork with Vegetables,100.0,False,194.3
+1219+1220,braised winter melon,120.0,70.0,30,Scallion oil winter melon,100.0,True,29.7
+1219+1220,bean sprouts,60.0,20.0,19,Sauteed bean sprouts,100.0,True,20.5
+3243+3244,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+3243+3244,stir-fried beef with peppers,150.0,220.0,68,Sauteed Beef Fillet with Hot Green Pepper,100.0,False,121.5
+3243+3244,sautéed cabbage,130.0,60.0,140,Shredded cabbage,100.0,False,54.8
+3243+3244,stir-fried chayote with shredded pork,121.0,90.0,349,Fried Pork Chop,76.2,False,234.7
+95+96,purple rice,120.0,180.0,0,Rice,100.0,False,139.2
+95+96,stir-fried zucchini,100.0,45.0,20,Steamed chicken,53.3,False,235.9
+95+96,braised potatoes,90.0,110.0,161,Stewed sirloin potatoes,100.0,False,165.4
+95+96,stir-fried shredded meat with peppers,80.0,160.0,44,Green pepper meat,100.0,False,73.8
+2882+2883,whole wheat steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+2882+2883,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2882+2883,stir-fried cabbage and carrots,120.0,40.0,50,Fried cabbage,100.0,False,41.8
+1924+1925,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+1924+1925,stir-fried cabbage with carrots,100.0,40.0,50,Fried cabbage,100.0,False,34.8
+1924+1925,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+61+62,steamed white rice,120.0,160.0,49,White rice shrimp,100.0,False,97.2
+61+62,stir-fried noodles with meat,100.0,180.0,316,Stir-fried Noodles with Shredded Meat,100.0,False,0.2
+61+62,cooked winter melon,120.0,30.0,30,Scallion oil winter melon,100.0,True,29.7
+61+62,stir-fried zucchini with carrots,80.0,45.0,127,Salad with shredded carrots,66.7,False,40.1
+3226+3227,cooked white rice,220.0,280.0,49,White rice shrimp,100.0,False,178.2
+3226+3227,braised meat,150.0,250.0,154,Pot bag meat,100.0,False,331.0
+3226+3227,stir-fried broccoli,140.0,60.0,243,Shrimp broccoli,100.0,False,49.4
+3226+3227,bean sprouts,130.0,30.0,19,Sauteed bean sprouts,100.0,True,44.5
+155+156,white rice,150.0,180.0,49,White rice shrimp,100.0,False,121.5
+155+156,stir-fried green vegetables,100.0,45.0,18,Sauteed vegetable,100.0,True,18.0
+155+156,sweet and sour pork with potatoes,120.0,280.0,162,Sweet and sour fish,80.0,False,136.1
+155+156,stir-fried green bell peppers and onions,80.0,35.0,12,Green pepper,100.0,False,17.6
+2567+2568,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2567+2568,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2567+2568,stir-fried cabbage and carrots,70.0,35.0,50,Fried cabbage,100.0,False,24.4
+2378+2379,purple rice,220.0,280.0,0,Rice,100.0,False,255.2
+2378+2379,stir-fried pork with vegetables,180.0,250.0,27,Shredded Pork with Vegetables,100.0,False,349.8
+2378+2379,cooked squash,120.0,60.0,29,Squash,100.0,True,42.9
+2378+2379,leafy greens,97.0,30.0,130,Green soybean,66.7,False,127.1
+2018+2019,braised pork with potatoes,150.0,280.0,161,Stewed sirloin potatoes,73.7,False,275.7
+2018+2019,stir-fried chayote with pork strips,120.0,90.0,349,Fried Pork Chop,66.7,False,232.8
+2018+2019,sautéed cabbage with carrots,130.0,60.0,140,Shredded cabbage,100.0,False,54.8
+2018+2019,white rice,185.0,260.0,49,White rice shrimp,100.0,False,149.9
+759+760,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+759+760,cucumber salad,80.0,35.0,7,Sea cucumber,84.6,False,62.4
+759+760,stir-fried cabbage,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+759+760,mixed vegetable stir-fry with wood ear mushrooms,90.0,60.0,18,Sauteed vegetable,100.0,False,16.2
+321+322,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+321+322,stir-fried chayote with carrots,120.0,60.0,127,Salad with shredded carrots,66.7,False,60.1
+321+322,sautéed cabbage,100.0,40.0,140,Shredded cabbage,100.0,False,42.2
+321+322,meatball,50.0,90.0,39,Steamed meatball,100.0,False,129.6
+1939+1940,whole grain steamed bun,90.0,180.0,22,Steamed bun,100.0,False,200.7
+1939+1940,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1939+1940,stir-fried cabbage and carrots,130.0,40.0,50,Fried cabbage,100.0,False,45.3
+1944+1945,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+1944+1945,meatballs,100.0,160.0,39,Steamed meatball,100.0,True,259.2
+1944+1945,stir-fried cabbage with meat,130.0,90.0,50,Fried cabbage,100.0,False,45.3
+1944+1945,sautéed leafy greens,101.0,30.0,130,Green soybean,66.7,False,132.3
+1542+1543,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1542+1543,beef stew with carrots,110.0,140.0,107,Braised beef,100.0,True,178.5
+1542+1543,stir-fried cabbage with carrots,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+1542+1543,sautéed leafy greens,80.0,35.0,130,Green soybean,66.7,False,104.8
+135+136,black rice,100.0,150.0,174,Black rice oatmeal,100.0,False,70.2
+135+136,stir-fried bitter melon with meat,120.0,80.0,135,sauteed bitter melon,100.0,True,46.7
+135+136,sautéed leafy greens,80.0,30.0,130,Green soybean,66.7,False,104.8
+135+136,cabbage rolls with meat filling,100.0,110.0,50,Fried cabbage,100.0,False,34.8
+3017+3018,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+3017+3018,steamed whole wheat mantou,60.0,130.0,169,buck wheat noodle,62.9,False,90.0
+3017+3018,stir-fried cabbage with carrots,80.0,40.0,50,Fried cabbage,100.0,False,27.8
+1827+1828,braised pork with radish,150.0,280.0,87,Pork ribs soup with radish,100.0,False,148.0
+1827+1828,stir-fried eggplant,130.0,160.0,330,Grilled Eggplant,100.0,False,57.2
+1827+1828,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+1827+1828,white rice,231.0,310.0,49,White rice shrimp,100.0,False,187.1
+1587+1588,fried fish with sauce,220.0,380.0,124,grilled fish,100.0,False,334.2
+1587+1588,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+1587+1588,stewed winter melon with carrots and minced meat,160.0,90.0,127,Salad with shredded carrots,66.7,False,80.1
+1587+1588,stir-fried bok choy,132.0,45.0,194,Borsch,57.1,False,74.3
+2815+2816,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+2815+2816,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2815+2816,stir-fried cabbage and carrots,60.0,30.0,50,Fried cabbage,100.0,False,20.9
+2669+2670,whole wheat steamed bun,90.0,180.0,22,Steamed bun,100.0,False,200.7
+2669+2670,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2669+2670,stir-fried cabbage and carrots,80.0,30.0,50,Fried cabbage,100.0,False,27.8
+895+896,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+895+896,spinach and chicken meatballs,90.0,140.0,39,Steamed meatball,100.0,False,233.3
+895+896,sautéed leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+895+896,shredded chicken with onions and peppers,110.0,110.0,111,Shredded chicken,100.0,False,148.1
+1327+1328,steamed whole wheat bun,130.0,180.0,22,Steamed bun,100.0,False,289.9
+1327+1328,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1327+1328,stir-fried cabbage with carrots,136.0,45.0,50,Fried cabbage,100.0,False,47.3
+827+828,whole wheat steamed bun,100.0,220.0,22,Steamed bun,100.0,False,223.0
+827+828,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+827+828,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+569+570,black rice,150.0,180.0,174,Black rice oatmeal,100.0,False,105.3
+569+570,stir-fried pork,80.0,160.0,21,Cucumber fried pork,100.0,False,140.6
+569+570,carrots,60.0,25.0,28,Carrot Braised Short Ribs,100.0,True,59.6
+569+570,cooked leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+465+466,steamed white fish with cucumber and black fungus,120.0,140.0,124,grilled fish,100.0,False,182.3
+465+466,stir-fried pumpkin with minced meat,100.0,110.0,16,Pumpkin,100.0,True,20.9
+465+466,sautéed bok choy,80.0,35.0,194,Borsch,57.1,False,45.0
+465+466,brown rice,130.0,160.0,0,Rice,100.0,True,150.8
+998+999,steamed whole wheat mantou bun,80.0,180.0,22,Steamed bun,100.0,False,178.4
+998+999,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+998+999,stir-fried napa cabbage and carrots,70.0,30.0,50,Fried cabbage,100.0,False,24.4
+216+217,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+216+217,stir-fried chicken with mushrooms,110.0,220.0,45,Steamed Chicken with Mushroom,100.0,True,204.9
+216+217,steamed broccoli,80.0,30.0,243,Shrimp broccoli,100.0,False,28.3
+216+217,sautéed cabbage,70.0,35.0,140,Shredded cabbage,100.0,False,29.5
+1468+1469,brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+1468+1469,stir-fried chicken with chayote,130.0,160.0,20,Steamed chicken,100.0,False,306.7
+1468+1469,sautéed leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+1468+1469,stewed winter melon with meat,150.0,70.0,30,Scallion oil winter melon,82.8,True,37.1
+1038+1039,steamed whole wheat mantou,100.0,220.0,169,buck wheat noodle,62.9,False,150.0
+1038+1039,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1038+1039,steamed cabbage with carrots,60.0,25.0,140,Shredded cabbage,100.0,False,25.3
+725+726,mung bean rice,150.0,220.0,0,Rice,100.0,True,174.0
+725+726,stir-fried bitter melon with chicken,100.0,130.0,135,sauteed bitter melon,100.0,True,39.0
+725+726,stir-fried green peppers with shredded pork,100.0,160.0,43,Pork stuffed green pepper,100.0,False,92.3
+725+726,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+3107+3108,purple rice,180.0,280.0,0,Rice,100.0,False,208.8
+3107+3108,braised chicken,120.0,220.0,101,Boiled chicken,100.0,False,108.3
+3107+3108,stir-fried broccoli with meat,150.0,110.0,342,Chinese Broccoli with Beef,76.2,False,112.5
+3107+3108,bean sprouts,100.0,30.0,19,Sauteed bean sprouts,100.0,True,34.2
+625+626,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+625+626,stir-fried green bell peppers with carrots and meat,120.0,130.0,44,Green pepper meat,100.0,False,110.7
+625+626,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+625+626,meatballs,60.0,110.0,39,Steamed meatball,100.0,True,155.5
+2949+2950,steamed whole wheat bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+2949+2950,stir-fried cabbage with carrots,80.0,40.0,50,Fried cabbage,100.0,False,27.8
+2949+2950,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+781+782,steamed chicken,100.0,180.0,20,Steamed chicken,100.0,True,235.9
+781+782,stir-fried cabbage with pork,120.0,120.0,314,Spicy Cabbage with Pork Belly,100.0,False,222.0
+781+782,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+781+782,black rice,150.0,210.0,174,Black rice oatmeal,100.0,False,105.3
+1754+1755,steamed whole wheat bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+1754+1755,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1754+1755,stir-fried cabbage and carrots,80.0,40.0,50,Fried cabbage,100.0,False,27.8
+18+19,boiled dumplings,300.0,450.0,268,Fried Dumplings,100.0,False,824.9
+1725+1726,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+1725+1726,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1725+1726,stir-fried cabbage and carrots,60.0,30.0,50,Fried cabbage,100.0,False,20.9
+2657+2658,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+2657+2658,braised pork ribs with potatoes,180.0,350.0,23,Grilled pork ribs,100.0,False,428.2
+2657+2658,stir-fried eggplant,150.0,180.0,330,Grilled Eggplant,100.0,False,66.0
+2657+2658,sautéed leafy greens,101.0,40.0,130,Green soybean,66.7,False,132.3
+823+824,whole wheat steamed bun,80.0,180.0,22,Steamed bun,100.0,False,178.4
+823+824,stir-fried napa cabbage with carrots,70.0,35.0,50,Fried cabbage,100.0,False,24.4
+823+824,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2865+2866,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2865+2866,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2865+2866,stir-fried cabbage with carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+1446+1447,whole grain steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+1446+1447,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1446+1447,sautéed cabbage and carrots,100.0,40.0,140,Shredded cabbage,100.0,False,42.2
+587+588,steamed white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+587+588,pork stir-fry with celery and water chestnuts,110.0,160.0,47,Stir-fry celery,100.0,False,18.7
+587+588,stir-fried cauliflower with carrots,120.0,55.0,38,fried cauliflower,100.0,True,64.2
+587+588,stir-fried leafy greens,80.0,35.0,130,Green soybean,66.7,False,104.8
+659+660,stir-fried pork with green peppers,110.0,220.0,37,Shredded pork and green pepper,100.0,False,101.5
+659+660,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+659+660,shredded radish and carrot salad,90.0,45.0,127,Salad with shredded carrots,100.0,False,45.1
+659+660,stir-fried cabbage,80.0,50.0,50,Fried cabbage,100.0,False,27.8
+1196+1197,white rice,170.0,220.0,49,White rice shrimp,100.0,False,137.7
+1196+1197,spinach meatballs,120.0,180.0,39,Steamed meatball,100.0,False,311.1
+1196+1197,sautéed cabbage,150.0,60.0,140,Shredded cabbage,100.0,False,63.2
+1196+1197,cooked leafy greens,135.0,35.0,130,Green soybean,66.7,False,176.8
+2445+2446,stir-fried beef with peppers and onions,130.0,220.0,107,Braised beef,100.0,False,210.9
+2445+2446,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+2445+2446,sautéed zucchini with carrots,100.0,45.0,127,Salad with shredded carrots,66.7,False,50.1
+2445+2446,stir-fried cabbage,90.0,35.0,50,Fried cabbage,100.0,False,31.3
+960+961,white rice,180.0,280.0,49,White rice shrimp,100.0,False,145.8
+960+961,braised eggplant with minced meat,120.0,160.0,330,Grilled Eggplant,100.0,False,52.8
+960+961,stir-fried leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+960+961,braised meat with carrots,110.0,220.0,127,Salad with shredded carrots,70.6,False,55.1
+123+124,braised beef,100.0,220.0,107,Braised beef,100.0,False,162.2
+123+124,brown rice,120.0,150.0,0,Rice,100.0,True,139.2
+123+124,"shrimp and vegetable stir-fry (corn, peas, carrots)",110.0,90.0,18,Sauteed vegetable,100.0,True,19.8
+123+124,sautéed bok choy,80.0,30.0,194,Borsch,57.1,False,45.0
+1788+1789,whole grain steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+1788+1789,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1788+1789,stir-fried cabbage and carrots,120.0,40.0,50,Fried cabbage,100.0,False,41.8
+2327+2328,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2327+2328,pork meatballs,80.0,160.0,39,Steamed meatball,100.0,True,207.4
+2327+2328,stir-fried bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+2327+2328,stewed chayote and carrots,150.0,50.0,127,Salad with shredded carrots,66.7,False,75.1
+3022+3023,steamed white fish,120.0,135.0,124,grilled fish,100.0,False,182.3
+3022+3023,black rice,150.0,185.0,174,Black rice oatmeal,100.0,False,105.3
+3022+3023,stir-fried leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+3022+3023,stir-fried cabbage with carrots,90.0,35.0,50,Fried cabbage,100.0,False,31.3
+2792+2793,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2792+2793,stir-fried pork with snow peas,150.0,180.0,54,Fry pea,100.0,True,38.4
+2792+2793,broccoli with carrots,130.0,60.0,136,Broccoli with Oyster Sauce,69.6,True,61.6
+2792+2793,sautéed napa cabbage with carrots,132.0,45.0,140,Shredded cabbage,100.0,False,55.6
+851+852,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+851+852,braised pork,80.0,220.0,347,Braised Pork Rice,100.0,False,143.2
+851+852,stir-fried cabbage with pork,90.0,110.0,314,Spicy Cabbage with Pork Belly,100.0,False,166.5
+851+852,stir-fried bok choy,100.0,45.0,194,Borsch,57.1,False,56.3
+811+812,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+811+812,stir-fried leafy greens with meat,120.0,90.0,44,Green pepper meat,76.9,False,110.7
+811+812,braised meat or tofu,100.0,220.0,146,Fried Tofu,100.0,False,92.0
+932+933,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+932+933,stir-fried pork with vegetables,100.0,220.0,27,Shredded Pork with Vegetables,100.0,False,194.3
+932+933,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+932+933,chayote and carrot stir-fry with pork,120.0,90.0,32,Zizania carrot shredded pork,73.3,True,109.2
+903+904,braised pork belly,110.0,320.0,314,Spicy Cabbage with Pork Belly,100.0,False,203.5
+903+904,purple rice,150.0,210.0,0,Rice,100.0,False,174.0
+903+904,stir-fried zucchini with pork,100.0,85.0,23,Grilled pork ribs,66.7,False,237.9
+903+904,sautéed cabbage,120.0,45.0,140,Shredded cabbage,100.0,False,50.6
+603+604,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+603+604,stir-fried eggplant with minced meat,120.0,180.0,330,Grilled Eggplant,100.0,False,52.8
+603+604,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+603+604,pork with carrots,70.0,150.0,32,Zizania carrot shredded pork,100.0,False,63.7
+256+257,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+256+257,braised beef with carrots,100.0,180.0,107,Braised beef,100.0,False,162.2
+256+257,stir-fried cabbage,120.0,40.0,50,Fried cabbage,100.0,False,41.8
+256+257,stir-fried chayote with minced meat,100.0,70.0,154,Pot bag meat,66.7,False,220.7
+189+190,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+189+190,braised pork with carrots,120.0,280.0,32,Zizania carrot shredded pork,100.0,False,109.2
+189+190,stir-fried eggplant,100.0,110.0,330,Grilled Eggplant,100.0,False,44.0
+189+190,sautéed leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+2338+2339,purple rice,180.0,280.0,0,Rice,100.0,False,208.8
+2338+2339,stir-fried eggplant,120.0,150.0,330,Grilled Eggplant,100.0,False,52.8
+2338+2339,shrimp with mixed vegetables,130.0,140.0,18,Sauteed vegetable,100.0,True,23.4
+2338+2339,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+934+935,boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+934+935,steamed whole wheat mantou bun,80.0,180.0,22,Steamed bun,100.0,False,178.4
+934+935,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+645+646,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+645+646,stir-fried leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+645+646,"diced potatoes, corn, and minced meat stir-fry",120.0,160.0,256,Potato omelet,73.3,False,176.9
+645+646,fish in tomato sauce,110.0,130.0,124,grilled fish,100.0,False,167.1
+2764+2765,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2764+2765,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2764+2765,steamed whole wheat mantou,153.5,380.0,169,buck wheat noodle,62.9,False,230.2
+2920+2921,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2920+2921,stir-fried cauliflower with pork,140.0,130.0,38,fried cauliflower,100.0,True,74.9
+2920+2921,sautéed leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+2920+2921,herb meatballs,110.0,165.0,39,Steamed meatball,100.0,False,285.2
+2943+2944,brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+2943+2944,stir-fried broccoli with carrots and meat,130.0,110.0,243,Shrimp broccoli,69.6,False,45.9
+2943+2944,bean sprout salad with carrots,120.0,45.0,127,Salad with shredded carrots,100.0,False,60.1
+2943+2944,braised meat,110.0,180.0,154,Pot bag meat,100.0,False,242.8
+368+369,black rice,100.0,160.0,174,Black rice oatmeal,100.0,False,70.2
+368+369,steamed broccoli,100.0,35.0,243,Shrimp broccoli,100.0,False,35.3
+368+369,cabbage and carrot stir-fry,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+368+369,"snow peas, carrots, and water chestnuts",80.0,40.0,54,Fry pea,100.0,True,20.5
+540+541,multi-grain rice,130.0,180.0,0,Rice,100.0,True,150.8
+540+541,braised bean curd skin,100.0,220.0,168,Bean curd,100.0,False,48.0
+540+541,stir-fried leafy greens (spinach),80.0,40.0,3,Spinach,100.0,True,22.4
+540+541,stir-fried mixed greens with pork,90.0,70.0,43,Pork stuffed green pepper,100.0,False,83.1
+2372+2373,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2372+2373,stir-fried cabbage with minced meat,120.0,110.0,50,Fried cabbage,100.0,False,41.8
+2372+2373,sautéed leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+2372+2373,vegetable protein balls,90.0,130.0,18,Sauteed vegetable,100.0,True,16.2
+3254+3255,purple rice,250.0,320.0,0,Rice,100.0,False,290.0
+3254+3255,fried fish,150.0,280.0,124,grilled fish,100.0,False,227.8
+3254+3255,stir-fried cabbage with meat,150.0,110.0,50,Fried cabbage,100.0,False,52.2
+3254+3255,stir-fried leafy greens,103.0,45.0,130,Green soybean,66.7,False,134.9
+437+438,brown rice,120.0,150.0,0,Rice,100.0,True,139.2
+437+438,stuffed green pepper,100.0,180.0,43,Pork stuffed green pepper,100.0,True,92.3
+437+438,stir-fried cabbage with carrots,80.0,60.0,50,Fried cabbage,100.0,False,27.8
+437+438,sautéed leafy greens,70.0,40.0,130,Green soybean,66.7,False,91.7
+2226+2227,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+2226+2227,stir-fried beef with onions,150.0,220.0,107,Braised beef,100.0,False,243.4
+2226+2227,sautéed bok choy,120.0,40.0,194,Borsch,57.1,False,67.5
+2226+2227,"zucchini, carrot, and ground meat stir-fry",180.0,150.0,127,Salad with shredded carrots,66.7,False,90.2
+1355+1356,cooked chicken,120.0,180.0,101,Boiled chicken,100.0,False,108.3
+1355+1356,white rice,120.0,160.0,49,White rice shrimp,100.0,False,97.2
+1355+1356,cooked cabbage,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+1355+1356,translucent vegetable or starch,115.0,30.0,18,Sauteed vegetable,100.0,False,20.7
+2535+2536,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2535+2536,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2535+2536,stir-fried cabbage with carrots,70.0,35.0,50,Fried cabbage,100.0,False,24.4
+2718+2719,white rice,200.0,260.0,49,White rice shrimp,100.0,False,162.0
+2718+2719,chicken with green bell peppers and mushrooms,150.0,180.0,45,Steamed Chicken with Mushroom,100.0,True,279.5
+2718+2719,bean sprout stir-fry,150.0,60.0,19,Sauteed bean sprouts,100.0,True,51.3
+2718+2719,cabbage stir-fry,80.0,40.0,147,Cabbage soup,100.0,False,11.2
+3141+3142,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+3141+3142,braised chicken,150.0,220.0,101,Boiled chicken,100.0,False,135.4
+3141+3142,stir-fried broccoli and carrots,120.0,60.0,243,Shrimp broccoli,69.6,False,42.4
+3141+3142,sautéed napa cabbage,100.0,40.0,140,Shredded cabbage,100.0,False,42.2
+1650+1651,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1650+1651,braised chicken,120.0,240.0,101,Boiled chicken,100.0,False,108.3
+1650+1651,stir-fried cabbage,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+1650+1651,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+364+365,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+364+365,stir-fried green beans,100.0,80.0,138,Fried beans,100.0,False,64.4
+364+365,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+364+365,pork and onion stir-fry,100.0,150.0,310,Stir-fried Eggs with Onions,71.4,False,112.0
+10+11,steamed bun,120.0,280.0,22,Steamed bun,100.0,False,267.6
+10+11,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+10+11,sea cucumber,40.0,15.0,7,Sea cucumber,100.0,True,31.2
+1553+1554,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+1553+1554,stir-fried cabbage with meat,130.0,110.0,50,Fried cabbage,100.0,False,45.3
+1553+1554,spinach and meat meatballs,100.0,140.0,39,Steamed meatball,100.0,False,259.2
+1553+1554,sautéed bok choy,117.0,45.0,194,Borsch,57.1,False,65.8
+821+822,purple rice,200.0,320.0,0,Rice,100.0,False,232.0
+821+822,stir-fried green leafy vegetables,120.0,60.0,18,Sauteed vegetable,100.0,True,21.6
+821+822,meat and pepper stir-fry,100.0,210.0,44,Green pepper meat,100.0,False,92.3
+821+822,sautéed mushrooms,80.0,70.0,137,Oyster mushroom,100.0,False,99.9
+2237+2238,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+2237+2238,sautéed leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+2237+2238,braised pork chop,110.0,220.0,349,Fried Pork Chop,100.0,False,213.4
+2237+2238,stewed radish and carrot with pork,150.0,90.0,32,Zizania carrot shredded pork,75.9,False,136.5
+2012+2013,braised pork with potatoes,160.0,280.0,161,Stewed sirloin potatoes,73.7,False,294.1
+2012+2013,white rice,200.0,260.0,49,White rice shrimp,100.0,False,162.0
+2012+2013,onion and meat stir-fry,150.0,180.0,86,Fried meat with onion,100.0,True,172.9
+2012+2013,stir-fried bok choy,105.0,45.0,194,Borsch,57.1,False,59.1
+795+796,boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+795+796,sautéed cabbage and carrots,80.0,35.0,140,Shredded cabbage,100.0,False,33.7
+795+796,dark bread roll,60.0,150.0,88,Bread,100.0,False,187.8
+924+925,purple rice,120.0,180.0,0,Rice,100.0,False,139.2
+924+925,meatball patties,100.0,220.0,39,Steamed meatball,100.0,True,259.2
+924+925,stir-fried cauliflower with wood ear mushrooms,110.0,70.0,38,fried cauliflower,100.0,False,58.8
+924+925,sautéed leafy greens,90.0,40.0,130,Green soybean,66.7,False,117.9
+2848+2849,whole wheat steamed bun,75.0,180.0,22,Steamed bun,100.0,False,167.2
+2848+2849,stir-fried cabbage,150.0,45.0,50,Fried cabbage,100.0,False,52.2
+2848+2849,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+3085+3086,whole wheat steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+3085+3086,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+3085+3086,stir-fried cabbage and carrots,120.0,40.0,50,Fried cabbage,100.0,False,41.8
+936+937,black rice,180.0,280.0,174,Black rice oatmeal,100.0,False,126.4
+936+937,steamed pork meatballs,90.0,160.0,39,Steamed meatball,100.0,True,233.3
+936+937,stir-fried chayote with carrots and minced meat,120.0,90.0,127,Salad with shredded carrots,66.7,False,60.1
+936+937,sautéed bok choy,100.0,35.0,194,Borsch,57.1,False,56.3
+563+564,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+563+564,stir-fried leafy greens,100.0,60.0,130,Green soybean,66.7,False,131.0
+563+564,shredded vegetable salad,100.0,50.0,182,Vegetable salad,100.0,False,39.0
+563+564,spinach dumplings,60.0,90.0,70,Dumplings,100.0,False,144.0
+1338+1339,steamed brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+1338+1339,stir-fried leafy greens,100.0,45.0,130,Green soybean,66.7,False,131.0
+1338+1339,stir-fried beef in dark sauce,120.0,280.0,107,Braised beef,100.0,False,194.7
+1338+1339,zucchini and carrot stir-fry with meat,106.0,110.0,127,Salad with shredded carrots,66.7,False,53.1
+789+790,purple rice,120.0,180.0,0,Rice,100.0,False,139.2
+789+790,braised pork ribs with carrots,130.0,280.0,23,Grilled pork ribs,100.0,False,309.3
+789+790,stir-fried eggplant with minced meat,110.0,160.0,330,Grilled Eggplant,100.0,False,48.4
+789+790,sautéed green leafy vegetables,90.0,40.0,18,Sauteed vegetable,100.0,False,16.2
+455+456,black rice,100.0,160.0,174,Black rice oatmeal,100.0,False,70.2
+455+456,corn and potato stir-fry with ground meat,120.0,140.0,204,Pan fried potato,75.0,False,135.6
+455+456,tomato and fish stir-fry,110.0,130.0,124,grilled fish,100.0,False,167.1
+455+456,sautéed leafy greens,70.0,30.0,130,Green soybean,66.7,False,91.7
+2136+2137,brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+2136+2137,sweet and sour pork,150.0,280.0,131,Cripsy sweet & sour pork slices,100.0,False,273.0
+2136+2137,sautéed bok choy,120.0,40.0,194,Borsch,57.1,False,67.5
+2136+2137,cabbage and pork stir-fry,110.0,90.0,314,Spicy Cabbage with Pork Belly,100.0,False,203.5
+1684+1685,steamed fish,120.0,150.0,119,Sauerkraut fish,100.0,False,95.1
+1684+1685,stir-fried cabbage with meat,130.0,110.0,50,Fried cabbage,100.0,False,45.3
+1684+1685,leafy green vegetables,80.0,30.0,18,Sauteed vegetable,100.0,True,14.4
+1684+1685,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+922+923,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+922+923,steamed cabbage and carrots,80.0,30.0,140,Shredded cabbage,100.0,False,33.7
+922+923,steamed whole wheat bun,90.0,180.0,22,Steamed bun,100.0,False,200.7
+1967+1968,steamed white rice,170.0,220.0,49,White rice shrimp,100.0,False,137.7
+1967+1968,stir-fried bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+1967+1968,braised meatball,80.0,150.0,39,Steamed meatball,100.0,True,207.4
+1967+1968,winter melon and pork stir-fry,150.0,110.0,30,Scallion oil winter melon,82.8,True,37.1
+83+84,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+83+84,stir-fried eggplant,120.0,180.0,330,Grilled Eggplant,100.0,False,52.8
+83+84,mixed vegetables with shrimp,100.0,90.0,18,Sauteed vegetable,100.0,True,18.0
+83+84,sautéed bok choy,100.0,40.0,194,Borsch,57.1,False,56.3
+2232+2233,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2232+2233,stir-fried cabbage with carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2232+2233,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1890+1891,whole grain steamed bun,90.0,180.0,22,Steamed bun,100.0,False,200.7
+1890+1891,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1890+1891,stir-fried cabbage and carrots,130.0,40.0,50,Fried cabbage,100.0,False,45.3
+723+724,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+723+724,pork with cucumber and wood ear mushrooms,120.0,180.0,21,Cucumber fried pork,100.0,False,210.9
+723+724,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+723+724,corn and vegetable stir-fry,100.0,90.0,18,Sauteed vegetable,100.0,False,18.0
+298+299,brown rice,150.0,180.0,0,Rice,100.0,True,174.0
+298+299,meatball patties,90.0,160.0,39,Steamed meatball,100.0,True,233.3
+298+299,stir-fried green bell peppers with carrots and pork,120.0,90.0,37,Shredded pork and green pepper,100.0,True,110.7
+298+299,sautéed leafy greens,80.0,35.0,130,Green soybean,66.7,False,104.8
+611+612,black rice,130.0,180.0,174,Black rice oatmeal,100.0,False,91.3
+611+612,steamed chicken,100.0,160.0,20,Steamed chicken,100.0,False,235.9
+611+612,stir-fried shredded lettuce,110.0,45.0,2,Sauteed lettuce,100.0,True,28.9
+611+612,cooked leafy greens,80.0,30.0,130,Green soybean,66.7,False,104.8
+893+894,steamed whole wheat bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+893+894,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+893+894,stir-fried cabbage with carrots,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+2977+2978,purple rice,220.0,320.0,0,Rice,100.0,False,255.2
+2977+2978,stir-fried zucchini with meat,130.0,110.0,96,Luncheon meat,69.2,False,297.7
+2977+2978,stir-fried egg with carrots,130.0,140.0,97,Scrambled eggs,100.0,False,202.4
+2977+2978,sautéed leafy greens,123.0,45.0,130,Green soybean,66.7,False,161.1
+2283+2284,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2283+2284,stir-fried cabbage with carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2283+2284,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1315+1316,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1315+1316,breaded fish in tomato sauce,120.0,250.0,124,grilled fish,100.0,False,182.3
+1315+1316,sautéed cabbage,100.0,40.0,140,Shredded cabbage,100.0,False,42.2
+1315+1316,corn and onion stir-fry,80.0,90.0,310,Stir-fried Eggs with Onions,71.4,False,89.6
+312+313,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+312+313,braised pork,100.0,250.0,347,Braised Pork Rice,100.0,False,179.0
+312+313,stir-fried luffa with carrots and pork,120.0,120.0,32,Zizania carrot shredded pork,78.6,False,109.2
+312+313,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+741+742,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+741+742,stir-fried pork with zucchini and mushrooms,180.0,280.0,75,Fried fungus mushroom,72.7,False,135.0
+741+742,sautéed leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+1810+1811,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1810+1811,stir-fried cabbage with meat,130.0,130.0,50,Fried cabbage,100.0,False,45.3
+1810+1811,sautéed leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+1810+1811,cooked chicken,131.0,180.0,101,Boiled chicken,100.0,False,118.2
+559+560,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+559+560,stir-fried eggplant with minced meat,120.0,180.0,330,Grilled Eggplant,100.0,False,52.8
+559+560,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+559+560,stir-fried chicken with carrots,90.0,150.0,20,Steamed chicken,100.0,False,212.3
+2601+2602,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2601+2602,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2601+2602,whole wheat steamed bun,150.0,220.0,22,Steamed bun,100.0,False,334.5
+661+662,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+661+662,braised pork with tomatoes,120.0,280.0,57,Sirloin tomatoes,73.7,False,100.9
+661+662,stir-fried leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+661+662,stir-fried eggplant,70.0,90.0,330,Grilled Eggplant,100.0,False,30.8
+2074+2075,breaded pork cutlet,120.0,280.0,23,Grilled pork ribs,66.7,True,285.5
+2074+2075,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+2074+2075,stir-fried zucchini with pork,160.0,140.0,23,Grilled pork ribs,66.7,True,380.7
+2074+2075,sautéed leafy greens,135.0,45.0,130,Green soybean,66.7,False,176.8
+2125+2126,purple rice,250.0,320.0,0,Rice,100.0,False,290.0
+2125+2126,stir-fried egg with carrots,120.0,140.0,97,Scrambled eggs,100.0,False,186.8
+2125+2126,sautéed chayote,130.0,60.0,55,cowpea,46.2,False,41.6
+2125+2126,steamed winter melon,129.0,30.0,30,Scallion oil winter melon,100.0,True,31.9
+195+196,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+195+196,steamed chicken,100.0,160.0,20,Steamed chicken,100.0,False,235.9
+195+196,stir-fried leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+195+196,stir-fried chayote with carrots and pork,100.0,90.0,32,Zizania carrot shredded pork,73.3,False,91.0
+1000+1001,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+1000+1001,meatball patties,80.0,140.0,39,Steamed meatball,100.0,True,207.4
+1000+1001,stir-fried bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+1000+1001,"cauliflower, carrot, wood ear mushroom and pork stir-fry",120.0,90.0,38,fried cauliflower,100.0,True,64.2
+615+616,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+615+616,stir-fried chicken with green bell peppers,120.0,180.0,12,Green pepper,100.0,False,26.4
+615+616,steamed cauliflower,100.0,35.0,38,fried cauliflower,100.0,True,53.5
+615+616,sautéed leafy greens,100.0,40.0,130,Green soybean,66.7,False,131.0
+3266+3267,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+3266+3267,steamed whole wheat mantou,150.0,180.0,169,buck wheat noodle,62.9,False,225.0
+3266+3267,stir-fried napa cabbage with carrots,100.0,40.0,50,Fried cabbage,100.0,False,34.8
+3164+3165,whole wheat steamed bun,110.0,220.0,22,Steamed bun,100.0,False,245.3
+3164+3165,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+3164+3165,stir-fried napa cabbage with carrots,155.0,45.0,50,Fried cabbage,100.0,False,54.0
+765+766,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+765+766,chicken stir-fry with carrots and mushrooms,120.0,160.0,45,Steamed Chicken with Mushroom,100.0,True,223.6
+765+766,sautéed leafy greens,80.0,30.0,130,Green soybean,66.7,False,104.8
+765+766,cooked winter melon,100.0,25.0,30,Scallion oil winter melon,100.0,True,24.7
+1956+1957,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1956+1957,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+1956+1957,steamed multigrain bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+1423+1424,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1423+1424,stir-fried cabbage,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+1423+1424,tomato pork stir-fry,120.0,180.0,163,roast pork,76.2,False,235.2
+1423+1424,stir-fried chayote with meat,110.0,90.0,154,Pot bag meat,66.7,False,242.8
+2735+2736,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2735+2736,fried pork chop,110.0,280.0,349,Fried Pork Chop,100.0,False,213.4
+2735+2736,braised daikon radish with meat,180.0,90.0,36,Roast meat with white radish,75.9,False,772.8
+2735+2736,stir-fried leafy greens,120.0,45.0,130,Green soybean,66.7,False,157.2
+270+271,purple rice,120.0,160.0,0,Rice,100.0,False,139.2
+270+271,braised pumpkin with meat,100.0,140.0,16,Pumpkin,100.0,True,20.9
+270+271,sautéed cabbage,80.0,35.0,140,Shredded cabbage,100.0,False,33.7
+270+271,cauliflower,70.0,25.0,38,fried cauliflower,100.0,True,37.4
+3051+3052,steamed whole wheat mantou bun,70.0,160.0,22,Steamed bun,100.0,False,156.1
+3051+3052,stir-fried cabbage with carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+3051+3052,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1497+1498,whole grain steamed bun,100.0,180.0,22,Steamed bun,100.0,False,223.0
+1497+1498,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+1497+1498,sautéed cabbage and carrots,120.0,40.0,140,Shredded cabbage,100.0,False,50.6
+129+130,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+129+130,stir-fried leafy greens,80.0,45.0,130,Green soybean,66.7,False,104.8
+129+130,braised cabbage,90.0,50.0,50,Fried cabbage,100.0,False,31.3
+129+130,stuffed pepper with meat,100.0,140.0,43,Pork stuffed green pepper,84.8,True,92.3
+2085+2086,steamed white rice,280.0,350.0,49,White rice shrimp,100.0,False,226.8
+2085+2086,boiled shrimp,130.0,120.0,247,Pipi shrimp,100.0,False,119.7
+2085+2086,stir-fried cabbage with carrots,120.0,60.0,50,Fried cabbage,100.0,True,41.8
+2085+2086,sautéed leafy greens,103.0,40.0,130,Green soybean,66.7,False,134.9
+119+120,brown rice,130.0,150.0,0,Rice,100.0,True,150.8
+119+120,stir-fried green peppers and carrots with meat,80.0,90.0,44,Green pepper meat,100.0,True,73.8
+119+120,scrambled eggs with tomatoes,90.0,110.0,97,Scrambled eggs,100.0,False,140.1
+119+120,sautéed leafy greens,70.0,30.0,130,Green soybean,66.7,False,91.7
+1918+1919,chicken drumstick,85.0,140.0,71,Chicken drumsticks,100.0,True,150.5
+1918+1919,white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+1918+1919,sautéed red onions,100.0,60.0,310,Stir-fried Eggs with Onions,77.8,False,112.0
+1918+1919,stir-fried cabbage,120.0,45.0,50,Fried cabbage,100.0,False,41.8
+3152+3153,purple rice,200.0,280.0,0,Rice,100.0,False,232.0
+3152+3153,stir-fried pork with egg and wood ear mushrooms,160.0,250.0,97,Scrambled eggs,100.0,False,249.1
+3152+3153,sautéed leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+3152+3153,stir-fried corn and radish,105.0,85.0,87,Pork ribs soup with radish,70.6,False,103.6
+637+638,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+637+638,pork and snap pea stir-fry,120.0,180.0,54,Fry pea,100.0,True,30.7
+637+638,"sautéed mixed vegetables (broccoli, carrots, cabbage)",100.0,60.0,18,Sauteed vegetable,100.0,False,18.0
+2696+2697,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2696+2697,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2696+2697,stir-fried cabbage and carrots,70.0,40.0,50,Fried cabbage,100.0,False,24.4
+1372+1373,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+1372+1373,meat-filled egg roll,80.0,180.0,97,Scrambled eggs,100.0,False,124.6
+1372+1373,stir-fried wood ear mushrooms and daikon radish,100.0,60.0,75,Fried fungus mushroom,72.7,False,75.0
+1372+1373,sautéed cabbage and carrots,100.0,50.0,140,Shredded cabbage,100.0,False,42.2
+463+464,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+463+464,chicken stir-fry with mushrooms and carrots,120.0,180.0,45,Steamed Chicken with Mushroom,100.0,True,223.6
+463+464,cucumber salad,80.0,40.0,7,Sea cucumber,84.6,False,62.4
+463+464,glazed onions in sauce,100.0,90.0,310,Stir-fried Eggs with Onions,71.4,False,112.0
+2496+2497,steamed white rice,210.0,280.0,49,White rice shrimp,100.0,False,170.1
+2496+2497,stir-fried cucumber with meat,150.0,110.0,7,Sea cucumber,88.0,False,117.0
+2496+2497,stir-fried greens with meat,160.0,130.0,44,Green pepper meat,100.0,False,147.6
+2496+2497,cooked winter melon,137.0,35.0,30,Scallion oil winter melon,100.0,True,33.9
+2842+2843,purple rice,160.0,220.0,0,Rice,100.0,False,185.6
+2842+2843,stir-fried pork,140.0,280.0,21,Cucumber fried pork,100.0,False,246.1
+2842+2843,sautéed bok choy,100.0,35.0,194,Borsch,57.1,False,56.3
+2842+2843,stir-fried cabbage and carrots,120.0,60.0,50,Fried cabbage,100.0,False,41.8
+1293+1294,steamed whole wheat bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+1293+1294,sautéed cabbage and carrots,60.0,35.0,140,Shredded cabbage,100.0,False,25.3
+1293+1294,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2758+2759,steamed brown rice,180.0,220.0,0,Rice,100.0,False,208.8
+2758+2759,pork meatballs,80.0,140.0,39,Steamed meatball,100.0,True,207.4
+2758+2759,cauliflower and pork stir-fry,130.0,110.0,38,fried cauliflower,100.0,True,69.5
+2758+2759,sautéed napa cabbage,118.0,45.0,140,Shredded cabbage,100.0,False,49.7
+57+58,stir-fried pork with green peppers,110.0,220.0,37,Shredded pork and green pepper,100.0,False,101.5
+57+58,stir-fried bean sprouts with carrots,100.0,60.0,19,Sauteed bean sprouts,100.0,True,34.2
+57+58,stir-fried cabbage,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+57+58,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+482+483,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+482+483,braised meat with vegetables,100.0,180.0,18,Sauteed vegetable,100.0,False,18.0
+482+483,stir-fried broccoli,80.0,45.0,243,Shrimp broccoli,100.0,False,28.3
+482+483,sautéed cabbage,70.0,30.0,140,Shredded cabbage,100.0,False,29.5
+492+493,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+492+493,stir-fried tomato and fish,120.0,180.0,124,grilled fish,100.0,False,182.3
+492+493,corn and diced potato stir-fry,80.0,110.0,204,Pan fried potato,76.2,False,90.4
+492+493,sautéed leafy greens,70.0,30.0,130,Green soybean,66.7,False,91.7
+817+818,steamed brown bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+817+818,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+817+818,steamed cabbage and carrots,100.0,30.0,140,Shredded cabbage,100.0,False,42.2
+883+884,black rice,130.0,180.0,174,Black rice oatmeal,100.0,False,91.3
+883+884,pork with daikon radish,120.0,160.0,87,Pork ribs soup with radish,75.9,False,118.4
+883+884,meatballs,80.0,140.0,39,Steamed meatball,100.0,True,207.4
+883+884,sautéed bok choy,90.0,35.0,194,Borsch,57.1,False,50.6
+2954+2955,brown rice,130.0,180.0,0,Rice,100.0,False,150.8
+2954+2955,stir-fried cauliflower with meat,90.0,110.0,38,fried cauliflower,100.0,True,48.1
+2954+2955,sautéed bok choy,80.0,35.0,194,Borsch,57.1,False,45.0
+2954+2955,chicken and vegetable stir-fry,100.0,140.0,18,Sauteed vegetable,100.0,True,18.0
+2781+2782,whole wheat steamed bun,85.0,180.0,22,Steamed bun,100.0,False,189.6
+2781+2782,stir-fried cabbage with carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2781+2782,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+32+33,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+32+33,stir-fried chicken with potatoes,160.0,280.0,20,Steamed chicken,100.0,False,377.5
+32+33,sautéed chayote with pork,100.0,80.0,349,Fried Pork Chop,76.2,False,194.0
+32+33,cooked pumpkin,80.0,60.0,16,Pumpkin,100.0,True,16.7
+173+174,black rice,120.0,180.0,174,Black rice oatmeal,100.0,False,84.3
+173+174,stir-fried celery with minced meat,100.0,90.0,47,Stir-fry celery,100.0,True,17.0
+173+174,stir-fried green peppers with mushrooms and meat,100.0,110.0,44,Green pepper meat,100.0,False,92.3
+173+174,steamed napa cabbage,80.0,30.0,140,Shredded cabbage,100.0,False,33.7
+2176+2177,braised pork with potatoes,120.0,280.0,161,Stewed sirloin potatoes,73.7,False,220.6
+2176+2177,stir-fried chayote with carrots,100.0,60.0,127,Salad with shredded carrots,66.7,False,50.1
+2176+2177,sautéed cabbage,90.0,45.0,140,Shredded cabbage,100.0,False,37.9
+2176+2177,purple rice,180.0,260.0,0,Rice,100.0,False,208.8
+2367+2368,hard-boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2367+2368,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+2367+2368,whole-wheat steamed bun,153.0,230.0,22,Steamed bun,100.0,False,341.2
+6+7,white rice,180.0,260.0,49,White rice shrimp,100.0,False,145.8
+6+7,braised duck,150.0,350.0,58,Beer duck,100.0,False,337.8
+6+7,sautéed leafy greens,120.0,60.0,130,Green soybean,66.7,False,157.2
+2485+2486,steamed multigrain bun,130.0,220.0,22,Steamed bun,100.0,False,289.9
+2485+2486,boiled egg,50.0,70.0,97,Scrambled eggs,100.0,False,77.8
+2485+2486,stir-fried cabbage and carrots,90.0,45.0,50,Fried cabbage,100.0,False,31.3
+1878+1879,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1878+1879,stir-fried bean sprouts,80.0,35.0,19,Sauteed bean sprouts,100.0,True,27.4
+1878+1879,vegetable and tofu stir-fry,90.0,90.0,18,Sauteed vegetable,100.0,False,16.2
+1878+1879,braised cabbage,100.0,60.0,50,Fried cabbage,100.0,False,34.8
+996+997,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+996+997,pork and snow peas stir-fry,120.0,140.0,54,Fry pea,100.0,True,30.7
+996+997,bean sprout and carrot stir-fry,100.0,60.0,19,Sauteed bean sprouts,100.0,True,34.2
+996+997,broccoli and pork stir-fry,110.0,90.0,136,Broccoli with Oyster Sauce,76.2,True,52.1
+703+704,fried fish in sauce,150.0,320.0,124,grilled fish,100.0,False,227.8
+703+704,white rice,130.0,180.0,49,White rice shrimp,100.0,False,105.3
+703+704,stir-fried bok choy,100.0,45.0,194,Borsch,57.1,False,56.3
+703+704,stir-fried green beans with carrots,80.0,60.0,138,Fried beans,100.0,False,51.5
+1168+1169,purple rice,180.0,220.0,0,Rice,100.0,False,208.8
+1168+1169,stir-fried beef with green peppers,130.0,180.0,68,Sauteed Beef Fillet with Hot Green Pepper,100.0,False,105.3
+1168+1169,sautéed leafy greens,120.0,40.0,130,Green soybean,66.7,False,157.2
+1168+1169,zucchini and carrot stir-fry,140.0,60.0,127,Salad with shredded carrots,66.7,False,70.1
+278+279,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+278+279,stir-fried green leafy vegetables,100.0,60.0,18,Sauteed vegetable,100.0,False,18.0
+278+279,stir-fried cabbage with meat,100.0,90.0,50,Fried cabbage,100.0,False,34.8
+278+279,stir-fried green pepper with meat,100.0,110.0,44,Green pepper meat,100.0,True,92.3
+565+566,black rice,150.0,220.0,174,Black rice oatmeal,100.0,False,105.3
+565+566,steamed chicken,100.0,180.0,20,Steamed chicken,100.0,False,235.9
+565+566,stir-fried shredded lettuce stem,120.0,60.0,2,Sauteed lettuce,100.0,True,31.5
+565+566,cooked leafy greens,80.0,30.0,130,Green soybean,66.7,False,104.8
+845+846,purple rice,150.0,180.0,0,Rice,100.0,False,174.0
+845+846,meatball patties,100.0,160.0,39,Steamed meatball,100.0,True,259.2
+845+846,stir-fried bok choy,80.0,30.0,194,Borsch,57.1,False,45.0
+845+846,"cauliflower, carrot, and wood ear mushroom stir-fry",100.0,50.0,38,fried cauliflower,100.0,False,53.5
+803+804,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+803+804,braised pork ribs with carrots,120.0,280.0,23,Grilled pork ribs,100.0,False,285.5
+803+804,stir-fried eggplant with minced meat,100.0,160.0,330,Grilled Eggplant,100.0,False,44.0
+803+804,sautéed green leafy vegetables,80.0,45.0,18,Sauteed vegetable,100.0,False,14.4
+974+975,whole wheat steamed bun,90.0,210.0,22,Steamed bun,100.0,False,200.7
+974+975,hard-boiled egg,50.0,78.0,97,Scrambled eggs,100.0,False,77.8
+974+975,stir-fried cabbage and carrots,80.0,45.0,50,Fried cabbage,100.0,False,27.8
+12+13,fried bean curd skin rolls,140.0,320.0,138,Fried beans,100.0,False,90.2
+12+13,steamed white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+12+13,sautéed leafy green vegetables,120.0,60.0,18,Sauteed vegetable,100.0,False,21.6
+1713+1714,white rice,150.0,220.0,49,White rice shrimp,100.0,False,121.5
+1713+1714,stir-fried cucumber with egg and meat,120.0,140.0,112,Scrambled Egg with cucumber,100.0,False,104.4
+1713+1714,sautéed leafy greens,80.0,40.0,130,Green soybean,66.7,False,104.8
+1713+1714,corn and onion stir-fry,100.0,110.0,310,Stir-fried Eggs with Onions,71.4,False,112.0
+161+162,purple rice,150.0,220.0,0,Rice,100.0,False,174.0
+161+162,pork stir-fry with carrots and celery,120.0,160.0,47,Stir-fry celery,100.0,False,20.4
+161+162,sautéed bok choy,80.0,30.0,194,Borsch,57.1,False,45.0
+161+162,shredded papaya salad,90.0,45.0,217,Yuba salad,72.7,False,145.5
+729+730,brown rice with grains,130.0,180.0,0,Rice,100.0,True,150.8
+729+730,"stir-fry of lotus root, celery, and chicken",120.0,140.0,47,Stir-fry celery,100.0,False,20.4
+729+730,sautéed cabbage with pork,100.0,110.0,314,Spicy Cabbage with Pork Belly,100.0,False,185.0
+729+730,bean sprouts with carrots,80.0,40.0,19,Sauteed bean sprouts,100.0,True,27.4
+1621+1622,white rice,160.0,220.0,49,White rice shrimp,100.0,False,129.6
+1621+1622,braised pork with potatoes,140.0,280.0,161,Stewed sirloin potatoes,73.7,False,257.4
+1621+1622,stir-fried onions with meat,120.0,180.0,86,Fried meat with onion,100.0,True,138.3
+1621+1622,steamed bok choy,100.0,30.0,194,Borsch,57.1,False,56.3
+1049+1050,purple rice,130.0,180.0,0,Rice,100.0,False,150.8
+1049+1050,steamed chicken drumstick,90.0,140.0,71,Chicken drumsticks,100.0,True,159.4
+1049+1050,stir-fried cabbage and carrots,100.0,45.0,50,Fried cabbage,100.0,False,34.8
+1049+1050,stir-fried daikon radish with wood ear mushrooms and pork,110.0,60.0,75,Fried fungus mushroom,72.7,False,82.5
+681+682,white rice,150.0,200.0,49,White rice shrimp,100.0,False,121.5
+681+682,stir-fried tomato and egg,120.0,160.0,180,Tomato and Egg Soup,100.0,False,28.5
+681+682,sautéed green leafy vegetables,100.0,40.0,18,Sauteed vegetable,100.0,True,18.0
+681+682,stir-fried green bell peppers with meat,100.0,110.0,44,Green pepper meat,100.0,False,92.3

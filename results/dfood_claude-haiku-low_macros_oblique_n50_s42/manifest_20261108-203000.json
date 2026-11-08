@@ -1,0 +1,164 @@
+{
+  "run_name": "dfood_claude-haiku-low_macros_oblique_n50_s42",
+  "started": "2026-11-08T20:30:00",
+  "benchmark_sha256": "836960280a5c19864110f27ed420246a670b793e6aa0231ecf0ce84de52f8ae1",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "oblique",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "omnifood_views": [
+    0
+  ],
+  "omnifood_min_views": 2,
+  "repeats": 1,
+  "models": [
+    {
+      "label": "claude-haiku-low",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "enabled": false,
+      "temperature": null,
+      "extra": {
+        "effort": "low",
+        "max_tokens": 4000
+      },
+      "price": {
+        "in": 0.1,
+        "out": 0.5
+      },
+      "min_interval_s": 0.0
+    }
+  ],
+  "datasets": {
+    "dfood_tj": {
+      "enabled": false,
+      "root": "DFood-Tj",
+      "loader": "loader.py",
+      "fn": "load_fnutr",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "image_id",
+        "image_path": "path"
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n- Carbohydrate, protein and fat in grams (for the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45,\n      \"estimated_carbohydrate_grams\": 12,\n      \"estimated_protein_grams\": 8,\n      \"estimated_fat_grams\": 5\n    }\n  ]\n}",
+      "prepare": "dfood_views",
+      "query": "has_file and view == 'oblique'",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42,
+        "by": "meal_key"
+      },
+      "prompt_variant": "P3_macros",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                },
+                "estimated_carbohydrate_grams": {
+                  "type": "number"
+                },
+                "estimated_protein_grams": {
+                  "type": "number"
+                },
+                "estimated_fat_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams",
+                "estimated_carbohydrate_grams",
+                "estimated_protein_grams",
+                "estimated_fat_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "1537",
+        "385",
+        "977",
+        "1458",
+        "991",
+        "545",
+        "2429",
+        "1766",
+        "3006",
+        "227",
+        "694",
+        "878",
+        "66",
+        "640",
+        "2624",
+        "2770",
+        "931",
+        "287",
+        "654",
+        "2406",
+        "658",
+        "890",
+        "836",
+        "2092",
+        "537",
+        "1594",
+        "1010",
+        "1777",
+        "355",
+        "2916",
+        "332",
+        "1492",
+        "3136",
+        "3238",
+        "900",
+        "1962",
+        "1486",
+        "876",
+        "2278",
+        "1874",
+        "126",
+        "489",
+        "60",
+        "221",
+        "1583",
+        "2317",
+        "670",
+        "3204",
+        "3193",
+        "22"
+      ]
+    }
+  }
+}

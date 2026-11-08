@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+dfood_tj,gemini-3.8-flash-low,P3_macros,schema,50,0,0,0,7.12,6.37,1.0,1326.0,0.1683,50,126.06,23.7,-64.27,50,147.02,27.8,-145.26,50,18.78,26.5,-14.68,50,5.41,22.1,-1.36,50,9.81,45.8,-4.8

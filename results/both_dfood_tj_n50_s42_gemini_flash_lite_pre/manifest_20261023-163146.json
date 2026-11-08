@@ -1,0 +1,135 @@
+{
+  "run_name": "both_dfood_tj_n50_s42_gemini_flash_lite_pre",
+  "started": "2026-10-23T16:31:46",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "both",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "enabled": true,
+      "temperature": 0.1,
+      "extra": {},
+      "price": null,
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "dfood_tj": {
+      "enabled": false,
+      "root": "DFood-Tj",
+      "loader": "loader.py",
+      "fn": "load_fnutr",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "image_id",
+        "image_path": "path"
+      },
+      "prepare": "dfood_views",
+      "query": "has_file",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt_variant": "P3",
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "1376",
+        "887",
+        "1396",
+        "2102",
+        "1379",
+        "2701",
+        "1013",
+        "1999",
+        "1205",
+        "3053",
+        "59",
+        "3267",
+        "2236",
+        "2320",
+        "2591",
+        "1950",
+        "1942",
+        "33",
+        "1819",
+        "1255",
+        "176",
+        "1023",
+        "2549",
+        "2180",
+        "965",
+        "2941",
+        "47",
+        "505",
+        "164",
+        "751",
+        "1647",
+        "973",
+        "2278",
+        "798",
+        "1216",
+        "885",
+        "3232",
+        "3278",
+        "1858",
+        "2720",
+        "1427",
+        "1389",
+        "1069",
+        "1610",
+        "1978",
+        "2924",
+        "910",
+        "2153",
+        "365",
+        "2858"
+      ]
+    }
+  }
+}

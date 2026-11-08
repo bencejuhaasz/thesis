@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias
+nutrition5k,gemini-flash-lite,P3,schema,50,0,0,0,1.22,1.2,1.0,1270.0,0.0359,50,79.49,30.6,-33.17,50,42.84,20.5,-28.6

@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+snapme,claude-opus-low,P3_macros,schema,49,0,0,0,3.72,3.48,1.0,1724.0,0.6263,49,115.07,41.6,12.8,49,80.96,29.9,-4.32,49,10.77,35.9,-1.89,49,4.72,39.1,0.86,49,7.95,63.9,1.59
