@@ -206,20 +206,25 @@ a mérési protokoll segítségével:
 Ezek azok az értékek, amelyekre hatást gyakorolnak a konfigurációs beállítások,
 és változásuk vizsgálhatóvá teszi, hogyan teljesített a feladatban az adott konfiguráció.
 \begin{enumerate}
-    \item API hívások száma
-    \item Választ nem kapó API hívások száma
-    \item Fel nem dolgozható API válaszok száma
-    \item Válaszok medián válaszideje
-    \item P50 válaszidő
-    \item Bemeneti tokenszám
-    \item Kimeneti tokenszám
+    \item API-hívások száma
+    \item Az újrapróbálkozások után is sikertelen API-hívások száma
+    \item Fel nem dolgozható válaszok száma
+    \item Csak a JSON-objektum kiemelése után feldolgozható válaszok száma
+    \item Átlagos válaszidő
+    \item Medián (P50) válaszidő
+    \item Hívásonkénti bemeneti tokenszám mediánja
     \item Költség
-    \item Becsült energiatartalom
-    \item Becsült tömeg
-    \item Becsült szénhidráttömeg
-    \item Becsült fehérjetömeg
-    \item Becsült zsírtömeg
+    \item Az energiatartalom, a tömeg, valamint a szénhidrát-, fehérje- és zsírtartalom
+    becslésének hibája (pMAE, MAE, bias)
 \end{enumerate}
+
+A benchmark.py program minden hívásnál rögzíti a bemeneti és a kimeneti
+tokenek számát, és ezekből a szolgáltató által a mérés idején közzétett listaárak
+alapján kiszámítja a hívás költségét dollárban. A méréseket összesítően leíró kimeneti fájlban a költség mellett azért szerepel a bemeneti tokenek száma, mert azt a 
+mérés beállításai határozzák meg, így a konfigurációt jellemzi. Ez a tulajdonsága a mért és a vizsgált hatású paraméterek közé pozicionálja. Közvetlenül nem hangolható a mérések konfigurációja 
+során, de azokból származó mennyiség. Függ emellett a használt nagy nyelvi modell tokenizálási módszerétől is. Mivel közvetlen kontrollom nincs fölötte, a mért kimeneti paraméterek közé sorolom.
+A kimeneti tokenszám ezzel szemben a modell válaszától függ. Ezt a tokenkerettel felülről
+korlátozható, hatása a költségben jelenik meg.
 
 \subsection{Döntési mérési protokoll}
 A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt szignifikáns
