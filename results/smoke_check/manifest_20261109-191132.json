@@ -1,0 +1,111 @@
+{
+  "run_name": "smoke_check",
+  "started": "2026-11-09T19:11:32",
+  "benchmark_sha256": "d696c489433c14a80a03f5ca6982911ca5e74c93cb4d1bc290b5aeb2ee63034f",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "oblique",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "omnifood_views": [
+    0
+  ],
+  "omnifood_min_views": 2,
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "enabled": false,
+      "temperature": 0.1,
+      "extra": {},
+      "price": {
+        "in": 0.3,
+        "out": 2.5
+      },
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "omnifood8k": {
+      "enabled": false,
+      "root": "OmniFood8k/0-OminiFood8k",
+      "loader": "loader.py",
+      "fn": "load_omnifood8k",
+      "pick": null,
+      "colmap": {
+        "sample_id": "sample"
+      },
+      "prepare": "omnifood_views",
+      "query": "split == 'test' and has_image",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 2,
+        "seed": 42
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n- Carbohydrate, protein and fat in grams (for the actual visible portion)\nCarbohydrate = total carbohydrate (starch, sugars and fiber).\n\nDRAFT, CHECK, THEN ANSWER:\n1. In \"general_description\", first write a short draft: each item with grams, carbohydrate, protein, fat and calories.\n2. Check the draft and note there what you correct:\n   - calories should be close to 4 x carbohydrate + 4 x protein + 9 x fat (within about 15%);\n   - carbohydrate + protein + fat cannot exceed the weight; for most cooked foods they are 10-40% of it, for oils and fats up to 100%;\n   - every food and drink in the photo is listed once and nothing is counted twice (for example a sauce both inside a dish and as a separate item);\n   - the total weight and calories are plausible for what was served in this photo.\n3. Write the corrected values in \"items\".\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Draft of every item (grams, carbohydrate, protein, fat, calories), then the checks and corrections\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45,\n      \"estimated_carbohydrate_grams\": 12,\n      \"estimated_protein_grams\": 8,\n      \"estimated_fat_grams\": 5\n    }\n  ]\n}",
+      "prompt_variant": "P3_check",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                },
+                "estimated_carbohydrate_grams": {
+                  "type": "number"
+                },
+                "estimated_protein_grams": {
+                  "type": "number"
+                },
+                "estimated_fat_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams",
+                "estimated_carbohydrate_grams",
+                "estimated_protein_grams",
+                "estimated_fat_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "3347",
+        "220"
+      ]
+    }
+  }
+}

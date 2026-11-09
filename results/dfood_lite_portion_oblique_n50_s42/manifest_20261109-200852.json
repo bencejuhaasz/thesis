@@ -1,0 +1,161 @@
+{
+  "run_name": "dfood_lite_portion_oblique_n50_s42",
+  "started": "2026-11-09T20:08:52",
+  "benchmark_sha256": "d696c489433c14a80a03f5ca6982911ca5e74c93cb4d1bc290b5aeb2ee63034f",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "oblique",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "omnifood_views": [
+    0
+  ],
+  "omnifood_min_views": 2,
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "enabled": false,
+      "temperature": 0.1,
+      "extra": {},
+      "price": {
+        "in": 0.3,
+        "out": 2.5
+      },
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "dfood_tj": {
+      "enabled": false,
+      "root": "DFood-Tj",
+      "loader": "loader.py",
+      "fn": "load_fnutr",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "image_id",
+        "image_path": "path"
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nHOW TO ESTIMATE THE AMOUNT:\n- Use objects of known size as a ruler: a dinner plate is about 25-30 cm across, a side plate or bowl 15-20 cm, a fork about 19 cm, a teaspoon 5 ml, a tablespoon 15 ml, a drink can 330 ml, a glass 200-250 ml. In \"general_description\", name the reference you used and the size you read from it.\n- For each item, estimate its volume (the area it covers times its height) and convert it to grams: most cooked foods weigh 0.8-1.1 g per ml, liquids about 1 g per ml, leafy salads and loose crispy foods only 0.1-0.4 g per ml.\n- Food piled up or partly hidden under other food counts too: judge its height and the hidden part from what you see.\n- If the evidence fits two sizes, choose the one the reference objects support, not the usual serving.\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n- Carbohydrate, protein and fat in grams (for the actual visible portion)\nCarbohydrate = total carbohydrate (starch, sugars and fiber).\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Reference object and scale used, then a brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45,\n      \"estimated_carbohydrate_grams\": 12,\n      \"estimated_protein_grams\": 8,\n      \"estimated_fat_grams\": 5\n    }\n  ]\n}",
+      "prepare": "dfood_views",
+      "query": "has_file and view == 'oblique'",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42,
+        "by": "meal_key"
+      },
+      "prompt_variant": "P3_portion",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                },
+                "estimated_carbohydrate_grams": {
+                  "type": "number"
+                },
+                "estimated_protein_grams": {
+                  "type": "number"
+                },
+                "estimated_fat_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams",
+                "estimated_carbohydrate_grams",
+                "estimated_protein_grams",
+                "estimated_fat_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "1537",
+        "385",
+        "977",
+        "1458",
+        "991",
+        "545",
+        "2429",
+        "1766",
+        "3006",
+        "227",
+        "694",
+        "878",
+        "66",
+        "640",
+        "2624",
+        "2770",
+        "931",
+        "287",
+        "654",
+        "2406",
+        "658",
+        "890",
+        "836",
+        "2092",
+        "537",
+        "1594",
+        "1010",
+        "1777",
+        "355",
+        "2916",
+        "332",
+        "1492",
+        "3136",
+        "3238",
+        "900",
+        "1962",
+        "1486",
+        "876",
+        "2278",
+        "1874",
+        "126",
+        "489",
+        "60",
+        "221",
+        "1583",
+        "2317",
+        "670",
+        "3204",
+        "3193",
+        "22"
+      ]
+    }
+  }
+}

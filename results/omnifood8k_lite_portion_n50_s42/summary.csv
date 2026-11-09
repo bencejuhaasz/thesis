@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+omnifood8k,gemini-flash-lite,P3_portion,schema,50,0,0,0,1.77,1.75,1.0,1570.0,0.0747,50,185.08,47.6,-155.01,50,44.99,25.5,19.84,50,12.95,59.6,1.02,50,8.33,65.1,1.78,50,18.68,66.2,-18.56

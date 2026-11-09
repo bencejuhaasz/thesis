@@ -1,0 +1,2 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,images_per_call,tokens_in_p50,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias,carb_g_n,carb_g_MAE,carb_g_pMAE%,carb_g_bias,protein_g_n,protein_g_MAE,protein_g_pMAE%,protein_g_bias,fat_g_n,fat_g_MAE,fat_g_pMAE%,fat_g_bias
+acetada,gemini-flash-lite,P3_portion,schema,50,0,0,0,1.99,2.03,1.0,1570.0,0.0797,50,156.41,21.8,-33.52,50,150.95,19.9,-68.72,50,22.28,26.7,1.87,50,10.0,27.5,-7.17,50,7.59,31.1,1.11

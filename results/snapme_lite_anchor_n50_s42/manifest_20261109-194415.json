@@ -1,0 +1,161 @@
+{
+  "run_name": "snapme_lite_anchor_n50_s42",
+  "started": "2026-11-09T19:44:15",
+  "benchmark_sha256": "d696c489433c14a80a03f5ca6982911ca5e74c93cb4d1bc290b5aeb2ee63034f",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "oblique",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "omnifood_views": [
+    0
+  ],
+  "omnifood_min_views": 2,
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "enabled": false,
+      "temperature": 0.1,
+      "extra": {},
+      "price": {
+        "in": 0.3,
+        "out": 2.5
+      },
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "snapme": {
+      "enabled": true,
+      "root": "snapme/snapme_cs_db",
+      "loader": "../loader.py",
+      "fn": "load_snapme",
+      "pick": 1,
+      "prepare": "snapme_names",
+      "colmap": {
+        "sample_id": "__index__",
+        "image_path": "path",
+        "text": "description"
+      },
+      "query": "has_file",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, work in this order:\n1. Decide its weight in grams (the actual visible amount).\n2. Recall its composition per 100 g as served, as in a standard food composition table (for example \"rice, white, cooked\": about 28 g carbohydrate, 3 g protein, 0.3 g fat per 100 g).\n3. Multiply: nutrient in grams = weight x value per 100 g / 100. Calories = 4 x carbohydrate + 4 x protein + 9 x fat.\nReport the results for the actual amount, not the per-100 g values.\nCarbohydrate = total carbohydrate (starch, sugars and fiber).\n\nTYPICAL VALUES PER 100 g AS SERVED (check your values against these ranges):\n- cooked rice, pasta, noodles: carbohydrate 25-32 g\n- boiled or baked potatoes: carbohydrate 15-22 g; French fries: carbohydrate 30-42 g, fat 10-17 g\n- bread, buns, tortillas, flatbreads: carbohydrate 40-55 g\n- cooked beans, lentils, chickpeas: carbohydrate 15-27 g\n- fruit: carbohydrate 8-23 g; non-starchy vegetables: carbohydrate 3-8 g\n- juice and sugary drinks: carbohydrate 9-12 g per 100 ml; milk: about 5 g\n- cakes, pastries, cookies: carbohydrate 40-70 g, fat 15-30 g\n- cooked lean meat, poultry, fish: carbohydrate 0 g, fat 1-12 g; fatty meat, sausages, ribs: fat 15-35 g\n- breaded or deep-fried foods: fat 10-20 g; the batter or breading adds 8-20 g carbohydrate\n- vegetables stir-fried or dressed with oil: fat 3-10 g\n- cheese: fat 20-35 g; nuts and seeds: fat 45-65 g; butter and oil: fat 80-100 g\n- creamy sauces and mayonnaise-based dressings: fat 15-75 g; sweet sauces (ketchup, teriyaki, sweet chili): carbohydrate 15-50 g\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45,\n      \"estimated_carbohydrate_grams\": 12,\n      \"estimated_protein_grams\": 8,\n      \"estimated_fat_grams\": 5\n    }\n  ]\n}",
+      "prompt_variant": "P3_anchor",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                },
+                "estimated_carbohydrate_grams": {
+                  "type": "number"
+                },
+                "estimated_protein_grams": {
+                  "type": "number"
+                },
+                "estimated_fat_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams",
+                "estimated_carbohydrate_grams",
+                "estimated_protein_grams",
+                "estimated_fat_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "92143e0146cdb610c2869d5a17d6.jpeg",
+        "c876b67049c4992632daf1527cd3.jpeg",
+        "fd8ef4ad4582a575b921d53a647a.jpeg",
+        "17e048034b3ebdc202ace610dba9.jpeg",
+        "be69fb3e45319b8faadc05c2a71e.jpeg",
+        "f5f56ab14c20a9f5ecf09b420de8.jpeg",
+        "56a4386546f183a557cdab5c06bd.jpeg",
+        "3c1fe53a41d99a376ff46bf2b3b1.jpeg",
+        "d123efce425382fd0fa5bf5c4607.jpeg",
+        "c08df20f41f296397635f565af44.jpeg",
+        "77dc57664949afdb06829aab4fde.jpeg",
+        "a69da26347fd97e27f253fe19041.jpeg",
+        "c92f919a44989719c66bfe400ae3.jpeg",
+        "914f47984401a45190539c620deb.jpeg",
+        "1f55c15542ddb3ce2a82dfaeae06.jpeg",
+        "82f1eac84b69be7e89441050cc3c.jpeg",
+        "b35545bf43c4b7ad7f3a1cb28815.jpeg",
+        "1e07e56145d99a2723efbcb6b976.jpeg",
+        "b545d7d249cbb225830e5a5afdf2.jpeg",
+        "8ccfa57247358819766e395846f0.jpeg",
+        "7418408441be80ed3c3c0d29a05f.jpeg",
+        "0809fea547308bff62b41afb6ecd.jpeg",
+        "e88ce91c4d949aacebe17113e34c.jpeg",
+        "2207b7ef49989b7beb2e58272e7e.jpeg",
+        "e072e0a144e39781293170dff007.jpeg",
+        "0ec0ef18471e9315a030eb292c1d.jpeg",
+        "74bde9f2488ea9f447bbfb0ff937.jpeg",
+        "3e792ee748889656b17e97194852.jpeg",
+        "a2f2d0664a69b7eb3ca09bbdad13.jpeg",
+        "b186445b482fbce8ed82ac93734c.jpeg",
+        "d57cd1224eae9b962c004db2b184.jpeg",
+        "7e2a432f45ae8c667ffc4619bb2e.jpeg",
+        "15f07e454bd8842f98da14dcb29c.jpeg",
+        "195b40e749eb921c8a8863dac46b.jpeg",
+        "702de1a547e388b58117b9f51215.jpeg",
+        "70ff5d5c4b04bb53e5809d841915.jpeg",
+        "0812cc01486483294955ec3d384c.jpeg",
+        "f43d7d444d41977ef618afb41642.jpeg",
+        "272ebc0f44c3a62194ebfb382a99.jpeg",
+        "3c85394d4fcfad288b73a5b8d40c.jpeg",
+        "3e054c8641f2a1750c9dab3a9e9b.jpeg",
+        "675fdaa0489681609ce8b6886441.jpeg",
+        "8a69c82042c8905cd7319e44c55e.jpeg",
+        "958e1a9a44c99fd043ce375c9453.jpeg",
+        "733cc3e043fc93990c1470895786.jpeg",
+        "cad962fc4a65bc6d8753c5a547b7.jpeg",
+        "2c8b58f14ea7b29c5024ead57a03.jpeg",
+        "cb664a9f4eaabb6a94a370695201.jpeg",
+        "d3306e59427389ae6aa95a796147.jpeg",
+        "d0de0b2f49e6b5a58c1c5f496934.jpeg"
+      ]
+    }
+  }
+}
