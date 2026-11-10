@@ -272,6 +272,12 @@ MODELS = [
     dict(label="gpt-sol-med", provider="openai", model="gpt-6.1-sol", enabled=False,
      temperature=None, extra={"reasoning_effort": "medium", "max_completion_tokens": 1000},
      price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
+    dict(label="claude-opus-low", provider="anthropic", model="claude-opus-5-5",
+     enabled=False, temperature=None, extra={"effort": "low", "max_tokens": 4000},
+     price={"in": 4.00, "out": 20.00}, min_interval_s=0.0),
+    dict(label="claude-haiku-low", provider="anthropic", model="claude-haiku-5-5",
+     enabled=False, temperature=None, extra={"effort": "low", "max_tokens": 4000},
+     price={"in": 0.10, "out": 0.50}, min_interval_s=0.0),
 ]
 
 # --- Prompt ------------------------------------------------------------
@@ -465,10 +471,129 @@ DENSITY_PROPS = {   # per-item fields BEFORE the numbers: the reasoning comes fi
 #   props: extra per-item fields (placed before the summed fields)
 #   density_field: per-item kcal/100 g; meal kcal = sum(grams x density / 100)
 # meal-level prediction = sum over items
+
+# --- Exploration prompts, 2026-11-09 (own, not from a paper) -----------------
+# Each one changes ONE thing in P3_macros (portion rules 1-4 stay verbatim), so a
+# difference to P3_macros can be attributed to that change. Output = exactly the
+# P3_macros fields; "general_description" is generated first, so the variants use
+# it as a short written reasoning step before the numbers.
+_MACROS_ITEM_BLOCK = (
+    "For each visible food item, estimate:\n"
+    "- Weight in grams (the actual visible amount)\n"
+    "- Calories (based on the actual visible portion)\n"
+    "- Carbohydrate, protein and fat in grams (for the actual visible portion)\n")
+_DESC_EXAMPLE = '"general_description": "Brief description of the meal"'
+_CARB_DEF = "Carbohydrate = total carbohydrate (starch, sugars and fiber).\n"
+
+
+def _variant(item_block: str, desc_example: str | None = None) -> str:
+    t = _replace_once(PROMPT_P3_MACROS, _MACROS_ITEM_BLOCK, item_block)
+    if desc_example:
+        t = _replace_once(t, _DESC_EXAMPLE, f'"general_description": "{desc_example}"')
+    return t
+
+
+# H1 recipe prior: the photo decides WHAT and HOW MUCH, knowledge of how the dish is
+# normally made decides what it CONTAINS (fat and sugar of the preparation included,
+# even when not visible). Aims at the fat/kcal underestimation (OmniFood8k, DFood-TJ).
+PROMPT_P3_RECIPE = _variant(
+    "WORK IN THIS ORDER:\n"
+    "1. In \"general_description\", name each dish by its usual name and cuisine, and say how "
+    "it is normally prepared (for example \"stir-fried in oil\", \"deep-fried in batter\", "
+    "\"braised in a sweet soy sauce\", \"dressed with mayonnaise\"). Note the fat and sugar this "
+    "preparation normally adds, even if you cannot see it in the photo.\n"
+    "2. Then list the food items. Use the photo to decide WHAT is on the plate and HOW MUCH of "
+    "each item there is. Use your knowledge of how the dish is normally made to decide what it "
+    "CONTAINS per gram.\n"
+    "3. Cooking oil, butter, sauce, dressing or sugar that the preparation normally includes "
+    "belongs to the food it was cooked with: count it in that item's calories, carbohydrate and "
+    "fat. List it as a separate item only if it is served separately (a dip, a dressing on the "
+    "side, a pool of oil or sauce). Do not add ingredients the dish does not normally contain.\n"
+    "\n"
+    "For each food item, estimate:\n"
+    "- Weight in grams (the actual amount in the photo, as served)\n"
+    "- Calories (for that amount, as prepared)\n"
+    "- Carbohydrate, protein and fat in grams (for that amount, as prepared)\n" + _CARB_DEF,
+    "Dishes, cuisine and how they are normally prepared, with the fat and sugar this adds")
+
+# H2 composition anchors: per-100 g composition from general food-table knowledge,
+# then multiplication. Aims at the density (scatter) error, mainly carbohydrate.
+PROMPT_P3_ANCHOR = _variant(
+    "For each visible food item, work in this order:\n"
+    "1. Decide its weight in grams (the actual visible amount).\n"
+    "2. Recall its composition per 100 g as served, as in a standard food composition table "
+    "(for example \"rice, white, cooked\": about 28 g carbohydrate, 3 g protein, 0.3 g fat per 100 g).\n"
+    "3. Multiply: nutrient in grams = weight x value per 100 g / 100. "
+    "Calories = 4 x carbohydrate + 4 x protein + 9 x fat.\n"
+    "Report the results for the actual amount, not the per-100 g values.\n" + _CARB_DEF +
+    "\n"
+    "TYPICAL VALUES PER 100 g AS SERVED (check your values against these ranges):\n"
+    "- cooked rice, pasta, noodles: carbohydrate 25-32 g\n"
+    "- boiled or baked potatoes: carbohydrate 15-22 g; French fries: carbohydrate 30-42 g, fat 10-17 g\n"
+    "- bread, buns, tortillas, flatbreads: carbohydrate 40-55 g\n"
+    "- cooked beans, lentils, chickpeas: carbohydrate 15-27 g\n"
+    "- fruit: carbohydrate 8-23 g; non-starchy vegetables: carbohydrate 3-8 g\n"
+    "- juice and sugary drinks: carbohydrate 9-12 g per 100 ml; milk: about 5 g\n"
+    "- cakes, pastries, cookies: carbohydrate 40-70 g, fat 15-30 g\n"
+    "- cooked lean meat, poultry, fish: carbohydrate 0 g, fat 1-12 g; "
+    "fatty meat, sausages, ribs: fat 15-35 g\n"
+    "- breaded or deep-fried foods: fat 10-20 g; the batter or breading adds 8-20 g carbohydrate\n"
+    "- vegetables stir-fried or dressed with oil: fat 3-10 g\n"
+    "- cheese: fat 20-35 g; nuts and seeds: fat 45-65 g; butter and oil: fat 80-100 g\n"
+    "- creamy sauces and mayonnaise-based dressings: fat 15-75 g; "
+    "sweet sauces (ketchup, teriyaki, sweet chili): carbohydrate 15-50 g\n")
+
+# H3 portion scale: reference objects, volume -> grams. Aims at the gram
+# underestimation (SNAPMe, DFood-TJ, Nutrition5k) and through it kcal.
+PROMPT_P3_PORTION = _variant(
+    "HOW TO ESTIMATE THE AMOUNT:\n"
+    "- Use objects of known size as a ruler: a dinner plate is about 25-30 cm across, a side "
+    "plate or bowl 15-20 cm, a fork about 19 cm, a teaspoon 5 ml, a tablespoon 15 ml, a drink "
+    "can 330 ml, a glass 200-250 ml. In \"general_description\", name the reference you used "
+    "and the size you read from it.\n"
+    "- For each item, estimate its volume (the area it covers times its height) and convert it "
+    "to grams: most cooked foods weigh 0.8-1.1 g per ml, liquids about 1 g per ml, leafy salads "
+    "and loose crispy foods only 0.1-0.4 g per ml.\n"
+    "- Food piled up or partly hidden under other food counts too: judge its height and the "
+    "hidden part from what you see.\n"
+    "- If the evidence fits two sizes, choose the one the reference objects support, not the "
+    "usual serving.\n"
+    "\n"
+    "For each visible food item, estimate:\n"
+    "- Weight in grams (the actual visible amount)\n"
+    "- Calories (based on the actual visible portion)\n"
+    "- Carbohydrate, protein and fat in grams (for the actual visible portion)\n" + _CARB_DEF,
+    "Reference object and scale used, then a brief description of the meal")
+
+# H4 draft-check-answer: a written draft, explicit consistency checks, then the
+# corrected items. Aims at internal inconsistencies and outlier items (heavy tail).
+PROMPT_P3_CHECK = _variant(
+    "For each visible food item, estimate:\n"
+    "- Weight in grams (the actual visible amount)\n"
+    "- Calories (based on the actual visible portion)\n"
+    "- Carbohydrate, protein and fat in grams (for the actual visible portion)\n" + _CARB_DEF +
+    "\n"
+    "DRAFT, CHECK, THEN ANSWER:\n"
+    "1. In \"general_description\", first write a short draft: each item with grams, "
+    "carbohydrate, protein, fat and calories.\n"
+    "2. Check the draft and note there what you correct:\n"
+    "   - calories should be close to 4 x carbohydrate + 4 x protein + 9 x fat (within about 15%);\n"
+    "   - carbohydrate + protein + fat cannot exceed the weight; for most cooked foods they are "
+    "10-40% of it, for oils and fats up to 100%;\n"
+    "   - every food and drink in the photo is listed once and nothing is counted twice (for "
+    "example a sauce both inside a dish and as a separate item);\n"
+    "   - the total weight and calories are plausible for what was served in this photo.\n"
+    "3. Write the corrected values in \"items\".\n",
+    "Draft of every item (grams, carbohydrate, protein, fat, calories), then the checks and corrections")
+
 VARIANTS = {
     "P3": dict(base=PROMPT_P3_ANTI_SNAP, kind="image", fields={
         "kcal": "estimated_calories", "mass_g": "estimated_weight_grams"}),
     "P3_macros": dict(base=PROMPT_P3_MACROS, kind="image", fields=MACRO_FIELDS),
+    "P3_recipe": dict(base=PROMPT_P3_RECIPE, kind="image", fields=MACRO_FIELDS),
+    "P3_anchor": dict(base=PROMPT_P3_ANCHOR, kind="image", fields=MACRO_FIELDS),
+    "P3_portion": dict(base=PROMPT_P3_PORTION, kind="image", fields=MACRO_FIELDS),
+    "P3_check": dict(base=PROMPT_P3_CHECK, kind="image", fields=MACRO_FIELDS),
     "P3_macros_hint": dict(base=PROMPT_P3_MACROS, kind="image", fields=MACRO_FIELDS),
     "P3_density": dict(base=PROMPT_P3_DENSITY, kind="image",
                        fields={"mass_g": "estimated_weight_grams"},
