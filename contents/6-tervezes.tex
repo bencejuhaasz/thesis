@@ -51,10 +51,11 @@ válaszai mentésre és kiértékelésre kerülnek.
 \section{A vizsgált nagy nyelvi modellek kiválasztása}
 \paragraph{}A nagy nyelvi modellek kiválasztásával kapcsolatban a feladatkiírás
 a következő követelményeket fogalmazza meg:
-A modelleknek elérhetőnek kell lenniük kereskedelmi API végponton keresztül,
-támogatnia kell képi bemenetet és strukturált kimeneti formátumot.
+A modelleknek elérhetőnek kell lenniük API végponton keresztül,
+támogatniuk kell képi és szöveges bemenetet.
 Emellett figyelembe kell venni az elérés késleltetését és árazását is a vizsgálat
 során.
+A becslések gépi feldolgozásához a strukturált kimeneti formátumra van szükség.
 
 \paragraph{}A három legnagyobb szolgáltató, a Google, az OpenAI és az Anthropic
 modellkínálata egyaránt három szintre tagolódik: egy olcsó, nagy tokenszám mellett is gazdaságosra tervezett
@@ -64,8 +65,7 @@ méretük, hanem a szolgáltató által meghatározott termékkategória és ár
 Szolgáltatónként a legolcsóbb és a középső szint vizsgálata mellett döntöttem. Egy étkezésnaplózó
 alkalmazás felhasználónként naponta több hívást indít, ezért a működtetés költsége
 szempontjából releváns kérdés, hogy az olcsóbb szint mennyit veszít a pontosságból a
-középsőhöz képest. A csúcsszintet csak az Anthropicnál és az OpenAI-nál mértem, kiegészítő felső
-korlátként, a költségkeret miatt.
+középsőhöz képest.
 
 \paragraph{}A promptok és a mérést meghatározó további paraméterek hatásának vizsgálatát többségében a Gemini Flash-Lite modellen
 végeztem. Ennek oka, hogy a vizsgált modellek közül ez érhető el a legkisebb költséggel, és Sterling és társai \cite{sterling2026vlm} is ezt a modellcsaládot vizsgálták 
@@ -101,10 +101,12 @@ Anthropic & csúcs & \texttt{claude-opus-5-5} & effort: low & 4,00 / 20,00 \\
 \end{table}
 
 A Gemini 3.1-Flash-Lite modellt csak a DFood-Tj adathalmazon végzett fejlesztési mérésekben használtam.
-A csúcsszintet az Anthropicnál minden kiválasztott adathalmazon vizsgáltam, 
-kiegészítő felső korlátként, mert ott a csúcsmodell ára a középső 
-szintnek csak a kétszerese. Az OpenAI csúcsmodelljét csak az OmniFood8k 
-adathalmazon mértem, a Google csúcsmodelljét költségkeret miatt nem vizsgáltam.
+
+A csúcsszintet kiegészítő felső korlátként vizsgáltam. 
+Az Anthropic esetében minden mérésre kiválasztott adathalmazon mértem, 
+mert ott a csúcsmodell ára a középső szintnek csak a kétszerese. 
+Az OpenAI csúcsmodellje a középső szint ötszörösébe kerül, ezért költségkeret miatt csak az OmniFood8k adathalmazon mértem. 
+A Google csúcsmodelljét ugyanezen okból nem vizsgáltam.
 
 \section{A vizsgált prompt utasítások összeállítása}
 \paragraph{}Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
@@ -135,6 +137,15 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
     energia és a makrók a második lépésből, a tömeg az első lépésből származik. A válaszidő, a tokenszám és a
     költség a két hívás összege. A kimenet szerkezete itt is azonos a P3\_macros
     kimenetével.
+    \item \textbf{P3\_recipe:} a P3\_macros kiegészítése a képen nem látható energiatartalom 
+    becslésére, az Open-KNEAD recipe-prior lépéséhez \cite{coburn2026openknead} hasonló elven. 
+    A prompt előírja a becslési feladat lépéseit. A modell először megnevezi az ételt, a konyháját és 
+    szokásos elkészítési módját, a hozzá tartozó zsír- és cukortartalommal együtt, akkor is, ha 
+    az a képen nem látszik. Ezután a kép alapján dönti el, mi és mennyi van a tányéron, az étel 
+    szokásos elkészítése alapján pedig azt, hogy grammonként mit tartalmaz. Az elkészítéshez használt 
+    olaj, vaj, szósz vagy cukor annak az ételnek az értékeibe számít bele, amellyel együtt készült, külön 
+    tételként csak akkor szerepel, ha külön tálalják. A P3\_macros-tól a szénhidrát fogalmának meghatározásában is 
+    eltér (összes szénhidrát, a rosttal együtt). A kimeneti szerkezet megegyezik a P3\_macros-éval.
 \end{enumerate}
 
 
