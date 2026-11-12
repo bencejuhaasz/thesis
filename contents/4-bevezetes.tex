@@ -7,16 +7,24 @@ befolyásolja a vércukorszintet. % TODO: hivatkozás (pl. szakmai irányelv vag
 Az étkezések naplózása ugyanakkor időigényes és hibára hajlamos feladat, mert a
 felhasználónak az ételek összetevőit, az adagok tömegét és a tápértékét is meg kell
 becsülnie. % TODO: hivatkozás a kézi naplózás terheiről
-Az ezt támogató alkalmazásokban ezért kézenfekvő igény, hogy az étkezés rögzíthető
+Az ezt támogató alkalmazásokban ezért alapvető igény, hogy az étkezés rögzíthető
 legyen fényképpel vagy szöveges leírással, és a rendszer ebből automatikusan
 meghatározza az ételeket, az adagméretet és a becsült tápértéket.
 
-\paragraph{}A nagy nyelvi modellek kereskedelmi API-n keresztül elérhetők, képből, szövegből vagy a kettő
-kombinációjából strukturált szöveges kimenetet is képesek előállítani. Egy konkrét alkalmazás
-szempontjából azonban nem csak a becslés pontossága számít: a válaszidő, az üzemeltetési
-költség, a strukturált kimenet megbízhatósága és az adatvédelem is meghatározza, hogy egy modell használható-e. A szakirodalomban
-számos vizsgálat foglalkozik az ételfelismeréssel és a tápértékbecsléssel, ezek azonban jellemzően egy vagy két
-adathalmazra és kevés modellre korlátozódnak.
+\paragraph{}
+A nagy nyelvi modellek kereskedelmi API-n keresztül elérhetők, képből, szövegből vagy a kettő
+kombinációjából strukturált szöveges kimenetet is képesek előállítani. 
+Egy étkezésnaplózó alkalmazás szempontjából a becslés pontossága mellett fontos szempontok a válaszidő, az üzemeltetési
+költség és a strukturált kimenet megbízhatósága. 
+
+A szakirodalomban számos vizsgálat foglalkozik az ételfelismeréssel és 
+a tápértékbecsléssel. Ezek azonban eltérő adathalmazokon, modellekkel 
+és mérőszámokkal dolgoznak, ezért eredményeik közvetlenül nehezen vethetők össze. 
+A dolgozat ehhez kíván hozzájárulni azzal, hogy a kereskedelmi API-n 
+elérhető modelleket szolgáltatónként több árszinten, eltérő 
+konyhájú és felvételi körülményű adathalmazokon, egységes 
+eljárással hasonlítja össze, a pontosság mellett a költséget, a 
+válaszidőt és a strukturált kimenet megbízhatóságát is vizsgálva.
 
 \section{Célkitűzés}
 \paragraph{}A dolgozat célja, hogy egy cukorbetegség kezelését támogató alkalmazás

@@ -1,8 +1,8 @@
 \chapter{Tervezés}
 \section{Az adathalmazok kiválasztása és előkészítése}
 Az előzmények között ismertetett adathalmazok közül a Nutrition5K, OmniFood8k, DFood-Tj, ACETADA, SNAPMe és NutriBench adathalmazokat tudtam beszerezni.
-A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem az a meglemlített tanulmány címét, szerzőit az előzményekben
-idézett publikációkkal, hogy meggyőződjek róla, valóban a megfelelő adathalmazokat találtam meg. Az ASA24-ből cask hiányos változatot találtam, ezért ezt nem vizsgáltam
+A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem az a megemlített tanulmány címét, szerzőit az előzményekben
+idézett publikációkkal, hogy meggyőződjek róla, valóban a megfelelő adathalmazokat találtam meg. Az ASA24-ből csak hiányos változatot találtam, ezért ezt nem vizsgáltam
 tovább.
 %Ez így nem szép meg kéne mondani honnan vannak
 
@@ -14,7 +14,6 @@ függvényeket. Ezeket az adatokat a függvények visszatérési értékeiként 
 Az adatok feldolgozásához a Pandas programkönyvtárat használtam, a Pythonnak pedig a 3.14-es verzióját.
 
 \section{A mérési környezet kialakítása}
-A benchmark.py a következő argumentumokkal rendelkezik:
 A benchmark.py a tesztméréseket a következő módon valósítja meg:
 Megkeresi és betölti a loader.py programokat az alkönyvtárakból.
 Betölti a választott adathalmazokat egy Pandas dataframe objektumba. A fájl konfigurációs változói segítségével
@@ -31,7 +30,7 @@ A prompt utasítások szerint json formátumban kell a nagy nyelvi modelleknek v
 válasz feldolgozása. Ha ebben hiba történik, abban az esetben már nincs újrapróbálkozás, hanem nem értelmezhetőként naplózásra kerül a kapott válasz.
 Miután az adathalmaz minden kiválasztott rekordjához megtörténtek a kérések az API végpont felé, a kapott eredményekről egy összefoglaló csv fájlt ír ki a program.
 
-Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges számú adathalmazt és modellt lehet mérni, minden megadott adathalmazon minden meadott modell
+Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges számú adathalmazt és modellt lehet mérni, minden megadott adathalmazon minden megadott modell
 válaszai mentésre és kiértékelésre kerülnek.
 
 \section{A mért mennyiségek kiválasztása}
@@ -75,11 +74,13 @@ szolgáltató csúcsmodelljét költségkeret miatt nem vizsgáltam.
 
 \paragraph{}A promptok és a mérést meghatározó további paraméterek hatásának vizsgálatát többségében a Gemini Flash-Lite modellen
 végeztem. Ennek oka, hogy a vizsgált modellek közül ez érhető el a legkisebb költséggel, és Sterling és társai \cite{sterling2026vlm} is ezt a modellcsaládot vizsgálták 
-ugyan azon az adathalmazon és hasonló prompttal. Annak ellenére, hogy a minták kiválasztása eltérő, az eredmények nagyságrendi viszonyítási alapot adnak a mérési környezet ellenőrzéséhez.
+ugyanazon az adathalmazon és hasonló prompttal. Annak ellenére, hogy a minták kiválasztása eltérő, az eredmények nagyságrendi viszonyítási alapot adnak a mérési környezet ellenőrzéséhez.
 
-\paragraph{}A reasoning-szintet minden olyan modellnél, ahol ez állítható, alacsonyra
-állítottam, hogy a szolgáltatók modelljei összevethető beállítással fussanak, a válaszidő
-és a költség pedig korlátozott maradjon. % TODO: további indoklás az adatok alapján
+\paragraph{}A modellek összehasonlító méréseiben a reasoning-szintet minden olyan 
+modellnél alacsonyra állítottam, ahol ez állítható, hogy a szolgáltatók modelljei 
+összevethető beállítással fussanak, a válaszidő és a költség pedig korlátozott 
+maradjon. A Gemini Flash-Lite modelleknél az alapértelmezett, minimális szintet 
+használtam. Egyes előmérésekben magasabb reasoning-szintet is kipróbáltam.
 A vizsgált modelleket és beállításaikat a \ref{tab:modellek}.~táblázat foglalja össze.
 
 \begin{table}[h]
@@ -145,8 +146,8 @@ pMAE: Minden célmennyiségre (energia, szénhidrát, fehérje, zsír, tömeg) �
 \begin{equation}
   \mathrm{pMAE} = 100\cdot\frac{\sum_i |p_i - t_i|}{\sum_i t_i}.
 \end{equation}
-A pMAE előnyösebb a feladat szempontjából, mint A MAPE mérték (étkezésenkénti százalékos hiba átlaga). A MAPE minden étkezés hibáját a saját referenciaértékéhez (a referenciaérték az adathalmazban megadott, a becslés validációrjára szolgáló érték) viszonyítja, ezért a kis referenciaértékű 
-étkezések már kis abszolút eltérés mellett is nagy relatív hibát adnak, és ez aránytalanul befolyásolják az átlagot. A pMAE ezzel szemben az abszolút hibák összegét a 
+A pMAE előnyösebb a feladat szempontjából, mint a MAPE mérték (étkezésenkénti százalékos hiba átlaga). A MAPE minden étkezés hibáját a saját referenciaértékéhez (a referenciaérték az adathalmazban megadott, a becslés validációrjára szolgáló érték) viszonyítja, ezért a kis referenciaértékű 
+étkezések már kis abszolút eltérés mellett is nagy relatív hibát adnak, és ez aránytalanul befolyásolja az átlagot. A pMAE ezzel szemben az abszolút hibák összegét a 
 referenciaértékek összegéhez viszonyítja, így minden étkezés a tápértékével arányos súllyal számít. Ez megfelel az étkezésnaplózás céljának, amely egy adott időszak összesített 
 tápanyagbevitelének minél pontosabb követése.
 
@@ -176,10 +177,10 @@ A konfigurációs paramétereket az egyetlen, vizsgált paraméteren kívül rö
 összevethető méréspárokat lehet előállítani.
 Páros összehasonlítások során rögzítendő paraméter a mintaelemszám ($n$), és az úgynevezett
 seed érték.
-Az ételek kiválaaztása az adathalmazból egy véletlenszerű sorbarendezés után történik,
+Az ételek kiválasztása az adathalmazból egy véletlenszerű sorbarendezés után történik,
 az első $n$ adathalmazrekord kerül bele a vizsgált halmazba.
 A seed érték rögzítésével elérhető, hogy a véletlenszerű kiválasztás reprodukálhatóan
-működjön, tehát az egyes mérések ugyan azokat az ételeket fogják tartalmazni, az ételek kiválasztása
+működjön, tehát az egyes mérések ugyanazokat az ételeket fogják tartalmazni, az ételek kiválasztása
 így nem torzítja a vizsgált különbséget a két mérés eredménye között.
 A véletlenszerű sorbarendezés biztosítja, hogy amennyiben az adathalmaz eredeti sorrendje valamilyen rendszer
 szerint épül fel, annak a hatását kontrollálja a mérésekre nézve.
@@ -188,7 +189,7 @@ bele a mérésre kiválasztott részhalmazba.
 A véletlen sorbarendezés alkalmazása miatt eltekintek annak vizsgálatától, hogy tartalmaznak-e valóban az adathalmazok
 ilyen, sorrend-függő torzítást a validációs értékekre nézve.
 
-\paragraph{}A képeket a modelleknek küldés előtt egységes előfeldolgozáson esnek át. A benchmark.py program a kép EXIF-metaadataiban rögzített tájolás szerint elforgatja a képet, 
+\paragraph{}A képek a küldés előtt egységes előfeldolgozáson esnek át. A benchmark.py program a kép EXIF-metaadataiban rögzített tájolás szerint elforgatja a képet, 
 hogy ha a képek nem a megjelenítési irányban vannak tárolva, abban az esetben is egységes legyen az elforgatásuk. Ezután RGB színtérbe alakítja, és a képarány megtartásával úgy 
 kicsinyíti, hogy a hosszabbik oldala legfeljebb 1024 képpont legyen. Az ennél kisebb képeket nem nagyítja. Végül a képet 90-es minőségi beállítással JPEG formátumba kódolja. 
 Az egységes előfeldolgozás biztosítja, hogy az eltérő forrású adathalmazok képei azonos felbontásban és formátumban jussanak el a modellekhez, és a bemeneti tokenszám, ezzel 
@@ -202,7 +203,7 @@ hibás kísérletek és a várakozások idejét nem tartalmazza.
 
 \subsection{Előmérési protokoll}
 \paragraph{}Az előmérési protokoll feladata, hogy minél több mérési paraméter
-hatását feltérhatóvá tegye, miközben kontrollálja az ebből adódó többletköltség
+hatását feltárhatóvá tegye, miközben kontrollálja az ebből adódó többletköltség
 nagyságát. Ennek érdekében a mintaszámot ezen mérések során a döntési mérési protokollhoz
 képest kisebb, $n=50$ értékben rögzítettem. Ez több összehasonlítást tesz lehetővé, viszont
 kisebb pontossággal teszi megismerhetővé a vizsgált paraméter hatását. A kisebb elemszám
@@ -233,7 +234,7 @@ a mérési protokoll segítségével:
     érvelési tokenek a válaszban nem jelennek meg, de a modell ezekre támaszkodva
     alakítja ki a kimenetet.
     \item Kép típus:
-    A DFood-Tj adathalmaz esetén felül- és oldalnézeti, az OmniFood8k adathalmaz esetén a hat különböző szögből készült kép használatának kombinációját lehet a paraméterrel konfigurálni
+    A DFood-Tj adathalmaz esetén felül- és oldalnézeti, az OmniFood8k adathalmaz esetén a hat különböző szögből készült kép használatának kombinációját lehet a paraméterrel konfigurálni.
 \end{enumerate}
 
 \subsubsection{Az előmérési protokoll által mért kimeneti paraméterek bemutatása}
@@ -252,13 +253,15 @@ Ezek azok az értékek, amelyekre hatást gyakorolnak a konfigurációs beállí
     becslésének hibája (pMAE, MAE, bias)
 \end{enumerate}
 
-A benchmark.py program minden hívásnál rögzíti a bemeneti és a kimeneti
-tokenek számát, és ezekből a szolgáltató által a mérés idején közzétett listaárak
-alapján kiszámítja a hívás költségét dollárban. A méréseket összesítően leíró kimeneti fájlban a költség mellett azért szerepel a bemeneti tokenek száma, mert azt a 
-mérés beállításai határozzák meg, így a konfigurációt jellemzi. Ez a tulajdonsága a mért és a vizsgált hatású paraméterek közé pozicionálja. Közvetlenül nem hangolható a mérések konfigurációja 
-során, de azokból származó mennyiség. Függ emellett a használt nagy nyelvi modell tokenizálási módszerétől is. Mivel közvetlen kontrollom nincs fölötte, a mért kimeneti paraméterek közé sorolom.
-A kimeneti tokenszám ezzel szemben a modell válaszától függ. Ezt a tokenkerettel felülről
-korlátozható, hatása a költségben jelenik meg.
+A benchmark.py program minden hívásnál naplózza a bemeneti és a kimeneti tokenek számát, és ezekből a 
+szolgáltató által a mérés idején közzétett listaárak alapján kiszámítja a hívás költségét dollárban. A 
+méréseket összesítően leíró kimeneti fájlban a költség mellett azért szerepel a hívásonkénti bemeneti 
+tokenszám mediánja, mert azt nagyrészt a mérés beállításai határozzák meg, így a konfigurációt jellemzi. 
+Ez a tulajdonsága a beállított és a mért paraméterek határára helyezi: közvetlenül nem hangolható a 
+mérések konfigurációja során, de azokból származó mennyiség, emellett függ a használt nagy nyelvi 
+modell tokenizálási módszerétől is. Mivel közvetlenül nem állítható be, a mért kimeneti paraméterek 
+közé sorolom. A kimeneti tokenszám ezzel szemben a modell válaszától függ. Ez a tokenkerettel felülről 
+korlátozható, hatása pedig a költségben jelenik meg.
 
 \subsection{Döntési mérési protokoll}
 A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt szignifikáns
