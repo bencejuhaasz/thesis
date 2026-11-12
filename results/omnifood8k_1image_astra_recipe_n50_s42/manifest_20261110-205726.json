@@ -1,0 +1,161 @@
+{
+  "run_name": "omnifood8k_1image_astra_recipe_n50_s42",
+  "started": "2026-11-10T20:57:26",
+  "benchmark_sha256": "5c09df47ecfc1156888b5ce9b0751cf873b92a78768c0fc4d1f6cfe6ccd09797",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "oblique",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "dfood_send_order": [
+    "overhead",
+    "oblique"
+  ],
+  "multiview_note": "You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.",
+  "omnifood_views": [
+    0
+  ],
+  "omnifood_min_views": 2,
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gpt-astra",
+      "provider": "openai",
+      "model": "gpt-6-astra",
+      "enabled": false,
+      "temperature": null,
+      "extra": {
+        "reasoning_effort": "low"
+      },
+      "price": {
+        "in": 10.0,
+        "out": 50.0
+      },
+      "min_interval_s": 0.0
+    }
+  ],
+  "datasets": {
+    "omnifood8k": {
+      "enabled": false,
+      "root": "OmniFood8k/0-OminiFood8k",
+      "loader": "loader.py",
+      "fn": "load_omnifood8k",
+      "pick": null,
+      "colmap": {
+        "sample_id": "sample"
+      },
+      "prepare": "omnifood_views",
+      "query": "split == 'test' and has_image",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nWORK IN THIS ORDER:\n1. In \"general_description\", name each dish by its usual name and cuisine, and say how it is normally prepared (for example \"stir-fried in oil\", \"deep-fried in batter\", \"braised in a sweet soy sauce\", \"dressed with mayonnaise\"). Note the fat and sugar this preparation normally adds, even if you cannot see it in the photo.\n2. Then list the food items. Use the photo to decide WHAT is on the plate and HOW MUCH of each item there is. Use your knowledge of how the dish is normally made to decide what it CONTAINS per gram.\n3. Cooking oil, butter, sauce, dressing or sugar that the preparation normally includes belongs to the food it was cooked with: count it in that item's calories, carbohydrate and fat. List it as a separate item only if it is served separately (a dip, a dressing on the side, a pool of oil or sauce). Do not add ingredients the dish does not normally contain.\n\nFor each food item, estimate:\n- Weight in grams (the actual amount in the photo, as served)\n- Calories (for that amount, as prepared)\n- Carbohydrate, protein and fat in grams (for that amount, as prepared)\nCarbohydrate = total carbohydrate (starch, sugars and fiber).\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Dishes, cuisine and how they are normally prepared, with the fat and sugar this adds\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45,\n      \"estimated_carbohydrate_grams\": 12,\n      \"estimated_protein_grams\": 8,\n      \"estimated_fat_grams\": 5\n    }\n  ]\n}",
+      "prompt_variant": "P3_recipe",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                },
+                "estimated_carbohydrate_grams": {
+                  "type": "number"
+                },
+                "estimated_protein_grams": {
+                  "type": "number"
+                },
+                "estimated_fat_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams",
+                "estimated_carbohydrate_grams",
+                "estimated_protein_grams",
+                "estimated_fat_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "3347",
+        "220",
+        "5351",
+        "6174",
+        "3243",
+        "5915",
+        "4527",
+        "3630",
+        "5892",
+        "7648",
+        "3578",
+        "3734",
+        "829",
+        "355",
+        "5900",
+        "2600",
+        "5545",
+        "1832",
+        "5081",
+        "7605",
+        "5908",
+        "1573",
+        "6356",
+        "4129",
+        "3395",
+        "1592",
+        "5284",
+        "561",
+        "2790",
+        "5942",
+        "5558",
+        "2771",
+        "4074",
+        "5541",
+        "6329",
+        "5329",
+        "5540",
+        "5889",
+        "4152",
+        "6605",
+        "3606",
+        "589",
+        "4126",
+        "3859",
+        "421",
+        "3868",
+        "4067",
+        "3652",
+        "7680",
+        "6170"
+      ]
+    }
+  }
+}
