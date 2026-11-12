@@ -1,7 +1,7 @@
 \chapter{Tervezés}
 \section{Az adathalmazok kiválasztása és előkészítése}
 Az előzmények között ismertetett adathalmazok közül a Nutrition5K, OmniFood8k, DFood-Tj, ACETADA, SNAPMe és NutriBench adathalmazokat tudtam beszerezni.
-A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem az a megemlített tanulmány címét, szerzőit az előzményekben
+A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem a megemlített tanulmány címét, szerzőit az előzményekben
 idézett publikációkkal, hogy meggyőződjek róla, valóban a megfelelő adathalmazokat találtam meg. Az ASA24-ből csak hiányos változatot találtam, ezért ezt nem vizsgáltam
 tovább.
 %Ez így nem szép meg kéne mondani honnan vannak
@@ -26,7 +26,7 @@ Betölti az adathalmazhoz tartozó képeket és a konfigurációs változók val
 felé küldendő szöveges prompt utasítást. 
 Változók segítségével konfigurálható, hogy mely nagy nyelvi modellek milyen paraméterekkel dolgozzák fel a kéréseket, milyen API végponton.
 Ezután elküldi a kérést a program az API végpont felé. Állítható, hogy sikertelen válasz esetén hány újrapróbálkozás megengedett.
-A prompt utasítások szerint json formátumban kell a nagy nyelvi modelleknek válaszolniuk a kérésekre, a következő lépésben ezen formátum szerinttörténik a szöveges
+A prompt utasítások szerint json formátumban kell a nagy nyelvi modelleknek válaszolniuk a kérésekre, a következő lépésben ezen formátum szerint történik a szöveges
 válasz feldolgozása. Ha ebben hiba történik, abban az esetben már nincs újrapróbálkozás, hanem nem értelmezhetőként naplózásra kerül a kapott válasz.
 Miután az adathalmaz minden kiválasztott rekordjához megtörténtek a kérések az API végpont felé, a kapott eredményekről egy összefoglaló csv fájlt ír ki a program.
 
@@ -68,9 +68,8 @@ méretük, hanem a szolgáltató által meghatározott termékkategória és ár
 Szolgáltatónként a legolcsóbb és a középső szint vizsgálata mellett döntöttem. Egy étkezésnaplózó
 alkalmazás felhasználónként naponta több hívást indít, ezért a működtetés költsége
 szempontjából releváns kérdés, hogy az olcsóbb szint mennyit veszít a pontosságból a
-középsőhöz képest. A csúcsszintet csak az Anthropicnál mértem, kiegészítő felső
-korlátként, mert ott a csúcsmodell ára a középső szintnek csak kétszerese. A többi
-szolgáltató csúcsmodelljét költségkeret miatt nem vizsgáltam.
+középsőhöz képest. A csúcsszintet csak az Anthropicnál és az OpenAI-nál mértem, kiegészítő felső
+korlátként, a költségkeret miatt.
 
 \paragraph{}A promptok és a mérést meghatározó további paraméterek hatásának vizsgálatát többségében a Gemini Flash-Lite modellen
 végeztem. Ennek oka, hogy a vizsgált modellek közül ez érhető el a legkisebb költséggel, és Sterling és társai \cite{sterling2026vlm} is ezt a modellcsaládot vizsgálták 
@@ -97,6 +96,7 @@ Google    & olcsó & \texttt{gemini-3.1-flash-lite} & temperature 0,1 & 0,25 / 1
 Google    & közép & \texttt{gemini-3.8-flash} & thinking: low & 0,75 / 3,75 \\
 OpenAI    & olcsó & \texttt{gpt-6-luna} & reasoning: low & 0,10 / 0,50 \\
 OpenAI    & közép & \texttt{gpt-6.1-sol} & reasoning: low & 2,00 / 10,00 \\
+OpenAI    & csúcs & \texttt{gpt-6-astra} & reasoning: low & 10,00 / 50,00 \\
 Anthropic & olcsó & \texttt{claude-haiku-5-5} & effort: low & 0,10 / 0,50 \\
 Anthropic & közép & \texttt{claude-sonnet-5-5} & effort: low & 2,00 / 10,00 \\
 Anthropic & csúcs & \texttt{claude-opus-5-5} & effort: low & 4,00 / 20,00 \\
@@ -104,7 +104,11 @@ Anthropic & csúcs & \texttt{claude-opus-5-5} & effort: low & 4,00 / 20,00 \\
 \end{tabular}
 \end{table}
 
-A \texttt{gemini-3.1-flash-lite} modellt csak a DFood-Tj adathalmazon végzett fejlesztési mérésekben használtam.
+A Gemini 3.1-Flash-Lite modellt csak a DFood-Tj adathalmazon végzett fejlesztési mérésekben használtam.
+A csúcsszintet az Anthropicnál minden kiválasztott adathalmazon vizsgáltam, 
+kiegészítő felső korlátként, mert ott a csúcsmodell ára a középső 
+szintnek csak a kétszerese. Az OpenAI csúcsmodelljét csak az OmniFood8k 
+adathalmazon mértem, a Google csúcsmodelljét költségkeret miatt nem vizsgáltam.
 
 \section{A vizsgált prompt utasítások összeállítása}
 \paragraph{}Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
@@ -114,7 +118,7 @@ amely arra kéri a  nagy nyelvi modellt, hogy a fényképen látható tényleges
 ne egy feltételezett szokásos adagméretre kerekítsen.
 \paragraph{}A vizsgált változatok a következők:
 \begin{enumerate}
-    \item \textbf{P3:} az átvett utasítás. Ételenként a tömeg és az energia becslését kéri.
+    \item \textbf{P3:} Sterling és társai \cite{sterling2026vlm} munkájából átvett utasítás. Ételenként a tömeg és az energia becslését kéri.
     \item \textbf{P3\_macros:} ugyanaz a szöveg, kiegészítve a szénhidrát-, fehérje- és
     zsírtartalom kérésével tételenként, valamint a kimeneti szerkezet megfelelő
     bővítésével.
@@ -162,7 +166,7 @@ hanem azt mutatja meg, van-e a becslés során szisztematikus torzítás, konzis
 \paragraph{}Annak érdekében, hogy egy adott mérési beállítás hatása vizsgálható legyen,
 kontrollálni kell, hogy miben térhetnek el az egyes mérések. Egy nem várt körülmény
 változása önmagában, vagy a szándékosan változtatott, vizsgált paraméterrel együtt hatva
-olyan eredményt hozhat, amely javulást idéz elő a mérés pontosságában.
+olyan eredményt hozhat, amely változást idéz elő a mérés pontosságában.
 Ha ezeket a körülményeket nem ismerem, téves következtetésre juthatok a vizsgált
 paraméter állításával kapcsolatban.
 
@@ -279,7 +283,7 @@ jelentősen eltér. Az első mérési körben ez a torzítás
 az ACETADA adathalmazon elhanyagolható volt (\mbox{$-1{,}6\%$}), a Nutrition5k-n
 mérsékelt (\mbox{$-11{,}1\%$}), az OmniFood8k-n viszont jelentős (\mbox{$-45{,}0\%$}).
 Egy adott adathalmazon illesztett utólagos korrekció, például a becsült és a valós érték
-közötti lineáris vagy izotonikus leképezés a logaritmikus skálán, ezt a rendszeres
+közötti lineáris leképezés ezt a rendszeres
 eltérést csökkenteni képes.
 % TODO bizonyítani.
 Viszont amellett döntöttem, hogy ezt az elkészítendő becslést végző pipeline-ba nem fogom
