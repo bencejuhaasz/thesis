@@ -1,6 +1,4 @@
 \chapter{Előzmények}
-\paragraph{} irodalomkutatás, hasonló alkotások bemutatása, az ezekből a dolgozat készítője által levonható következtetések. A szakirodalom önálló, kritikai elemzése.
-
 
 \section{Kapcsolódó publikációk}
 \subsection{DietAI24 (Yan et al. 2025)}
@@ -36,7 +34,7 @@ Korlátként megemlítendő, hogy a modell a valós ételneveket kapja meg bemen
 \paragraph{}Ez a tanulmány ~\cite{yan2026nutrimllm} arra keres megoldást, hogy a kereskedelmi nagy nyelvi modelleknél pontosabban oldja meg a tápértékbecslési feladatot, olyan modellekkel, amelyek szabadon elérhetőek. A szerzők szerint a kereskedelmi modellek nem alkalmasak erre a feladatra, és mérésekkel igyekeztek alátámasztani, hogy ezek olyan eredményeket adnak, amelyek helyessége statisztikailag valószínűtlen. A saját megoldásuk kidolgozásában korlátozta őket a kellő méretű tanító adathalmaz szakértők általi előállításának költsége, illetve a szükséges adathalmaz nagysága. Ezért a szintetikus adathalmaz előállítása mellett döntöttek. 1.1 millió képből álló adathalmazt hoztak létre, amelyben 65 tápérték paraméter ír le minden egyes ételről generált képet, amelyeket az NHANES 24 órás étkezési naplóinak szöveges ételleírásaiból generáltak, a tápértékcímkéket pedig az FNDDS adatbázisból vették.
 
 Ezután ennek segítségével finomhangolták a Qwen3-VL és GLM-4.6V-Flash szabadon elérhető nagy nyelvi modelleket, ezzel létrehozva a NutriMLLM modellt. 
-Ennek a legnagyobb változata elérte, illetve esetenként meghaladta a kereskedelmi modellek (GPT-5, Gemini 3, and Claude Sonnet 4.5) teljesítményét a feladatban.
+Ennek a legnagyobb változata elérte, illetve esetenként meghaladta a kereskedelmi modellek (GPT-5, Gemini 3, és Claude Sonnet 4.5) teljesítményét a feladatban.
 A szöveges ételleírásokat tartalmazó NutriBench adathalmazon végzett kiértékelés során a NutriMLLM legnagyobb (Qwen3-VL-30B alapú) változatának használhatatlan becslések aránya 0-0.4\% tartományra csökkent, amíg a kereskedelmi modellek 0.1-0.8\%-os tartományban mozogtak. A nem finomhangolt szabadon elérhető modellek esetében a használhatatlan becslések aránya magasabb, 5.9-39.2\% tartományban mozgott.
 A numerikus pontosságot a szerzők az elutasításra korrigált szimmetrikus átlagos abszolút százalékos hibával mérték (SMAPE).
 Ez 0\% és 200\% között mozog, és a hiányzó becsléseket büntetve megakadályozza, hogy a modell a nehéz esetekre való válaszmegtagadással javítson az eredményén.
@@ -51,7 +49,7 @@ Azt, hogy az energiabecslést RAG módszerrel vagy közvetlenül a bemeneti kép
 Méréseik alapján összehasonlítható a közvetlen és az ún. RAG alapú becslés hat különböző kombinációja a fenti megközelítéssel a Nutrition5k, az OmniFood8K és az ACETADA adathalmazokon, Gemma-E4B, Qwen-9B, Gemma-MoE, Gemma-31B, Qwen-35B modellekkel. 
 Az energiabecslést csak az ACETADA esetén vették a közvetlen becslésből.
 Megállapították, hogy a mai nagy nyelvi modellek közvetlen becslése energiában eléri vagy meghaladja a teljes RAG-alapú folyamatét. Az adatbázis haszna az adagbecslésben és a tételesen ellenőrizhető eredményben jelentkezik.
-A legnagyobb pontosságjavulást az ACETADA adathalmazon tudták elérni a módszerükkel: a helyben futó Gemma-31B 147g teljes étkezésadagondként számított Mean Absolute Errort ért el, ami ~30\%-kal jobb a gpt-5.5 direkt becslésénél (212 g).
+A legnagyobb pontosságjavulást az ACETADA adathalmazon tudták elérni a módszerükkel: a helyben futó Gemma-31B 147g teljes étkezésadagonként számított Mean Absolute Errort ért el, ami ~30\%-kal jobb a gpt-5.5 direkt becslésénél (212 g).
 A tanulmány az ACETADA és a DietDelta szerzőivel közös kutatócsoportból származik.
 
 
@@ -65,7 +63,7 @@ A mérések során használt ételfelismerésre készült kereskedelmi szolgált
 A promptolási stratégiák a következőek voltak:
 P1 - Csak a feladatot és a kimeneti formátumot adja meg;
 P2 - Először a tömeg becslése, ebből a tápérték;
-P3 - Nem használ sztenderd adagtömeg-értékeket az adatbázisból, hanem a képen látható adagot közvetlenül a becsli, ebből tápértéket számol;
+P3 - Nem használ sztenderd adagtömeg-értékeket az adatbázisból, hanem a képen látható adagot közvetlenül becsli, ebből tápértéket számol;
 P4 - Korlátokat adtak meg, amiken belül a becslés elfogadható, reális;
 P5 - Első lépésben P3, majd egy önellenőrzés a modell által.
 
@@ -85,10 +83,10 @@ Korlátként megemlítendő, hogy a promptokat csak egy modellen vizsgálták, �
 
 \subsection{ACETADA}
 \label{subsec:ACETADA}
-\paragraph{}Az ACETADA adathalmaz \cite{coburn2025acetada} egy ausztráliai, kontrollált étkeztetéses vizsgálatból származik, amelyben 152 felnőtt résztvevő három, egymástól egy hétre eső napon napon át laboratóriumban elkészített reggelit, ebédet és vacsorát fogyasztott, az elfogyasztott mennyiséget pedig a kutatók 0,1g pontossággal megmérték. A résztvevők az étkezések előtt és után telefonnal fényképezték le az ételt. A képeken méretarány-jelölő is szerepel, és mindegyikhez időbélyeg, valamint, ha elérhető volt, GPS-koordináta tartozik. A képeket dietetikusok ellenőrizték: azonosították a látható ételeket, és az ausztrál AUSNUT 2011--2013 adatbázis alapján meghatározták azok tömegét, energia- és makrotápanyag-tartalmát. A címkék az elfogyasztott mennyiséget írják le, ezért az étkezés előtti képen látható adag ennél nagyobb is lehet. Az Open-KNEAD szerzői~\cite{coburn2026openknead} ugyanezt az adathalmazt dietetikus által ellenőrzött tálalt mennyiségként írják le, ami ellentmond a forráscikknek.
+\paragraph{}Az ACETADA adathalmaz \cite{coburn2025acetada} egy ausztráliai, kontrollált étkeztetéses vizsgálatból származik, amelyben 152 felnőtt résztvevő három, egymástól egy hétre eső napon át laboratóriumban elkészített reggelit, ebédet és vacsorát fogyasztott, az elfogyasztott mennyiséget pedig a kutatók 0,1g pontossággal megmérték. A résztvevők az étkezések előtt és után telefonnal fényképezték le az ételt. A képeken méretarány-jelölő is szerepel, és mindegyikhez időbélyeg, valamint, ha elérhető volt, GPS-koordináta tartozik. A képeket dietetikusok ellenőrizték: azonosították a látható ételeket, és az ausztrál AUSNUT 2011--2013 adatbázis alapján meghatározták azok tömegét, energia- és makrotápanyag-tartalmát. A címkék az elfogyasztott mennyiséget írják le, ezért az étkezés előtti képen látható adag ennél nagyobb is lehet. Az Open-KNEAD szerzői~\cite{coburn2026openknead} ugyanezt az adathalmazt dietetikus által ellenőrzött tálalt mennyiségként írják le, ami ellentmond a forráscikknek.
 
 \subsection{Nutrition5k}
-\paragraph{}A Nutrition5k \cite{thames_nutrition5k_2021} adathalmaz nagyjából húsz ezer rövid videót tartalmaz megközelítőleg öt ezer különböző ételről. Az ételek több mint 250-féle hozzávalóból készültek. Mindegyikhez tartozik lista a hozzávalóikról és azok mennyiségéről. Emellett tartalmazza minden étel makronutriens-információit a USDA Food and Nutrient Database \cite{usda_fndds_2010} formátumának megfelelően. 3500 ételhez az adathalmazban tartozik úgynevezett RGB-D kép, amely mélységadatot biztosít, ezeket egy Intel RealSense kamerával rögzítették. Az adathalmazt a készítők tanító és teszt részre osztották, 90\%-10\% arányban.
+\paragraph{}A Nutrition5k \cite{thames_nutrition5k_2021} adathalmaz nagyjából húszezer rövid videót tartalmaz megközelítőleg ötezer különböző ételről. Az ételek több mint 250-féle hozzávalóból készültek. Mindegyikhez tartozik lista a hozzávalóikról és azok mennyiségéről. Emellett tartalmazza minden étel makronutriens-információit a USDA Food and Nutrient Database \cite{usda_fndds_2010} formátumának megfelelően. 3500 ételhez az adathalmazban tartozik úgynevezett RGB-D kép, amely mélységadatot biztosít, ezeket egy Intel RealSense kamerával rögzítették. Az adathalmazt a készítők tanító és teszt részre osztották, 90\%-10\% arányban.
 Az ételek tömegének szórása 161g, energiatartalmuk szórása 220 kcal, átlagosan 5.7 eltérő hozzávalót tartalmaznak, a legtöbbet tartalmazó 35-féléből készült.
 Sterling et al.~\cite{sterling2026vlm} humán validációja szerint az összetevőlisták az összetettebb ételeknél gyakran hiányosak, ezért az összetevő-felismerés ezekhez mért pontossága alulbecsli a modellek valós teljesítményét.
 

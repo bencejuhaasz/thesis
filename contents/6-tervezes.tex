@@ -122,7 +122,7 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
     \item \textbf{NutriBench:} Csak szöveges bemenetet használó prompt. Előírja, hogy a
     leírás minden ételét és italát külön tételként kell felsorolni, a megadott
     mennyiséget kell használni (a háztartási mértékeket az adott étel jellemző
-    tömegére átváltva), és az energiaérték a makrótápanyagokkal összhangban kell hogy legyen.
+    tömegére átváltva), és az energiaérték a makrotápanyagokkal összhangban kell hogy legyen.
     \item \textbf{P3\_prep:} a P3\_macros szövege kiegészítve egy utasítással, amely szerint
     minden tételt konkrétan kell megnevezni, az elkészítési módjával és a látható
     hozzáadott összetevőkkel együtt, a látható szószokat, öntetet, olajat, kenhető zsiradékot és italokat pedig
@@ -146,7 +146,7 @@ pMAE: Minden célmennyiségre (energia, szénhidrát, fehérje, zsír, tömeg) �
 \begin{equation}
   \mathrm{pMAE} = 100\cdot\frac{\sum_i |p_i - t_i|}{\sum_i t_i}.
 \end{equation}
-A pMAE előnyösebb a feladat szempontjából, mint a MAPE mérték (étkezésenkénti százalékos hiba átlaga). A MAPE minden étkezés hibáját a saját referenciaértékéhez (a referenciaérték az adathalmazban megadott, a becslés validációrjára szolgáló érték) viszonyítja, ezért a kis referenciaértékű 
+A pMAE előnyösebb a feladat szempontjából, mint a MAPE mérték (étkezésenkénti százalékos hiba átlaga). A MAPE minden étkezés hibáját a saját referenciaértékéhez (a referenciaérték az adathalmazban megadott, a becslés validációjára szolgáló érték) viszonyítja, ezért a kis referenciaértékű 
 étkezések már kis abszolút eltérés mellett is nagy relatív hibát adnak, és ez aránytalanul befolyásolja az átlagot. A pMAE ezzel szemben az abszolút hibák összegét a 
 referenciaértékek összegéhez viszonyítja, így minden étkezés a tápértékével arányos súllyal számít. Ez megfelel az étkezésnaplózás céljának, amely egy adott időszak összesített 
 tápanyagbevitelének minél pontosabb követése.
@@ -214,7 +214,7 @@ mértékben határozzák meg a mérések pontosságát, hogy ilyen elemszám mel
 szignifikáns eltérést produkálni.
 
 \subsubsection{Az előmérési protokoll által vizsgált konfigurációs paraméterek bemutatása}
-Ezek azok a konfigurácós beállítások, amelyek hatását össze lehet hasonlítani
+Ezek azok a konfigurációs beállítások, amelyek hatását össze lehet hasonlítani
 a mérési protokoll segítségével:
 \begin{enumerate}
     \item Prompt utasítás:
@@ -234,7 +234,7 @@ a mérési protokoll segítségével:
     érvelési tokenek a válaszban nem jelennek meg, de a modell ezekre támaszkodva
     alakítja ki a kimenetet.
     \item Kép típus:
-    A DFood-Tj adathalmaz esetén felül- és oldalnézeti, az OmniFood8k adathalmaz esetén a hat különböző szögből készült kép használatának kombinációját lehet a paraméterrel konfigurálni.
+    A DFood-Tj adathalmaz esetén felülnézeti és ferde (nagyjából 45°-os szögű), az OmniFood8k adathalmaz esetén a hat különböző szögből készült kép használatának kombinációját lehet a paraméterrel konfigurálni.
 \end{enumerate}
 
 \subsubsection{Az előmérési protokoll által mért kimeneti paraméterek bemutatása}
