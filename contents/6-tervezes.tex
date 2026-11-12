@@ -34,21 +34,17 @@ Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges sz�
 válaszai mentésre és kiértékelésre kerülnek.
 
 \section{A mért mennyiségek kiválasztása}
-\paragraph{}A feladatkiírásban megfogalmazottak szerint a becslés pontossága mellett a válaszidőt, a
-költséget, a válaszok konzisztenciáját, a strukturált kimenet megbízhatóságát és az
-adatvédelmet is vizsgálni kell. A következő mennyiségek mérése mellett döntöttem:
+\paragraph{}A feladatkiírásban megfogalmazottak szerint a megoldások összehasonlításakor a becslés pontossága mellett a válaszidőt, a költséget, a stabilitást és a konzisztenciát is figyelembe kell venni. A következő mennyiségek mérése mellett döntöttem:
 \begin{enumerate}
     \item Pontosság: a becsült tömeg, energia, szénhidrát, fehérje és zsír eltérése az
-    adathalmaz szerinti referenciaértéktől. % TODO: élelmi rost (témavezetővel egyeztetni)
+    adathalmaz szerinti referenciaértéktől.
     \item Válaszidő: az API-hívás elküldése és a válasz teljes megérkezése között eltelt idő.
     Újrapróbálkozás esetén csak a sikeres kísérlet ideje számít.
     \item Költség: a hívás bemeneti és kimeneti tokenszámából a szolgáltató által a mérés
     idején közzétett listaárak alapján számított költség, dollárban.
-    \item A strukturált kimenet megbízhatósága: az újrapróbálkozások után is sikertelen
+    \item Stabilitás és a strukturált kimenet megbízhatósága: az újrapróbálkozások után is sikertelen
     API-hívások száma, a fel nem dolgozható válaszok száma, valamint azon válaszok száma, amelyek nem teljesen JSON formátumban érkeztek, 
     és csak a JSON-objektum szövegből való kiemelése után váltak feldolgozhatóvá.
-    % TODO: konzisztencia (ismételt mérések után)
-    % TODO: adatvédelem (információgyűjtés után)
 \end{enumerate}
 
 
