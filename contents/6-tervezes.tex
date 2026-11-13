@@ -275,13 +275,53 @@ közé sorolom. A kimeneti tokenszám ezzel szemben a modell válaszától függ
 korlátozható, hatása pedig a költségben jelenik meg.
 
 \subsection{Döntési mérési protokoll}
-A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt szignifikáns
-hibajavulást hozó paraméterváltoztatások hatását nagyobb mintaelemszám mellett végzett
-mérések segítségével pontosabban mérje meg, ezzel támogatva azt a döntést, hogy
-mely paraméterkombinációk alkalmasak a kialakítandó becslési pipeline-ba történő 
-beépítésre.
+\paragraph{}A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt eredményeket 
+nagyobb, korábban nem vizsgált mintán, előre rögzített eljárással ellenőrizze, és ezzel megalapozza, 
+mely beállítások kerüljenek a kialakítandó becslési folyamatba.
 
+\paragraph{}A vizsgált modellek a Gemini 3.5 Flash-Lite, 
+a Claude Sonnet 5.5 és a GPT-6.1 Sol, a \ref{tab:modellek}.~táblázatban szereplő beállításokkal, 
+hívásonként egy képpel és egy ismétléssel.
 
+\paragraph{}A minták az előmérésekkel azonos, seed szerinti véletlen sorrendből származnak, de 
+nagyobb elemszámmal. A futások a sorrend elejét, vagyis az előmérésekben már felhasznált ételeket 
+is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek csak korábban nem 
+látott ételeken alapulnak. A tesztelt minta a Nutrition5k, az ACETADA és a SNAPMe adathalmazon a 
+sorrend 51-250. étele, az OmniFood8k-n a 101-300., a DFood-Tj-n a 351-600. étele. Az előmérésekben 
+már felhasznált ételek eredményeit csak a konzisztencia vizsgálatára használom: ugyanezen ételek 
+korábbi, azonos beállítású futásainak eredményeivel vetem össze őket.
+
+\paragraph{}A hipotéziseket családokba soroltam (\ref{tab:hipotezisek}.~táblázat). 
+Minden összehasonlítás kétoldali páros $t$-próba a pMAE különbségére, ugyanazokon az ételeken. 
+Egy különbséget akkor tekintek szignifikánsnak, ha a családon belül Holm-korrekcióval javított 
+$p$-érték kisebb, mint 0,05. A hatás nagyságát korrekció nélküli 95\%-os konfidenciaintervallummal 
+közlöm. Az A család adathalmazait előre rögzített szabály alapján választottam ki: csak azok 
+kerültek bele, amelyeken az előmérésben talált különbség elérte a 200 elemes mintán kimutatható 
+legkisebb különbséget, az adott adathalmazon becsült szórás alapján. % TODO: erőszint ellenőrzése
+
+\begin{table}[h]
+\centering
+\caption{A döntési mérés hipotéziscsaládjai. $m$: a családon belüli összehasonlítások száma.}
+\label{tab:hipotezisek}
+\begin{tabular}{lp{5.2cm}p{3.6cm}lr}
+\hline
+Család & Kérdés & Adathalmaz & Cél & $m$ \\
+\hline
+A  & Pontosabb-e a Flash-Lite szénhidrátban a Sonnetnél és a Solnál? (P3\_macros) & Nutrition5k, OmniFood8k, ACETADA, DFood-Tj & szénhidrát & 8 \\
+B  & Javít-e a szöveges ételleírás a csak képes becslésen? (P3\_macros\_hint vs.\ P3\_macros, Flash-Lite) & SNAPMe & szénhidrát, zsír & 2 \\
+C1 & Megismétlődik-e a P3\_recipe zsírbecslési javulása nagyobb mintán? (Flash-Lite) & OmniFood8k & zsír & 1 \\
+C2 & Változtat-e a P3\_recipe a szénhidrátbecslés hibáján? (Flash-Lite) & OmniFood8k, Nutrition5k & szénhidrát & 2 \\
+C3 & Javít-e a P3\_recipe a zsírbecslésen a Sol modellnél is? & OmniFood8k & zsír & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}A kiértékelés szabályait a futtatás előtt rögzítettem:
+kiugró értékek szerinti kizárást nem alkalmazok, a fel nem dolgozható 
+válaszokat nem kérem le újra, és a pontossági eredményeket csak azután 
+vizsgálom, hogy egy hipotéziscsalád minden mérése lefutott. 
+A hipotézisekhez nem tartozó mennyiségeket teszt nélkül, 
+95\%-os konfidenciaintervallummal írom le.
 
 \section{Az utólagos kalibráció elvetése}
 A modellek becslései szisztematikus torzítást mutatnak: a nagyobb adagokat
