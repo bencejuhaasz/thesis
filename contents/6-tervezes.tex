@@ -45,6 +45,11 @@ válaszai mentésre és kiértékelésre kerülnek.
     \item Stabilitás és a strukturált kimenet megbízhatósága: az újrapróbálkozások után is sikertelen
     API-hívások száma, a fel nem dolgozható válaszok száma, valamint azon válaszok száma, amelyek nem teljesen JSON formátumban érkeztek, 
     és csak a JSON-objektum szövegből való kiemelése után váltak feldolgozhatóvá.
+    \item Konzisztencia: ugyanarra a bemenetre, azonos beállítással ismételt hívások
+    becsléseinek eltérése. Ételenként az ismételt becslések szórása, és ezek
+    négyzetes átlaga a referenciaértékek átlagához viszonyítva. Így az eredmény a pMAE-vel
+    azonos skálán értelmezhető. Ebből adódik az ismételhetőségi együttható, amelynél
+    ugyanarra a bemenetre adott két becslés eltérése az esetek 95\%-ában kisebb.
 \end{enumerate}
 
 
@@ -295,9 +300,21 @@ korábbi, azonos beállítású futásainak eredményeivel vetem össze őket.
 Minden összehasonlítás kétoldali páros $t$-próba a pMAE különbségére, ugyanazokon az ételeken. 
 Egy különbséget akkor tekintek szignifikánsnak, ha a családon belül Holm-korrekcióval javított 
 $p$-érték kisebb, mint 0,05. A hatás nagyságát korrekció nélküli 95\%-os konfidenciaintervallummal 
-közlöm. Az A család adathalmazait előre rögzített szabály alapján választottam ki: csak azok 
-kerültek bele, amelyeken az előmérésben talált különbség elérte a 200 elemes mintán kimutatható 
-legkisebb különbséget, az adott adathalmazon becsült szórás alapján. % TODO: erőszint ellenőrzése
+közlöm.
+Ez a becslés pontosságát mutatja, a szignifikanciáról a korrigált $p$-érték dönt.
+
+\paragraph{}Az A család vizsgálatába azok az adathalmazok tartoznak, amelyeken az 
+előmérésben talált különbség elérte a 200 elemes mintán 
+kimutatható legkisebb különbséget (MDD). Ezt páros összehasonlításra a
+\begin{equation}
+  \mathrm{MDD} = \left(z_{1-\alpha'/2} + z_{1-\beta}\right)\frac{\sigma_d}{\sqrt{n}}
+\end{equation}
+összefüggéssel számoltam, ahol $\sigma_d$ az ételenkénti hibakülönbségek szórása az 
+előmérésben, $n$ a minta elemszáma, $\alpha' = 0{,}05/m$ a Holm-korrekció legszigorúbb 
+lépésének szintje egy $m$ elemű családban, $1-\beta$ pedig a próba ereje. Az 
+erőt 80\%-ra választottam: egy pontosan MDD nagyságú valódi 
+különbséget a próba 80\% valószínűséggel mutat ki. A SNAPMe adathalmaz ennek a feltételnek nem 
+felelt meg.
 
 \begin{table}[h]
 \centering
