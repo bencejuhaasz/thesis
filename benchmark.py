@@ -269,6 +269,11 @@ MODELS = [
     dict(label="gpt-sol", provider="openai", model="gpt-6.1-sol", enabled=False,
      temperature=None, extra={"reasoning_effort": "low"},
      price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
+    # GPT-6 Astra: same settings as gpt-sol (copied block); standard-tier price per 1M tokens,
+    # developers.openai.com/api/docs/pricing (checked 2026-11-10): in 10.00, out 50.00.
+    dict(label="gpt-astra", provider="openai", model="gpt-6-astra", enabled=False,
+     temperature=None, extra={"reasoning_effort": "low"},
+     price={"in": 10.00, "out": 50.00}, min_interval_s=0.0),
     dict(label="gpt-sol-med", provider="openai", model="gpt-6.1-sol", enabled=False,
      temperature=None, extra={"reasoning_effort": "medium", "max_completion_tokens": 1000},
      price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
@@ -586,6 +591,39 @@ PROMPT_P3_CHECK = _variant(
     "3. Write the corrected values in \"items\".\n",
     "Draft of every item (grams, carbohydrate, protein, fat, calories), then the checks and corrections")
 
+
+# H5 (2026-11-10) = H1 + H4 in one prompt: recipe prior (what the dish contains, the
+# preparation's fat and sugar included) + written draft and consistency checks before
+# the final items. Output = exactly the P3_macros fields.
+PROMPT_P3_RECIPE_CHECK = _variant(
+    "WORK IN THIS ORDER:\n"
+    "1. In \"general_description\", name each dish by its usual name and cuisine, and say how "
+    "it is normally prepared (for example \"stir-fried in oil\", \"deep-fried in batter\", "
+    "\"braised in a sweet soy sauce\", \"dressed with mayonnaise\"). Note the fat and sugar this "
+    "preparation normally adds, even if you cannot see it in the photo.\n"
+    "2. Use the photo to decide WHAT is on the plate and HOW MUCH of each item there is. Use your "
+    "knowledge of how the dish is normally made to decide what it CONTAINS per gram.\n"
+    "3. Cooking oil, butter, sauce, dressing or sugar that the preparation normally includes "
+    "belongs to the food it was cooked with: count it in that item's calories, carbohydrate and "
+    "fat. List it as a separate item only if it is served separately (a dip, a dressing on the "
+    "side, a pool of oil or sauce). Do not add ingredients the dish does not normally contain.\n"
+    "4. Still in \"general_description\", write a short draft: each item with grams, "
+    "carbohydrate, protein, fat and calories. Check the draft and note there what you correct:\n"
+    "   - calories should be close to 4 x carbohydrate + 4 x protein + 9 x fat (within about 15%);\n"
+    "   - carbohydrate + protein + fat cannot exceed the weight; for most cooked foods they are "
+    "10-40% of it, for oils and fats up to 100%;\n"
+    "   - every food and drink in the photo is listed once and nothing is counted twice (for "
+    "example cooking oil counted inside a dish and again as a separate item);\n"
+    "   - the total weight and calories are plausible for what was served in this photo.\n"
+    "5. Write the corrected values in \"items\".\n"
+    "\n"
+    "For each food item, estimate:\n"
+    "- Weight in grams (the actual amount in the photo, as served)\n"
+    "- Calories (for that amount, as prepared)\n"
+    "- Carbohydrate, protein and fat in grams (for that amount, as prepared)\n" + _CARB_DEF,
+    "Dishes, cuisine and how they are normally prepared, with the fat and sugar this adds; "
+    "then a draft of every item (grams, carbohydrate, protein, fat, calories), the checks and corrections")
+
 VARIANTS = {
     "P3": dict(base=PROMPT_P3_ANTI_SNAP, kind="image", fields={
         "kcal": "estimated_calories", "mass_g": "estimated_weight_grams"}),
@@ -594,6 +632,7 @@ VARIANTS = {
     "P3_anchor": dict(base=PROMPT_P3_ANCHOR, kind="image", fields=MACRO_FIELDS),
     "P3_portion": dict(base=PROMPT_P3_PORTION, kind="image", fields=MACRO_FIELDS),
     "P3_check": dict(base=PROMPT_P3_CHECK, kind="image", fields=MACRO_FIELDS),
+    "P3_recipe_check": dict(base=PROMPT_P3_RECIPE_CHECK, kind="image", fields=MACRO_FIELDS),
     "P3_macros_hint": dict(base=PROMPT_P3_MACROS, kind="image", fields=MACRO_FIELDS),
     "P3_density": dict(base=PROMPT_P3_DENSITY, kind="image",
                        fields={"mass_g": "estimated_weight_grams"},
