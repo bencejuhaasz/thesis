@@ -1,0 +1,464 @@
+{
+  "run_name": "n50_s42_gemini_flash_lite_pre",
+  "started": "2026-10-23T14:23:03",
+  "output_mode": "schema",
+  "max_image_side": 1024,
+  "dfood_views": "both",
+  "dfood_pair_order": [
+    "overhead",
+    "oblique"
+  ],
+  "repeats": 1,
+  "models": [
+    {
+      "label": "gemini-flash-lite",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "enabled": true,
+      "temperature": 0.1,
+      "extra": {},
+      "price": null,
+      "min_interval_s": 6.0
+    }
+  ],
+  "datasets": {
+    "nutrition5k": {
+      "enabled": true,
+      "root": "Nutrition5K",
+      "loader": "loader.py",
+      "fn": "load_nutrition5k",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "dish_id",
+        "image_path": "rgb_path",
+        "kcal": "total_calories",
+        "mass_g": "total_mass",
+        "carb_g": "total_carb",
+        "protein_g": "total_protein",
+        "fat_g": "total_fat"
+      },
+      "query": "has_overhead and total_mass > 0 and total_calories > 0",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt_variant": "P3",
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "dish_1558116146",
+        "dish_1563207277",
+        "dish_1567024252",
+        "dish_1564690138",
+        "dish_1561666923",
+        "dish_1562689548",
+        "dish_1567526738",
+        "dish_1558719401",
+        "dish_1565022062",
+        "dish_1564073677",
+        "dish_1565030391",
+        "dish_1564171888",
+        "dish_1561749908",
+        "dish_1558459462",
+        "dish_1565894910",
+        "dish_1557861795",
+        "dish_1560455158",
+        "dish_1562614158",
+        "dish_1564432128",
+        "dish_1566591048",
+        "dish_1558635400",
+        "dish_1564690038",
+        "dish_1557936555",
+        "dish_1563824155",
+        "dish_1558030910",
+        "dish_1561491154",
+        "dish_1562097653",
+        "dish_1563568025",
+        "dish_1566328894",
+        "dish_1563476323",
+        "dish_1563563240",
+        "dish_1563389079",
+        "dish_1558723512",
+        "dish_1565207727",
+        "dish_1562691383",
+        "dish_1566851198",
+        "dish_1563823814",
+        "dish_1561737200",
+        "dish_1568320470",
+        "dish_1567023110",
+        "dish_1558722068",
+        "dish_1558628760",
+        "dish_1565123881",
+        "dish_1564428515",
+        "dish_1563827188",
+        "dish_1558379273",
+        "dish_1567526785",
+        "dish_1558723719",
+        "dish_1562784266",
+        "dish_1566587689"
+      ]
+    },
+    "snapme": {
+      "enabled": true,
+      "root": "snapme/snapme_cs_db",
+      "loader": "../loader.py",
+      "fn": "load_snapme",
+      "pick": 1,
+      "colmap": {
+        "sample_id": "__index__",
+        "image_path": "path",
+        "text": "description"
+      },
+      "query": "has_file",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt_variant": "P3",
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "92143e0146cdb610c2869d5a17d6.jpeg",
+        "c876b67049c4992632daf1527cd3.jpeg",
+        "fd8ef4ad4582a575b921d53a647a.jpeg",
+        "17e048034b3ebdc202ace610dba9.jpeg",
+        "be69fb3e45319b8faadc05c2a71e.jpeg",
+        "f5f56ab14c20a9f5ecf09b420de8.jpeg",
+        "56a4386546f183a557cdab5c06bd.jpeg",
+        "3c1fe53a41d99a376ff46bf2b3b1.jpeg",
+        "d123efce425382fd0fa5bf5c4607.jpeg",
+        "c08df20f41f296397635f565af44.jpeg",
+        "77dc57664949afdb06829aab4fde.jpeg",
+        "a69da26347fd97e27f253fe19041.jpeg",
+        "c92f919a44989719c66bfe400ae3.jpeg",
+        "914f47984401a45190539c620deb.jpeg",
+        "1f55c15542ddb3ce2a82dfaeae06.jpeg",
+        "82f1eac84b69be7e89441050cc3c.jpeg",
+        "b35545bf43c4b7ad7f3a1cb28815.jpeg",
+        "1e07e56145d99a2723efbcb6b976.jpeg",
+        "b545d7d249cbb225830e5a5afdf2.jpeg",
+        "8ccfa57247358819766e395846f0.jpeg",
+        "7418408441be80ed3c3c0d29a05f.jpeg",
+        "0809fea547308bff62b41afb6ecd.jpeg",
+        "e88ce91c4d949aacebe17113e34c.jpeg",
+        "2207b7ef49989b7beb2e58272e7e.jpeg",
+        "e072e0a144e39781293170dff007.jpeg",
+        "0ec0ef18471e9315a030eb292c1d.jpeg",
+        "74bde9f2488ea9f447bbfb0ff937.jpeg",
+        "3e792ee748889656b17e97194852.jpeg",
+        "a2f2d0664a69b7eb3ca09bbdad13.jpeg",
+        "b186445b482fbce8ed82ac93734c.jpeg",
+        "d57cd1224eae9b962c004db2b184.jpeg",
+        "7e2a432f45ae8c667ffc4619bb2e.jpeg",
+        "15f07e454bd8842f98da14dcb29c.jpeg",
+        "195b40e749eb921c8a8863dac46b.jpeg",
+        "702de1a547e388b58117b9f51215.jpeg",
+        "70ff5d5c4b04bb53e5809d841915.jpeg",
+        "0812cc01486483294955ec3d384c.jpeg",
+        "f43d7d444d41977ef618afb41642.jpeg",
+        "272ebc0f44c3a62194ebfb382a99.jpeg",
+        "3c85394d4fcfad288b73a5b8d40c.jpeg",
+        "3e054c8641f2a1750c9dab3a9e9b.jpeg",
+        "675fdaa0489681609ce8b6886441.jpeg",
+        "8a69c82042c8905cd7319e44c55e.jpeg",
+        "958e1a9a44c99fd043ce375c9453.jpeg",
+        "733cc3e043fc93990c1470895786.jpeg",
+        "cad962fc4a65bc6d8753c5a547b7.jpeg",
+        "2c8b58f14ea7b29c5024ead57a03.jpeg",
+        "cb664a9f4eaabb6a94a370695201.jpeg",
+        "d3306e59427389ae6aa95a796147.jpeg",
+        "d0de0b2f49e6b5a58c1c5f496934.jpeg"
+      ]
+    },
+    "acetada": {
+      "enabled": true,
+      "root": "ACETADA/ACETADA-release",
+      "loader": "loader.py",
+      "fn": "load_acetada",
+      "pick": 0,
+      "colmap": {
+        "sample_id": "before_filepath",
+        "image_path": "before_path",
+        "mass_g": "consumed_g"
+      },
+      "query": "has_before and not suspect and not (meal_type == 'Dinner' and before_filepath in ['ACETADA/3088/2021-10-19_07-38-50.jpg', 'ACETADA/3057/2021-08-03_07-52-35.jpg'])",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt_variant": "P3",
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "ACETADA/3083/2021-10-05_08-52-42.jpg",
+        "ACETADA/3111/2021-11-02_13-10-15.jpg",
+        "ACETADA/3088/2021-10-19_13-21-25.jpg",
+        "ACETADA/3122/2021-11-23_08-53-33.jpg",
+        "ACETADA/3027/2021-06-24_17-00-34.jpg",
+        "ACETADA/3150/2021-12-09_17-57-04.jpg",
+        "ACETADA/3039/2021-07-20_11-30-02.jpg",
+        "ACETADA/3086/2021-10-26_07-45-25.jpg",
+        "ACETADA/3055/2021-08-10_12-17-40.jpg",
+        "ACETADA/3143/2021-12-16_13-12-50.jpg",
+        "ACETADA/3031/2021-06-17_17-02-56.jpg",
+        "ACETADA/3152/2021-12-14_12-43-17.jpg",
+        "ACETADA/3088/2021-10-12_12-09-39.jpg",
+        "ACETADA/3028/2021-06-03_16-56-54.jpg",
+        "ACETADA/3044/2021-06-24_17-20-25.jpg",
+        "ACETADA/3025/2021-05-20_12-28-54.jpg",
+        "ACETADA/3084/2021-09-14_13-16-55.jpg",
+        "ACETADA/3096/2021-10-12_18-24-04.jpg",
+        "ACETADA/3042/2021-06-24_18-25-10.jpg",
+        "ACETADA/3095/2021-10-26_09-11-43.jpg",
+        "ACETADA/3021/2021-05-27_18-40-31.jpg",
+        "ACETADA/3039/2021-07-20_18-07-32.jpg",
+        "ACETADA/3062/2021-08-17_12-23-29.jpg",
+        "ACETADA/3089/2021-09-21_17-48-40.jpg",
+        "ACETADA/3008/2021-03-25_08-47-03.jpg",
+        "ACETADA/3097/2021-10-12_08-54-18.jpg",
+        "ACETADA/3129/2021-12-02_12-39-04.jpg",
+        "ACETADA/3103/2021-10-26_17-29-15.jpg",
+        "ACETADA/3002/2021-03-18_17-29-11.jpg",
+        "ACETADA/3023/2021-05-20_17-46-18.jpg",
+        "ACETADA/3065/2021-10-26_07-40-47.jpg",
+        "ACETADA/3105/2021-11-09_08-56-37.jpg",
+        "ACETADA/3011/2021-04-22_12-31-50.jpg",
+        "ACETADA/3123/2021-11-30_16-55-57.jpg",
+        "ACETADA/3068/2021-09-07_12-48-40.jpg",
+        "ACETADA/3003/2021-03-18_08-00-06.jpg",
+        "ACETADA/3083/2021-09-21_08-45-04.jpg",
+        "ACETADA/3010/2021-04-22_07-43-00.jpg",
+        "ACETADA/3087/2021-10-26_12-07-00.jpg",
+        "ACETADA/3101/2021-10-26_11-35-43.jpg",
+        "ACETADA/3007/2021-03-11_12-33-03.jpg",
+        "ACETADA/3119/2021-11-16_06-53-38.jpg",
+        "ACETADA/3025/2021-06-03_12-27-44.jpg",
+        "ACETADA/3094/2021-10-26_13-21-25.jpg",
+        "ACETADA/3108/2021-11-02_12-27-32.jpg",
+        "ACETADA/3077/2021-09-07_08-48-34.jpg",
+        "ACETADA/3152/2021-12-02_09-22-06.jpg",
+        "ACETADA/3123/2021-11-23_12-13-46.jpg",
+        "ACETADA/3113/2021-11-09_08-32-07.jpg",
+        "ACETADA/3118/2021-11-23_17-43-40.jpg"
+      ]
+    },
+    "omnifood8k": {
+      "enabled": false,
+      "root": "OmniFood8k/0-OminiFood8k",
+      "loader": "loader.py",
+      "fn": "load_omnifood8k",
+      "pick": null,
+      "colmap": {
+        "sample_id": "sample"
+      },
+      "query": "split == 'test' and has_image",
+      "use_text": false,
+      "select": {
+        "mode": "random",
+        "n": 50,
+        "seed": 42
+      },
+      "prompt_variant": "P3",
+      "prompt": "You are a clinical nutrition assistant. Analyze this meal photo.\n\nCRITICAL INSTRUCTIONS:\n1. Estimate the ACTUAL PORTION SIZE visible in the photo - NOT a standard serving\n2. Do NOT snap to typical/reference portions\n3. Use standard servings ONLY as a sanity-check bound if your estimate is wildly implausible\n4. If the photo shows a smaller or larger amount than typical, estimate what you SEE\n\nFor each visible food item, estimate:\n- Weight in grams (the actual visible amount)\n- Calories (based on the actual visible portion)\n\nReturn ONLY valid JSON (no markdown, no extra text) matching this structure:\n{\n  \"general_description\": \"Brief description of the meal\",\n  \"items\": [\n    {\n      \"name\": \"ingredient name\",\n      \"estimated_calories\": 123,\n      \"estimated_weight_grams\": 45\n    }\n  ]\n}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "general_description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "estimated_calories": {
+                  "type": "number"
+                },
+                "estimated_weight_grams": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "estimated_calories",
+                "estimated_weight_grams"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "general_description",
+          "items"
+        ],
+        "additionalProperties": false
+      },
+      "sample_ids": [
+        "3347",
+        "220",
+        "5351",
+        "6174",
+        "3243",
+        "5915",
+        "4527",
+        "3630",
+        "5892",
+        "7648",
+        "3578",
+        "3734",
+        "829",
+        "355",
+        "5900",
+        "2600",
+        "5545",
+        "1832",
+        "5081",
+        "7605",
+        "5908",
+        "1573",
+        "6356",
+        "4129",
+        "3395",
+        "1592",
+        "5284",
+        "561",
+        "2790",
+        "5942",
+        "5558",
+        "2771",
+        "4074",
+        "5541",
+        "6329",
+        "5329",
+        "5540",
+        "5889",
+        "4152",
+        "6605",
+        "3606",
+        "589",
+        "4126",
+        "3859",
+        "421",
+        "3868",
+        "4067",
+        "3652",
+        "7680",
+        "6170"
+      ]
+    }
+  }
+}

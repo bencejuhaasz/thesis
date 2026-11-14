@@ -1,0 +1,5 @@
+dataset,model,prompt,output,calls,api_fail,parse_fail,json_fallback,latency_mean_s,latency_p50_s,cost_usd,kcal_n,kcal_MAE,kcal_pMAE%,kcal_bias,mass_g_n,mass_g_MAE,mass_g_pMAE%,mass_g_bias
+acetada,gemini-flash-lite,P3,schema,50,0,0,0,6.95,7.24,,50,162.11,22.6,-11.22,50,138.46,18.2,1.92
+nutrition5k,gemini-flash-lite,P3,schema,50,0,0,0,4.3,3.81,,50,82.51,31.7,-28.97,50,42.78,20.5,-23.94
+omnifood8k,gemini-flash-lite,P3,schema,50,0,0,0,5.6,5.09,,50,196.12,50.4,-174.99,50,38.37,21.7,19.68
+snapme,gemini-flash-lite,P3,schema,49,0,0,0,5.73,4.74,,49,117.04,42.3,-31.57,49,91.31,33.7,-41.38
