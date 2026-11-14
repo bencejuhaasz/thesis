@@ -209,7 +209,11 @@ ilyen, sorrend-függő torzítást a validációs értékekre nézve.
 hogy ha a képek nem a megjelenítési irányban vannak tárolva, abban az esetben is egységes legyen az elforgatásuk. Ezután RGB színtérbe alakítja, és a képarány megtartásával úgy 
 kicsinyíti, hogy a hosszabbik oldala legfeljebb 1024 képpont legyen. Az ennél kisebb képeket nem nagyítja. Végül a képet 90-es minőségi beállítással JPEG formátumba kódolja. 
 Az egységes előfeldolgozás biztosítja, hogy az eltérő forrású adathalmazok képei azonos felbontásban és formátumban jussanak el a modellekhez, és a bemeneti tokenszám, ezzel 
-a költség, felülről korlátozott legyen. % TODO: miért éppen 1024 / 90?
+a költség, felülről korlátozott legyen.
+A JPEG-tömörítés mértékének hatását páros előméréssel vizsgáltam (Gemini Flash-Lite, Nutrition5k, P3\_macros, 50 étel). A 80-as minőségi beállítással az energia pMAE-je 2,9, a 
+szénhidráté 4,4 százalékponttal nagyobb volt, mint a 90-es beállítással. A különbség ekkora mintán nem szignifikáns (95\%-os konfidenciaintervallum: $-2{,}7$ és $+9{,}1$, 
+illetve $-3{,}3$ és $+12{,}5$ százalékpont között), de nem utal arra, hogy az erősebb tömörítés elegendő lenne. Mivel a bemeneti tokenszám a két beállítás mellett azonos volt, 
+a 90-es minőséget választottam.
 
 \paragraph{}Ha egy API-hívás hibával tér vissza (például hálózati hiba, túlterhelés vagy a kérések számának korlátozása miatt), a program legfeljebb háromszor újrapróbálkozik, 
 vagyis hívásonként legfeljebb négy kísérletet tesz. A kísérletek között exponenciálisan növekvő ideig vár (5, 10, majd 20 másodpercig), hogy a szolgáltató átmeneti túlterhelése 
