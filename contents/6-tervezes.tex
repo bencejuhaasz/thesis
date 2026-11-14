@@ -341,25 +341,17 @@ A hipotézisekhez nem tartozó mennyiségeket teszt nélkül,
 95\%-os konfidenciaintervallummal írom le.
 
 \section{Az utólagos kalibráció elvetése}
-A modellek becslései szisztematikus torzítást mutatnak: a nagyobb adagokat
-rendre alulbecsülik, és az energiaértékek átlagos előjeles hibája adathalmazonként
-jelentősen eltér. Az első mérési körben ez a torzítás
-az ACETADA adathalmazon elhanyagolható volt (\mbox{$-1{,}6\%$}), a Nutrition5k-n
-mérsékelt (\mbox{$-11{,}1\%$}), az OmniFood8k-n viszont jelentős (\mbox{$-45{,}0\%$}).
 Egy adott adathalmazon illesztett utólagos korrekció, például a becsült és a valós érték
-közötti lineáris leképezés ezt a rendszeres
-eltérést csökkenteni képes.
-% TODO bizonyítani.
+közötti lineáris leképezés, ugyanazon az adathalmazon képes csökkenteni ezt a rendszeres
+eltérést: az első mérési körben a kihagyásos (leave-one-out) módon illesztett lineáris
+korrekció az OmniFood8k-n az energia pMAE-jét 50,4\%-ról 32,1\%-ra csökkentette.
 Viszont amellett döntöttem, hogy ezt az elkészítendő becslést végző pipeline-ba nem fogom
 beépíteni.
 \paragraph{}A döntés oka, hogy a korrekció csak abban a helyzetben érvényes, amelyből
 illesztették. A torzítás nagysága és előjele függ az adathalmaztól, az ételek jellegétől, a használt modelltől és az adag méretétől,
 ezért egyetlen rögzített korrekciós függvény az egyik helyzetben javítana, a másikban
-viszont ronthatna. A mérések ezt alátámasztják %TODO biz
-: a modellek előjele is eltérhet ugyanazon
-az adathalmazon belül, a kalibráció pedig a Nutrition5k-n kismértékben rontott az eredményen. Egy valós alkalmazásban a bemenetek
-eloszlása ismeretlen és változó, a kalibrációhoz szükséges címkézett minták pedig nem
-állnak rendelkezésre, így a korrekció nem lenne megbízhatóan beállítható.
+viszont ronthatna. A mérések ezt alátámasztják: ugyanez a korrekció a Nutrition5k-n
+(31,7\%-ról 34,1\%-ra) és az ACETADA-n (22,6\%-ról 23,6\%-ra) rontott az eredményen.
 
 
 \clearpage % Ez azért kell, hogy nehogy képek átcsússzanak a következő fejezethez
