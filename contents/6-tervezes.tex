@@ -214,6 +214,7 @@ A JPEG-tömörítés mértékének hatását páros előméréssel vizsgáltam (
 szénhidráté 4,4 százalékponttal nagyobb volt, mint a 90-es beállítással. A különbség ekkora mintán nem szignifikáns (95\%-os konfidenciaintervallum: $-2{,}7$ és $+9{,}1$, 
 illetve $-3{,}3$ és $+12{,}5$ százalékpont között), de nem utal arra, hogy az erősebb tömörítés elegendő lenne. Mivel a bemeneti tokenszám a két beállítás mellett azonos volt, 
 a 90-es minőséget választottam.
+A Pillow programkönyvtár dokumentációja a 95 feletti értékeket nem javasolja, mert azok jelentős fájlméret-növekedés mellett alig javítanak a képminőségen \cite{pillow_jpeg}.
 
 \paragraph{}Ha egy API-hívás hibával tér vissza (például hálózati hiba, túlterhelés vagy a kérések számának korlátozása miatt), a program legfeljebb háromszor újrapróbálkozik, 
 vagyis hívásonként legfeljebb négy kísérletet tesz. A kísérletek között exponenciálisan növekvő ideig vár (5, 10, majd 20 másodpercig), hogy a szolgáltató átmeneti túlterhelése 
