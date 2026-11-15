@@ -84,11 +84,10 @@ OmniFood Flash-Lite 1–100; a többi adathalmazon 1–50).
 3. **Az elemzési szkript.** A teszteket a `prereg_tests.py` végezte, amelyet a futtatás
    előtt commitoltam (2026-11-14 14:28, `prereq_tests.py` néven; 2026-11-15-én
    átnevezve). A futtatás: 2026-11-14 19:10.
-
-Más eltérés nem történt: a modellek, promptok, pozíciók, családok és döntési szabályok
-a fentiek szerint változatlanok.
-
 4. **A végső körtől független mérés.** 2026-11-14-én egy külön páros előmérés futott a
    JPEG-minőség hatásáról (Flash-Lite, Nutrition5k, P3_macros, a sorrend 1–50. étele,
    minőség 80 és 90). A végső kör ágait és tesztjeit nem érinti; leírása és eredménye:
    `notes/jpeg_quality_check.md`.
+Más eltérés nem történt: a modellek, promptok, pozíciók, családok és döntési szabályok
+a fentiek szerint változatlanok.
+
