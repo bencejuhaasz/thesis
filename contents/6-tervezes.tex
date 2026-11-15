@@ -1,4 +1,5 @@
 \chapter{Tervezés}
+\label{ch:tervezes}
 \section{Az adathalmazok kiválasztása és előkészítése}
 Az előzmények között ismertetett adathalmazok közül a Nutrition5K, OmniFood8k, DFood-Tj, ACETADA, SNAPMe és NutriBench adathalmazokat tudtam beszerezni.
 A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem a megemlített tanulmány címét, szerzőit az előzményekben
@@ -34,6 +35,7 @@ Minden méréshez megadható kimeneti mappa, egy mérés során tetszőleges sz�
 válaszai mentésre és kiértékelésre kerülnek.
 
 \section{A mért mennyiségek kiválasztása}
+\label{sec:mert_mennyisegek}
 \paragraph{}A feladatkiírásban megfogalmazottak szerint a megoldások összehasonlításakor a becslés pontossága mellett a válaszidőt, a költséget, a stabilitást és a konzisztenciát is figyelembe kell venni. A következő mennyiségek mérése mellett döntöttem:
 \begin{enumerate}
     \item Pontosság: a becsült tömeg, energia, szénhidrát, fehérje és zsír eltérése az
@@ -157,6 +159,7 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
 \section{A mérési eredmények összehasonlításához használható módszerek kiválasztása}
 
 \subsection{Hibamértékek}
+\label{sec:hibamertekek}
 
 pMAE: Minden célmennyiségre (energia, szénhidrát, fehérje, zsír, tömeg) étkezésenként összevetésre kerül a modell becslése a referenciaértékkel. A pMAE érték az abszolút hibák összegét a referenciaértékek összegéhez viszonyítja:
 \begin{equation}
@@ -284,6 +287,7 @@ közé sorolom. A kimeneti tokenszám ezzel szemben a modell válaszától függ
 korlátozható, hatása pedig a költségben jelenik meg.
 
 \subsection{Döntési mérési protokoll}
+\label{sec:dontesi_protokoll}
 \paragraph{}A döntési mérési protokoll célja, hogy az előmérési protokoll során feltárt eredményeket 
 nagyobb, korábban nem vizsgált mintán, előre rögzített eljárással ellenőrizze, és ezzel megalapozza, 
 mely beállítások kerüljenek a kialakítandó becslési folyamatba.

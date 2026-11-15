@@ -1,8 +1,96 @@
 \chapter{Eredmények}
 
 \section{Az eredmények értékelésének módja}
-% TODO: a próbák, a konfidenciaintervallumok és a skill leírása, a tervezésbe nem írtam le
+\label{sec:ertekeles}
+\paragraph{}Ez a szakasz azt írja le, hogyan készülnek a fejezetben közölt 
+konfidenciaintervallumok, próbák és kiegészítő mutatók. A hibamértékek 
+(pMAE, MAE, bias) definíciója \az{\ref{sec:hibamertekek}}.~szakaszban, a döntési 
+mérés szabályai \az{\ref{sec:dontesi_protokoll}}.~szakaszban és \az{\ref{tab:hipotezisek}}.~táblázatban 
+szerepelnek.
 
+\subsection{Egy futás konfidenciaintervalluma}
+\paragraph{}A pMAE és a százalékos bias is két összeg hányadosa:
+$R = \sum_i x_i / \sum_i t_i$, ahol $t_i$ az $i$-edik étel referenciaértéke, 
+$x_i$ pedig pMAE esetén $|p_i - t_i|$, bias esetén $p_i - t_i$. Egy ilyen 
+hányados standard hibáját a delta-módszerrel (linearizálással) becsülöm. Az 
+$u_i = x_i - R\,t_i$ maradékokból
+\begin{equation}
+  \mathrm{SE} = \frac{100}{\bar{t}}\sqrt{\frac{\sum_{i=1}^{n} u_i^2}{n(n-1)}},
+\end{equation}
+ahol $\bar{t}$ a referenciaértékek átlaga, $n$ az ételek száma. A 95\%-os 
+konfidenciaintervallum $100R \pm t_{0{,}975;\,n-1}\cdot\mathrm{SE}$, ahol 
+$t_{0{,}975;\,n-1}$ az $n-1$ szabadsági fokú Student-eloszlás 
+0,975-ös kvantilise.
+
+\subsection{Páros összehasonlítás}
+\paragraph{}Két beállítást (A és B) mindig ugyanazokon az ételeken vetek össze. 
+Csak azok az ételek számítanak, amelyekre mindkét futás adott feldolgozható 
+választ, és amelyeknél a referenciaérték is azonos. Ételenként a két abszolút 
+hiba különbsége
+\begin{equation}
+  d_i = |p_i^{B} - t_i| - |p_i^{A} - t_i|,
+\end{equation}
+és mivel a nevező közös, a pMAE különbsége
+$\Delta = \mathrm{pMAE}_B - \mathrm{pMAE}_A = 100\sum_i d_i / \sum_i t_i$. 
+Negatív $\Delta$ azt jelenti, hogy a B beállítás pontosabb. A $\Delta$ standard 
+hibája az előző képlet a $d_i$ értékekre alkalmazva. Mivel ugyanazok az 
+ételek szerepelnek mindkét oldalon, az ételek nehézségéből adódó közös 
+ingadozás kiesik, ezért a páros összehasonlítás kisebb különbséget is 
+kimutat, mint két független minta összevetése.
+
+\paragraph{}A döntési mérésben a próbastatisztika $\Delta/\mathrm{SE}_\Delta$. 
+Mivel a standard hiba a mintából becsült érték, a kétoldali $p$-érték a 
+standard normális eloszlás helyett az $n-1$ szabadsági fokú Student-eloszlásból 
+adódik. A tesztelt mintaelemszámok mellett a kettő közötti eltérés 
+elhanyagolható. A családonkénti Holm-korrekció a $p$-értékek növekvő 
+sorrendjében a $j$-edik értéket $(m-j+1)$-gyel szorozza, a sorrendet monotonná teszi, és 
+1-nél levágja. A közölt konfidenciaintervallumok korrekció nélküliek, a 
+szignifikanciáról a korrigált $p$-érték dönt.
+
+\paragraph{}Az előmérésekben ($n = 50$) a páros különbség 
+konfidenciaintervallumát bootstrap módszerrel becsültem: az ételekből 5000 
+alkalommal visszatevéses mintát vettem, minden mintán újraszámoltam 
+$\Delta$-t, és az intervallum határai ezek 2,5\%-os és 97,5\%-os 
+percentilisei. Ezek az összehasonlítások felderítő jellegűek voltak: sok 
+beállítást vetettem össze ugyanazokon az ételeken, így egy-egy intervallum 
+véletlenül is kizárhatta a nullát. 
+Többszörös összehasonlítási korrekciót ezért itt nem alkalmaztam, hanem az 
+eredményeket csak a döntési mérés hipotéziseinek megfogalmazására használtam. 
+Kivétel a P3\_recipe prompt zsírbecslésre gyakorolt hatása, amelyet a döntési 
+mérés előtt egy előre rögzített megerősítő méréssel is ellenőriztem az 
+OmniFood8k sorrendjének 51--100. ételén. Ez egyetlen próba volt ($m = 1$), 
+ezért korrekcióra nem volt szükség, a próba pedig a döntési mérésben használt 
+páros $t$-próba volt.
+
+\subsection{Kiegészítő mutatók}
+\paragraph{}A pMAE nagysága attól is függ, mennyire különböznek egymástól egy 
+adathalmaz ételei. Ha az adagok hasonlók, már egy képet nem is néző, állandó 
+tipp is kis hibát ad. Ezért a pMAE mellett a skill értéket is közlöm, amely a 
+modell hibáját egy ilyen naiv tipp hibájához viszonyítja:
+\begin{equation}
+  \mathrm{skill} = 1 - \frac{\sum_i |p_i - t_i|}{\sum_i |m_i - t_i|},
+\end{equation}
+ahol $m_i$ a többi étel referenciaértékének mediánja (leave-one-out medián): 
+az $i$-edik étel tippje nem használja a saját referenciaértékét. A skill 1, ha 
+a becslés hibátlan, 0, ha a modell nem jobb a mediántippnél, és negatív, ha 
+rosszabb nála.
+
+\paragraph{}A meredekség a becsült értékek referenciaértékekre illesztett 
+legkisebb négyzetes egyenesének meredeksége. Ha értéke 1-nél kisebb, a becslések 
+az átlag felé húznak: a kis adagokat a modell túlbecsüli, a nagyokat 
+alulbecsüli. Ugyanezt a harmadonkénti torzítás közvetlenebbül mutatja: az 
+ételeket a referenciaérték szerint három egyenlő elemszámú csoportra osztom, és 
+mindegyikben külön számolom a százalékos biast.
+
+\paragraph{}A konzisztencia mutatóit (az ételenkénti szórás négyzetes átlaga és 
+az ismételhetőségi együttható) \az{\ref{sec:mert_mennyisegek}}.~szakasz írja le. Az 
+ismételhetőségi együttható $1{,}96\cdot\sqrt{2}\approx 2{,}77$-szerese az 
+ételenkénti szórásnak. Ezek mellett az ICC(1,1) osztályon belüli korrelációs 
+együtthatót is közlöm, amely azt adja meg, hogy a becslések teljes 
+szórásnégyzetéből mekkora rész származik az ételek közötti különbségekből. 
+Értéke 1, ha az ismételt hívások pontosan egyeznek, és annál kisebb, minél 
+nagyobb az ismételt hívások közötti ingadozás az ételek közötti 
+különbségekhez képest.
 \section{Előmérések}
 
 \subsection{Modellek és adathalmazok}
