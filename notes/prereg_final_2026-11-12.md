@@ -69,6 +69,26 @@ parse_fail- és api_fail-arány modellenként; konzisztencia a kizárt pozíció
 azonos konfigurációjú korábbi futás van: DFood 1–50; OmniFood Sonnet és gpt-sol 1–50;
 OmniFood Flash-Lite 1–100; a többi adathalmazon 1–50).
 
+
 ## Eltérések
 
-(futás után kitöltendő)
+1. **Újrafuttatott hívások (Nutrition5k, Flash-Lite, P3_macros).** 14 hívás az első
+   kísérletre helyi beállítási hibával zárult („No API key was provided”: az API-kulcs
+   hiányzott a környezetből, a kérés nem jutott el a szolgáltatóhoz). A pre-regisztráció
+   szerint ugyanazzal a paranccsal újrafuttattam őket; mind a 14 étel egy sikeres
+   választ kapott. Az elemzés ételenként az utolsó, sikeres sort használja. Mivel a hiba
+   nem a szolgáltatónál keletkezett, a stabilitási mutatókba nem számít bele.
+2. **SNAPMe elemszám.** A `--n 250` kiválasztásból 248 étel került lekérésre mindkét
+   ágban (a két ág ételei azonosak). A tesztelt 51–250. pozícióból ezért 199 pár került a
+   B család tesztjeibe 200 helyett.
+3. **Az elemzési szkript.** A teszteket a `prereg_tests.py` végezte, amelyet a futtatás
+   előtt commitoltam (2026-11-14 14:28, `prereq_tests.py` néven; 2026-11-15-én
+   átnevezve). A futtatás: 2026-11-14 19:10.
+
+Más eltérés nem történt: a modellek, promptok, pozíciók, családok és döntési szabályok
+a fentiek szerint változatlanok.
+
+4. **A végső körtől független mérés.** 2026-11-14-én egy külön páros előmérés futott a
+   JPEG-minőség hatásáról (Flash-Lite, Nutrition5k, P3_macros, a sorrend 1–50. étele,
+   minőség 80 és 90). A végső kör ágait és tesztjeit nem érinti; leírása és eredménye:
+   `notes/jpeg_quality_check.md`.
