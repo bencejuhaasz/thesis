@@ -169,7 +169,69 @@ OmniFood8k-n $+10\%$, $+63\%$, illetve $+45\%$. A túlbecslés a kis szénhidrá
 \section{Költség, válaszidő, stabilitás és konzisztencia}
 
 \subsection{Költség és válaszidő}
-% TODO: ops.csv
+\paragraph{}A döntési mérés futásainak válaszidejét és költségét 
+\az{\ref{tab:koltseg_valaszido}}.~táblázat foglalja össze. A költség a hívások 
+tényleges bemeneti és kimeneti tokenszámából, a mérés idején érvényes 
+listaárakkal számolt érték, 1000 hívásra vetítve. Mivel egy hívás egy étel 
+becslése, ez 1000 naplózott étkezés költségének felel meg.
+
+\begin{table}[h]
+\centering
+\caption{A döntési mérés futásainak válaszideje és költsége. A válaszidő 
+mediánja és átlaga a tesztelt ételeken, a költség a futás összes hívásán alapul.}
+\label{tab:koltseg_valaszido}
+\begin{tabular}{lllrrrr}
+\hline
+ & & & & \multicolumn{2}{c}{Válaszidő (s)} & Költség \\
+Adathalmaz & Modell & Prompt & Hívás & medián & átlag & (\$/1000 hívás) \\
+\hline
+Nutrition5k & Flash-Lite & P3\_macros & 250 & 2{,}1 & 2{,}2 & 1{,}03 \\
+ & Flash-Lite & P3\_recipe & 250 & 2{,}3 & 5{,}8 & 1{,}12 \\
+ & Sonnet & P3\_macros & 250 & 3{,}5 & 3{,}5 & 6{,}17 \\
+ & Sol & P3\_macros & 250 & 8{,}1 & 8{,}1 & 5{,}59 \\
+\hline
+OmniFood8k & Flash-Lite & P3\_macros & 300 & 2{,}3 & 2{,}3 & 1{,}39 \\
+ & Flash-Lite & P3\_recipe & 300 & 2{,}5 & 4{,}0 & 1{,}55 \\
+ & Sonnet & P3\_macros & 300 & 4{,}0 & 4{,}0 & 7{,}25 \\
+ & Sol & P3\_macros & 300 & 10{,}3 & 10{,}5 & 6{,}72 \\
+ & Sol & P3\_recipe & 300 & 12{,}5 & 12{,}7 & 7{,}59 \\
+\hline
+ACETADA & Flash-Lite & P3\_macros & 250 & 2{,}6 & 2{,}7 & 1{,}53 \\
+ & Sonnet & P3\_macros & 250 & 4{,}3 & 4{,}5 & 9{,}50 \\
+ & Sol & P3\_macros & 250 & 9{,}5 & 9{,}6 & 8{,}69 \\
+\hline
+DFood-Tj & Flash-Lite & P3\_macros & 600 & 2{,}3 & 2{,}5 & 1{,}29 \\
+ & Sonnet & P3\_macros & 600 & 3{,}9 & 3{,}9 & 7{,}80 \\
+ & Sol & P3\_macros & 600 & 8{,}4 & 8{,}6 & 7{,}05 \\
+\hline
+SNAPMe & Flash-Lite & P3\_macros & 248 & 2{,}2 & 2{,}3 & 0{,}88 \\
+ & Flash-Lite & P3\_macros\_hint & 248 & 1{,}9 & 2{,}6 & 1{,}06 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}A Flash-Lite minden adathalmazon a leggyorsabb és a legolcsóbb 
+modell volt. A medián válaszideje 2,1--2,6~s, a Sonneté 3,5--4,3~s, a Solé 
+8,1--10,3~s volt P3\_macros prompttal, vagyis a Sonnet nagyjából 1,6--1,8-szor, 
+a Sol 3,6--4,6-szor annyi ideig válaszolt, mint a Flash-Lite. A költségben 
+nagyobb a különbség: a Flash-Lite 1000 hívása 0,9--1,5~\$, a Sonneté 
+6,2--9,5~\$, a Solé 5,6--8,7~\$ volt, így a két drágább modell adathalmaztól 
+függően nagyjából 5--6-szor annyiba került. A Sonnet minden adathalmazon 
+valamivel drágább volt a Solnál, a Sol viszont 2,2--2,6-szor annyi ideig 
+válaszolt, mint a Sonnet.
+
+\paragraph{}A P3\_recipe prompt a Flash-Lite-nál alig változtatott a medián 
+válaszidőn, az átlagos válaszidő viszont a Nutrition5k-n 2,2~s-ról 5,8~s-ra, 
+az OmniFood8k-n 2,3~s-ról 4,0~s-ra nőtt. A medián és az átlag ilyen eltérése 
+azt jelzi, hogy a legtöbb hívás nem lett lassabb, de néhány hívás sokszorosan 
+tovább tartott. A Solnál a P3\_recipe a medián válaszidőt 10,3~s-ról 
+12,5~s-ra, a költséget 6,7~\$-ról 7,6~\$-ra növelte 1000 hívásonként. A 
+SNAPMe-n a szöveges ételleírás a költséget 0,9~\$-ról 1,1~\$-ra növelte.
+
+\paragraph{}A válaszidők egyetlen helyről, a mérés napjain indított hívásokra 
+vonatkoznak. A hálózati késleltetés és a szolgáltatók terhelése miatt más 
+helyről vagy más időpontban eltérhetnek, ezért a modellek közötti arányok 
+megbízhatóbbak, mint az abszolút értékek.
 
 \subsection{Stabilitás és a strukturált kimenet megbízhatósága}
 % TODO: hibaarányok; hihetőségi ellenőrzés (5 durva hiba, ebből 4 Sonnet-zsír); a DFood-zsír kiugró értéke
