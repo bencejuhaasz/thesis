@@ -1,11 +1,12 @@
 \chapter{Tervezés}
 \label{ch:tervezes}
 \section{Az adathalmazok kiválasztása és előkészítése}
-Az előzmények között ismertetett adathalmazok közül a Nutrition5K, OmniFood8k, DFood-Tj, ACETADA, SNAPMe és NutriBench adathalmazokat tudtam beszerezni.
-A keresést nagy nyelvi modellel (Claude Opus 5.5) végeztem, és a talált weboldalakon összevetettem a megemlített tanulmány címét, szerzőit az előzményekben
-idézett publikációkkal, hogy meggyőződjek róla, valóban a megfelelő adathalmazokat találtam meg. Az ASA24-ből csak hiányos változatot találtam, ezért ezt nem vizsgáltam
-tovább.
-%Ez így nem szép meg kéne mondani honnan vannak
+Az előzmények között ismertetett adathalmazok közül a Nutrition5k, az OmniFood8k, a DFood-Tj, az ACETADA, a SNAPMe
+és a NutriBench adathalmazt tudtam beszerezni. A források felkutatásához segédeszközként nagy nyelvi modellt is
+használtam; a talált adathalmazok azonosságát (a hozzájuk tartozó publikáció címét, szerzőit és a letöltési
+oldalt) minden esetben az eredeti forrásokon ellenőriztem. Az ASA24-ből csak hiányos változatot találtam, ezért
+azt nem vizsgáltam tovább.
+% TODO (F9): a ténylegesen használt keresők és adatbázisok, valamint a letöltési helyek
 
 Ezután kialakítottam egy mappaszerkezetet, amiben minden adathalmaz külön mappát kapott, és ezekbe elkészítettem egy "loader.py" Python programot mindegyik számára,
 amelyekben az adatok egységes betöltését és elérhetővé tételét implementáltam. Az adathalmazok fölött a mappaszerkezetben előkészítettem egy "benchmark.py" nevű Python
@@ -126,7 +127,9 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
     \item \textbf{P3\_macros:} ugyanaz a szöveg, kiegészítve a szénhidrát-, fehérje- és
     zsírtartalom kérésével tételenként, valamint a kimeneti szerkezet megfelelő
     bővítésével.
-    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étel szöveges leírásával a vizsgált adathalmazból. 
+    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étkezés tételeinek felsorolásával, amelyet a
+SNAPMe referenciarekordjából képeztem: a résztvevő által az étkezési naplóban kiválasztott ételek FNDDS-leírása,
+a tömegük nélkül. Ez a szöveg nem a felhasználó szabad leírása, hanem a referenciaannotációból származik.
     \item \textbf{NutriBench:} Csak szöveges bemenetet használó prompt. Előírja, hogy a
     leírás minden ételét és italát külön tételként kell felsorolni, a megadott
     mennyiséget kell használni (a háztartási mértékeket az adott étel jellemző
@@ -337,7 +340,7 @@ felelt meg.
 Család & Kérdés & Adathalmaz & Cél & $m$ \\
 \hline
 A  & Pontosabb-e a Flash-Lite szénhidrátban a Sonnetnél és a Solnál? (P3\_macros) & Nutrition5k, OmniFood8k, ACETADA, DFood-Tj & szénhidrát & 8 \\
-B  & Javít-e a szöveges ételleírás a csak képes becslésen? (P3\_macros\_hint vs.\ P3\_macros, Flash-Lite) & SNAPMe & szénhidrát, zsír & 2 \\
+B  & Javít-e a referenciarekordból képzett ételnév-lista (tömeg nélkül) a csak képes becslésen? (P3\_macros\_hint vs.\ P3\_macros, Flash-Lite) & SNAPMe & szénhidrát, zsír & 2 \\
 C1 & Megismétlődik-e a P3\_recipe zsírbecslési javulása nagyobb mintán? (Flash-Lite) & OmniFood8k & zsír & 1 \\
 C2 & Változtat-e a P3\_recipe a szénhidrátbecslés hibáján? (Flash-Lite) & OmniFood8k, Nutrition5k & szénhidrát & 2 \\
 C3 & Javít-e a P3\_recipe a zsírbecslésen a Sol modellnél is? & OmniFood8k & zsír & 1 \\

@@ -159,11 +159,17 @@ a Nutrition5k-n, az OmniFood8k-n és az ACETADA-n a két drágább modell jóval
 túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-Lite alulbecslése 
 volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
 
-\subsection{A szöveges ételleírás hatása}
-\paragraph{}A B család a szöveges ételleírás hatását vizsgálta a SNAPMe adathalmazon. A szénhidrátbecslés hibáján a leírás nem 
-változtatott ($-0{,}3$ százalékpont, 95\%-os konfidenciaintervallum: $-2{,}9$ és $+2{,}3$ között, Holm-korrigált $p = 0{,}80$), 
-a zsírbecslés hibáját viszont jelentősen csökkentette ($48{,}9\%$-ról $37{,}9\%$-ra, $-11{,}0$ százalékpont, $-14{,}7$ és $-7{,}3$ 
-között, Holm-korrigált $p < 0{,}001$).
+\subsection{A referenciarekordból képzett ételnév-lista hatása}
+\paragraph{}A B család azt vizsgálta, hogyan változik a Flash-Lite becslése a SNAPMe adathalmazon, ha a kép
+mellett megkapja az étkezés tételeinek nevét is, a referenciarekordból, a tömegük nélkül. A szénhidrátbecslés
+hibáján a névlista nem változtatott ($-0{,}3$ százalékpont, 95\%-os konfidenciaintervallum: $-2{,}9$ és $+2{,}3$
+között, Holm-korrigált $p = 0{,}80$), a zsírbecslés hibáját viszont jelentősen csökkentette ($48{,}9\%$-ról
+$37{,}9\%$-ra, $-11{,}0$ százalékpont, $-14{,}7$ és $-7{,}3$ között, Holm-korrigált $p < 0{,}001$).
+\paragraph{}Ez az eredmény nem egy szabad felhasználói leírás hatását méri. A névlista ugyanabból a rekordból
+származik, mint a referenciaértékek, és az FNDDS leírásai gyakran az elkészítés módját és a zsírtartalmat is
+megadják (például teljes vagy zsírszegény tej, sült vagy főtt hús). A modellnek így az ételeket nem kellett
+felismernie, csak az adagot kellett a képről becsülnie. A zsírhiba csökkenése ezért felső becslés arra, amit egy
+valódi felhasználói leírás elérhet.
 
 \subsection{A P3\_recipe prompt hatása}
 \paragraph{}A C családok a P3\_recipe promptot vetették össze a P3\_macros-szal. Az OmniFood8k-n a P3\_recipe a zsírbecslés hibáját 
