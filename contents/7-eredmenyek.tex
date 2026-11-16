@@ -152,9 +152,10 @@ DFood-Tj    & 23,2 & 18,0 & $-5{,}1$ ($-6{,}8$; $-3{,}5$) & 15,4 & $-7{,}7$ ($-1
 \end{tabular}
 \end{table}
 
-\paragraph{}A különbség okát a kiegészítő eredmények mutatják (\ref{sec:leiro_eredmenyek}.~alfejezet): 
-a két drágább modell a szénhidrátot rendszeresen túlbecsülte, a DFood-Tj-n viszont a 
-Flash-Lite becsülte alul. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
+\paragraph{}A különbség hátterét a kiegészítő eredmények mutatják (\ref{sec:leiro_eredmenyek}.~alfejezet): 
+a Nutrition5k-n, az OmniFood8k-n és az ACETADA-n a két drágább modell jóval erősebben 
+túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-Lite alulbecslése 
+volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
 
 \subsection{A szöveges ételleírás hatása}
 \paragraph{}A B család a szöveges ételleírás hatását vizsgálta a SNAPMe adathalmazon. A szénhidrátbecslés hibáján a leírás nem 
@@ -172,15 +173,19 @@ a Flash-Lite-nál $4{,}8$ százalékponttal ($67{,}1\%$-ról $62{,}3\%$-ra, $p <
 
 \subsection{Kiegészítő eredmények hipotézisvizsgálat nélkül}
 \label{sec:leiro_eredmenyek}
-\paragraph{}Az alábbi eredményeket a pre-regisztrációnak megfelelően hipotézisvizsgálat nélkül, 95\%-os konfidenciaintervallummal közlöm. 
-Ezek a tesztelt eredmények értelmezését segítik, önmagukban azonban nem megerősített állítások.
-\paragraph{}A Nutrition5k-n a szénhidrát torzítása a Flash-Lite-nál $+12\%$, a Sonnetnél $+49\%$, a Solnál $+50\%$ volt, az 
-OmniFood8k-n $+10\%$, $+63\%$, illetve $+45\%$. A túlbecslés a kis szénhidráttartalmú ételeken volt a legnagyobb: a valós
- szénhidráttartalom szerinti alsó harmadban a Nutrition5k-n $+133$–$157\%$, az OmniFood8k-n $+284$–$314\%$. A DFood-Tj-n ezzel szemben 
- a Flash-Lite becsülte alul a szénhidrátot ($-19\%$), ezért ott a drágább modellek voltak pontosabbak. Más célmennyiségekben más 
- a sorrend: energiában az OmniFood8k-n mindkét drágább modell jobb volt a Flash-Lite-nál, tömegben viszont lényegesen rosszabb.
+\paragraph{}Az alábbi eredményeket a döntési mérés előre rögzített tervének megfelelően 
+hipotézisvizsgálat nélkül, 95\%-os konfidenciaintervallummal közlöm. Ezek a tesztelt 
+eredmények értelmezését segítik, önmagukban azonban nem megerősített állítások.
+\paragraph{}A Nutrition5k-n a szénhidrát torzítása a Flash-Lite-nál $+12\%$, a Sonnetnél 
+$+49\%$, a Solnál $+50\%$ volt, az OmniFood8k-n $+10\%$, $+63\%$, illetve $+45\%$. 
+A túlbecslés mindhárom modellnél a kis szénhidráttartalmú ételeken volt a legnagyobb: a 
+referenciaérték szerinti alsó harmadban a Nutrition5k-n a Flash-Lite torzítása $+64\%$, a két 
+drágább modellé $+133$ és $+157\%$ között volt, az OmniFood8k-n $+149\%$, illetve $+284$ és 
+$+314\%$ között. A DFood-Tj-n ezzel szemben a Flash-Lite becsülte alul a szénhidrátot 
+($-19\%$), ezért ott a drágább modellek voltak pontosabbak. Más célmennyiségekben más a 
+sorrend: energiában az OmniFood8k-n mindkét drágább modell jobb volt a Flash-Lite-nál, 
+tömegben viszont lényegesen rosszabb.
 % TODO: kiegészítő tábla (accuracy.csv, pairs.csv): energia, fehérje, tömeg, zsír; Sonnet vs. Sol; skill
-
 \section{Költség, válaszidő, stabilitás és konzisztencia}
 
 \subsection{Költség és válaszidő}
