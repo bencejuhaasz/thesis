@@ -215,13 +215,14 @@ ilyen, sorrend-függő torzítást a validációs értékekre nézve.
 \paragraph{}A képek a küldés előtt egységes előfeldolgozáson esnek át. A benchmark.py program a kép EXIF-metaadataiban rögzített tájolás szerint elforgatja a képet, 
 hogy ha a képek nem a megjelenítési irányban vannak tárolva, abban az esetben is egységes legyen az elforgatásuk. Ezután RGB színtérbe alakítja, és a képarány megtartásával úgy 
 kicsinyíti, hogy a hosszabbik oldala legfeljebb 1024 képpont legyen. Az ennél kisebb képeket nem nagyítja. Végül a képet 90-es minőségi beállítással JPEG formátumba kódolja. 
-Az egységes előfeldolgozás biztosítja, hogy az eltérő forrású adathalmazok képei azonos felbontásban és formátumban jussanak el a modellekhez, és a bemeneti tokenszám, ezzel 
-a költség, felülről korlátozott legyen.
+Az egységes előfeldolgozás biztosítja, hogy az eltérő forrású adathalmazok képei azonos felbontásban és formátumban jussanak el a modellekhez, és a bemeneti tokenszám, 
+a költség bemeneti oldalról meghatározó része felülről korlátozott legyen.
 A JPEG-tömörítés mértékének hatását páros előméréssel vizsgáltam (Gemini Flash-Lite, Nutrition5k, P3\_macros, 50 étel). A 80-as minőségi beállítással az energia pMAE-je 2,9, a 
 szénhidráté 4,4 százalékponttal nagyobb volt, mint a 90-es beállítással. A különbség ekkora mintán nem szignifikáns (95\%-os konfidenciaintervallum: $-3{,}2$ és $+9{,}1$, 
 illetve $-3{,}7$ és $+12{,}6$ százalékpont között), de nem utal arra, hogy az erősebb tömörítés elegendő lenne. Mivel a bemeneti tokenszám a két beállítás mellett azonos volt,
 a 90-es minőséget választottam.
-A Pillow programkönyvtár dokumentációja a 95 feletti értékeket nem javasolja, mert azok jelentős fájlméret-növekedés mellett alig javítanak a képminőségen \cite{pillow_jpeg}.
+A Pillow programkönyvtár dokumentációja a 95 feletti értékeket nem javasolja: a 100-as beállítás a tömörítés egyes lépéseit kikapcsolja, ami nagy fájlméretet eredményez 
+a képminőség érdemi javulása nélkül \cite{pillow_jpeg}.
 
 \paragraph{}Ha egy API-hívás hibával tér vissza (például hálózati hiba, túlterhelés vagy a kérések számának korlátozása miatt), a program legfeljebb háromszor újrapróbálkozik, 
 vagyis hívásonként legfeljebb négy kísérletet tesz. A kísérletek között exponenciálisan növekvő ideig vár (5, 10, majd 20 másodpercig), hogy a szolgáltató átmeneti túlterhelése 
@@ -353,9 +354,9 @@ A hipotézisekhez nem tartozó mennyiségeket teszt nélkül,
 95\%-os konfidenciaintervallummal írom le.
 
 \section{Az utólagos kalibráció elvetése}
-A modellek becslései szisztematikus torzítást mutatnak: a nagyobb adagokat
-rendre alulbecsülik, és az energiaértékek átlagos előjeles hibája adathalmazonként
-jelentősen eltér. Az első mérési körben ez a torzítás
+Az első mérési körben a Gemini Flash-Lite becslései szisztematikus torzítást mutattak: 
+a nagyobb adagokat rendre alulbecsülte, és az energiaértékek átlagos előjeles hibája 
+adathalmazonként jelentősen eltért. Ez a torzítás
 az ACETADA adathalmazon elhanyagolható volt (\mbox{$-1{,}6\%$}), a Nutrition5k-n
 mérsékelt (\mbox{$-11{,}1\%$}), az OmniFood8k-n viszont jelentős (\mbox{$-45{,}0\%$}).
 Egy adott adathalmazon illesztett utólagos korrekció, például a becsült és a valós érték
