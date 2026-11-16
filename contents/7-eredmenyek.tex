@@ -123,9 +123,14 @@ különbségekhez képest.
 
 \section{A döntési mérés eredményei}
 \label{sec:dontesi_eredmenyek}
-\paragraph{}A döntési mérés összes tervezett konfigurációja lefutott API-hiba és fel nem dolgozható válasz nélkül. 
+\paragraph{}A döntési mérés összes tervezett futása elkészült, és a végleges futásokban nem 
+maradt API-hiba vagy fel nem dolgozható válasz. A Nutrition5k-n a Flash-Lite 14 hívása az 
+első kísérletre helyi beállítási hiba miatt meghiúsult: az API-kulcs hiányzott a 
+környezetből, így a kérés nem jutott el a szolgáltatóhoz. Ezeket ugyanazzal a paranccsal 
+újrafuttattam, és mindegyik sikeres választ adott.
 A tesztelt minta a Nutrition5k, az OmniFood8k és az ACETADA adathalmazon 200, a DFood-Tj-n 250 étel volt. 
-A SNAPMe-n a kiválasztott 250 ételből 248 került lekérésre, ezért a B család tesztjeibe 199 pár került. 
+A SNAPMe-n a kiválasztott 250 ételből kettőnek a képfájlját nem lehetett beolvasni (a 32. és 
+a 139. pozíció), ezért a tesztelt 51--250. pozícióból 199 pár került a B család tesztjeibe.
 
 \subsection{A modellek összehasonlítása}
 \paragraph{}Az A család a Gemini Flash-Lite szénhidrátbecslését 
@@ -133,7 +138,7 @@ vetette össze a Claude Sonnet 5.5 és a GPT-6.1 Sol modellekével
 (\ref{tab:a_csalad}.~táblázat). Mind a nyolc különbség szignifikáns volt, 
 de nem azonos irányban. A Nutrition5k, az OmniFood8k és az ACETADA adathalmazon 
 a Flash-Lite volt a pontosabb, a DFood-Tj-n viszont mindkét drágább modell. 
-A leggyengébb eredmény az ACETADA-n a Sonnettel szembeni különbség volt (Holm-korrigált $p = 0{,}034$).
+A legkisebb különbség az ACETADA-n a Sonnettel szemben adódott ($+2{,}7$ százalékpont, Holm-korrigált $p = 0{,}034$).
 
 \begin{table}[h]
 \centering
@@ -190,11 +195,9 @@ tömegben viszont lényegesen rosszabb.
 
 \subsection{Költség és válaszidő}
 \paragraph{}A döntési mérés futásainak válaszidejét és költségét 
-\az{\ref{tab:koltseg_valaszido}}.~táblázat foglalja össze. A költség a hívások 
-tényleges bemeneti és kimeneti tokenszámából, a mérés idején érvényes 
-listaárakkal számolt érték, 1000 hívásra vetítve. Mivel egy hívás egy étel 
-becslése, ez 1000 naplózott étkezés költségének felel meg.
-
+\az{\ref{tab:koltseg_valaszido}}.~táblázat foglalja össze. A költség a hívások tényleges 
+bemeneti és kimeneti tokenszámából, a mérés idején érvényes 
+listaárakkal számolt érték, 1000 hívásra, vagyis 1000 étel becslésére vetítve.
 \begin{table}[h]
 \centering
 \caption{A döntési mérés futásainak válaszideje és költsége. A válaszidő 
