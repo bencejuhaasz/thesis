@@ -56,16 +56,13 @@ következőt eggyel kisebb számmal szorzom, és így tovább, úgy, hogy egy ko
 konfidenciaintervallumok korrekció nélküliek, a szignifikanciáról a korrigált 
 $p$-érték dönt.
 
-
-\paragraph{}Az előmérésekben ($n = 50$) a páros különbség 
-konfidenciaintervallumát bootstrap módszerrel becsültem: az ételekből 5000 
-alkalommal visszatevéses mintát vettem, minden mintán újraszámoltam 
-$\Delta$-t, és az intervallum határai ezek 2,5\%-os és 97,5\%-os 
-percentilisei. Ezek az összehasonlítások felderítő jellegűek voltak: sok 
-beállítást vetettem össze ugyanazokon az ételeken, így egy-egy intervallum 
-véletlenül is kizárhatta a nullát. 
-Többszörös összehasonlítási korrekciót ezért itt nem alkalmaztam, hanem az 
-eredményeket csak a döntési mérés hipotéziseinek megfogalmazására használtam. 
+\paragraph{}Az előmérésekben ($n = 50$) a páros különbségek konfidenciaintervallumát 
+ugyanígy, \az{\ref{eq:se_arany}}.~egyenlet szerinti standard hibával és Student-eloszlással 
+számoltam. Ezek az összehasonlítások felderítő jellegűek voltak: sok beállítást 
+vetettem össze ugyanazokon az ételeken, így egy-egy intervallum véletlenül is 
+kizárhatta a nullát. Többszörös összehasonlítási korrekciót ezért itt nem 
+alkalmaztam, hanem az eredményeket csak a döntési mérés hipotéziseinek 
+megfogalmazására használtam.
 Kivétel a P3\_recipe prompt zsírbecslésre gyakorolt hatása, amelyet a döntési 
 mérés előtt egy előre rögzített megerősítő méréssel is ellenőriztem az 
 OmniFood8k sorrendjének 51--100. ételén. Ez egyetlen próba volt ($m = 1$), 
