@@ -3,16 +3,18 @@
 \section{Az eredmények értékelésének módja}
 \label{sec:ertekeles}
 \paragraph{}
-Ebben a fejezetben bemutatom a később ismertetett konfidenciaintervallumok, 
+Ebben az alfejezetben bemutatom a később ismertetett konfidenciaintervallumok, 
 statisztikai próbák és egyéb mutatók számításának módját.
-A hibamértékek (pMAE, MAE, bias) definíciója \az{\ref{sec:hibamertekek}}.~fejezetben, a döntési 
-mérés szabályai \az{\ref{sec:dontesi_protokoll}}.~fejezetben és \az{\ref{tab:hipotezisek}}.~táblázatban 
+A hibamértékek (pMAE, MAE, bias) definíciója \az{\ref{sec:hibamertekek}}.~alfejezetben, a döntési 
+mérés szabályai \az{\ref{sec:dontesi_protokoll}}.~alfejezetben és \az{\ref{tab:hipotezisek}}.~táblázatban
 szerepelnek.
+
+
 
 \subsection{Egy futás konfidenciaintervalluma}
 \paragraph{}A pMAE és a százalékos bias is két összeg hányadosa:
 $R = \sum_i x_i / \sum_i t_i$, ahol $x_i$ pMAE esetén $|p_i - t_i|$, bias esetén 
-$p_i - t_i$ (a jelölések \az{\ref{sec:hibamertekek}}.~szakasz szerint). Egy ilyen 
+$p_i - t_i$ (a jelölések \az{\ref{sec:hibamertekek}}.~fejezet szerint). Egy ilyen 
 hányados standard hibáját a delta-módszerrel (linearizálással) becsülöm. Az 
 $u_i = x_i - R\,t_i$ maradékokból
 \begin{equation}
@@ -67,13 +69,13 @@ eredményeket csak a döntési mérés hipotéziseinek megfogalmazására haszn�
 Kivétel a P3\_recipe prompt zsírbecslésre gyakorolt hatása, amelyet a döntési 
 mérés előtt egy előre rögzített megerősítő méréssel is ellenőriztem az 
 OmniFood8k sorrendjének 51--100. ételén. Ez egyetlen próba volt ($m = 1$), 
-ezért Holm korrekcióra nem volt szükség, a próba pedig a döntési mérésben használt 
+ezért Holm-korrekcióra nem volt szükség, a próba pedig a döntési mérésben használt 
 páros $t$-próba volt.
 
 \subsection{Kiegészítő mutatók}
 \paragraph{}A pMAE nagysága attól is függ, mennyire különböznek egymástól egy 
-adathalmaz ételei. Ha az adagok hasonlók, már egy bemeneti adatot nem is vizsgáló, állandó értékű
-becslés is kis hibát ad. Ezért a pMAE mellett a skill értéket is közlöm, amely a 
+adathalmaz ételei. Ha az adagok hasonlók, már egy bemeneti adatot nem is vizsgáló, közel állandú értékű
+mediánbecslés is kis hibát ad. Ezért a pMAE mellett a skill értéket is közlöm, amely a 
 modell hibáját egy ilyen egyszerű becslés hibájához viszonyítja:
 \begin{equation}
   \mathrm{skill} = 1 - \frac{\sum_i |p_i - t_i|}{\sum_i |m_i - t_i|},
@@ -86,17 +88,17 @@ rosszabb nála.
 
 
 \paragraph{}A meredekség megmutatja, hogyan változik a becslés a valódi adagmérettel. 
-Ha minden ételt egy pontként ábrázolunk, a vízszintes tengelyen a referenciaértékkel, 
-a függőlegesen a becsléssel, és a pontokra lineáris regresszióval egyenest illesztünk, 
-a meredekség ennek az egyenesnek a meredeksége. Hibátlan becslésnél minden pont a 
-$p = t$ egyenesre esne, és a meredekség $1$ lenne. Ha értéke $1$-nél kisebb, a becslések szűkebb tartományban szóródnak, mint a 
-referenciaértékek: a nagyobb adagokat a modell a kisebbekhez képest alulbecsüli.
-Ugyanezt a harmadonkénti torzítás közvetlenebbül mutatja: az ételeket a 
-referenciaérték szerint három egyenlő elemszámú csoportra osztom, és mindegyikben 
-külön számolom a százalékos biast.
+Minden ételt egy pont ábrázol, amelynek vízszintes koordinátája a referenciaérték, 
+függőleges koordinátája a becslés. A meredekség a pontokra lineáris regresszióval 
+illesztett egyenes meredeksége. Hibátlan becslésnél minden pont a $p = t$ egyenesre 
+esne, és a meredekség $1$ lenne. Ha értéke $1$-nél kisebb, a becslések szűkebb 
+tartományban szóródnak, mint a referenciaértékek: a nagyobb adagokat a modell a 
+kisebbekhez képest alulbecsüli. Ugyanezt a harmadonkénti torzítás közvetlenebbül 
+mutatja: ehhez az ételek a referenciaérték szerint három egyenlő elemszámú csoportba 
+kerülnek, és a százalékos bias mindegyik csoportban külön kerül kiszámításra.
 
 \paragraph{}A konzisztencia mutatóit (az ételenkénti szórás négyzetes átlaga és 
-az ismételhetőségi együttható) \az{\ref{sec:mert_mennyisegek}}.~szakasz írja le. Az 
+az ismételhetőségi együttható) \az{\ref{sec:mert_mennyisegek}}.~fejezet írja le. Az 
 ismételhetőségi együttható $1{,}96\cdot\sqrt{2}\approx 2{,}77$-szerese az 
 ételenkénti szórásnak. Ezek mellett az ICC(1,1) osztályon belüli korrelációs 
 együtthatót is közlöm, amely azt adja meg, hogy a becslések teljes 
