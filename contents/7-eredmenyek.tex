@@ -109,16 +109,14 @@ különbségekhez képest.
 % TODO: 6 adathalmaz, 8 modell n=50-es eredményei (pMAE, skill)
 
 \subsection{Promptváltozatok és bemenetek}
-% TODO: P3_density, P3_prep, P3_prep_textcalc, P3_recipe, szöveges ételleírás, több kép (DFood-TJ, OmniFood8k)
+% TODO: P3_density, P3_prep, P3_prep_textcalc, P3_recipe, szöveges ételleírás, több kép
 
 \subsection{Szöveges bemenet}
 % TODO: NutriBench eredmények
 
 \subsection{A becslési hiba forrásai}
-% TODO: tömeg és energiasűrűség szerinti felbontás; a nagy adagok alulbecslése (meredekség, harmadonkénti torzítás)
+% TODO: tömeg és energiasűrűség szerinti felbontás; a nagy adagok alulbecslése
 
-
-%TODO számokat átnézni amik ezután jönnek
 
 \section{A döntési mérés eredményei}
 \label{sec:dontesi_eredmenyek}
@@ -186,7 +184,7 @@ A túlbecslés mindhárom modellnél a kis szénhidráttartalmú ételeken volt 
 referenciaérték szerinti alsó harmadban a Nutrition5k-n a Flash-Lite torzítása $+64\%$, a két 
 drágább modellé $+133$ és $+157\%$ között volt, az OmniFood8k-n $+149\%$, illetve $+284$ és 
 $+314\%$ között. A DFood-Tj-n ezzel szemben a Flash-Lite becsülte alul a szénhidrátot 
-($-19\%$), ezért ott a drágább modellek voltak pontosabbak. Más célmennyiségekben más a 
+($-19\%$), és ezzel összhangban ott a drágább modellek voltak pontosabbak. Más célmennyiségekben más a 
 sorrend: energiában az OmniFood8k-n mindkét drágább modell jobb volt a Flash-Lite-nál, 
 tömegben viszont lényegesen rosszabb.
 % TODO: kiegészítő tábla (accuracy.csv, pairs.csv): energia, fehérje, tömeg, zsír; Sonnet vs. Sol; skill

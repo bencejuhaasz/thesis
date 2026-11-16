@@ -45,7 +45,7 @@ Korlátként megemlítendő, hogy a 65 tápanyagra átlagolt SMAPE-t főként a 
 
 \subsection{Open-KNEAD (Coburn et al., 2026)}
 \paragraph{}Ez a tanulmány ~\cite{coburn2026openknead} azt a kérdést veti fel a nagy nyelvi modellekkel végzett tápértékbecslési feladat során, hogy egy tápértéksűrűség-adatbázis vajon minden esetben hozzájárul-e a feladat megoldásának pontosságához. Ennek vizsgálatára olyan folyamatot terveztek és futtattak, amely egyaránt végez közvetlen, prompt-alapú és ún. RAG módszeres becslést egy tetszőleges, szabadon elérhető nagy nyelvi modell segítségével.
-Azt, hogy az energiabecslést RAG módszerrel vagy közvetlenül a bemeneti képből becslik, előre rögzítették aszerint, hogy a tápértékadatbázis mennyire fedi le az adott adathalmaz konyháját. Az adagbecslés minden esetben az adatbázisra támaszkodó ágból származik.
+Azt, hogy az energiabecslést RAG módszerrel vagy közvetlenül a bemeneti képből becslik, előre rögzítették aszerint, hogy a tápértékadatbázis mennyire fedi le az adott adathalmaz konyháját. Az adagbecslés minden esetben a tételekre bontó ágból származik, a látható tételek becsült tömegének összegeként.
 Méréseik alapján összehasonlítható a közvetlen és az ún. RAG alapú becslés hat különböző kombinációja a fenti megközelítéssel a Nutrition5k, az OmniFood8K és az ACETADA adathalmazokon, Gemma-E4B, Qwen-9B, Gemma-MoE, Gemma-31B, Qwen-35B modellekkel. 
 Az energiabecslést csak az ACETADA esetén vették a közvetlen becslésből.
 Megállapították, hogy a mai nagy nyelvi modellek közvetlen becslése energiában eléri vagy meghaladja a teljes RAG-alapú folyamatét. Az adatbázis haszna az adagbecslésben és a tételesen ellenőrizhető eredményben jelentkezik.
@@ -63,7 +63,7 @@ A mérések során használt ételfelismerésre készült kereskedelmi szolgált
 A promptolási stratégiák a következőek voltak:
 P1 - Csak a feladatot és a kimeneti formátumot adja meg;
 P2 - Először a tömeg becslése, ebből a tápérték;
-P3 - Nem használ sztenderd adagtömeg-értékeket az adatbázisból, hanem a képen látható adagot közvetlenül becsli, ebből tápértéket számol;
+P3 - A képen ténylegesen látható adagot becsülteti szokásos adagméretek helyett, ezekből számol tápértéket;
 P4 - Korlátokat adtak meg, amiken belül a becslés elfogadható, reális;
 P5 - Első lépésben P3, majd egy önellenőrzés a modell által.
 

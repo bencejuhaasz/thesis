@@ -20,8 +20,7 @@ Megkeresi és betölti a loader.py programokat az alkönyvtárakból.
 Betölti a választott adathalmazokat egy Pandas dataframe objektumba. A fájl konfigurációs változói segítségével
 lehetőség van az adathalmazok részhalmazát használni. A részhalmazok  kiválasztása egy véletlenszerű sorbarendezés után, vagy állítható tartománnyal történik. A véletlenszerű kiválasztáshoz megadható a
 reprodukálhatóság érdekében egy seed érték, valamint a méret meghatározására egy "n" paraméter szolgál, amely megadja, hogy hányadik indexig kell a kiválasztást
-végezni. A véletlenszerű sorbarendezést a numpy könyvtár végzi. Az állítható tartomány módot választva aszerint a sorrend szerint lehet indexelni a használandó
-résztartományt, amely az adathalmaz rekordjainak eredeti sorrendje.
+végezni. A véletlenszerű sorbarendezést a numpy könyvtár végzi. Az állítható tartomány módot választva a rekordok azonosító (sample\_id) szerint rendezett sorrendjében lehet kijelölni a használandó résztartományt.
 A program ezután fájlba írja a mérés konfigurációs paramétereit.
 Betölti az adathalmazhoz tartozó képeket és a konfigurációs változók valamint a megadott argumentumok szerint megformázza a mérni kívánt nagy nyelvi modellek
 felé küldendő szöveges prompt utasítást. 
@@ -64,7 +63,7 @@ Emellett figyelembe kell venni az elérés késleltetését és árazását is a
 során.
 A becslések gépi feldolgozásához a strukturált kimeneti formátumra van szükség.
 
-\paragraph{}A három legnagyobb szolgáltató, a Google, az OpenAI és az Anthropic
+\paragraph{}A három vezető szolgáltató, a Google, az OpenAI és az Anthropic
 modellkínálata egyaránt három szintre tagolódik: egy olcsó, nagy tokenszám mellett is gazdaságosra tervezett
 modellre, egy közepes árú általános modellre és egy csúcsmodellre. A kereskedelmi
 modellek felépítése és paraméterszáma nem nyilvános, ezért a modellek képességét nem a
