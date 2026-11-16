@@ -14,7 +14,7 @@ szerepelnek.
 \subsection{Egy futás konfidenciaintervalluma}
 \paragraph{}A pMAE és a százalékos bias is két összeg hányadosa:
 $R = \sum_i x_i / \sum_i t_i$, ahol $x_i$ pMAE esetén $|p_i - t_i|$, bias esetén 
-$p_i - t_i$ (a jelölések \az{\ref{sec:hibamertekek}}.~fejezet szerint). Egy ilyen 
+$p_i - t_i$ (a jelölések \az{\ref{sec:hibamertekek}}.~alfejezet szerint). Egy ilyen 
 hányados standard hibáját a delta-módszerrel (linearizálással) becsülöm. Az 
 $u_i = x_i - R\,t_i$ maradékokból
 \begin{equation}
@@ -74,7 +74,7 @@ páros $t$-próba volt.
 
 \subsection{Kiegészítő mutatók}
 \paragraph{}A pMAE nagysága attól is függ, mennyire különböznek egymástól egy 
-adathalmaz ételei. Ha az adagok hasonlók, már egy bemeneti adatot nem is vizsgáló, közel állandú értékű
+adathalmaz ételei. Ha az adagok hasonlók, már egy bemeneti adatot nem is vizsgáló, közel állandó értékű
 mediánbecslés is kis hibát ad. Ezért a pMAE mellett a skill értéket is közlöm, amely a 
 modell hibáját egy ilyen egyszerű becslés hibájához viszonyítja:
 \begin{equation}
@@ -82,7 +82,7 @@ modell hibáját egy ilyen egyszerű becslés hibájához viszonyítja:
 \end{equation}
 ahol $m_i$ a többi étel referenciaértékének mediánja (leave-one-out medián): 
 az $i$-edik étel tippje nem használja a saját referenciaértékét. A skill $1$, ha 
-a becslés hibátlan, $0$, ha a modell nem jobb a mediántippnél, és negatív, ha 
+a becslés hibátlan, $0$, ha a modell nem jobb a mediánbecslésnél, és negatív, ha 
 rosszabb nála.
 
 
@@ -98,7 +98,7 @@ mutatja: ehhez az ételek a referenciaérték szerint három egyenlő elemszám�
 kerülnek, és a százalékos bias mindegyik csoportban külön kerül kiszámításra.
 
 \paragraph{}A konzisztencia mutatóit (az ételenkénti szórás négyzetes átlaga és 
-az ismételhetőségi együttható) \az{\ref{sec:mert_mennyisegek}}.~fejezet írja le. Az 
+az ismételhetőségi együttható) \az{\ref{sec:mert_mennyisegek}}.~alfejezet írja le. Az 
 ismételhetőségi együttható $1{,}96\cdot\sqrt{2}\approx 2{,}77$-szerese az 
 ételenkénti szórásnak. Ezek mellett az ICC(1,1) osztályon belüli korrelációs 
 együtthatót is közlöm, amely azt adja meg, hogy a becslések teljes 
