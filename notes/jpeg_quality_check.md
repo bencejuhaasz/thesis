@@ -26,41 +26,63 @@ venv/bin/python benchmark.py --datasets nutrition5k --models gemini-flash-lite -
 venv/bin/python jpeg80_benchmark.py --datasets nutrition5k --models gemini-flash-lite --prompt P3_macros --n 50 --run-name n5k_lite_macros_q80_n50_s42
 ```
 
-### Energia
+### Pontosság és konfidenciaintervallum (a dolgozatban ez szerepel)
+
+A dolgozat minden páros konfidenciaintervalluma delta-módszeres standard hibával és
+Student-eloszlással ($n-1$ szabadsági fok) készül, a döntési méréssel azonos módon.
+
+```
+venv/bin/python pvalues.py --runs n5k_lite_macros_q90_n50_s42 n5k_lite_macros_q80_n50_s42 \
+  --metrics kcal_pMAE% carb_g_pMAE% --no-unpaired --out pvalues_jpeg
+venv/bin/python -c "
+import pandas as pd
+d=pd.read_csv('pvalues_jpeg/pvalues.csv')
+print(d[['metric','A','B','delta_pp','CI95_low','CI95_high','p']].to_string(index=False))"
+```
+
+```
+      metric     A     B  delta_pp  CI95_low  CI95_high     p
+carb_g_pMAE% 31.85 36.30      4.45     -3.67      12.57 0.276
+  kcal_pMAE% 30.25 33.19      2.94     -3.24       9.12 0.344
+```
+
+A `pvalues.py` a számokat két tizedesre kerekítve menti, a konzolkimenete ezt még egyszer
+egy tizedesre kerekíti, ezért ott a szénhidrát Δ értéke +4.5. A pontos különbség a nyers
+adatból:
+
+```
+venv/bin/python -c "
+import json
+R={}
+for r in ['n5k_lite_macros_q90_n50_s42','n5k_lite_macros_q80_n50_s42']:
+    L=[json.loads(l) for l in open(f'results/{r}/results.jsonl')]
+    R[r]={x['sample_id']:x for x in L if x.get('pred')}
+a,b=R.values(); ids=[i for i in a if i in b]
+for k in ('kcal','carb_g'):
+    t=sum(a[i]['gt'][k] for i in ids)
+    d=sum(abs(b[i]['pred'][k]-b[i]['gt'][k])-abs(a[i]['pred'][k]-a[i]['gt'][k]) for i in ids)
+    print(k, len(ids), 100*d/t)"
+```
+
+```
+kcal 50 2.937145378298291
+carb_g 50 4.447572647564867
+```
+
+A q90 futás `results.jsonl`-je 51 sort tartalmaz: az első hívás helyi „No API key”
+hibával meghiúsult, majd sikeresen újrafutott. Az elemzés a sikeres hívást használja,
+ezért mindkét futásban 50 étel szerepel.
+
+### Korábbi, bootstrap-alapú összevetés (a dolgozatból 2026-11-16-án kivéve)
 
 ```
 venv/bin/python analyze.py compare n5k_lite_macros_q90_n50_s42 n5k_lite_macros_q80_n50_s42 --target kcal
-```
-
-```
-target kcal: 50 meals in all 2 specs (per spec: [50, 50])
-mean truth 260.2   (logSD = SD of ln(pred/true): spread without bias)
-
-spec                                                          pMAE%     MAE  bias%     r slope  skill  logSD
-n5k_lite_macros_q90_n50_s42:kcal                               30.2    78.7  -16.4  0.83  0.73   0.51  0.438
-n5k_lite_macros_q80_n50_s42:kcal                               33.2    86.3  -13.5  0.79  0.73   0.47  0.466
-
-paired vs n5k_lite_macros_q90_n50_s42:kcal (negative = better):
-  n5k_lite_macros_q80_n50_s42:kcal                           Δ pMAE  +2.9 pp  CI [-2.7, +9.1]  Wilcoxon p 0.55  meals better 38%
-```
-
-### Szénhidrát
-
-```
 venv/bin/python analyze.py compare n5k_lite_macros_q90_n50_s42 n5k_lite_macros_q80_n50_s42 --target carb_g
 ```
 
-```
-target carb_g: 50 meals in all 2 specs (per spec: [50, 50])
-mean truth 19.7   (logSD = SD of ln(pred/true): spread without bias)
-
-spec                                                          pMAE%     MAE  bias%     r slope  skill  logSD
-n5k_lite_macros_q90_n50_s42:carb_g                             31.9     6.3   -7.9  0.83  0.86   0.51  0.654
-n5k_lite_macros_q80_n50_s42:carb_g                             36.3     7.2   -7.8  0.78  0.83   0.44  0.703
-
-paired vs n5k_lite_macros_q90_n50_s42:carb_g (negative = better):
-  n5k_lite_macros_q80_n50_s42:carb_g                         Δ pMAE  +4.4 pp  CI [-3.3, +12.5]  Wilcoxon p 0.14  meals better 34%
-```
+Energia: Δ pMAE +2.9 pp, CI [-2.7, +9.1]; szénhidrát: Δ pMAE +4.4 pp, CI [-3.3, +12.5]
+(5000 visszatevéses újramintavételezés, seed 0). Ugyanarra a következtetésre jut, mint a
+delta-módszer.
 
 ### Tokenszám és költség
 
@@ -81,9 +103,9 @@ nutrition5k,gemini-flash-lite,P3_macros,schema,1.0,1326.0,0.0487
 
 | Állítás a szövegben | Forrás | Érték |
 |---|---|---|
-| 80-as minőséggel az energia pMAE-je 2,9 pp-vel nagyobb | `compare --target kcal`, Δ pMAE | +2,9 pp |
-| 80-as minőséggel a szénhidrát pMAE-je 4,4 pp-vel nagyobb | `compare --target carb_g`, Δ pMAE | +4,4 pp |
-| A különbség nem szignifikáns; 95%-os CI | ugyanott, CI | −2,7 … +9,1 pp; −3,3 … +12,5 pp |
+| 80-as minőséggel az energia pMAE-je 2,9 pp-vel nagyobb | nyers adat, `kcal` | +2,937 pp |
+| 80-as minőséggel a szénhidrát pMAE-je 4,4 pp-vel nagyobb | nyers adat, `carb_g` | +4,448 pp |
+| A különbség nem szignifikáns; 95%-os CI | `pvalues_jpeg/pvalues.csv`, `CI95_low`, `CI95_high`, `p` | −3,2 … +9,1 pp (p = 0,344); −3,7 … +12,6 pp (p = 0,276) |
 | A bemeneti tokenszám a két beállítás mellett azonos | `summary.csv`, `tokens_in_p50` | 1326 mindkettőben |
 
 Értelmezés: a nem szignifikáns különbség nem bizonyítja, hogy a tömörítésnek nincs
