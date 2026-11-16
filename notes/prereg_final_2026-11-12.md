@@ -81,6 +81,9 @@ OmniFood Flash-Lite 1–100; a többi adathalmazon 1–50).
 2. **SNAPMe elemszám.** A `--n 250` kiválasztásból 248 étel került lekérésre mindkét
    ágban (a két ág ételei azonosak). A tesztelt 51–250. pozícióból ezért 199 pár került a
    B család tesztjeibe 200 helyett.
+   A két hiányzó étel a 32. (`7e2a432f45ae8c667ffc4619bb2e.jpeg`) és a 139.
+   (`a1fd87844e09b6f54f0480949ae7.jpeg`) pozíció: a képfájlokat a Pillow nem ismeri fel
+   (`UnidentifiedImageError`), ezért a `benchmark.py` API-hívás nélkül kihagyta őket.
 3. **Az elemzési szkript.** A teszteket a `prereg_tests.py` végezte, amelyet a futtatás
    előtt commitoltam (2026-11-14 14:28, `prereq_tests.py` néven; 2026-11-15-én
    átnevezve). A futtatás: 2026-11-14 19:10.
