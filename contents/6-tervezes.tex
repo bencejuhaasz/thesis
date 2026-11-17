@@ -355,6 +355,73 @@ vizsgálom, hogy egy hipotéziscsalád minden mérése lefutott.
 A hipotézisekhez nem tartozó mennyiségeket teszt nélkül, 
 95\%-os konfidenciaintervallummal írom le.
 
+\subsection{A vizsgálati kérdések és a mérések kapcsolata}
+\label{sec:kerdes_meres}
+\paragraph{}\Az{\ref{tab:kerdes_meres}}.~táblázat a bevezetésben megfogalmazott kérdésekhez rendeli 
+a megválaszolásukhoz használt méréseket. Döntési szempontot csak azoknál a kérdéseknél adok meg, amelyeket a döntési 
+mérés előre rögzített hipotézisként vizsgált (\ref{tab:hipotezisek}.~táblázat). A többi kérdésre a válasz leíró: 
+az eredményeket 95\%-os konfidenciaintervallummal közlöm, szignifikanciaállítás nélkül.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{A vizsgálati kérdések és a hozzájuk tartozó mérések. Holm: a családon belül Holm-korrigált 
+$p < 0{,}05$.}
+\label{tab:kerdes_meres}
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.0cm}
+                >{\raggedright\arraybackslash}p{3.0cm}
+                >{\raggedright\arraybackslash}p{2.7cm}
+                >{\raggedright\arraybackslash}p{2.5cm}
+                >{\raggedright\arraybackslash}p{2.2cm}
+                >{\raggedright\arraybackslash}p{2.0cm}}
+\hline
+Kérdés & Bemenet és konfiguráció & Adathalmaz & Elsődleges mérőszám & Összehasonlítás & Döntési szempont \\
+\hline
+1. & kép, P3\_macros; előmérés: 8 modell ($n = 50$); döntési mérés: Flash-Lite, Sonnet, Sol 
+   & előmérés: Nutrition5k, OmniFood8k, ACETADA, DFood-Tj, SNAPMe; döntési mérés: ugyanezek a SNAPMe nélkül 
+   & szénhidrát pMAE; kiegészítő: energia, tömeg, fehérje, zsír 
+   & páros, adathalmazonként 
+   & A család ($m = 8$), Holm; a többi leíró \\
+2. & kép, P3\_macros, Flash-Lite 
+   & amelyekben a tömeg is ismert 
+   & az energiahiba tömeg- és energiasűrűség-része 
+   & \hspace{0pt}adathalmazonként 
+   & leíró \\
+3a. & 1 kép vagy több nézőpont, P3 vagy P3\_macros, Flash-Lite 
+   & DFood-Tj (2 nézet), OmniFood8k (6 kamera) 
+   & energia pMAE 
+   & páros: 1 kép és több kép 
+   & leíró \\
+3b. & kép, promptváltozatok, főként Flash-Lite 
+   & előmérés: változónként; döntési mérés: OmniFood8k, Nutrition5k 
+   & energia pMAE; döntési mérés: zsír, szénhidrát 
+   & páros, a P3\_macros-hoz képest 
+   & C1--C3 család, Holm; a többi leíró \\
+4a. & csak szöveg, NutriBench prompt, 7 modell 
+   & NutriBench 
+   & energia, szénhidrát pMAE 
+   & modellek között 
+   & leíró \\
+4b. & kép és a referenciarekordból képzett ételnév-lista, Flash-Lite 
+   & SNAPMe 
+   & szénhidrát, zsír pMAE 
+   & páros, a csak képes P3\_macros-hoz képest 
+   & B család ($m = 2$), Holm; felső becslés \\
+5. & a döntési mérés futásai; konzisztencia: két független hívás 
+   & a döntési mérés adathalmazai 
+   & válaszidő, költség étkezésenként, sikeres hívások aránya; ételenkénti szórás 
+   & modellek között, adathalmazonként 
+   & leíró \\
+6. & kép, P3\_macros tétellistái 
+   & % TODO
+   & % TODO
+   & megnevezett és címkézett tételek 
+   & leíró \\
+\hline
+\end{tabular}
+\end{table}
+
 \section{Az utólagos kalibráció elvetése}
 Az első mérési körben a Gemini Flash-Lite becslései szisztematikus torzítást mutattak: 
 a nagyobb adagokat rendre alulbecsülte, és az energiaértékek átlagos előjeles hibája 
