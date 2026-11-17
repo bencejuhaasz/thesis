@@ -2,11 +2,30 @@
 \label{ch:tervezes}
 \section{Az adathalmazok kiválasztása és előkészítése}
 Az előzmények között ismertetett adathalmazok közül a Nutrition5k, az OmniFood8k, a DFood-Tj, az ACETADA, a SNAPMe
-és a NutriBench adathalmazt tudtam beszerezni. A források felkutatásához segédeszközként nagy nyelvi modellt is
-használtam; a talált adathalmazok azonosságát (a hozzájuk tartozó publikáció címét, szerzőit és a letöltési
-oldalt) minden esetben az eredeti forrásokon ellenőriztem. Az ASA24-ből csak hiányos változatot találtam, ezért
-azt nem vizsgáltam tovább.
-% TODO (F9): a ténylegesen használt keresők és adatbázisok, valamint a letöltési helyek
+és a NutriBench adathalmazt tudtam beszerezni. A források felkutatásához a DuckDuckGo webes keresőt, 
+valamint segédeszközként a Claude Opus 5.5 nagy nyelvi modellt használtam. A talált adathalmazok 
+azonosságát minden esetben az eredeti forrásokon ellenőriztem. Az ASA24-ből csak hiányos változatot találtam, ezért azt nem vizsgáltam 
+tovább. A felhasznált adathalmazok letöltési helyét, licencét és a használt változatot 
+\az{\ref{tab:adathalmaz_forrasok}}.~táblázat foglalja össze.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{A felhasznált adathalmazok letöltési helye, licence és a használt változat.}
+\label{tab:adathalmaz_forrasok}
+\begin{tabular}{l>{\raggedright\arraybackslash}p{7.2cm}ll}
+\hline
+Adathalmaz & Letöltési hely & Licenc & Változat \\
+\hline
+Nutrition5k & \url{https://github.com/google-research-datasets/Nutrition5k} & CC BY 4.0 & -- \\
+OmniFood8k  & \url{https://yudongjian.github.io/OmniFood8K-food/} & nincs megadva & -- \\
+DFood-Tj    & \url{https://doi.org/10.57760/sciencedb.28012} & CC0 & V3 \\
+ACETADA     & \url{https://skynet.ecn.purdue.edu/~coburn6/ACETADA/} & CC BY-NC 4.0 & -- \\
+SNAPMe      & \url{https://doi.org/10.15482/USDA.ADC/1528346} & CC BY-SA 4.0 & 1. \\
+NutriBench  & \url{https://huggingface.co/datasets/dongx1997/NutriBench} & CC BY-NC-SA 4.0 & v1 \\
+\hline
+\end{tabular}
+\end{table}
 
 Ezután kialakítottam egy mappaszerkezetet, amiben minden adathalmaz külön mappát kapott, és ezekbe elkészítettem egy "loader.py" Python programot mindegyik számára,
 amelyekben az adatok egységes betöltését és elérhetővé tételét implementáltam. Az adathalmazok fölött a mappaszerkezetben előkészítettem egy "benchmark.py" nevű Python
