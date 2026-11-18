@@ -2,9 +2,11 @@
 \label{ch:tervezes}
 \section{Az adathalmazok kiválasztása és előkészítése}
 Az előzmények között ismertetett adathalmazok közül a Nutrition5k, az OmniFood8k, a DFood-Tj, az ACETADA, a SNAPMe
-és a NutriBench adathalmazt tudtam beszerezni. A források felkutatásához a DuckDuckGo webes keresőt, 
-valamint segédeszközként a Claude Opus 5.5 nagy nyelvi modellt használtam. A talált adathalmazok 
-azonosságát minden esetben az eredeti forrásokon ellenőriztem. Az ASA24-ből csak hiányos változatot találtam, ezért azt nem vizsgáltam 
+és a NutriBench adathalmazokat tudtam beszerezni. A források felkutatásához a DuckDuckGo webes keresőt, 
+valamint segédeszközként a Claude Opus 5.5 nagy nyelvi modellt használtam. Azt, hogy a letöltött 
+adathalmaz valóban az előzményekben ismertetett publikációhoz tartozik, minden esetben ellenőriztem: 
+vagy a letöltési oldal nevezi meg a publikációt (címét, szerzőit, arXiv- vagy DOI-azonosítóját), vagy 
+a publikáció hivatkozik a letöltési helyre. Az ASA24-ből csak hiányos változatot találtam, ezért azt nem vizsgáltam 
 tovább. A felhasznált adathalmazok letöltési helyét, licencét és a használt változatot 
 \az{\ref{tab:adathalmaz_forrasok}}.~táblázat foglalja össze.
 
@@ -151,8 +153,8 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
     \item \textbf{P3\_macros:} ugyanaz a szöveg, kiegészítve a szénhidrát-, fehérje- és
     zsírtartalom kérésével tételenként, valamint a kimeneti szerkezet megfelelő
     bővítésével.
-    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étkezés tételeinek felsorolásával, amelyet a
-SNAPMe referenciarekordjából képeztem: a résztvevő által az étkezési naplóban kiválasztott ételek FNDDS-leírása,
+    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étkezés tételeinek felsorolásával, amit a
+SNAPMe referenciarekordjaiból képeztem: a résztvevő által az étkezési naplóban kiválasztott ételek FNDDS-leírása,
 a tömegük nélkül. Ez a szöveg nem a felhasználó szabad leírása, hanem a referenciaannotációból származik.
     \item \textbf{NutriBench:} Csak szöveges bemenetet használó prompt. Előírja, hogy a
     leírás minden ételét és italát külön tételként kell felsorolni, a megadott
@@ -329,11 +331,11 @@ hívásonként egy képpel és egy ismétléssel.
 
 \paragraph{}A minták az előmérésekkel azonos, seed szerinti véletlen sorrendből származnak, de 
 nagyobb elemszámmal. A futások a sorrend elejét, vagyis az előmérésekben már felhasznált ételeket 
-is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek egy kivétellel 
-korábban nem elemzett ételeken alapulnak. A kivétel a DFood-Tj: a tesztelt 250 ételéből 25 szerepelt 
+is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek egy kivételével
+korábban nem elemzett ételeken alapulnak. A kivétel a DFood-Tj adathalmazon jelentkezik: a vizsgált 250 ételéből 25 szerepelt 
 az első mérési kör két próbafuttatásában, amelyek még a végső mintavételi eljárás előtt készültek, 
 más prompttal, és csak az energiát és a tömeget becsülték, a szénhidrátot nem. Ezen ételek nélkül 
-(225 páron) a különbségek kissé kisebbek, de a következtetés nem változik: Sonnetre $-4{,}9$ ($-6{,}7$; $-3{,}1$), 
+(225 páron) a különbségek kisebbek, de a következtetés nem változik: Sonnetre $-4{,}9$ ($-6{,}7$; $-3{,}1$), 
 Solra $-7{,}0$ ($-9{,}7$; $-4{,}3$) százalékpont, mindkettő Holm-korrekció után is szignifikáns. A tesztelt minta a Nutrition5k, az 
 ACETADA és a SNAPMe adathalmazon a sorrend 51--250. étele, az OmniFood8k-n a 101--300., a DFood-Tj-n a 351--600. étele. Az előmérésekben 
 már felhasznált ételek eredményeit csak a konzisztencia vizsgálatára használom: ugyanezen ételek 
@@ -364,16 +366,18 @@ egy összesített pontszámot is használtam: adathalmazonként megszámoltam, h
 volt egy konfiguráció a 95\%-os konfidenciaintervallum alapján jobb vagy rosszabb a többinél, 
 és ezt az adathalmazokra átlagoltam. Ez az áttekintés a döntési mérés hipotéziseinek 
 kiválasztását segítette. Eredményként nem közlöm, mert az eltérő konyhájú, felvételi 
-körülményű és referenciaadatú adathalmazokat egyenlő súllyal vonja össze, és korrekció 
-nélküli összehasonlításokon alapul.
+körülményű és referenciaadatú adathalmazokat egyenlő súllyal vonja össze, és sok páros 
+összehasonlításon alapul, többszörös összehasonlításra vonatkozó korrekció nélkül, így a 
+véletlenül kimutatottnak látszó különbségek is beleszámítanak.
 
 \begin{table}[h]
 \centering
-\caption{A döntési mérés hipotéziscsaládjai. $m$: a családon belüli összehasonlítások száma.}
-\label{tab:hipotezisek}
+\caption{A döntési mérés hipotéziscsaládjai. Minden kérdést kétoldali páros próbával vizsgáltam, 
+a nullhipotézis szerint a két konfiguráció pMAE-je nem tér el. $m$: a családon belüli 
+összehasonlítások száma.}\label{tab:hipotezisek}
 \begin{tabular}{lp{5.0cm}p{3.6cm}lr}
 \hline
-Család & Hipotézis & Adathalmaz & Cél & $m$ \\
+Család & Vizsgált kérdés & Adathalmaz & Cél & $m$ \\
 \hline
 A  & Pontosabb-e a Flash-Lite szénhidrátban a Sonnetnél és a Solnál? (P3\_macros) & Nutrition5k, OmniFood8k, ACETADA, DFood-Tj & szénhidrát & 8 \\
 B  & Javít-e a referenciarekordból képzett ételnév-lista (tömeg nélkül) a csak képes becslésen? (P3\_macros\_hint vs.\ P3\_macros, Flash-Lite) & SNAPMe & szénhidrát, zsír & 2 \\
@@ -403,8 +407,9 @@ A 3. és a 4. kérdés két, külön mérésekkel vizsgált részből áll. Ezek
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\caption{A vizsgálati kérdések és a hozzájuk tartozó mérések. Holm: a családon belül Holm-korrigált 
-$p < 0{,}05$.}
+\caption{A vizsgálati kérdések és a hozzájuk tartozó mérések. A „Döntési szempont” oszlopban 
+a „Holm” azt jelenti, hogy egy összehasonlítás akkor szignifikáns, ha a hipotéziscsaládon belül 
+Holm-korrigált $p$-értéke $0{,}05$ alatt van.}
 \label{tab:kerdes_meres}
 \begin{tabular}{>{\raggedright\arraybackslash}p{1.0cm}
                 >{\raggedright\arraybackslash}p{3.0cm}
