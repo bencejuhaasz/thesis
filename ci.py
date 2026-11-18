@@ -140,6 +140,15 @@ def main():
                     extra[f"{k}_meal_err_p5"], extra[f"{k}_meal_err_p95"] = round(p5, 1), round(p95, 1)
                 else:
                     tm = t.mean()
+                    za = sig.metric_arrays_all(d, k)      # F2: failed call = estimate 0
+                    if za is not None:
+                        va, sea, _ = sig.ratio_stats(za[1], za[2])
+                        tca = t_crit(len(za[2]), a.level)
+                        extra[f"{k}_n_calls"] = len(za[2])
+                        extra[f"{k}_success_rate"] = round(n / len(za[2]), 3)
+                        extra[f"{k}_pMAE_all"] = round(va, 1)
+                        extra[f"{k}_pMAE_all_CI_low"] = round(va - tca * sea, 1)
+                        extra[f"{k}_pMAE_all_CI_high"] = round(va + tca * sea, 1)
                     extra[f"{k}_pMAE_CI_low"], extra[f"{k}_pMAE_CI_high"] = round(lo, 1), round(hi, 1)
                     extra[f"{k}_MAE_CI_low"] = round(lo * tm / 100, 2)
                     extra[f"{k}_MAE_CI_high"] = round(hi * tm / 100, 2)
@@ -209,7 +218,9 @@ def main():
     ex = pd.DataFrame(extra_rows, index=summ.index)
     order = []
     for k in sig.TARGETS:
-        order += [c for c in (f"{k}_pMAE_CI_low", f"{k}_pMAE_CI_high", f"{k}_MAE_CI_low", f"{k}_MAE_CI_high",
+        order += [c for c in (f"{k}_n_calls", f"{k}_success_rate", f"{k}_pMAE_all",
+                              f"{k}_pMAE_all_CI_low", f"{k}_pMAE_all_CI_high",
+                              f"{k}_pMAE_CI_low", f"{k}_pMAE_CI_high", f"{k}_MAE_CI_low", f"{k}_MAE_CI_high",
                               f"{k}_bias%", f"{k}_bias%_CI_low", f"{k}_bias%_CI_high", f"{k}_bias_p",
                               f"{k}_meal_err_p5", f"{k}_meal_err_p95", f"{k}_skill", f"{k}_skill_CI_low",
                               f"{k}_skill_CI_high", f"{k}_skill_p") if c in ex]

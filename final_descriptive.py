@@ -8,13 +8,16 @@ tested positions (the earlier, already analysed positions are excluded).
     venv/bin/python final_descriptive.py
 
 Output (folder final_descriptive/):
-  accuracy.csv  per arm x target: n, pMAE and bias% with 95% CI (delta method, Student t),
+  accuracy.csv  per arm x target: n (parsed meals), n_calls, success_rate, pMAE_all (failed
+                call counted as estimate 0) and pMAE (parsed calls only) and bias% with
+                95% CI (delta method, Student t),
                 slope (pred on truth), skill vs the leave-one-out median guess, and the
                 bias% in the lower / middle / upper third of the true values
   pairs.csv     paired differences with 95% CI, descriptive only (no decision, no Holm):
                 the A-block model pairs for kcal, mass_g, protein_g, fat_g, and
                 Sonnet vs Sol for every target
   ops.csv       per arm: calls, api_fail, parse_fail (summary.csv, all positions),
+                calls_tested, failed_tested (tested positions),
                 latency mean / p50 on the tested positions, cost per 1000 calls
 """
 from __future__ import annotations
@@ -62,7 +65,13 @@ def accuracy(run, d):
         terc = [100 * (p[third == j] - t[third == j]).sum() / t[third == j].sum() for j in range(3)]
         lo, hi = ci(v, se, n)
         blo, bhi = ci(b, seb, n)
-        rows.append({"run": run, "target": k, "n": n, "pMAE": v, "pMAE_lo": lo, "pMAE_hi": hi,
+        za = sig.metric_arrays_all(d, k)          # F2: failed call = estimate 0
+        n_all = len(za[2])
+        va, sea, _ = sig.ratio_stats(za[1], za[2])
+        alo, ahi = ci(va, sea, n_all)
+        rows.append({"run": run, "target": k, "n": n, "n_calls": n_all,
+                     "success_rate": n / n_all, "pMAE_all": va, "pMAE_all_lo": alo,
+                     "pMAE_all_hi": ahi, "pMAE": v, "pMAE_lo": lo, "pMAE_hi": hi,
                      "bias%": b, "bias_lo": blo, "bias_hi": bhi,
                      "slope": np.polyfit(t, p, 1)[0],
                      "skill": 1 - np.abs(p - t).sum() / np.abs(loo_med - t).sum(),
@@ -91,6 +100,8 @@ def main():
         lat = d["latency_s"].dropna() if "latency_s" in d else pd.Series(dtype=float)
         ops.append({"run": r, "dataset": cache[r][1], "calls": int(s["calls"]),
                     "api_fail": int(s["api_fail"]), "parse_fail": int(s["parse_fail"]),
+                    "calls_tested": int(d["n_calls"].sum()),
+                    "failed_tested": int((d["n_calls"] - d["n_ok"]).sum()),
                     "latency_mean_s": lat.mean(), "latency_p50_s": lat.median(),
                     "cost_per_1000_usd": 1000 * float(s["cost_usd"]) / float(s["calls"])})
     ops = pd.DataFrame(ops)

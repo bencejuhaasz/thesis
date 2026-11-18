@@ -139,19 +139,32 @@ def load_group(res: Path, dataset, model, prompt, output) -> pd.DataFrame | None
     if g.empty:
         return None
     lat = g.groupby(g["sample_id"].astype(str))["latency_s"].mean() if "latency_s" in g else None
-    ok = g[g["parse_ok"].astype(bool)]
+    # every call counts (F2): p_k = mean over the parsed calls (unchanged), z_k = mean
+    # over all calls with a failed call (API error or unparsable answer) as estimate 0
     recs = {}
-    for _, r in ok.iterrows():
+    for _, r in g.iterrows():
         sid = str(r["sample_id"])
-        d = recs.setdefault(sid, {})
+        d = recs.setdefault(sid, {"n_calls": 0, "n_ok": 0})
+        ok = bool(r["parse_ok"])
+        d["n_calls"] += 1
+        d["n_ok"] += int(ok)
+        pred, gt = (r["pred"] or {}) if ok else {}, r["gt"] or {}
         for k in TARGETS:
-            pv, tv = (r["pred"] or {}).get(k), (r["gt"] or {}).get(k)
-            if pv is None or tv is None:
+            tv = gt.get(k)
+            if tv is None:
                 continue
-            d.setdefault(f"p_{k}", []).append(float(pv))
+            pv = pred.get(k)
+            if ok and pv is None:            # target not asked by this prompt
+                continue
             d[f"t_{k}"] = float(tv)
+            d.setdefault(f"z_{k}", []).append(float(pv) if ok else 0.0)
+            if ok:
+                d.setdefault(f"p_{k}", []).append(float(pv))
     out = pd.DataFrame({sid: {k: (float(np.mean(v)) if isinstance(v, list) else v)
                               for k, v in d.items()} for sid, d in recs.items()}).T
+    for k in TARGETS:                        # a failed call says nothing about targets
+        if f"p_{k}" not in out:              # the prompt never asks for
+            out = out.drop(columns=[c for c in (f"z_{k}", f"t_{k}") if c in out])
     if lat is not None:
         out["latency_s"] = lat.reindex(out.index)
     out.index.name = "sample_id"
@@ -179,6 +192,15 @@ def metric_arrays(d: pd.DataFrame, k: str, kind: str):
     p, t = sub[f"p_{k}"].to_numpy(float), sub[f"t_{k}"].to_numpy(float)
     x = np.abs(p - t) if kind == "pMAE" else p - t
     return sub.index, x, t
+
+
+def metric_arrays_all(d: pd.DataFrame, k: str):
+    """|z - t| over all calls, a failed call counted as estimate 0 (F2)."""
+    sub = d[[f"z_{k}", f"t_{k}"]].dropna() if f"z_{k}" in d and f"t_{k}" in d else None
+    if sub is None or len(sub) < 3:
+        return None
+    z, t = sub[f"z_{k}"].to_numpy(float), sub[f"t_{k}"].to_numpy(float)
+    return sub.index, np.abs(z - t), t
 
 
 METRICS = [(k, kind) for k in TARGETS for kind in ("pMAE", "bias")]
