@@ -324,9 +324,13 @@ hívásonként egy képpel és egy ismétléssel.
 
 \paragraph{}A minták az előmérésekkel azonos, seed szerinti véletlen sorrendből származnak, de 
 nagyobb elemszámmal. A futások a sorrend elejét, vagyis az előmérésekben már felhasznált ételeket 
-is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek csak korábban nem 
-látott ételeken alapulnak. A tesztelt minta a Nutrition5k, az ACETADA és a SNAPMe adathalmazon a 
-sorrend 51--250. étele, az OmniFood8k-n a 101--300., a DFood-Tj-n a 351--600. étele. Az előmérésekben 
+is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek egy kivétellel 
+korábban nem elemzett ételeken alapulnak. A kivétel a DFood-Tj: a tesztelt 250 ételéből 25 szerepelt 
+az első mérési kör két próbafuttatásában, amelyek még a végső mintavételi eljárás előtt készültek, 
+más prompttal, és csak az energiát és a tömeget becsülték, a szénhidrátot nem. Ezen ételek nélkül 
+(225 páron) a különbségek kissé kisebbek, de a következtetés nem változik: Sonnetre $-4{,}9$ ($-6{,}7$; $-3{,}1$), 
+Solra $-7{,}0$ ($-9{,}7$; $-4{,}3$) százalékpont, mindkettő Holm-korrekció után is szignifikáns. A tesztelt minta a Nutrition5k, az 
+ACETADA és a SNAPMe adathalmazon a sorrend 51--250. étele, az OmniFood8k-n a 101--300., a DFood-Tj-n a 351--600. étele. Az előmérésekben 
 már felhasznált ételek eredményeit csak a konzisztencia vizsgálatára használom: ugyanezen ételek 
 korábbi, azonos beállítású futásainak eredményeivel vetem össze őket.
 
