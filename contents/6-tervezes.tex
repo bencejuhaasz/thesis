@@ -153,8 +153,8 @@ ne egy feltételezett szokásos adagméretre kerekítsen.
     \item \textbf{P3\_macros:} ugyanaz a szöveg, kiegészítve a szénhidrát-, fehérje- és
     zsírtartalom kérésével tételenként, valamint a kimeneti szerkezet megfelelő
     bővítésével.
-    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étkezés tételeinek felsorolásával, amit a
-SNAPMe referenciarekordjaiból képeztem: a résztvevő által az étkezési naplóban kiválasztott ételek FNDDS-leírása,
+    \item \textbf{P3\_macros\_hint:} a P3\_macros szövege, előtte az étkezés tételeinek felsorolásával, amelyet a
+SNAPMe referenciarekordjából képeztem: a résztvevő által az étkezési naplóban kiválasztott ételek FNDDS-leírása,
 a tömegük nélkül. Ez a szöveg nem a felhasználó szabad leírása, hanem a referenciaannotációból származik.
     \item \textbf{NutriBench:} Csak szöveges bemenetet használó prompt. Előírja, hogy a
     leírás minden ételét és italát külön tételként kell felsorolni, a megadott
@@ -331,7 +331,7 @@ hívásonként egy képpel és egy ismétléssel.
 
 \paragraph{}A minták az előmérésekkel azonos, seed szerinti véletlen sorrendből származnak, de 
 nagyobb elemszámmal. A futások a sorrend elejét, vagyis az előmérésekben már felhasznált ételeket 
-is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek egy kivételével
+is tartalmazzák, ezeket azonban kizárom a hipotézisvizsgálatokból, így a tesztek egy kivétellel
 korábban nem elemzett ételeken alapulnak. A kivétel a DFood-Tj adathalmazon jelentkezik: a vizsgált 250 ételéből 25 szerepelt 
 az első mérési kör két próbafuttatásában, amelyek még a végső mintavételi eljárás előtt készültek, 
 más prompttal, és csak az energiát és a tömeget becsülték, a szénhidrátot nem. Ezen ételek nélkül 
