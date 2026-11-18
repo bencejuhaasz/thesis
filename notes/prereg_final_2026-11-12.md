@@ -92,6 +92,26 @@ OmniFood Flash-Lite 1–100; a többi adathalmazon 1–50).
    JPEG-minőség hatásáról (Flash-Lite, Nutrition5k, P3_macros, a sorrend 1–50. étele,
    minőség 80 és 90). A végső kör ágait és tesztjeit nem érinti; leírása és eredménye:
    `notes/jpeg_quality_check.md`.
+5. **DFood-TJ: 25 tesztelt étel korábbi futásban (észlelve 2026-11-17-én, utólag).** A
+   351–600. pozíció 250 ételéből 25 szerepelt a `both_dfood_tj_n50_s42_gemini_flash_lite_pre`
+   és az `overhead_dfood_tj_n50_s42_gemini_flash_lite_pre` futásban (2026-10-23, első mérési
+   kör, P3 prompt: csak energia és tömeg, sorok szerinti mintavétel a későbbi étkezés szerinti
+   helyett). A szénhidrátot ezek a futások nem becsülték, így az A család hipotézisét nem
+   befolyásolhatták. Érzékenységvizsgálat a 25 étel nélkül (225 pár): Sonnet Δ −4,87
+   (−6,67; −3,07), gpt-sol Δ −7,00 (−9,69; −4,32); mindkettő Holm-korrekció után is
+   szignifikáns, a következtetés nem változik. Reprodukálás:
+
+       venv/bin/python - <<'EOF'
+       import json, sys; from pathlib import Path
+       sys.path.insert(0, "."); import significance as sig, prereg_tests as P
+       R = Path("results"); ex = set()
+       for run in ("both_dfood_tj_n50_s42_gemini_flash_lite_pre", "overhead_dfood_tj_n50_s42_gemini_flash_lite_pre"):
+           v = sig.manifest_view(R / run / "results.jsonl")
+           ex |= {sig.unit_of("dfood_tj", json.loads(l)["sample_id"], v) for l in (R / run / "results.jsonl").open()}
+       for A, B, k in [f for f in P.FAMILIES["A"] if "dfood" in f[0]]:
+           dA, dB = P.load_run(A, R)[0], P.load_run(B, R)[0]
+           print(B, len(set(dA["unit"]) & ex), P.test(dA[~dA["unit"].isin(ex)], dB[~dB["unit"].isin(ex)], k))
+       EOF
 Más eltérés nem történt: a modellek, promptok, pozíciók, családok és döntési szabályok
 a fentiek szerint változatlanok.
 
