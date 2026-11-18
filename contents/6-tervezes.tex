@@ -32,6 +32,11 @@ amelyekben az adatok egységes betöltését és elérhetővé tételét impleme
 programot, amely azért felelős, hogy a tápértékbecslési feladat méréseit végrehajtsa. Az almappából ez a komponens be tudja tölteni az adathalmazok adatait kezelő
 függvényeket. Ezeket az adatokat a függvények visszatérési értékeiként kapja meg.
 
+\paragraph{}A SNAPMe adathallmazból a nem csomagolt ételek evés előtti fotóit és az egyadagos csomagolt 
+termékek csomagolásának elejéről készült fotóit használom. A csomagolt termékek fotóit nem zártam ki, 
+így a döntési mérés 199 tesztelt SNAPMe-ételéből 26 csomagolt termék. Ezeknél a becslés inkább 
+a termék felismerésén múlik, mint az adag becslésén.
+
 Az adatok feldolgozásához a Pandas programkönyvtárat használtam, a Pythonnak pedig a 3.14-es verzióját.
 
 \section{A mérési környezet kialakítása}
