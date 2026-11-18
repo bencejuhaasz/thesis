@@ -52,6 +52,7 @@ A hatás nagyságát 95%-os konfidenciaintervallummal közöljük (korrekció n�
 
 Az A család adathalmazait előre rögzített erőszabály választotta ki (felderítő |Δ| ≥ MDD
 n = 200-nál, adathalmazonkénti σ_d-vel); a SNAPMe ezen kiesett.
+Reprodukálás: `venv/bin/python mdd_selection.py` (2026-11-18-án pótolva; a számítás változatlan).
 
 ## Adatkezelési szabályok
 
