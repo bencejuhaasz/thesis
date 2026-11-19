@@ -20,9 +20,12 @@ hívásokon, valamint a teljes hívásszámon, a sikertelen hívásokat nulla be
 Ha minden hívás sikeres, a két érték megegyezik. A páros összehasonlításokba csak a 
 sikeres hívások kerülnek.
 
-\paragraph{}Nem számít sikertelen hívásnak, ha a bemenet hiányzott: ha egy étel képfájlja 
-nem volt beolvasható, a program nem küldött kérést. Ez az adathalmazt jellemzi, nem a 
-modellt vagy a szolgáltatót, ezért az ilyen ételek egyik számításban sem szerepelnek.
+\paragraph{}Nem számít sikertelen hívásnak, ha a kérés el sem jutott a szolgáltatóhoz: ha egy 
+étel képfájlja nem volt beolvasható, vagy ha a hívás helyi beállítási hiba, például hiányzó 
+API-kulcs miatt meg sem történt. Az előbbi az adathalmazt, az utóbbi a mérési környezetet 
+jellemzi, egyik sem a modellt vagy a szolgáltatót. Az olvashatatlan képű ételek egyik 
+számításban sem szerepelnek. A helyi hiba miatt elmaradt hívásokat ugyanazzal a paranccsal 
+újrafuttattam, és ételenként mindig az utolsó hívás eredménye számít.
 
 \subsection{Egy futás konfidenciaintervalluma}
 \paragraph{}A pMAE és a százalékos bias is két összeg hányadosa:
