@@ -20,12 +20,9 @@ hívásokon, valamint a teljes hívásszámon, a sikertelen hívásokat nulla be
 Ha minden hívás sikeres, a két érték megegyezik. A páros összehasonlításokba csak a 
 sikeres hívások kerülnek.
 
-\paragraph{}Nem számít sikertelen hívásnak, ha a kérés el sem jutott a szolgáltatóhoz: ha egy 
-étel képfájlja nem volt beolvasható, vagy ha a hívás helyi beállítási hiba, például hiányzó 
-API-kulcs miatt meg sem történt. Az előbbi az adathalmazt, az utóbbi a mérési környezetet 
-jellemzi, egyik sem a modellt vagy a szolgáltatót. Az olvashatatlan képű ételek egyik 
-számításban sem szerepelnek. A helyi hiba miatt elmaradt hívásokat ugyanazzal a paranccsal 
-újrafuttattam, és ételenként mindig az utolsó hívás eredménye számít.
+\paragraph{}Nem számít sikertelen hívásnak, ha a bemenet hiányzott: ha egy étel képfájlja 
+nem volt beolvasható, a program nem küldött kérést. Ez az adathalmazt jellemzi, nem a 
+modellt vagy a szolgáltatót, ezért az ilyen ételek egyik számításban sem szerepelnek.
 
 \subsection{Egy futás konfidenciaintervalluma}
 \paragraph{}A pMAE és a százalékos bias is két összeg hányadosa:
@@ -209,10 +206,7 @@ Claude Opus 5.5 & 20,3 (15,7; 25,0) & 18,5 (15,2; 21,8) & $-$0,06 ($-$0,27; 0,15
 \label{sec:dontesi_eredmenyek}
 \paragraph{}A döntési mérés összes tervezett futása elkészült, és a végleges futásokban nem 
 maradt API-hiba vagy fel nem dolgozható válasz, így a teljes hívásszámon számolt pMAE 
-minden futásban megegyezik a sikeres hívásokon számolttal. A Nutrition5k-n a Flash-Lite 14 hívása az 
-első kísérletre helyi beállítási hiba miatt meghiúsult: az API-kulcs hiányzott a 
-környezetből, így a kérés nem jutott el a szolgáltatóhoz. Ezeket ugyanazzal a paranccsal 
-újrafuttattam, és mindegyik sikeres választ adott.
+minden futásban megegyezik a sikeres hívásokon számolttal.
 A tesztelt minta a Nutrition5k, az OmniFood8k és az ACETADA adathalmazon 200, a DFood-Tj-n 250 étel volt. 
 A SNAPMe-n a kiválasztott 250 ételből kettőnek a képfájlját nem lehetett beolvasni (a 32. és 
 a 139. pozíció), ezért a tesztelt 51--250. pozícióból 199 pár került a B család tesztjeibe.
