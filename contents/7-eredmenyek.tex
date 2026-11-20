@@ -83,6 +83,7 @@ ezért Holm-korrekcióra nem volt szükség, a próba pedig a döntési mérésb
 páros $t$-próba volt.
 
 \subsection{Kiegészítő mutatók}
+\label{sec:kiegeszito}
 \paragraph{}A pMAE nagysága attól is függ, mennyire különböznek egymástól egy 
 adathalmaz ételei. Ha az adagok hasonlók, már egy bemeneti adatot nem is vizsgáló, közel állandó értékű
 mediánbecslés is kis hibát ad. Ezért a pMAE mellett a skill értéket is közlöm, amely a 
@@ -128,7 +129,61 @@ A többi előmérési futásban minden hívás sikeres volt, és egyetlen válas
 sem kellett a JSON-objektumot a szövegből kiemelni.
 
 \subsection{Modellek és adathalmazok}
-% TODO: 6 adathalmaz, 8 modell n=50-es eredményei (pMAE, skill)
+\paragraph{}A \ref{tab:elomeres_modellek}.~táblázat az előmérés modellösszehasonlító futásait 
+mutatja. Adathalmazonként minden modell ugyanazt az 50 ételt kapta (a SNAPMe-n 49-et), 
+ugyanazzal a P3\_macros prompttal és egy képpel, így a modellek adathalmazon belül páronként 
+összevethetők. Az alábbi különbségek a Flash-Lite-hoz viszonyított páros különbségek 
+százalékpontban, zárójelben a 95\%-os konfidenciaintervallummal; pozitív érték esetén a 
+Flash-Lite a pontosabb. Ezek felderítő összehasonlítások, többszörös összehasonlításra 
+vonatkozó korrekció nélkül (\ref{sec:ertekeles}.~alfejezet): a döntési mérés hipotéziseinek 
+kiválasztását szolgálták, következtetést csak a döntési mérés eredményeiből vonok le.
+
+\paragraph{}Szénhidrátban a Nutrition5k-n és az OmniFood8k-n a két Gemini-modell adta a 
+legkisebb hibát, az ACETADA-n a GPT-6 Luna is hasonló pontosságú volt. A Gemini 3.8 Flash 
+a Flash-Lite-nál két-háromszor drágább, szénhidrátban mégsem volt pontosabb: a Nutrition5k-n, 
+az OmniFood8k-n és az ACETADA-n a különbség legfeljebb 1,5 százalékpont volt, a SNAPMe-n nem volt kimutatható, a DFood-Tj-n pedig a 
+Flash-Lite volt a pontosabb, 4,7 (0,9; 8,5) százalékponttal.
+
+\paragraph{}A nagyobb, drágább modellek szénhidrátban nem voltak pontosabbak a Flash-Lite-nál. 
+A Nutrition5k-n a Sonnet 18,6 (3,4; 33,8), a Sol 25,4 (11,0; 39,8), az OmniFood8k-n 
+33,1 (9,5; 56,8), illetve 19,3 (0,5; 38,2) százalékponttal nagyobb hibát adott. Az ACETADA-n a 
+különbség kisebb volt: a Sonnetnél 4,7 ($-0{,}1$; 9,4), a Solnál 7,7 (1,8; 13,5) százalékpont. 
+Ellenkező irányú eltérés csak a DFood-Tj-n adódott: a különbség a Sonnetnél 
+$-4{,}5$ ($-8{,}0$; $-1{,}0$), a Solnál $-6{,}3$ ($-12{,}7$; $0{,}2$) százalékpont volt. Ezekből a különbségekből lett az A 
+hipotéziscsalád; a négy adathalmazt a \ref{sec:dontesi_protokoll}.~alfejezetben leírt 
+MDD-szabály választotta ki. A SNAPMe-n a különbség ehhez kicsi volt 
+($-2{,}1$, illetve $+1{,}9$ százalékpont), és ezen az adathalmazon a Flash-Lite-hoz képest 
+egyik modell szénhidrátban mért különbsége sem haladta meg a 7 százalékpontot.
+
+\paragraph{}A modellek sorrendje a célmennyiségtől is függ. Az OmniFood8k-n a Sol, az Astra 
+és az Opus energiában pontosabb volt a Flash-Lite-nál, a különbség $-15{,}8$ ($-23{,}6$; $-8{,}0$), 
+$-14{,}6$ ($-22{,}4$; $-6{,}9$), illetve $-10{,}5$ ($-17{,}6$; $-3{,}3$) százalékpont volt, 
+szénhidrátban viszont mindhárom pontatlanabb volt. Egyik modell sem 
+volt tehát minden adathalmazon és minden célmennyiségben a legpontosabb.
+
+\paragraph{}A Claude Haiku 5.5 a Nutrition5k-n és az OmniFood8k-n adta a legnagyobb 
+szénhidráthibát (88,3, illetve 133,1\%). Az OmniFood8k-n a skillje kimutathatóan negatív volt, 
+vagyis a becslése rosszabb volt a mediánbecslésnél. Ugyanezen az adathalmazon a két 
+Gemini-modell kivételével egyik modell szénhidrát-skillje sem tért el kimutathatóan a nullától.
+
+\paragraph{}A DFood-Tj-n minden modell szénhidrát-pMAE-je (15,6--26,5\%) kisebb, 
+mint bármelyik modellé a többi adathalmazon, a skill viszont a Sol (0,11) 
+és a Sonnet (0,00) kivételével negatív, vagyis a legtöbb modell hibája nagyobb volt a 
+mediánbecslésénél. A leave-one-out mediánbecslés szénhidrát-pMAE-je itt 17,4\%, a többi 
+képes adathalmazon 34,8 és 79,0\% között van, és a referenciaértékek is itt szóródnak a 
+legkevésbé: a relatív szórás (a szórás és az átlag hányadosa) 0,21, a többi adathalmazon 
+0,51 és 0,92 között van. Ez a példa mutatja, miért nem hasonlítható össze a pMAE az 
+adathalmazok között, és miért közlöm mellette a skillt 
+(\ref{sec:kiegeszito}.~alfejezet): a kisebb érték itt nem jelent a mediánbecslésnél 
+pontosabb becslést.
+
+\paragraph{}Költségben a GPT-6 Luna volt a legolcsóbb (0,26--0,41 USD 1000 ételre), ezt a 
+Flash-Lite (0,91--1,50 USD) és a Gemini 3.8 Flash (2,53--3,37 USD) követte. A Sol és a Sonnet 
+5,21--9,27, az Opus 12,30--19,81 USD-be került, az Astra az OmniFood8k-n 32,58 USD-be. A Luna 
+szénhidrátban a SNAPMe-n, az ACETADA-n és a DFood-Tj-n nem tért el kimutathatóan a 
+Flash-Lite-tól, a Nutrition5k-n és az OmniFood8k-n viszont 16,8 (5,6; 28,1), illetve 
+22,9 (10,0; 35,7) százalékponttal nagyobb hibát adott.
+
 \begin{table}[p]
 \centering
 \caption{Az előmérés modellösszehasonlító futásai adathalmazonként (P3\_macros prompt, egy kép, 
