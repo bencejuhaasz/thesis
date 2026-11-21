@@ -15,6 +15,7 @@ tovább. A felhasznált adathalmazok letöltési helyét, licencét és a haszn�
 \footnotesize
 \caption{A felhasznált adathalmazok letöltési helye, licence és a használt változat.}
 \label{tab:adathalmaz_forrasok}
+\setlength{\tabcolsep}{5pt}
 \begin{tabular}{l>{\raggedright\arraybackslash}p{7.2cm}ll}
 \hline
 Adathalmaz & Letöltési hely & Licenc & Változat \\
@@ -24,7 +25,7 @@ OmniFood8k  & \href{https://yudongjian.github.io/OmniFood8K-food/}{yudongjian.gi
 DFood-Tj    & \href{https://doi.org/10.57760/sciencedb.28012}{doi:10.57760/sciencedb.28012} & CC0 & V3 \\
 ACETADA     & \href{https://skynet.ecn.purdue.edu/~coburn6/ACETADA/}{skynet.ecn.purdue.edu/\textasciitilde coburn6/ACETADA} & CC BY-NC 4.0 & -- \\
 SNAPMe      & \href{https://doi.org/10.15482/USDA.ADC/1528346}{doi:10.15482/USDA.ADC/1528346} & CC BY-SA 4.0 & 1. \\
-NutriBench  & \href{https://huggingface.co/datasets/dongx1997/NutriBench}{huggingface.co/datasets/dongx1997/NutriBench} & CC BY-NC-SA 4.0 & v1 \\
+NutriBench  & \href{https://huggingface.co/datasets/dongx1997/NutriBench}{huggingface.co/datasets/dongx1997/NutriBench} & CC BY-NC-SA 4.0 & v1, natural \\
 \hline
 \end{tabular}
 \end{table}
@@ -234,7 +235,7 @@ eltérhet \cite{fao2003foodenergy}. A 15\%-os érték választott határ.
 
 \subsection{A bemenetek típusai}
 \label{sec:bemenet_tipusok}
-\paragraph{}A mérésekben öt bemenettípus különböztethető meg. A szöveges rész eredete 
+\paragraph{}A mérésekben négy bemenettípus különböztethető meg. A szöveges rész eredete 
 típusonként eltér, ezért az eredményeik nem vonhatók össze, és az eredmények táblázataiban 
 mindig megadom, melyik típusról van szó.
 \begin{enumerate}
@@ -246,7 +247,10 @@ mindig megadom, melyik típusról van szó.
     amire egy valódi felhasználó leírása képes volna.
     \item \textbf{Csak szöveg, referenciaadatokból nyelvi modellel fogalmazva:} a NutriBench 
     leírásai, amelyeket a szerzők a felmérésekben rögzített ételekből és mennyiségekből 
-    GPT-4o-mini segítségével készítettek. A szöveg az ételeket és a mennyiségeket is tartalmazza.
+    GPT-4o-mini segítségével készítettek. A NutriBench v1 grammos (metric) és hétköznapi 
+    mértékegységű (natural) leírásai közül a hétköznapi változatot használtam: a szöveg az ételeket és a mennyiségüket 
+    is megadja, de grammok nélkül, hétköznapi mértékegységben vagy darabszámban (például „egy 
+    uncia”, „egy közepes zacskó”, „egy szendvics”).
     \item \textbf{Kép, majd a modell saját leírása:} a P3\_prep\_textcalc második lépése, amely 
     csak szöveget kap, de ezt a szöveget az első lépésben ugyanaz a modell írta a képről. Emberi 
     leírás itt sincs.
