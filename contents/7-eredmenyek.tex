@@ -189,7 +189,7 @@ Flash-Lite-tól, a Nutrition5k-n és az OmniFood8k-n viszont 16,8 (5,6; 28,1), i
 
 \begin{table}[p]
 \centering
-\caption{Az előmérés modellösszehasonlító futásai adathalmazonként (P3\_macros prompt, egy kép, 
+\caption{Az előmérés modellösszehasonlító futásai adathalmazonként (csak képes bemenet, P3\_macros prompt, egy kép, 
 adathalmazonként ugyanaz az 50 étel, a SNAPMe-n 49). Minden hívás sikeres volt. Zárójelben a 
 95\%-os konfidenciaintervallum. A pMAE adathalmazok között nem hasonlítható össze, ezért a 
 modellek sorrendje csak adathalmazon belül értelmezhető.}
@@ -251,10 +251,184 @@ Claude Opus 5.5 & 20,3 (15,7; 25,0) & 18,5 (15,2; 21,8) & $-$0,06 ($-$0,27; 0,15
 \end{table}
 
 \subsection{Promptváltozatok és bemenetek}
-% TODO: P3_density, P3_prep, P3_prep_textcalc, P3_recipe, szöveges ételleírás, több kép
+\paragraph{}A \ref{tab:elomeres_promptok}.~táblázat a P3\_macros öt változatát 
+(\ref{sec:promptok}.~alfejezet) veti össze a P3\_macros-szal a Flash-Lite modellen, adathalmazonként 
+ugyanazon az 50 ételen, egy képpel (csak képes bemenet, \ref{sec:bemenet_tipusok}.~alfejezet). 
+A különbségek itt is páros különbségek százalékpontban; negatív érték esetén a változat a pontosabb.
+
+\paragraph{}Szénhidrátban egyik változat sem javított következetesen. A 25 összehasonlításból 
+kettőben volt kimutatható a különbség: a P3\_check az ACETADA-n $-4{,}4$ ($-8{,}1$; $-0{,}7$) 
+százalékponttal csökkentette, a P3\_recipe\_check a Nutrition5k-n 8,2 (0,3; 16,2) százalékponttal 
+növelte a hibát.
+
+\paragraph{}Zsírban az OmniFood8k-n négy változat is kisebb hibát adott. A legnagyobb a P3\_recipe 
+hatása volt, $-8{,}2$ ($-11{,}0$; $-5{,}3$) százalékpont, ezt a P3\_recipe\_check ($-5{,}5$), a 
+P3\_anchor ($-3{,}7$) és a P3\_portion ($-2{,}9$) követte. A többi adathalmazon egyik változat sem 
+változtatott kimutathatóan a zsírhibán. Energiában szintén az OmniFood8k-n javított a P3\_recipe 
+($-4{,}0$) és a P3\_anchor ($-3{,}2$ százalékpont), a P3\_recipe\_check a Nutrition5k-n itt is 
+nagyobb hibát adott (5,2 százalékpont). A P3\_recipe zsírjavulását az előre rögzített megerősítő 
+mérés (\ref{sec:ertekeles}.~alfejezet) az OmniFood8k további 50 ételén is kimutatta: a zsír-pMAE 
+60,2-ről 55,4\%-ra csökkent, a különbség $-4{,}9$ ($-8{,}2$; $-1{,}6$) százalékpont, $p = 0{,}004$. 
+Ebből lettek a C hipotéziscsaládok.
+
+\begin{table}[p]
+\centering
+\caption{A promptváltozatok páros különbsége a P3\_macros-hoz képest, százalékpontban 
+(Gemini 3.5 Flash-Lite, csak képes bemenet, egy kép, adathalmazonként ugyanaz az 50 étel, a SNAPMe-n 49). 
+Negatív érték esetén a változat a pontosabb. Zárójelben a 95\%-os konfidenciaintervallum. 
+Minden hívás sikeres volt.}
+\label{tab:elomeres_promptok}
+{\linespread{1}\selectfont\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llll}
+\hline
+Prompt & Szénhidrát & Zsír & Energia \\
+\hline
+\multicolumn{4}{l}{\textit{Nutrition5k}} \\
+P3\_macros (pMAE, \%) & 33,2 & 45,9 & 30,7 \\
+P3\_recipe & 2,1 ($-$3,1; 7,4) & 0,3 ($-$8,5; 9,0) & 2,4 ($-$3,6; 8,5) \\
+P3\_anchor & $-$0,3 ($-$6,0; 5,3) & 0,5 ($-$7,0; 8,0) & 0,6 ($-$4,0; 5,1) \\
+P3\_portion & 5,6 ($-$0,9; 12,0) & 2,8 ($-$2,6; 8,3) & 2,9 ($-$2,3; 8,1) \\
+P3\_check & 4,7 ($-$2,7; 12,0) & $-$0,9 ($-$8,4; 6,5) & $-$0,8 ($-$7,4; 5,9) \\
+P3\_recipe\_check & 8,2 (0,3; 16,2) & 0,2 ($-$5,8; 6,1) & 5,2 (0,4; 10,1) \\
+\hline
+\multicolumn{4}{l}{\textit{OmniFood8k}} \\
+P3\_macros (pMAE, \%) & 51,9 & 69,1 & 49,3 \\
+P3\_recipe & $-$1,3 ($-$7,2; 4,6) & $-$8,2 ($-$11,0; $-$5,3) & $-$4,0 ($-$7,3; $-$0,7) \\
+P3\_anchor & 4,2 ($-$1,8; 10,3) & $-$3,7 ($-$6,8; $-$0,5) & $-$3,2 ($-$6,2; $-$0,2) \\
+P3\_portion & 7,7 ($-$0,2; 15,6) & $-$2,9 ($-$5,1; $-$0,8) & $-$1,7 ($-$4,9; 1,5) \\
+P3\_check & $-$1,4 ($-$9,8; 7,1) & 0,1 ($-$3,1; 3,2) & 0,9 ($-$3,1; 4,9) \\
+P3\_recipe\_check & $-$0,7 ($-$8,2; 6,8) & $-$5,5 ($-$8,8; $-$2,1) & $-$1,8 ($-$4,8; 1,3) \\
+\hline
+\multicolumn{4}{l}{\textit{SNAPMe}} \\
+P3\_macros (pMAE, \%) & 42,8 & 62,1 & 43,9 \\
+P3\_recipe & $-$2,0 ($-$6,8; 2,9) & $-$1,4 ($-$7,2; 4,4) & $-$0,9 ($-$4,9; 3,0) \\
+P3\_anchor & 2,5 ($-$1,9; 6,9) & 0,3 ($-$5,0; 5,6) & $-$0,1 ($-$3,4; 3,2) \\
+P3\_portion & $-$0,5 ($-$4,2; 3,3) & 1,1 ($-$4,9; 7,1) & 0,7 ($-$2,4; 3,8) \\
+P3\_check & $-$2,9 ($-$9,0; 3,3) & $-$3,6 ($-$12,4; 5,1) & $-$1,8 ($-$6,8; 3,2) \\
+P3\_recipe\_check & 0,7 ($-$5,0; 6,4) & $-$0,3 ($-$7,7; 7,1) & $-$0,9 ($-$5,5; 3,7) \\
+\hline
+\multicolumn{4}{l}{\textit{ACETADA}} \\
+P3\_macros (pMAE, \%) & 28,5 & 31,9 & 21,5 \\
+P3\_recipe & $-$1,2 ($-$4,5; 2,1) & 1,1 ($-$3,9; 6,1) & 1,1 ($-$1,6; 3,8) \\
+P3\_anchor & $-$1,0 ($-$4,1; 2,1) & $-$0,5 ($-$6,1; 5,2) & 1,1 ($-$1,6; 3,9) \\
+P3\_portion & $-$1,7 ($-$4,8; 1,3) & $-$0,8 ($-$5,4; 3,9) & 0,3 ($-$2,4; 3,0) \\
+P3\_check & $-$4,4 ($-$8,1; $-$0,7) & $-$3,2 ($-$11,0; 4,5) & $-$1,4 ($-$5,9; 3,0) \\
+P3\_recipe\_check & $-$0,4 ($-$4,8; 3,9) & 0,5 ($-$5,4; 6,4) & 2,7 ($-$1,2; 6,6) \\
+\hline
+\multicolumn{4}{l}{\textit{DFood-Tj (ferde kép)}} \\
+P3\_macros (pMAE, \%) & 21,8 & 44,9 & 21,6 \\
+P3\_recipe & $-$0,1 ($-$3,0; 2,8) & $-$0,5 ($-$6,9; 5,9) & 0,0 ($-$3,0; 2,9) \\
+P3\_anchor & $-$1,1 ($-$3,8; 1,6) & $-$1,8 ($-$6,4; 2,8) & $-$1,0 ($-$3,5; 1,6) \\
+P3\_portion & 0,0 ($-$3,1; 3,1) & 1,2 ($-$2,2; 4,6) & 0,1 ($-$2,5; 2,7) \\
+P3\_check & 2,9 ($-$0,6; 6,5) & 2,3 ($-$1,9; 6,6) & 2,0 ($-$0,9; 5,0) \\
+P3\_recipe\_check & 0,9 ($-$2,4; 4,3) & $-$0,2 ($-$7,2; 6,8) & $-$0,5 ($-$3,7; 2,8) \\
+\hline
+\end{tabular}}
+\end{table}
+
+\paragraph{}A \ref{tab:elomeres_eljarasok}.~táblázat a bemenet és a feldolgozás változatait 
+mutatja: több nézőpont, a tételek pontosabb megnevezése (P3\_prep) és a kétlépéses eljárás 
+(P3\_prep\_textcalc). A költség- és a válaszidő-arány az étkezésenkénti átlagos költség és a 
+válaszidő mediánjának hányadosa a viszonyított futáshoz képest.
+
+\paragraph{}A több kép nem javított egyértelműen. Az OmniFood8k-n a hat kamera képe az egy kép 
+helyett az energia hibáját $-3{,}4$ ($-6{,}7$; $-0{,}2$) százalékponttal csökkentette, a 
+szénhidrátét és a zsírét nem változtatta kimutathatóan, a költséget viszont 2,16-szorosára növelte. 
+A DFood-Tj-n a felülnézeti kép a ferde helyett, illetve a két kép együtt a ferde egymagában helyett 
+egyik mért célmennyiségben sem adott kimutatható különbséget. A döntési mérés ennek megfelelően 
+hívásonként egy képet használt, a DFood-Tj-n a ferde nézetet.
+
+\paragraph{}A P3\_prep, amely a tételeket elkészítési módjukkal együtt nevezteti meg, a 
+P3\_macros-hoz képest a költséget alig változtatta (1,02--1,07-szeres), és csak a SNAPMe-n 
+csökkentette kimutathatóan a zsír hibáját, $-8{,}1$ ($-13{,}5$; $-2{,}7$) százalékponttal. A 
+P3\_prep\_textcalc második, csak szöveges lépése (4.~bemenettípus) a P3\_prep-hez képest az 
+OmniFood8k-n az energia hibáját $-6{,}0$ ($-9{,}7$; $-2{,}4$), a zsírét $-8{,}7$ ($-13{,}2$; $-4{,}3$) 
+százalékponttal csökkentette, a SNAPMe-n viszont a szénhidrátét 4,5 (0,3; 8,8) százalékponttal 
+növelte, a Nutrition5k-n pedig nem változtatott kimutathatóan. A második hívás ára, hogy a költség 
+1,71--1,80-szorosára, a válaszidő mediánja 2,14--2,34-szeresére nő. A javulás tehát 
+adathalmazfüggő. Az OmniFood8k-n a P3\_recipe egyetlen hívással is $-8{,}2$ százalékponttal 
+csökkentette a zsír hibáját a P3\_macros-hoz képest (\ref{tab:elomeres_promptok}.~táblázat).
+
+\paragraph{}A P3\_density az OmniFood8k-n hat képpel nem változtatta kimutathatóan az energia 
+hibáját a P3\_macros-hoz képest, a DFood-Tj-n (Gemini 3.1 Flash-Lite, két nézet) pedig a P3-hoz 
+képest 6,3 (0,6; 11,9) százalékponttal növelte. A változatot ezután nem használtam.
+
+\begin{table}[p]
+\centering
+\caption{A bemenet és a feldolgozás változatainak páros különbsége, százalékpontban (energia, 
+szénhidrát és zsír pMAE), valamint a költség és a válaszidő-medián aránya, 50 ételen 
+(a SNAPMe-n 49). A bemenet a P3\_prep\_textcalc második lépésének kivételével csak kép. Negatív 
+érték esetén a felsorolt változat a pontosabb. Zárójelben a 95\%-os konfidenciaintervallum. A P3 és a 
+P3\_density makrotápanyagot nem becsül; a DFood-Tj P3-futásainál a költséget a program még nem 
+rögzítette. Minden hívás sikeres volt.}
+\label{tab:elomeres_eljarasok}
+{\linespread{1}\selectfont\footnotesize\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.3cm}lllll}
+\hline
+Változat & Energia & Szénhidrát & Zsír & Költség & Válaszidő \\
+ & & & & ($\times$) & ($\times$) \\
+\hline
+\multicolumn{6}{l}{\textit{Több nézet (Flash-Lite)}} \\
+OmniFood8k: 6 kép, nem 1 (P3\_macros) & $-$3,4 ($-$6,7; $-$0,2) & 5,9 ($-$1,9; 13,7) & $-$2,2 ($-$5,1; 0,8) & 2,16 & 1,58 \\
+DFood-Tj: ferde és felülnézet, nem csak ferde (P3\_macros) & 0,9 ($-$1,9; 3,6) & 0,2 ($-$3,1; 3,6) & 1,3 ($-$3,0; 5,7) & 1,30 & 1,18 \\
+DFood-Tj: felülnézet, nem ferde (P3) & 2,0 ($-$1,7; 5,8) & -- & -- & -- & 1,09 \\
+DFood-Tj: ferde és felülnézet, nem csak ferde (P3) & 1,1 ($-$1,9; 4,1) & -- & -- & -- & 2,67 \\
+\hline
+\multicolumn{6}{l}{\textit{P3\_prep a P3\_macros-hoz képest (Flash-Lite, 1 kép)}} \\
+Nutrition5k & 2,9 ($-$1,1; 6,9) & 2,6 ($-$2,0; 7,3) & 0,8 ($-$5,1; 6,7) & 1,03 & 0,76 \\
+OmniFood8k & $-$0,5 ($-$3,2; 2,3) & 1,2 ($-$5,6; 7,9) & $-$1,8 ($-$4,2; 0,5) & 1,02 & 0,98 \\
+SNAPMe & $-$3,4 ($-$7,0; 0,2) & $-$2,8 ($-$8,4; 2,8) & $-$8,1 ($-$13,5; $-$2,7) & 1,07 & 0,72 \\
+\hline
+\multicolumn{6}{l}{\textit{P3\_prep\_textcalc a P3\_prep-hez képest (Flash-Lite, 1 kép)}} \\
+Nutrition5k & $-$1,9 ($-$8,8; 5,0) & $-$3,1 ($-$10,8; 4,5) & $-$2,3 ($-$11,9; 7,2) & 1,75 & 2,24 \\
+OmniFood8k & $-$6,0 ($-$9,7; $-$2,4) & $-$2,5 ($-$11,9; 6,9) & $-$8,7 ($-$13,2; $-$4,3) & 1,80 & 2,14 \\
+SNAPMe & 2,6 ($-$1,4; 6,7) & 4,5 (0,3; 8,8) & 2,6 ($-$5,5; 10,7) & 1,71 & 2,34 \\
+\hline
+\multicolumn{6}{l}{\textit{P3\_density}} \\
+OmniFood8k, 6 kép, a P3\_macros-hoz képest (Flash-Lite) & 2,2 ($-$1,3; 5,6) & -- & -- & 1,05 & 0,75 \\
+DFood-Tj, 2 nézet, a P3-hoz képest (Gemini 3.1 Flash-Lite) & 6,3 (0,6; 11,9) & -- & -- & 1,39 & 0,59 \\
+\hline
+\end{tabular}}
+\end{table}
 
 \subsection{Szöveges bemenet}
-% TODO: NutriBench eredmények
+\paragraph{}A NutriBench-en a modellek csak szöveges leírást kaptak (3.~bemenettípus), amely az 
+ételeket és a mennyiségeket is megadja. A \ref{tab:elomeres_nutribench}.~táblázat szerint az 
+energia pMAE-je 17,1 és 23,5\%, a szénhidráté 18,8 és 24,2\% között volt, a szénhidrát-skill 
+minden modellnél 0,57 és 0,67 közé esett. A Flash-Lite-hoz képest egyik modell páros különbsége sem 
+volt kimutatható, sem energiában, sem szénhidrátban. Ha az étel és a mennyiség adott, ezen a 
+mintán a modellek pontossága nem különbözött kimutathatóan, a költségük viszont igen: 
+0,19 és 9,07 USD között volt 1000 leírásra.
+
+\paragraph{}A SNAPMe-n a képet a referenciarekordból képzett ételnév-listával kiegészítő 
+P3\_macros\_hint (2.~bemenettípus) az előmérésben mindhárom vizsgált modellnél csökkentette a zsír 
+hibáját: a Flash-Lite-nál $-17{,}4$ ($-28{,}5$; $-6{,}3$), a Sonnetnél $-14{,}8$ ($-24{,}1$; $-5{,}4$), 
+a Solnál $-19{,}1$ ($-34{,}8$; $-3{,}3$) százalékponttal. A szénhidrát hibáját csak a Solnál 
+csökkentette kimutathatóan, $-7{,}2$ ($-14{,}0$; $-0{,}4$) százalékponttal. Ebből lett a B 
+hipotéziscsalád, amelyet a döntési mérés a Flash-Lite-on vizsgált.
+
+\begin{table}[p]
+\centering
+\caption{Az előmérés eredményei a NutriBench-en (csak szöveges bemenet, NutriBench prompt, 
+ugyanaz az 50 leírás). Minden hívás sikeres volt. Zárójelben a 95\%-os konfidenciaintervallum.}
+\label{tab:elomeres_nutribench}
+{\linespread{1}\selectfont\small\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lllll}
+\hline
+Modell & Energia & Szénhidrát & Szénhidrát & Költség \\
+ & pMAE (\%) & pMAE (\%) & skill & (USD / \\
+ & & & & 1000 leírás) \\
+\hline
+Gemini 3.5 Flash-Lite & 18,5 (9,6; 27,3) & 19,7 (12,2; 27,3) & 0,65 (0,49; 0,81) & 0,62 \\
+Gemini 3.8 Flash & 18,3 (9,8; 26,8) & 19,0 (12,0; 26,1) & 0,66 (0,51; 0,81) & 1,19 \\
+GPT-6 Luna & 21,6 (12,1; 31,1) & 22,5 (15,0; 30,0) & 0,60 (0,43; 0,76) & 0,19 \\
+GPT-6.1 Sol & 19,6 (10,3; 29,0) & 20,3 (12,4; 28,3) & 0,64 (0,47; 0,81) & 3,34 \\
+Claude Haiku 5.5 & 23,5 (13,7; 33,3) & 24,2 (16,3; 32,1) & 0,57 (0,40; 0,74) & 0,27 \\
+Claude Sonnet 5.5 & 18,6 (10,3; 26,9) & 18,8 (12,0; 25,5) & 0,67 (0,52; 0,81) & 4,64 \\
+Claude Opus 5.5 & 17,1 (9,4; 24,9) & 19,9 (12,8; 26,9) & 0,65 (0,50; 0,79) & 9,07 \\
+\hline
+\end{tabular}}
+\end{table}
 
 \subsection{A becslési hiba forrásai}
 % TODO: tömeg és energiasűrűség szerinti felbontás; a nagy adagok alulbecslése
@@ -279,7 +453,7 @@ A legkisebb különbség az ACETADA-n a Sonnettel szemben adódott ($+2{,}7$ sz�
 
 \begin{table}[h]
 \centering
-\caption{Az A család eredményei: a szénhidrát pMAE-je (\%) és a különbség 
+\caption{Az A család eredményei (csak képes bemenet, P3\_macros, egy kép): a szénhidrát pMAE-je (\%) és a különbség 
 a Flash-Lite-hoz képest (százalékpont, 95\%-os konfidenciaintervallummal). Pozitív különbség: a Flash-Lite a pontosabb.}
 \label{tab:a_csalad}
 \begin{tabular}{lrrrrr}
@@ -300,7 +474,7 @@ túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-
 volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
 
 \subsection{A referenciarekordból képzett ételnév-lista hatása}
-\paragraph{}A B család azt vizsgálta, hogyan változik a Flash-Lite becslése a SNAPMe adathalmazon, ha a kép
+\paragraph{}A B család (2.~bemenettípus, \ref{sec:bemenet_tipusok}.~alfejezet) azt vizsgálta, hogyan változik a Flash-Lite becslése a SNAPMe adathalmazon, ha a kép
 mellett megkapja az étkezés tételeinek nevét is, a referenciarekordból, a tömegük nélkül. A szénhidrátbecslés
 hibáján a névlista nem változtatott ($-0{,}3$ százalékpont, 95\%-os konfidenciaintervallum: $-2{,}9$ és $+2{,}3$
 között, Holm-korrigált $p = 0{,}80$), a zsírbecslés hibáját viszont jelentősen csökkentette ($48{,}9\%$-ról

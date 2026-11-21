@@ -142,6 +142,7 @@ Az OpenAI csúcsmodellje a középső szint ötszörösébe kerül, ezért költ
 A Google csúcsmodelljét ugyanezen okból nem vizsgáltam.
 
 \section{A vizsgált prompt utasítások összeállítása}
+\label{sec:promptok}
 \paragraph{}Egy szöveges prompt megadása a nagy nyelvi modellek használata során azt a célt szolgálja,
 hogy annak bemeneteként meghatározza annak számára az elvégzendő feladatot.
 A méréseimhez a Sterling és társai \cite{sterling2026vlm} által közölt P3 promptból indultam ki,
@@ -181,6 +182,74 @@ a tömegük nélkül. Ez a szöveg nem a felhasználó szabad leírása, hanem a
     olaj, vaj, szósz vagy cukor annak az ételnek az értékeibe számít bele, amellyel együtt készült, külön 
     tételként csak akkor szerepel, ha külön tálalják. A P3\_macros-tól a szénhidrát fogalmának meghatározásában is 
     eltér (összes szénhidrát, a rosttal együtt). A kimeneti szerkezet megegyezik a P3\_macros-éval.
+    \item \textbf{P3\_anchor:} a P3\_macros tételenkénti utasítását háromlépéses számításra cseréli. 
+    A modell előbb a tétel tömegét becsli, majd emlékezetből megadja a tétel 100 grammra 
+    vonatkozó összetételét, ahogy egy tápanyagtáblázatban szerepelne (táblázatot vagy adatbázist 
+    nem kap), és ebből számolja a tápanyagokat. Az energiát az általános Atwater-faktorokkal 
+    számolja: 4~kcal/g szénhidrát, 4~kcal/g fehérje és 9~kcal/g zsír \cite{fao2003foodenergy}. 
+    A prompt ételcsoportonként a jellemző szénhidrát- és zsírtartalmat is megadja 100 grammra, 
+    amelyhez a modell az értékeit viszonyíthatja.
+    \item \textbf{P3\_portion:} az adag becsléséhez ismert méretű tárgyakat ad meg viszonyítási 
+    alapként (tányér, evőeszköz, pohár, üdítősdoboz). A modell a tételek térfogatát becsli, és 
+    jellemző sűrűségekkel grammra váltja; a halmozott vagy részben takart ételt is figyelembe veszi, 
+    és ha két méret is lehetséges, azt választja, amelyet a viszonyítási tárgyak alátámasztanak, 
+    nem a szokásos adagot. A leírásmezőben meg kell neveznie a használt viszonyítási tárgyat.
+    \item \textbf{P3\_check:} a modell a leírásmezőben előbb vázlatot ír minden tétel 
+    tömegéről, szénhidrát-, fehérje- és zsírtartalmáról és energiájáról, majd négy szempontból 
+    ellenőrzi. A becsült energia legfeljebb kb. 15\%-kal térjen el attól, ami a makrotápanyagokból 
+    az Atwater-faktorokkal adódik (4~kcal/g szénhidrát és fehérje, 9~kcal/g zsír 
+    \cite{fao2003foodenergy}); a három makrotápanyag grammban mért összege ne haladja meg a 
+    tömeget (főtt ételeknél a prompt szerint ez jellemzően a tömeg 10--40\%-a, olajoknál és 
+    zsiradékoknál legfeljebb 100\%); minden étel és ital pontosan egyszer szerepeljen; az összes 
+    tömeg és energia legyen hihető a képen látható ételhez. A javításokat a leírásmezőben 
+    rögzíti, a javított értékeket a tétellistába írja.
+    \item \textbf{P3\_recipe\_check:} a P3\_recipe és a P3\_check egyesítése: előbb az étel 
+    szokásos elkészítése, utána a vázlat és az ellenőrzés.
+    \item \textbf{P3\_density:} a P3-ból indul, és tételenként a számok előtt a következőket kéri: 
+    az étel nevét, elkészítési módját, a látható hozzáadott zsiradék mértékét (nincs, kevés, 
+    közepes, sok), a legközelebbi tápanyagtáblázati tételt és az étel energiasűrűségét 
+    (kcal/100~g), végül a tömegét. Energiát a modell nem ad meg: az étkezés energiáját a 
+    benchmark.py a válasz feldolgozásakor számolja, tételenként a tömeg és a 100 grammra 
+    vonatkozó energiasűrűség szorzatának századaként, majd ezeket összegzi. A prompt 
+    ételcsoportonként jellemző energiasűrűség-tartományokat is megad. 
+    Makrotápanyagokat nem becsül.
+\end{enumerate}
+\paragraph{}A P3\_anchor, a P3\_portion, a P3\_check és a P3\_recipe\_check a P3\_recipe-hez 
+hasonlóan összes szénhidrátot kér (a rosttal együtt), a P3 adagbecslési szabályait pedig mind az 
+öt változat szó szerint megtartja.
+
+\paragraph{}A P3\_anchor, a P3\_portion, a P3\_check és a P3\_density azt vizsgálja, javít-e a 
+becslésen, ha a modell általános tudását kifejezett lépésekre és durva viszonyítási 
+tartományokra bontom. Külső tudásforrást, például tápanyag-adatbázist ezért nem vontam be, 
+ellentétben a FNDDS-re támaszkodó DietAI24-gyel \cite{yan2025dietai24}. Az energia 
+számításához a promptok az általános Atwater-faktorokat adják meg \cite{fao2003foodenergy}, 
+a térfogatokhoz szokásos konyhai mértékegységeket (teáskanál 5~ml, evőkanál 15~ml) és a 
+folyadékok nagyjából 1~g/ml sűrűségét. Az ételcsoportonkénti összetételi és energiasűrűség-tartományokat, 
+a tányér-, pohár- és dobozméreteket, az ételsűrűségeket és az ellenőrzés 15\%-os tűrését a 
+promptok összeállításakor általános ismeretek alapján, nagy nyelvi modell (Claude Opus 5.5) segítségével adtam meg, 
+durva támpontként. A tárgyméreteket tartományként adtam meg, mert egy adott fényképen 
+a tányér vagy a pohár valódi mérete nem ismert. Az ellenőrzésben azért van tűrés, mert az 
+általános Atwater-faktorokkal számolt energia az egyes ételek tényleges energiatartalmától 
+eltérhet \cite{fao2003foodenergy}. A 15\%-os érték választott határ.
+
+\subsection{A bemenetek típusai}
+\label{sec:bemenet_tipusok}
+\paragraph{}A mérésekben öt bemenettípus különböztethető meg. A szöveges rész eredete 
+típusonként eltér, ezért az eredményeik nem vonhatók össze, és az eredmények táblázataiban 
+mindig megadom, melyik típusról van szó.
+\begin{enumerate}
+    \item \textbf{Csak kép:} egy vagy több fénykép, szöveg nélkül. Ide tartozik a P3, a P3\_macros 
+    és a többi képes változat: ezekben a futásokban a modell a képen kívül semmilyen leírást nem kapott.
+    \item \textbf{Kép és a referenciarekordból képzett szöveg:} a kép mellett a résztvevő által 
+    naplózott ételek FNDDS-leírása, tömeg nélkül (SNAPMe, P3\_macros\_hint). 
+    A szöveg a referenciaannotációból származik, ezért pontosabban nevezi meg az ételeket, mint 
+    amire egy valódi felhasználó leírása képes volna.
+    \item \textbf{Csak szöveg, referenciaadatokból nyelvi modellel fogalmazva:} a NutriBench 
+    leírásai, amelyeket a szerzők a felmérésekben rögzített ételekből és mennyiségekből 
+    GPT-4o-mini segítségével készítettek. A szöveg az ételeket és a mennyiségeket is tartalmazza.
+    \item \textbf{Kép, majd a modell saját leírása:} a P3\_prep\_textcalc második lépése, amely 
+    csak szöveget kap, de ezt a szöveget az első lépésben ugyanaz a modell írta a képről. Emberi 
+    leírás itt sincs.
 \end{enumerate}
 
 
