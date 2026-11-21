@@ -246,7 +246,7 @@ kicsinyíti, hogy a hosszabbik oldala legfeljebb 1024 képpont legyen. Az ennél
 Az egységes előfeldolgozás biztosítja, hogy az eltérő forrású adathalmazok képei azonos felbontásban és formátumban jussanak el a modellekhez, és a bemeneti tokenszám, 
 a költség bemeneti oldalról meghatározó része felülről korlátozott legyen.
 A JPEG-tömörítés mértékének hatását páros előméréssel vizsgáltam (Gemini Flash-Lite, Nutrition5k, P3\_macros, 50 étel). A 80-as minőségi beállítással az energia pMAE-je 2,9, a 
-szénhidráté 4,4 százalékponttal nagyobb volt, mint a 90-es beállítással. A különbség ekkora mintán nem szignifikáns (95\%-os konfidenciaintervallum: $-3{,}2$ és $+9{,}1$, 
+szénhidráté 4,4 százalékponttal nagyobb volt, mint a 90-es beállítással. A különbség ekkora mintán nem kimutatható (95\%-os konfidenciaintervallum: $-3{,}2$ és $+9{,}1$, 
 illetve $-3{,}7$ és $+12{,}6$ százalékpont között), de nem utal arra, hogy az erősebb tömörítés elegendő lenne. Mivel a bemeneti tokenszám a két beállítás mellett azonos volt,
 a 90-es minőséget választottam.
 A Pillow programkönyvtár dokumentációja a 95 feletti értékeket nem javasolja: a 100-as beállítás a tömörítés egyes lépéseit kikapcsolja, ami nagy fájlméretet eredményez 
@@ -267,7 +267,7 @@ hatására adódhatnak olyan mérések, amelyek során a mérésre kiválasztott
 kedveznek a mért paraméter pontosságának, vagy rontják azt.
 Az előmérési protokoll célja azon paraméterek hatásának feltárása, amelyek olyan
 mértékben határozzák meg a mérések pontosságát, hogy ilyen elemszám mellett is képesek
-szignifikáns eltérést produkálni.
+kimutatható eltérést produkálni.
 
 \subsubsection{Az előmérési protokoll által vizsgált konfigurációs paraméterek bemutatása}
 Ezek azok a konfigurációs beállítások, amelyek hatását össze lehet hasonlítani

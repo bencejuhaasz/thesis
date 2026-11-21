@@ -136,7 +136,10 @@ ugyanazzal a P3\_macros prompttal és egy képpel, így a modellek adathalmazon 
 százalékpontban, zárójelben a 95\%-os konfidenciaintervallummal; pozitív érték esetén a 
 Flash-Lite a pontosabb. Ezek felderítő összehasonlítások, többszörös összehasonlításra 
 vonatkozó korrekció nélkül (\ref{sec:ertekeles}.~alfejezet): a döntési mérés hipotéziseinek 
-kiválasztását szolgálták, következtetést csak a döntési mérés eredményeiből vonok le.
+kiválasztását szolgálták, következtetést csak a döntési mérés eredményeiből vonok le. Ezért az 
+előméréseknél nem szignifikanciáról beszélek: egy különbséget akkor nevezek kimutathatónak, ha 
+a 95\%-os konfidenciaintervalluma nem tartalmazza a nullát. A szignifikáns szót a döntési mérés 
+Holm-korrigált próbáira tartom fenn (\ref{sec:dontesi_protokoll}.~alfejezet).
 
 \paragraph{}Szénhidrátban a Nutrition5k-n és az OmniFood8k-n a két Gemini-modell adta a 
 legkisebb hibát, az ACETADA-n a GPT-6 Luna is hasonló pontosságú volt. A Gemini 3.8 Flash 
@@ -312,7 +315,7 @@ valódi felhasználói leírás elérhet.
 \paragraph{}A C családok a P3\_recipe promptot vetették össze a P3\_macros-szal. Az OmniFood8k-n a P3\_recipe a zsírbecslés hibáját 
 a Flash-Lite-nál $4{,}8$ százalékponttal ($67{,}1\%$-ról $62{,}3\%$-ra, $p < 0{,}001$), a Solnál $5{,}1$ százalékponttal
  ($49{,}8\%$-ról $44{,}7\%$-ra, $p < 0{,}001$) csökkentette, vagyis a felderítő mérésben talált javulás nagyobb mintán, 
- egy másik modellnél is megismétlődött. A szénhidrátbecslésen a P3\_recipe egyik adathalmazon sem változtatott kimutathatóan 
+ egy másik modellnél is megismétlődött. A szénhidrátbecslésen a P3\_recipe egyik adathalmazon sem változtatott szignifikánsan 
  (OmniFood8k: $+0{,}5$ százalékpont, $-2{,}6$ és $+3{,}6$ között; Nutrition5k: $-2{,}0$ százalékpont, $-5{,}8$ és $+1{,}8$ között; 
  Holm-korrigált $p = 0{,}74$, illetve $0{,}59$).
 
