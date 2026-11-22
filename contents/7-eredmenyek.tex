@@ -423,7 +423,66 @@ Claude Opus 5.5 & 17,1 (9,4; 24,9) & 19,9 (12,8; 26,9) & 0,65 (0,50; 0,79) & 9,0
 \end{table}
 
 \subsection{A becslési hiba forrásai}
-% TODO: tömeg és energiasűrűség szerinti felbontás; a nagy adagok alulbecslése
+\label{sec:hibaforrasok}
+\paragraph{}A P3\_macros promptnál a modell tételenként közvetlenül megadja a becsült 
+tömeget és energiát, a \texttt{benchmark.py} pedig ezeket étkezésenként összegzi: így adódik 
+a becsült tömeg ($\hat m$) és a becsült energia ($\hat E$). A becsült energiasűrűséget 
+(energia grammonként) ebből számolom: $\hat d = \hat E/\hat m$. Ezzel a becsült energia 
+definíció szerint felírható a két tényező szorzataként, $\hat E = \hat d\,\hat m$, akkor 
+is, ha a modell az energiát nem így számolta. A két tényező hatását úgy választottam szét, 
+hogy a becslésben egyszerre csak az egyiket cseréltem a referenciaértékre:
+\begin{itemize}
+    \item $\hat d\,m$: a modell energiasűrűsége a referencia-tömeggel, ebben csak az 
+    energiasűrűség hibája marad;
+    \item $d\,\hat m$: a referencia-energiasűrűség a modell tömegével, ebben csak a tömeg 
+    hibája marad,
+\end{itemize}
+ahol $m$ a referencia-tömeg, $d = E/m$ a referencia-energiasűrűség. A vizsgálat a 
+Flash-Lite P3\_macros előmérési futásain készült (csak képes bemenet, egy kép), mind az öt 
+képes adathalmazon, amelyen a tömeg ismert (\ref{tab:kerdes_meres}.~táblázat, 2.~kérdés). 
+A SNAPMe-n egy étel referencia-energiája 0~kcal volt, ezért ott 48 étel szerepel, és az 
+energia pMAE-je emiatt kissé eltér \az{\ref{tab:elomeres_promptok}}.~táblázatbeli értéktől. 
+Az eredményeket \az{\ref{tab:hibaforrasok}}.~táblázat tartalmazza.
+
+\begin{table}[h]
+\centering
+\caption{Az energiahiba tömeg- és energiasűrűség-része (Gemini 3.5 Flash-Lite, P3\_macros, 
+előmérés). Energia pMAE (\%) 95\%-os konfidenciaintervallummal: a modell becslése, csak az 
+energiasűrűség hibájával ($\hat d\,m$) és csak a tömeg hibájával ($d\,\hat m$). A 
+tömegbecslés torzítása (\%) a referencia-tömeg szerinti alsó és felső harmadban (alsó h., 
+felső h.), valamint a tömegbecslés meredeksége.}
+\label{tab:hibaforrasok}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\hline
+ & & \multicolumn{3}{c}{Energia pMAE (\%)} & \multicolumn{2}{c}{Tömegtorzítás (\%)} & Tömeg- \\
+Adathalmaz & Étel & becslés & $\hat d\,m$ & $d\,\hat m$ & alsó h. & felső h. & meredekség \\
+\hline
+Nutrition5k & 50 & 30{,}7 $\pm$ 4{,}9 & 17{,}4 $\pm$ 6{,}0 & 22{,}1 $\pm$ 5{,}2 & $-$9{,}8 & $-$19{,}1 & 0{,}75 \\
+OmniFood8k & 50 & 49{,}3 $\pm$ 5{,}3 & 49{,}5 $\pm$ 5{,}4 & 25{,}7 $\pm$ 6{,}0 & $+$16{,}5 & $+$6{,}7 & 0{,}89 \\
+ACETADA & 50 & 21{,}5 $\pm$ 6{,}7 & 16{,}5 $\pm$ 4{,}8 & 18{,}6 $\pm$ 4{,}1 & $+$15{,}2 & $-$6{,}2 & 0{,}72 \\
+DFood-Tj & 50 & 21{,}6 $\pm$ 4{,}5 & 21{,}7 $\pm$ 5{,}4 & 19{,}6 $\pm$ 3{,}9 & $-$16{,}7 & $-$20{,}1 & 0{,}78 \\
+SNAPMe & 48 & 43{,}3 $\pm$ 10{,}6 & 27{,}0 $\pm$ 9{,}7 & 38{,}6 $\pm$ 11{,}3 & $+$34{,}8 & $-$28{,}6 & 0{,}53 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}Az OmniFood8k-n az energiahiba szinte teljesen az energiasűrűségből adódik: a 
+pontos tömeg nem csökkentené a hibát (49,5\%, a becslésé 49,3\%), a pontos energiasűrűség 
+25,7\%-ra csökkentené. A modell energiasűrűsége itt a referencia-tömeggel számolva 
+46,1\%-kal kevesebb energiát ad a referenciánál. A SNAPMe-n fordított a helyzet: a pontos 
+tömeggel 27,0\%, a pontos energiasűrűséggel 38,6\% lenne a hiba. A Nutrition5k-n, az 
+ACETADA-n és a DFood-Tj-n a két rész hasonló nagyságú (16,5--22,1\%). A két részhiba 
+összege nem adja ki a teljes hibát, mert egy étkezésen belül a két tényező hibája 
+erősítheti vagy kiolthatja egymást.
+
+\paragraph{}A tömegbecslés meredeksége mind az öt adathalmazon 1-nél kisebb volt 
+(0,53--0,89), vagyis a becsült tömegek szűkebb tartományban szóródnak, mint a 
+referencia-tömegek. Ezzel összhangban a felső harmad tömegtorzítása minden adathalmazon 
+kisebb volt az alsóénál: a nagy adagokat a modell a kicsikhez képest alulbecsülte. A 
+különbség a SNAPMe-n a legnagyobb ($+34{,}8$ és $-28{,}6\%$), a DFood-Tj-n a legkisebb 
+($-16{,}7$ és $-20{,}1\%$), ahol a modell minden harmadban alulbecsülte a tömeget.
 
 
 \section{A döntési mérés eredményei}
