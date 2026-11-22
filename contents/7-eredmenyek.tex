@@ -680,6 +680,15 @@ tovább tartott. A Solnál a P3\_recipe a medián válaszidőt 10,3~s-ról
 12,5~s-ra, a költséget 6,7~\$-ról 7,6~\$-ra növelte 1000 hívásonként. A 
 SNAPMe-n a szöveges ételleírás a költséget 0,9~\$-ról 1,1~\$-ra növelte.
 
+\paragraph{}A hívás költsége a bemeneti és a kimeneti tokenszám és a hozzájuk tartozó 
+listaár szorzatának összege, ezért egy több ételt tartalmazó étkezés becslése többe 
+kerülhet: a modell minden tételt külön felsorol, ami több kimeneti tokent jelent. A 
+Nutrition5k és a DFood-Tj P3\_macros-futásaiban a kimeneti tokenekre jutott a költség 
+55--72\%-a. A Nutrition5k-n a bemeneti tokenszám modellenként minden hívásnál azonos volt, 
+mert a képek mérete azonos, így ott a költség különbségei csak a kimeneti tokenszámból 
+adódtak. A referenciarekord szerint legalább 8 összetevős ételek (102 étel) becslése ott 
+mindhárom modellnél 1,5--1,8-szor annyiba került, mint az 1--2 összetevősöké (88 étel).
+
 \paragraph{}A válaszidők egyetlen helyről, a mérés napjain indított hívásokra 
 vonatkoznak. A hálózati késleltetés és a szolgáltatók terhelése miatt más 
 helyről vagy más időpontban eltérhetnek, ezért a modellek közötti arányok 
