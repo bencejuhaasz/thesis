@@ -568,7 +568,70 @@ megbízhatóbbak, mint az abszolút értékek.
 
 \subsection{Stabilitás és a strukturált kimenet megbízhatósága}
 \label{sec:stabilitas}
-% TODO: hibaarányok; hihetőségi ellenőrzés (5 durva hiba, ebből 4 Sonnet-zsír); a DFood-zsír kiugró értéke
+\paragraph{}A döntési mérés 17 futása összesen 5546 hívásból állt. Ezek között nem volt 
+sikertelen hívás (\ref{sec:sikertelen}.~alfejezet): minden hívás választ adott, és minden 
+válasz feldolgozható volt. A JSON-objektumot egyetlen válaszban sem kellett a szövegből 
+kiemelni. Újrapróbálkozásra egy hívásnál volt szükség (DFood-Tj, Flash-Lite), ott a 
+második kísérlet sikeres volt.
+
+\paragraph{}A feldolgozható válasz tartalmilag még lehet hibás. Ezért a válaszokat utólag 
+tételenként két hihetőségi szabállyal is ellenőriztem, a 17 futás mind az 5546 ételén 
+(22\,236 tétel). Egy tételt akkor jelöltem meg, ha
+\begin{enumerate}
+    \item a három makrotápanyag együttes tömege nagyobb a tétel becsült tömegénél, vagy
+    \item a makrotápanyagokból az Atwater-faktorokkal (\ref{sec:promptok}.~alfejezet) 
+    számolt energia a tétel megadott energiájától annak több mint 50\%-ával eltér. Ezt 
+    csak a legalább 20~kcal-os tételeknél vizsgáltam. Az 50\% és a 20~kcal választott határ.
+\end{enumerate}
+A két szabály 39 tételt jelölt meg. Ezeket a makrotápanyagokból számolt és a megadott 
+energia viszonya szerint négy csoportba soroltam (\ref{tab:hihetoseg}.~táblázat).
+
+\begin{table}[h]
+\centering
+\caption{A hihetőségi szabályok által megjelölt tételek a döntési mérés 17 futásában 
+(22\,236 tétel). $E_m$: a makrotápanyagokból számolt energia, $E$: a tétel megadott 
+energiája.}
+\label{tab:hihetoseg}
+\small
+\begin{tabular}{p{6.2cm}rp{5.2cm}}
+\hline
+Csoport & Tétel & Példák \\
+\hline
+Csak a tömegszabály jelzett, a makrotápanyagok 0,1--2,4~g-mal haladják meg a tétel tömegét 
+  & 17 & csokoládé, vaj, cukor, méz, olaj, chips, aszalt füge \\
+$E_m < E$ & 14 & 12 alkoholos ital (bor, sör, vodka), tej, spenót \\
+$E_m$ a megadott energia 1,5--1,7-szerese & 4 & citrom \\
+$E_m$ a megadott energia több mint ötszöröse & 4 & lásd a szövegben \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}Az alkoholos italoknál a jelzés a szabályból adódik: az alkohol energiáját 
+(7~kcal/g) a 4/4/9-es képlet nem tartalmazza \cite{fao2003foodenergy}. A vodkára például 
+mindhárom makrotápanyag 0~g, a megadott energia 96~kcal. A citromnál a képlet a teljes 
+szénhidráttartalmat 4~kcal/g-mal számolja, a rostra azonban 2~kcal/g, a szerves savakra 
+3~kcal/g érvényes \cite{fao2003foodenergy}, ezért ezeket a jelzéseket sem tekintem 
+hibának. A tejnél (30~g, 48~kcal, a makrotápanyagokból 19~kcal) és a spenótnál (40~g, 
+25~kcal, a makrotápanyagokból 12~kcal) a megadott energia 29, illetve 13~kcal-lal 
+nagyobb a makrotápanyagokból számoltnál.
+
+\paragraph{}Négy tételnél a makrotápanyagokból számolt energia a megadottnak több mint 
+ötszöröse volt (5,2--530,5-szerese). Ezek nagyságrendi hibák:
+\begin{itemize}
+    \item DFood-Tj, Sonnet, 2995-ös étel: „Stir-fried napa cabbage with shredded pork and carrot”, 90~g, 70~kcal, zsír 4122~g;
+    \item DFood-Tj, Sonnet, 1657-es étel: „Stir-fried white gourd with carrot and pork slices”, 120~g, 70~kcal, zsír 41~g;
+    \item OmniFood8k, Sonnet, 2452-es étel: „bamboo shoot strips with pork”, 55~g, 70~kcal, zsír 41~g;
+    \item Nutrition5k, Flash-Lite, P3\_recipe, dish\_1561575506: „Cauliflower”, 70~g, 30~kcal, szénhidrát 35~g.
+\end{itemize}
+Mind a négy válasz megfelelt a sémának, így feldolgozható volt. A 2995-ös tétel kivételével 
+mindegyiket csak az energiaszabály jelezte, mert ezeknél a makrotápanyagok együttes 
+tömege kisebb a tétel tömegénél. 
+Hasonló, a Sonnettől származó zsírhibát egy előmérési futásban is találtam 
+(\ref{sec:konzisztencia}.~alfejezet).
+
+\paragraph{}A 2995-ös étel hibája a DFood-Tj Sonnet-futásának zsír-pMAE-jét 121,8\%-ra 
+emelte. Az étel nélkül, 249 ételen 43,6\%. A zsír a DFood-Tj-n nem tesztelt 
+célmennyiség, így a hipotézisvizsgálatok eredményét a hiba nem befolyásolja.
 
 \subsection{Konzisztencia}
 \label{sec:konzisztencia}
@@ -577,7 +640,7 @@ bemenetre, azonos beállítással kapott becslések (\ref{sec:mert_mennyisegek}.
 Ennek vizsgálatára nem indítottam új ismételt hívásokat, hanem a döntési mérési protokoll 
 felépítését használtam ki (\ref{sec:dontesi_protokoll}.~alfejezet). A döntési mérés 
 futásai a hipotézisvizsgálatba bevont ételek mellett azokat az ételeket is feldolgozták, 
-amelyeket az előmérések már felhasználtak. Ezeket a döntési mérések eredményeinek vizsgálatból kizártam, viszont 
+amelyeket az előmérések már felhasználtak. Ezeket a döntési mérések eredményeinek vizsgálatából kizártam, viszont 
 ezekre az ételekre így két, egymástól független becslést kaptam: az előmérés egy 
 futásáét és a döntési mérés futásáét. 
 
