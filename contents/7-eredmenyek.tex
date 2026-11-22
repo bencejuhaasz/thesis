@@ -108,15 +108,6 @@ kisebbekhez képest alulbecsüli. Ugyanezt a harmadonkénti torzítás közvetle
 mutatja: ehhez az ételek a referenciaérték szerint három egyenlő elemszámú csoportba 
 kerülnek, és a százalékos bias mindegyik csoportban külön kerül kiszámításra.
 
-\paragraph{}A konzisztencia mutatóit (az ételenkénti szórás négyzetes átlaga és 
-az ismételhetőségi együttható) \az{\ref{sec:mert_mennyisegek}}.~alfejezet írja le. Az 
-ismételhetőségi együttható $1{,}96\cdot\sqrt{2}\approx 2{,}77$-szerese az 
-ételenkénti szórásnak. Ezek mellett az ICC(1,1) osztályon belüli korrelációs 
-együtthatót is közlöm, amely azt adja meg, hogy a becslések teljes 
-szórásnégyzetéből mekkora rész származik az ételek közötti különbségekből. 
-Értéke 1, ha az ismételt hívások pontosan egyeznek, és annál kisebb, minél 
-nagyobb az ismételt hívások közötti ingadozás az ételek közötti 
-különbségekhez képest.
 \section{Előmérések}
 \paragraph{}Az előmérések futásai közül egyetlenben fordult elő sikertelen hívás 
 (\ref{sec:sikertelen}.~alfejezet). A GPT-6.1 Sol modell a Nutrition5k-n közepes 
@@ -576,10 +567,104 @@ helyről vagy más időpontban eltérhetnek, ezért a modellek közötti arányo
 megbízhatóbbak, mint az abszolút értékek.
 
 \subsection{Stabilitás és a strukturált kimenet megbízhatósága}
+\label{sec:stabilitas}
 % TODO: hibaarányok; hihetőségi ellenőrzés (5 durva hiba, ebből 4 Sonnet-zsír); a DFood-zsír kiugró értéke
 
 \subsection{Konzisztencia}
-% TODO: consistency_pairs.csv; within_%, RC_%, ICC; temperature megfigyelés; a 3734-es étel
+\label{sec:konzisztencia}
+\paragraph{}A konzisztencia azt méri, mennyire térnek el egymástól az ugyanarra a 
+bemenetre, azonos beállítással kapott becslések (\ref{sec:mert_mennyisegek}.~alfejezet). 
+Ennek vizsgálatára nem indítottam új ismételt hívásokat, hanem a döntési mérési protokoll 
+felépítését használtam ki (\ref{sec:dontesi_protokoll}.~alfejezet). A döntési mérés 
+futásai a hipotézisvizsgálatba bevont ételek mellett azokat az ételeket is feldolgozták, 
+amelyeket az előmérések már felhasználtak. Ezeket a döntési mérések eredményeinek vizsgálatból kizártam, viszont 
+ezekre az ételekre így két, egymástól független becslést kaptam: az előmérés egy 
+futásáét és a döntési mérés futásáét. 
+
+\paragraph{}A döntési mérés minden futásához azt az előmérési futást rendeltem, amely 
+azonos modellazonosítóval és modellbeállítással, azonos promptszöveggel, szöveges 
+bemenettel, képmérettel és nézettel készült. Futáson belül ismételt hívásokat 
+nem használtam. A Nutrition5k Flash-Lite P3\_macros futásához több előmérési futás is 
+megfelelt ezeknek a feltételeknek, közülük az elsőt, a 2026.~október~27-it választottam. 
+Az előmérési futások 3--17 nappal a döntési mérés előtt készültek. A közös ételek száma 
+futásonként 50. Az OmniFood8k két Flash-Lite futásánál 100, mert az előre rögzített 
+megerősítő mérés (\ref{sec:ertekeles}.~alfejezet) további 50 ételt dolgozott fel. A 
+SNAPMe-n 49, mert egy étel képfájlja nem volt beolvasható (\ref{sec:sikertelen}.~alfejezet).
+
+\paragraph{}Mérőszámként az ételenkénti szórás négyzetes átlagát használom, a 
+referenciaértékek átlagának százalékában, így az eredmény a pMAE-vel azonos skálán 
+értelmezhető. Az energiára és a szénhidrátra kapott értékeket 
+\az{\ref{tab:konzisztencia}}.~táblázat tartalmazza.
+
+\begin{table}[h]
+\centering
+\caption{Az ismételt hívások közötti ingadozás: az ételenkénti szórás négyzetes átlaga 
+energiában és szénhidrátban, a referenciaértékek átlagának százalékában. Ételenként két 
+hívás: a döntési mérés futása és egy korábbi, azonos beállítású futás.}
+\label{tab:konzisztencia}
+\small
+\begin{tabular}{lllrrr}
+\hline
+Adathalmaz & Modell & Prompt & Étel & Energia (\%) & Szénhidrát (\%) \\
+\hline
+Nutrition5k & Flash-Lite & P3\_macros & 50 & 11{,}8 & 14{,}0 \\
+ & Flash-Lite & P3\_recipe & 50 & 10{,}7 & 15{,}2 \\
+ & Sonnet & P3\_macros & 50 & 7{,}6 & 11{,}6 \\
+ & Sol & P3\_macros & 50 & 8{,}4 & 18{,}2 \\
+\hline
+OmniFood8k & Flash-Lite & P3\_macros & 100 & 9{,}2 & 17{,}2 \\
+ & Flash-Lite & P3\_recipe & 100 & 7{,}8 & 15{,}4 \\
+ & Sonnet & P3\_macros & 50 & 6{,}7 & 14{,}9 \\
+ & Sol & P3\_macros & 50 & 11{,}6 & 27{,}2 \\
+ & Sol & P3\_recipe & 50 & 8{,}0 & 17{,}7 \\
+\hline
+ACETADA & Flash-Lite & P3\_macros & 50 & 7{,}0 & 8{,}2 \\
+ & Sonnet & P3\_macros & 50 & 3{,}9 & 4{,}6 \\
+ & Sol & P3\_macros & 50 & 9{,}4 & 7{,}9 \\
+\hline
+DFood-Tj & Flash-Lite & P3\_macros & 50 & 5{,}6 & 6{,}3 \\
+ & Sonnet & P3\_macros & 50 & 5{,}8 & 6{,}4 \\
+ & Sol & P3\_macros & 50 & 4{,}7 & 4{,}7 \\
+\hline
+SNAPMe & Flash-Lite & P3\_macros & 49 & 8{,}7 & 9{,}7 \\
+ & Flash-Lite & P3\_macros\_hint & 49 & 6{,}0 & 8{,}3 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}Energiában az ételenkénti szórás négyzetes átlaga a referenciaértékek 
+átlagának 3,9--11,8\%-a, szénhidrátban 4,6--27,2\%-a volt. A legnagyobb szénhidrát-ingadozás a Sol OmniFood8k-futásában 
+volt (27,2\%).
+
+\paragraph{}Szénhidrátban az ételenkénti szórás az ACETADA-n, a DFood-Tj-n és a 
+SNAPMe-n minden modellnél legfeljebb 9,7\%, a Nutrition5k-n és az OmniFood8k-n minden 
+modellnél legalább 11,6\% volt (ACETADA: 4,6--8,2\%, DFood-Tj: 4,7--6,4\%, SNAPMe: 
+8,3--9,7\%, Nutrition5k: 11,6--18,2\%, OmniFood8k: 14,9--27,2\%). A viszonyítási alap, a 
+referenciaértékek átlaga is adathalmazonként eltér: szénhidrátban a Nutrition5k-n 
+19,7~g, az OmniFood8k-n 21,7--22,6~g, a SNAPMe-n 30,0~g, a DFood-Tj-n 70,8~g, az 
+ACETADA-n 83,3~g. Grammban az ételenkénti szórás minden futásban 2,3 és 6,8~g közé esett.
+
+\paragraph{}A Flash-Lite hívásai temperature 0,1 beállítással futottak, a Sonnet és a Sol 
+hívásaiban a temperature nem volt megadva, ott a szolgáltató alapértelmezett értéke 
+érvényes. A Flash-Lite ingadozása nem volt kisebb a Sonnetnél: energiában és 
+szénhidrátban is az ACETADA-n, a Nutrition5k-n és az OmniFood8k-n a Sonnet ételenkénti 
+szórása volt kisebb, a DFood-Tj-n a kettő 0,2 százalékponton belül egyezett. A 
+temperature hatását nem vizsgáltam: a két modell más tulajdonságokban is különbözik, így 
+a különbség nem tulajdonítható a temperature-nek.
+
+\paragraph{}A két hívássorozat pMAE-je ugyanazokon az ételeken egy kivétellel legfeljebb 
+7,2 százalékponttal tért el egymástól; a legnagyobb eltérés az OmniFood8k-n a Sol 
+P3\_recipe szénhidrátbecslésénél volt. 
+Szénhidrátban az ételenkénti szórás minden futásban kisebb volt, mint a döntési mérés 
+futásának pMAE-je ugyanezen ételeken, annak 14--46\%-a.
+
+\paragraph{}A kivétel az OmniFood8k Sonnet-futás zsírbecslése. A korábbi futásban a 
+3734-es étel egyik tételére („Stir-fried sliced meat with green onion/vegetables”, 
+50~g, 90~kcal) a modell 6006~g zsírt adott, az étel összesített zsírbecslése 6027,2~g 
+volt (referenciaérték: 40,7~g, a döntési mérés becslése: 21,2~g). A válasz megfelelt a 
+sémának, így feldolgozható volt. Ezzel az étellel az ételenkénti szórás a 
+referenciaátlag 2127,5\%-a, a korábbi futás zsír-pMAE-je 482,7\%. Nélküle 
+(49 ételen) az ételenkénti szórás 4,7\%, a két futás pMAE-je 60,6 és 60,3\%.
 
 \section{Korlátok}
 % TODO: n=50 előmérések; felderítő hatások felülbecslése (ACETADA Lite--Sonnet); a hihetőségi szabályok korlátai; napok közti ismétlés; a csúcsmodellek csak részben mérve
