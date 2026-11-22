@@ -499,7 +499,67 @@ $+314\%$ között. A DFood-Tj-n ezzel szemben a Flash-Lite becsülte alul a szé
 ($-19\%$), és ezzel összhangban ott a drágább modellek voltak pontosabbak. Más célmennyiségekben más a 
 sorrend: energiában az OmniFood8k-n mindkét drágább modell jobb volt a Flash-Lite-nál, 
 tömegben viszont lényegesen rosszabb.
-% TODO: kiegészítő tábla (accuracy.csv, pairs.csv): energia, fehérje, tömeg, zsír; Sonnet vs. Sol; skill
+
+\paragraph{}\Az{\ref{tab:kiegeszito_pmae}}.~táblázat a négy képes adathalmazon a három modell 
+P3\_macros-futásainak pMAE-jét adja meg energiára, tömegre, fehérjére és zsírra, valamint 
+a szénhidrátbecslés skilljét (\ref{sec:kiegeszito}.~alfejezet).
+
+\begin{table}[h]
+\centering
+\caption{A döntési mérés P3\_macros-futásai (csak képes bemenet, egy kép): pMAE (\%) 
+95\%-os konfidenciaintervallummal energiára, tömegre, fehérjére és zsírra, valamint a 
+szénhidrát skillje. $^{*}$A 2995-ös étel nagyságrendi hibájával 
+(\ref{sec:stabilitas}.~alfejezet); nélküle 43,6\%.}
+\label{tab:kiegeszito_pmae}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrr}
+\hline
+ & & \multicolumn{4}{c}{pMAE (\%)} & Skill \\
+Adathalmaz & Modell & Energia & Tömeg & Fehérje & Zsír & szénhidrát \\
+\hline
+Nutrition5k & Flash-Lite & 33{,}2 $\pm$ 3{,}3 & 26{,}0 $\pm$ 2{,}9 & 38{,}4 $\pm$ 4{,}3 & 49{,}4 $\pm$ 6{,}2 & 0{,}38 \\
+ & Sonnet & 38{,}7 $\pm$ 5{,}3 & 35{,}2 $\pm$ 4{,}7 & 35{,}5 $\pm$ 5{,}0 & 50{,}2 $\pm$ 6{,}9 & 0{,}01 \\
+ & Sol & 40{,}7 $\pm$ 5{,}3 & 33{,}6 $\pm$ 4{,}1 & 39{,}6 $\pm$ 5{,}4 & 52{,}6 $\pm$ 7{,}5 & 0{,}02 \\
+\hline
+OmniFood8k & Flash-Lite & 44{,}9 $\pm$ 2{,}7 & 18{,}2 $\pm$ 2{,}1 & 46{,}9 $\pm$ 6{,}8 & 67{,}1 $\pm$ 2{,}7 & 0{,}13 \\
+ & Sonnet & 34{,}8 $\pm$ 3{,}7 & 40{,}8 $\pm$ 4{,}9 & 67{,}9 $\pm$ 10{,}9 & 54{,}9 $\pm$ 3{,}4 & $-$0{,}40 \\
+ & Sol & 32{,}9 $\pm$ 3{,}0 & 39{,}5 $\pm$ 4{,}5 & 68{,}3 $\pm$ 10{,}9 & 49{,}8 $\pm$ 2{,}7 & $-$0{,}20 \\
+\hline
+ACETADA & Flash-Lite & 22{,}2 $\pm$ 2{,}5 & 17{,}1 $\pm$ 2{,}0 & 31{,}7 $\pm$ 3{,}3 & 28{,}5 $\pm$ 3{,}4 & 0{,}30 \\
+ & Sonnet & 22{,}7 $\pm$ 3{,}0 & 16{,}7 $\pm$ 2{,}4 & 30{,}8 $\pm$ 3{,}8 & 29{,}7 $\pm$ 3{,}9 & 0{,}24 \\
+ & Sol & 26{,}0 $\pm$ 3{,}6 & 15{,}6 $\pm$ 2{,}2 & 28{,}6 $\pm$ 3{,}3 & 36{,}1 $\pm$ 4{,}5 & 0{,}10 \\
+\hline
+DFood-Tj & Flash-Lite & 25{,}2 $\pm$ 2{,}1 & 19{,}8 $\pm$ 1{,}7 & 28{,}2 $\pm$ 2{,}6 & 48{,}1 $\pm$ 3{,}6 & $-$0{,}25 \\
+ & Sonnet & 22{,}1 $\pm$ 2{,}1 & 22{,}3 $\pm$ 1{,}5 & 25{,}1 $\pm$ 2{,}3 & 121{,}8 $\pm$ 154{,}1$^{*}$ & 0{,}03 \\
+ & Sol & 27{,}2 $\pm$ 2{,}9 & 8{,}6 $\pm$ 1{,}2 & 31{,}6 $\pm$ 3{,}7 & 48{,}5 $\pm$ 5{,}4 & 0{,}17 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}A Flash-Lite és a két drágább modell páros különbségei közül ezen a négy 
+célmennyiségen 32-ből 19 volt kimutatható: 11-ben a Flash-Lite, 8-ban a drágább modell 
+volt a pontosabb. Az OmniFood8k-n a két drágább modell energiában (Sonnet $-10{,}1$, Sol 
+$-12{,}1$ százalékpont) és zsírban ($-12{,}2$, illetve $-17{,}3$) pontosabb, tömegben 
+($+22{,}5$, illetve $+21{,}3$) és fehérjében ($+21{,}0$, illetve $+21{,}4$) pontatlanabb 
+volt a Flash-Lite-nál. A Nutrition5k-n energiában ($+5{,}5$, illetve $+7{,}5$) és 
+tömegben ($+9{,}2$, illetve $+7{,}6$ százalékpont) a Flash-Lite volt a pontosabb. A 
+DFood-Tj-n a Sol tömegbecslésének pMAE-je 8,6\%, $11{,}2$ százalékponttal kisebb a 
+Flash-Lite-énál. Az ACETADA-n a Sonnet és a Flash-Lite között egyik célmennyiségben sem 
+volt kimutatható különbség.
+
+\paragraph{}A Sonnet és a Sol között az öt célmennyiség és a négy adathalmaz 20 
+különbségéből 9 volt kimutatható, és ezek iránya adathalmazonként változott. 
+Szénhidrátban az OmniFood8k-n a Sol volt a pontosabb ($-12{,}2$ százalékpont, 
+$-19{,}0$ és $-5{,}4$ között), az ACETADA-n a Sonnet ($+5{,}4$, $3{,}0$ és $7{,}9$ között), 
+a DFood-Tj-n ismét a Sol ($-2{,}6$, $-4{,}7$ és $-0{,}4$ között), a Nutrition5k-n a 
+különbség nem volt kimutatható. A két drágább modell közül tehát egyik sem volt minden 
+adathalmazon pontosabb a másiknál.
+
+\paragraph{}A szénhidrát skillje a Nutrition5k-n a Sonnetnél 0,01, a Solnál 0,02 volt, 
+vagyis a két drágább modell szénhidráthibája ott közel akkora, mint a leave-one-out 
+mediánbecslésé. Negatív volt a skill az OmniFood8k-n a Sonnetnél ($-0{,}40$) és a 
+Solnál ($-0{,}20$), valamint a DFood-Tj-n a Flash-Lite-nál ($-0{,}25$).
 \section{Költség, válaszidő, stabilitás és konzisztencia}
 
 \subsection{Költség és válaszidő}
