@@ -87,7 +87,7 @@
 \usepackage{mathtools}                        
 
 % bibliográfia (IEEE formátumban)
-\usepackage[style=ieee, backend=biber]{biblatex}
+\usepackage[style=ieee, backend=biber, defernumbers=true]{biblatex}
 
 % ez az ITK logó pozicionálásához kell
 \usepackage[export]{adjustbox}
@@ -126,6 +126,7 @@
 
 % Hivatkozásokat tartalmazó fájl
 \addbibresource{hivatkozasok.bib}
+\DefineBibliographyStrings{magyar}{url={URL}}
 
 % Random szövegek generálása - nyugodtan töröld
 \usepackage{lipsum}

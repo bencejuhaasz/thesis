@@ -49,8 +49,11 @@
 \input{contents/8-osszefoglalas}
 
 % Hivatkozásjegyzék/bibliográfia
-\printbibliography
+\chapter*{Felhasznált irodalom}
 \addcontentsline{toc}{chapter}{Felhasznált irodalom}
+\printbibliography[heading=subbibliography, keyword=lektoralt, title={Lektorált publikációk}]
+\printbibliography[heading=subbibliography, keyword=preprint, title={Preprintek}]
+\printbibliography[heading=subbibliography, keyword=egyeb, title={Egyéb források}]
 
 % Mellékletek - ha nincs mellékleted, töröld az alábbi részt
 \appendix
