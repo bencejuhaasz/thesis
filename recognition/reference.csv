@@ -1,0 +1,2452 @@
+dataset,sample_id,name
+nutrition5k,dish_1556575446,brussels sprouts
+nutrition5k,dish_1556575446,celery
+nutrition5k,dish_1556575446,olives
+nutrition5k,dish_1558027057,yam
+nutrition5k,dish_1558027243,bacon
+nutrition5k,dish_1558027243,deprecated
+nutrition5k,dish_1558027243,yam
+nutrition5k,dish_1558028142,deprecated
+nutrition5k,dish_1558030724,deprecated
+nutrition5k,dish_1558031526,yam
+nutrition5k,dish_1558031628,cantaloupe
+nutrition5k,dish_1558114086,deprecated
+nutrition5k,dish_1558114609,almonds
+nutrition5k,dish_1558114609,bacon
+nutrition5k,dish_1558114609,grapes
+nutrition5k,dish_1558114609,sausage
+nutrition5k,dish_1558375732,grapes
+nutrition5k,dish_1558378634,almonds
+nutrition5k,dish_1558378634,grapes
+nutrition5k,dish_1558378634,sausage
+nutrition5k,dish_1558380527,sausage
+nutrition5k,dish_1558380557,almonds
+nutrition5k,dish_1558380557,grapes
+nutrition5k,dish_1558380557,sausage
+nutrition5k,dish_1558458584,almonds
+nutrition5k,dish_1558458584,grapes
+nutrition5k,dish_1558458584,spinach (raw)
+nutrition5k,dish_1558458847,apple
+nutrition5k,dish_1558460138,cherry tomatoes
+nutrition5k,dish_1558463113,cherry tomatoes
+nutrition5k,dish_1558463113,grapes
+nutrition5k,dish_1558463113,spinach (raw)
+nutrition5k,dish_1558463113,white rice
+nutrition5k,dish_1558468494,squash
+nutrition5k,dish_1558629013,strawberries
+nutrition5k,dish_1558630072,almonds
+nutrition5k,dish_1558630072,apple
+nutrition5k,dish_1558630072,cauliflower
+nutrition5k,dish_1558630072,grapes
+nutrition5k,dish_1558630600,apple
+nutrition5k,dish_1558636980,almonds
+nutrition5k,dish_1558636980,apple
+nutrition5k,dish_1558636980,carrot
+nutrition5k,dish_1558636980,cherry tomatoes
+nutrition5k,dish_1558636980,grapes
+nutrition5k,dish_1558639362,apple
+nutrition5k,dish_1558639362,carrot
+nutrition5k,dish_1558639362,cauliflower
+nutrition5k,dish_1558639362,corn on the cob
+nutrition5k,dish_1558639849,carrot
+nutrition5k,dish_1558639876,cantaloupe
+nutrition5k,dish_1558639876,carrot
+nutrition5k,dish_1558639876,cauliflower
+nutrition5k,dish_1558640145,apple
+nutrition5k,dish_1558640145,carrot
+nutrition5k,dish_1558640145,corn on the cob
+nutrition5k,dish_1558640190,cantaloupe
+nutrition5k,dish_1558640311,cantaloupe
+nutrition5k,dish_1558640311,cherry tomatoes
+nutrition5k,dish_1558640311,grapes
+nutrition5k,dish_1558640563,cherry tomatoes
+nutrition5k,dish_1558640671,cantaloupe
+nutrition5k,dish_1558640781,apple
+nutrition5k,dish_1558717604,apple
+nutrition5k,dish_1558718009,cantaloupe
+nutrition5k,dish_1558720236,almonds
+nutrition5k,dish_1558720236,apple
+nutrition5k,dish_1558720236,carrot
+nutrition5k,dish_1558720236,cauliflower
+nutrition5k,dish_1558720364,apple
+nutrition5k,dish_1558722473,apple
+nutrition5k,dish_1558722473,carrot
+nutrition5k,dish_1558722473,cauliflower
+nutrition5k,dish_1558722473,cherry tomatoes
+nutrition5k,dish_1558722707,cherry tomatoes
+nutrition5k,dish_1558722871,cauliflower
+nutrition5k,dish_1558724891,apple
+nutrition5k,dish_1559059924,bacon
+nutrition5k,dish_1559157919,arugula
+nutrition5k,dish_1559157919,blueberries
+nutrition5k,dish_1559157919,chard
+nutrition5k,dish_1559157919,mustard
+nutrition5k,dish_1559157919,olive oil
+nutrition5k,dish_1559157919,pepper
+nutrition5k,dish_1559157919,salt
+nutrition5k,dish_1559157919,spinach (raw)
+nutrition5k,dish_1559157919,vinegar
+nutrition5k,dish_1559157919,walnuts
+nutrition5k,dish_1559233756,bacon
+nutrition5k,dish_1559233756,pineapple
+nutrition5k,dish_1559233756,strawberries
+nutrition5k,dish_1559233756,sweet potato
+nutrition5k,dish_1559235690,eggs
+nutrition5k,dish_1559239912,orange
+nutrition5k,dish_1559319860,bacon
+nutrition5k,dish_1559581378,bacon
+nutrition5k,dish_1559581378,broccoli
+nutrition5k,dish_1559581378,cherry tomatoes
+nutrition5k,dish_1559581378,cucumbers
+nutrition5k,dish_1559581378,eggs
+nutrition5k,dish_1559581378,lettuce
+nutrition5k,dish_1559581378,lime
+nutrition5k,dish_1559581378,mixed greens
+nutrition5k,dish_1559581378,olive oil
+nutrition5k,dish_1559581378,onions
+nutrition5k,dish_1559581378,pepper
+nutrition5k,dish_1559581378,salt
+nutrition5k,dish_1559581378,sausage
+nutrition5k,dish_1559581378,vinegar
+nutrition5k,dish_1559590202,asparagus
+nutrition5k,dish_1559590202,caesar salad
+nutrition5k,dish_1559590202,chicken
+nutrition5k,dish_1559590202,couscous
+nutrition5k,dish_1559593746,arugula
+nutrition5k,dish_1559593746,blueberries
+nutrition5k,dish_1559593746,chard
+nutrition5k,dish_1559593746,kale
+nutrition5k,dish_1559593746,mustard
+nutrition5k,dish_1559593746,olive oil
+nutrition5k,dish_1559593746,pepper
+nutrition5k,dish_1559593746,pumpkin seeds
+nutrition5k,dish_1559593746,quinoa
+nutrition5k,dish_1559593746,salt
+nutrition5k,dish_1559593746,squash
+nutrition5k,dish_1559593746,vinegar
+nutrition5k,dish_1559593746,walnuts
+nutrition5k,dish_1559668238,hash browns
+nutrition5k,dish_1559751775,berries
+nutrition5k,dish_1559751775,eggs
+nutrition5k,dish_1559751775,yam
+nutrition5k,dish_1559841781,cereal
+nutrition5k,dish_1559841781,grapes
+nutrition5k,dish_1559846311,pears
+nutrition5k,dish_1559846334,broccoli
+nutrition5k,dish_1559846334,pears
+nutrition5k,dish_1559848857,mandarin oranges
+nutrition5k,dish_1559849020,grapes
+nutrition5k,dish_1559925174,berries
+nutrition5k,dish_1560367980,asparagus
+nutrition5k,dish_1560367980,country rice
+nutrition5k,dish_1560367980,fish
+nutrition5k,dish_1560367980,garlic
+nutrition5k,dish_1560367980,green onions
+nutrition5k,dish_1560367980,olive oil
+nutrition5k,dish_1560367980,onions
+nutrition5k,dish_1560367980,pizza
+nutrition5k,dish_1560367980,salt
+nutrition5k,dish_1560367980,spinach (raw)
+nutrition5k,dish_1560368138,cherry tomatoes
+nutrition5k,dish_1560368138,mushroom
+nutrition5k,dish_1560370833,frozen yogurt
+nutrition5k,dish_1560370833,ice cream cones
+nutrition5k,dish_1560444570,scrambled eggs
+nutrition5k,dish_1560453275,basil
+nutrition5k,dish_1560453275,chicken
+nutrition5k,dish_1560453275,garlic
+nutrition5k,dish_1560453275,lemon juice
+nutrition5k,dish_1560453275,olive oil
+nutrition5k,dish_1560453275,parsley
+nutrition5k,dish_1560453275,pepper
+nutrition5k,dish_1560453275,rosemary
+nutrition5k,dish_1560453275,salt
+nutrition5k,dish_1560453275,spinach (raw)
+nutrition5k,dish_1560453275,squash
+nutrition5k,dish_1560453275,thyme
+nutrition5k,dish_1560453275,wheat berry
+nutrition5k,dish_1560453275,zucchini
+nutrition5k,dish_1560526490,almonds
+nutrition5k,dish_1560526490,berries
+nutrition5k,dish_1560526490,blueberries
+nutrition5k,dish_1560526490,carrot
+nutrition5k,dish_1560526490,cucumbers
+nutrition5k,dish_1560526490,garlic
+nutrition5k,dish_1560526490,mustard
+nutrition5k,dish_1560526490,mustard greens
+nutrition5k,dish_1560526490,olive oil
+nutrition5k,dish_1560526490,parsley
+nutrition5k,dish_1560526490,pineapple
+nutrition5k,dish_1560526490,salt
+nutrition5k,dish_1560526490,spinach (raw)
+nutrition5k,dish_1560526490,tomatoes
+nutrition5k,dish_1560526490,vinegar
+nutrition5k,dish_1560543605,arugula
+nutrition5k,dish_1560543605,broccoli
+nutrition5k,dish_1560543605,brown rice
+nutrition5k,dish_1560543605,caesar salad
+nutrition5k,dish_1560543605,chicken
+nutrition5k,dish_1560543605,cilantro
+nutrition5k,dish_1560543605,fish
+nutrition5k,dish_1560543605,garlic
+nutrition5k,dish_1560543605,ginger
+nutrition5k,dish_1560543605,green beans
+nutrition5k,dish_1560543605,green onions
+nutrition5k,dish_1560543605,jalapenos
+nutrition5k,dish_1560543605,lemon juice
+nutrition5k,dish_1560543605,olive oil
+nutrition5k,dish_1560543605,olives
+nutrition5k,dish_1560543605,onions
+nutrition5k,dish_1560543605,pepper
+nutrition5k,dish_1560543605,quinoa
+nutrition5k,dish_1560543605,salt
+nutrition5k,dish_1560543605,soy sauce
+nutrition5k,dish_1560543605,spinach (raw)
+nutrition5k,dish_1560543605,tomatillo
+nutrition5k,dish_1560543605,tomatoes
+nutrition5k,dish_1560543605,vinegar
+nutrition5k,dish_1560543605,white rice
+nutrition5k,dish_1560787817,bacon
+nutrition5k,dish_1560787817,bagels
+nutrition5k,dish_1560787817,berries
+nutrition5k,dish_1560787817,cream cheese
+nutrition5k,dish_1560787817,yam
+nutrition5k,dish_1560802853,bulgur
+nutrition5k,dish_1560802853,cherry tomatoes
+nutrition5k,dish_1560802853,chicken breast
+nutrition5k,dish_1560802853,chickpeas
+nutrition5k,dish_1560802853,garlic
+nutrition5k,dish_1560802853,kale
+nutrition5k,dish_1560802853,lemon juice
+nutrition5k,dish_1560802853,olive oil
+nutrition5k,dish_1560802853,parmesan cheese
+nutrition5k,dish_1560802853,parsley
+nutrition5k,dish_1560802853,pepper
+nutrition5k,dish_1560802853,salt
+nutrition5k,dish_1560802853,spinach (raw)
+nutrition5k,dish_1560802853,squash
+nutrition5k,dish_1560802853,thyme
+nutrition5k,dish_1560802853,wheat berry
+nutrition5k,dish_1560802853,white rice
+nutrition5k,dish_1560888817,roasted potatoes
+nutrition5k,dish_1560961012,bagels
+nutrition5k,dish_1560961012,cream cheese
+nutrition5k,dish_1560961179,scrambled eggs
+nutrition5k,dish_1560974009,arugula
+nutrition5k,dish_1560974009,bell peppers
+nutrition5k,dish_1560974009,broccoli
+nutrition5k,dish_1560974009,cabbage
+nutrition5k,dish_1560974009,chicken thighs
+nutrition5k,dish_1560974009,chili
+nutrition5k,dish_1560974009,garlic
+nutrition5k,dish_1560974009,hominy
+nutrition5k,dish_1560974009,jalapenos
+nutrition5k,dish_1560974009,lemon juice
+nutrition5k,dish_1560974009,lime
+nutrition5k,dish_1560974009,mustard
+nutrition5k,dish_1560974009,olive oil
+nutrition5k,dish_1560974009,orange
+nutrition5k,dish_1560974009,parsley
+nutrition5k,dish_1560974009,pecans
+nutrition5k,dish_1560974009,pepper
+nutrition5k,dish_1560974009,raisins
+nutrition5k,dish_1560974009,salt
+nutrition5k,dish_1560974009,tomatoes
+nutrition5k,dish_1560974009,wheat berry
+nutrition5k,dish_1560975628,bell peppers
+nutrition5k,dish_1560975628,broccoli
+nutrition5k,dish_1560975628,cabbage
+nutrition5k,dish_1560975628,caesar salad
+nutrition5k,dish_1560975628,cheese pizza
+nutrition5k,dish_1560975628,chicken thighs
+nutrition5k,dish_1560975628,chili
+nutrition5k,dish_1560975628,garlic
+nutrition5k,dish_1560975628,hominy
+nutrition5k,dish_1560975628,jalapenos
+nutrition5k,dish_1560975628,lemon juice
+nutrition5k,dish_1560975628,lime
+nutrition5k,dish_1560975628,olive oil
+nutrition5k,dish_1560975628,parsley
+nutrition5k,dish_1560975628,salt
+nutrition5k,dish_1560975628,tomatoes
+nutrition5k,dish_1560975628,wheat berry
+nutrition5k,dish_1561060531,bok choy
+nutrition5k,dish_1561060531,brussels sprouts
+nutrition5k,dish_1561060531,cheese pizza
+nutrition5k,dish_1561060531,pineapple
+nutrition5k,dish_1561060925,brussels sprouts
+nutrition5k,dish_1561060925,olive oil
+nutrition5k,dish_1561060925,pepper
+nutrition5k,dish_1561060925,salt
+nutrition5k,dish_1561060925,tofu
+nutrition5k,dish_1561061687,apple
+nutrition5k,dish_1561061687,arugula
+nutrition5k,dish_1561061687,brown rice
+nutrition5k,dish_1561061687,brussels sprouts
+nutrition5k,dish_1561061687,bulgur
+nutrition5k,dish_1561061687,caesar dressing
+nutrition5k,dish_1561061687,chili
+nutrition5k,dish_1561061687,cilantro
+nutrition5k,dish_1561061687,cranberries
+nutrition5k,dish_1561061687,croutons
+nutrition5k,dish_1561061687,garlic
+nutrition5k,dish_1561061687,ginger
+nutrition5k,dish_1561061687,jalapenos
+nutrition5k,dish_1561061687,kale
+nutrition5k,dish_1561061687,lemon juice
+nutrition5k,dish_1561061687,lime
+nutrition5k,dish_1561061687,mustard greens
+nutrition5k,dish_1561061687,olive oil
+nutrition5k,dish_1561061687,onions
+nutrition5k,dish_1561061687,parmesan cheese
+nutrition5k,dish_1561061687,parsley
+nutrition5k,dish_1561061687,pepper
+nutrition5k,dish_1561061687,salmon
+nutrition5k,dish_1561061687,salt
+nutrition5k,dish_1561061687,shallots
+nutrition5k,dish_1561061687,spinach (raw)
+nutrition5k,dish_1561148481,arugula
+nutrition5k,dish_1561148481,carrot
+nutrition5k,dish_1561148481,celery
+nutrition5k,dish_1561148481,cheese pizza
+nutrition5k,dish_1561148481,cherry tomatoes
+nutrition5k,dish_1561148481,chive
+nutrition5k,dish_1561148481,cilantro
+nutrition5k,dish_1561148481,cream
+nutrition5k,dish_1561148481,cucumbers
+nutrition5k,dish_1561148481,eggs
+nutrition5k,dish_1561148481,garlic
+nutrition5k,dish_1561148481,ground turkey
+nutrition5k,dish_1561148481,jalapenos
+nutrition5k,dish_1561148481,kale
+nutrition5k,dish_1561148481,lemon juice
+nutrition5k,dish_1561148481,lime
+nutrition5k,dish_1561148481,mangos
+nutrition5k,dish_1561148481,mushroom
+nutrition5k,dish_1561148481,mustard greens
+nutrition5k,dish_1561148481,olive oil
+nutrition5k,dish_1561148481,onions
+nutrition5k,dish_1561148481,salt
+nutrition5k,dish_1561148481,thyme
+nutrition5k,dish_1561148481,tomatoes
+nutrition5k,dish_1561148481,white rice
+nutrition5k,dish_1561393649,berries
+nutrition5k,dish_1561393649,cottage cheese
+nutrition5k,dish_1561393649,pineapple
+nutrition5k,dish_1561393741,broccoli
+nutrition5k,dish_1561393741,scrambled eggs
+nutrition5k,dish_1561405034,broccoli
+nutrition5k,dish_1561405034,caesar dressing
+nutrition5k,dish_1561405034,chicken
+nutrition5k,dish_1561405034,croutons
+nutrition5k,dish_1561405034,cucumbers
+nutrition5k,dish_1561405034,garlic
+nutrition5k,dish_1561405034,ginger
+nutrition5k,dish_1561405034,green beans
+nutrition5k,dish_1561405034,green onions
+nutrition5k,dish_1561405034,kale
+nutrition5k,dish_1561405034,mustard
+nutrition5k,dish_1561405034,mustard greens
+nutrition5k,dish_1561405034,olive oil
+nutrition5k,dish_1561405034,olives
+nutrition5k,dish_1561405034,parmesan cheese
+nutrition5k,dish_1561405034,salt
+nutrition5k,dish_1561405034,soy sauce
+nutrition5k,dish_1561405034,spinach (raw)
+nutrition5k,dish_1561405034,tomatoes
+nutrition5k,dish_1561405034,vinegar
+nutrition5k,dish_1561405034,white rice
+nutrition5k,dish_1561405934,broccoli
+nutrition5k,dish_1561405934,carrot
+nutrition5k,dish_1561405934,cheese pizza
+nutrition5k,dish_1561405934,cherry tomatoes
+nutrition5k,dish_1561405934,chicken
+nutrition5k,dish_1561405934,cucumbers
+nutrition5k,dish_1561405934,garlic
+nutrition5k,dish_1561405934,ginger
+nutrition5k,dish_1561405934,green beans
+nutrition5k,dish_1561405934,green onions
+nutrition5k,dish_1561405934,lettuce
+nutrition5k,dish_1561405934,lime
+nutrition5k,dish_1561405934,mixed greens
+nutrition5k,dish_1561405934,olive oil
+nutrition5k,dish_1561405934,onions
+nutrition5k,dish_1561405934,pepper
+nutrition5k,dish_1561405934,salt
+nutrition5k,dish_1561405934,soy sauce
+nutrition5k,dish_1561405934,spinach (raw)
+nutrition5k,dish_1561405934,vinegar
+nutrition5k,dish_1561405934,white rice
+nutrition5k,dish_1561494001,arugula
+nutrition5k,dish_1561494001,blueberries
+nutrition5k,dish_1561494001,chard
+nutrition5k,dish_1561494001,mustard
+nutrition5k,dish_1561494001,olive oil
+nutrition5k,dish_1561494001,pepper
+nutrition5k,dish_1561494001,salt
+nutrition5k,dish_1561494001,squash
+nutrition5k,dish_1561494001,vinegar
+nutrition5k,dish_1561494001,walnuts
+nutrition5k,dish_1561574428,arugula
+nutrition5k,dish_1561574428,blueberries
+nutrition5k,dish_1561574428,caesar salad
+nutrition5k,dish_1561574428,cauliflower
+nutrition5k,dish_1561574428,chard
+nutrition5k,dish_1561574428,mustard
+nutrition5k,dish_1561574428,olive oil
+nutrition5k,dish_1561574428,pepper
+nutrition5k,dish_1561574428,salt
+nutrition5k,dish_1561574428,vinegar
+nutrition5k,dish_1561574428,walnuts
+nutrition5k,dish_1561575506,beef
+nutrition5k,dish_1561575506,bok choy
+nutrition5k,dish_1561575506,cauliflower
+nutrition5k,dish_1561575506,eggplant
+nutrition5k,dish_1561575506,millet
+nutrition5k,dish_1561575506,olive oil
+nutrition5k,dish_1561575506,onions
+nutrition5k,dish_1561575506,roasted potatoes
+nutrition5k,dish_1561575506,salt
+nutrition5k,dish_1561575506,shallots
+nutrition5k,dish_1561575506,spinach (cooked)
+nutrition5k,dish_1561575506,vinegar
+nutrition5k,dish_1561576618,eggplant
+nutrition5k,dish_1561576618,olive oil
+nutrition5k,dish_1561576618,salt
+nutrition5k,dish_1561576618,squash
+nutrition5k,dish_1561580278,caesar salad
+nutrition5k,dish_1561661449,bok choy
+nutrition5k,dish_1561661449,garlic
+nutrition5k,dish_1561661449,pepper
+nutrition5k,dish_1561661449,pork
+nutrition5k,dish_1561661449,salt
+nutrition5k,dish_1561661449,soy sauce
+nutrition5k,dish_1561661449,sugar
+nutrition5k,dish_1561661449,white rice
+nutrition5k,dish_1561666794,caesar salad
+nutrition5k,dish_1561666794,cheese pizza
+nutrition5k,dish_1562007763,arugula
+nutrition5k,dish_1562007763,caesar salad
+nutrition5k,dish_1562007763,garlic
+nutrition5k,dish_1562007763,lemon juice
+nutrition5k,dish_1562007763,olive oil
+nutrition5k,dish_1562007763,parsley
+nutrition5k,dish_1562007763,quinoa
+nutrition5k,dish_1562007763,salt
+nutrition5k,dish_1562007763,shallots
+nutrition5k,dish_1562007763,thyme
+nutrition5k,dish_1562007817,arugula
+nutrition5k,dish_1562007817,brussels sprouts
+nutrition5k,dish_1562007817,cabbage
+nutrition5k,dish_1562007817,caesar salad
+nutrition5k,dish_1562007817,carrot
+nutrition5k,dish_1562007817,garlic
+nutrition5k,dish_1562007817,jalapenos
+nutrition5k,dish_1562007817,lemon juice
+nutrition5k,dish_1562007817,mayonnaise
+nutrition5k,dish_1562007817,olive oil
+nutrition5k,dish_1562007817,parsley
+nutrition5k,dish_1562007817,pepper
+nutrition5k,dish_1562007817,pork
+nutrition5k,dish_1562007817,quinoa
+nutrition5k,dish_1562007817,salt
+nutrition5k,dish_1562007817,shallots
+nutrition5k,dish_1562007817,thyme
+nutrition5k,dish_1562007817,wheat berry
+nutrition5k,dish_1562008695,cauliflower
+nutrition5k,dish_1562009182,arugula
+nutrition5k,dish_1562009182,blueberries
+nutrition5k,dish_1562009182,brussels sprouts
+nutrition5k,dish_1562009182,cabbage
+nutrition5k,dish_1562009182,carrot
+nutrition5k,dish_1562009182,chard
+nutrition5k,dish_1562009182,garlic
+nutrition5k,dish_1562009182,jalapenos
+nutrition5k,dish_1562009182,lemon juice
+nutrition5k,dish_1562009182,mayonnaise
+nutrition5k,dish_1562009182,mustard
+nutrition5k,dish_1562009182,olive oil
+nutrition5k,dish_1562009182,parsley
+nutrition5k,dish_1562009182,pecans
+nutrition5k,dish_1562009182,pepper
+nutrition5k,dish_1562009182,pork
+nutrition5k,dish_1562009182,salt
+nutrition5k,dish_1562009182,tofu
+nutrition5k,dish_1562009182,vinegar
+nutrition5k,dish_1562009182,wheat berry
+nutrition5k,dish_1562010085,brussels sprouts
+nutrition5k,dish_1562010085,cabbage
+nutrition5k,dish_1562010085,carrot
+nutrition5k,dish_1562010085,garlic
+nutrition5k,dish_1562010085,jalapenos
+nutrition5k,dish_1562010085,lemon juice
+nutrition5k,dish_1562010085,mayonnaise
+nutrition5k,dish_1562010085,olive oil
+nutrition5k,dish_1562010085,parsley
+nutrition5k,dish_1562010085,pepper
+nutrition5k,dish_1562010085,pork
+nutrition5k,dish_1562010085,salt
+nutrition5k,dish_1562010085,wheat berry
+nutrition5k,dish_1562086067,berries
+nutrition5k,dish_1562086067,yam
+nutrition5k,dish_1562168399,berries
+nutrition5k,dish_1562168399,pineapple
+nutrition5k,dish_1562605384,brussels sprouts
+nutrition5k,dish_1562605384,olive oil
+nutrition5k,dish_1562605384,pepper
+nutrition5k,dish_1562605384,salt
+nutrition5k,dish_1562605384,scrambled eggs
+nutrition5k,dish_1562605384,sweet potato
+nutrition5k,dish_1562615103,apple
+nutrition5k,dish_1562615103,arugula
+nutrition5k,dish_1562615103,figs
+nutrition5k,dish_1562615103,goat cheese
+nutrition5k,dish_1562615103,lemon juice
+nutrition5k,dish_1562615103,mustard greens
+nutrition5k,dish_1562615103,olive oil
+nutrition5k,dish_1562615103,salt
+nutrition5k,dish_1562615103,squash
+nutrition5k,dish_1562615324,cilantro
+nutrition5k,dish_1562615324,garlic
+nutrition5k,dish_1562615324,jalapenos
+nutrition5k,dish_1562615324,kale
+nutrition5k,dish_1562615324,lemon juice
+nutrition5k,dish_1562615324,onions
+nutrition5k,dish_1562615324,pineapple
+nutrition5k,dish_1562615324,roasted potatoes
+nutrition5k,dish_1562615324,salt
+nutrition5k,dish_1562615324,steak
+nutrition5k,dish_1562615324,vinegar
+nutrition5k,dish_1562615324,white rice
+nutrition5k,dish_1562687527,bell peppers
+nutrition5k,dish_1562687527,berries
+nutrition5k,dish_1562687527,chicken apple sausage
+nutrition5k,dish_1562687527,cucumbers
+nutrition5k,dish_1562687527,garlic
+nutrition5k,dish_1562687527,honeydew melons
+nutrition5k,dish_1562687527,mustard
+nutrition5k,dish_1562687527,olive oil
+nutrition5k,dish_1562687527,radishes
+nutrition5k,dish_1562687527,salt
+nutrition5k,dish_1562687527,vinegar
+nutrition5k,dish_1562691064,berries
+nutrition5k,dish_1562691064,broccoli
+nutrition5k,dish_1562691064,fried rice
+nutrition5k,dish_1562691064,olive oil
+nutrition5k,dish_1562691064,pineapple
+nutrition5k,dish_1562691064,roasted potatoes
+nutrition5k,dish_1562691064,scrambled eggs
+nutrition5k,dish_1562691441,broccoli
+nutrition5k,dish_1562691441,olive oil
+nutrition5k,dish_1562691441,scrambled eggs
+nutrition5k,dish_1562691441,yam
+nutrition5k,dish_1562699699,beef
+nutrition5k,dish_1562699699,bok choy
+nutrition5k,dish_1562699699,brown rice
+nutrition5k,dish_1562699699,cucumbers
+nutrition5k,dish_1562699699,garlic
+nutrition5k,dish_1562699699,millet
+nutrition5k,dish_1562699699,mustard
+nutrition5k,dish_1562699699,olive oil
+nutrition5k,dish_1562699699,onions
+nutrition5k,dish_1562699699,quinoa
+nutrition5k,dish_1562699699,salt
+nutrition5k,dish_1562699699,shallots
+nutrition5k,dish_1562699699,spinach (cooked)
+nutrition5k,dish_1562699699,spinach (raw)
+nutrition5k,dish_1562699699,sun dried tomatoes
+nutrition5k,dish_1562699699,vinegar
+nutrition5k,dish_1562702813,bell peppers
+nutrition5k,dish_1562702813,cherry tomatoes
+nutrition5k,dish_1562702813,cucumbers
+nutrition5k,dish_1562702813,feta cheese
+nutrition5k,dish_1562702813,lettuce
+nutrition5k,dish_1562702813,olives
+nutrition5k,dish_1562702813,onions
+nutrition5k,dish_1562702813,vinaigrette
+nutrition5k,dish_1562704528,cheese pizza
+nutrition5k,dish_1562774180,berries
+nutrition5k,dish_1562774180,blackberries
+nutrition5k,dish_1562774180,cantaloupe
+nutrition5k,dish_1562774180,granola
+nutrition5k,dish_1562774180,mixed greens
+nutrition5k,dish_1562774180,raspberries
+nutrition5k,dish_1562774180,roasted potatoes
+nutrition5k,dish_1562774180,vinaigrette
+nutrition5k,dish_1562774206,berries
+nutrition5k,dish_1562774206,blackberries
+nutrition5k,dish_1562774206,cantaloupe
+nutrition5k,dish_1562774206,granola
+nutrition5k,dish_1562774206,mixed greens
+nutrition5k,dish_1562774206,raspberries
+nutrition5k,dish_1562774206,roasted potatoes
+nutrition5k,dish_1562774206,scrambled eggs
+nutrition5k,dish_1562774206,vinaigrette
+nutrition5k,dish_1562776428,brussels sprouts
+nutrition5k,dish_1562776428,olive oil
+nutrition5k,dish_1562776428,pepper
+nutrition5k,dish_1562776428,salt
+nutrition5k,dish_1562859116,scrambled eggs
+nutrition5k,dish_1562871408,cheese pizza
+nutrition5k,dish_1562871408,olive oil
+nutrition5k,dish_1562871408,salt
+nutrition5k,dish_1562871408,squash
+nutrition5k,dish_1562871408,white rice
+nutrition5k,dish_1562872396,basil
+nutrition5k,dish_1562872396,bok choy
+nutrition5k,dish_1562872396,chicken
+nutrition5k,dish_1562872396,garlic
+nutrition5k,dish_1562872396,lemon juice
+nutrition5k,dish_1562872396,olive oil
+nutrition5k,dish_1562872396,parsley
+nutrition5k,dish_1562872396,pepper
+nutrition5k,dish_1562872396,rosemary
+nutrition5k,dish_1562872396,salt
+nutrition5k,dish_1562872396,spinach (raw)
+nutrition5k,dish_1562872396,squash
+nutrition5k,dish_1562872396,thyme
+nutrition5k,dish_1562872396,wheat berry
+nutrition5k,dish_1562872396,zucchini
+nutrition5k,dish_1562872945,arugula
+nutrition5k,dish_1562872945,carrot
+nutrition5k,dish_1562872945,chive
+nutrition5k,dish_1562872945,corn
+nutrition5k,dish_1562872945,couscous
+nutrition5k,dish_1562872945,fish
+nutrition5k,dish_1562872945,garlic
+nutrition5k,dish_1562872945,jicama
+nutrition5k,dish_1562872945,lime
+nutrition5k,dish_1562872945,nopales
+nutrition5k,dish_1562872945,olive oil
+nutrition5k,dish_1562872945,parsley
+nutrition5k,dish_1562872945,pepper
+nutrition5k,dish_1562872945,salt
+nutrition5k,dish_1562872945,sour cream
+nutrition5k,dish_1562875898,arugula
+nutrition5k,dish_1562875898,bok choy
+nutrition5k,dish_1562875898,carrot
+nutrition5k,dish_1562875898,chive
+nutrition5k,dish_1562875898,corn
+nutrition5k,dish_1562875898,couscous
+nutrition5k,dish_1562875898,fish
+nutrition5k,dish_1562875898,garlic
+nutrition5k,dish_1562875898,jicama
+nutrition5k,dish_1562875898,lime
+nutrition5k,dish_1562875898,nopales
+nutrition5k,dish_1562875898,olive oil
+nutrition5k,dish_1562875898,parsley
+nutrition5k,dish_1562875898,pepper
+nutrition5k,dish_1562875898,salt
+nutrition5k,dish_1562875898,sour cream
+nutrition5k,dish_1562958721,cabbage
+nutrition5k,dish_1562958721,carrot
+nutrition5k,dish_1562958721,garlic
+nutrition5k,dish_1562958721,green onions
+nutrition5k,dish_1562958721,mixed greens
+nutrition5k,dish_1562958721,olive oil
+nutrition5k,dish_1562958721,radishes
+nutrition5k,dish_1562958721,rice noodles
+nutrition5k,dish_1562958721,soy sauce
+nutrition5k,dish_1562958721,vinegar
+nutrition5k,dish_1562959732,bok choy
+nutrition5k,dish_1562959732,garlic
+nutrition5k,dish_1562959732,parsnips
+nutrition5k,dish_1562959732,pepper
+nutrition5k,dish_1562959732,pork
+nutrition5k,dish_1562959732,salt
+nutrition5k,dish_1562959732,soy sauce
+nutrition5k,dish_1562959732,sugar
+nutrition5k,dish_1562959732,white rice
+nutrition5k,dish_1562963033,arugula
+nutrition5k,dish_1562963033,cilantro
+nutrition5k,dish_1562963033,fish
+nutrition5k,dish_1562963033,garlic
+nutrition5k,dish_1562963033,jalapenos
+nutrition5k,dish_1562963033,lemon juice
+nutrition5k,dish_1562963033,olive oil
+nutrition5k,dish_1562963033,onions
+nutrition5k,dish_1562963033,pepper
+nutrition5k,dish_1562963033,quinoa
+nutrition5k,dish_1562963033,roasted potatoes
+nutrition5k,dish_1562963033,salt
+nutrition5k,dish_1562963033,tomatillo
+nutrition5k,dish_1562963109,arugula
+nutrition5k,dish_1562963109,cherry tomatoes
+nutrition5k,dish_1562963109,cilantro
+nutrition5k,dish_1562963109,cucumbers
+nutrition5k,dish_1562963109,fish
+nutrition5k,dish_1562963109,garlic
+nutrition5k,dish_1562963109,jalapenos
+nutrition5k,dish_1562963109,lemon juice
+nutrition5k,dish_1562963109,olive oil
+nutrition5k,dish_1562963109,onions
+nutrition5k,dish_1562963109,pepper
+nutrition5k,dish_1562963109,quinoa
+nutrition5k,dish_1562963109,radishes
+nutrition5k,dish_1562963109,roasted potatoes
+nutrition5k,dish_1562963109,salt
+nutrition5k,dish_1562963109,tomatillo
+nutrition5k,dish_1563207301,egg whites
+nutrition5k,dish_1563207301,olive oil
+nutrition5k,dish_1563207301,sweet potato
+nutrition5k,dish_1563207301,yam
+nutrition5k,dish_1563207364,egg whites
+nutrition5k,dish_1563207364,grapes
+nutrition5k,dish_1563207364,olive oil
+nutrition5k,dish_1563207364,scrambled eggs
+nutrition5k,dish_1563207364,sweet potato
+nutrition5k,dish_1563207364,yam
+nutrition5k,dish_1563207406,egg whites
+nutrition5k,dish_1563207406,grapes
+nutrition5k,dish_1563207406,olive oil
+nutrition5k,dish_1563207406,pineapple
+nutrition5k,dish_1563207406,scrambled eggs
+nutrition5k,dish_1563207406,sweet potato
+nutrition5k,dish_1563207406,watermelon
+nutrition5k,dish_1563207406,yam
+nutrition5k,dish_1563208459,chicken apple sausage
+nutrition5k,dish_1563208459,olive oil
+nutrition5k,dish_1563208459,raspberries
+nutrition5k,dish_1563208459,sweet potato
+nutrition5k,dish_1563208459,yam
+nutrition5k,dish_1563219056,arugula
+nutrition5k,dish_1563219056,celery
+nutrition5k,dish_1563219056,cherry tomatoes
+nutrition5k,dish_1563219056,garlic
+nutrition5k,dish_1563219056,olive oil
+nutrition5k,dish_1563219056,olives
+nutrition5k,dish_1563219056,onions
+nutrition5k,dish_1563219056,parsley
+nutrition5k,dish_1563219056,pepperoni pizza
+nutrition5k,dish_1563219056,pork
+nutrition5k,dish_1563219056,rosemary
+nutrition5k,dish_1563219056,salt
+nutrition5k,dish_1563219056,white rice
+nutrition5k,dish_1563219056,zucchini
+nutrition5k,dish_1563221054,apple
+nutrition5k,dish_1563221054,arugula
+nutrition5k,dish_1563221054,cherry tomatoes
+nutrition5k,dish_1563221054,chicken breast
+nutrition5k,dish_1563221054,cranberries
+nutrition5k,dish_1563221054,garlic
+nutrition5k,dish_1563221054,mustard
+nutrition5k,dish_1563221054,olive oil
+nutrition5k,dish_1563221054,onions
+nutrition5k,dish_1563221054,parmesan cheese
+nutrition5k,dish_1563221054,parsley
+nutrition5k,dish_1563221054,pork
+nutrition5k,dish_1563221054,rosemary
+nutrition5k,dish_1563221054,salt
+nutrition5k,dish_1563221054,spinach (raw)
+nutrition5k,dish_1563221054,thyme
+nutrition5k,dish_1563221054,vinegar
+nutrition5k,dish_1563221054,wheat berry
+nutrition5k,dish_1563221054,white rice
+nutrition5k,dish_1563221054,zucchini
+nutrition5k,dish_1563295016,bacon
+nutrition5k,dish_1563295016,pineapple
+nutrition5k,dish_1563309353,bell peppers
+nutrition5k,dish_1563309353,cherry tomatoes
+nutrition5k,dish_1563309353,chicken
+nutrition5k,dish_1563309353,garlic
+nutrition5k,dish_1563309353,lemon juice
+nutrition5k,dish_1563309353,lettuce
+nutrition5k,dish_1563309353,olive oil
+nutrition5k,dish_1563309353,olives
+nutrition5k,dish_1563309353,parsley
+nutrition5k,dish_1563309353,salt
+nutrition5k,dish_1563309353,shallots
+nutrition5k,dish_1563309353,spinach (raw)
+nutrition5k,dish_1563309353,thyme
+nutrition5k,dish_1563309353,wheat berry
+nutrition5k,dish_1563389199,arugula
+nutrition5k,dish_1563389199,blueberries
+nutrition5k,dish_1563389199,broccoli
+nutrition5k,dish_1563389199,bulgur
+nutrition5k,dish_1563389199,carrot
+nutrition5k,dish_1563389199,chard
+nutrition5k,dish_1563389199,garlic
+nutrition5k,dish_1563389199,mustard
+nutrition5k,dish_1563389199,olive oil
+nutrition5k,dish_1563389199,pecans
+nutrition5k,dish_1563389199,pepper
+nutrition5k,dish_1563389199,salt
+nutrition5k,dish_1563389199,tofu
+nutrition5k,dish_1563389199,vinegar
+nutrition5k,dish_1563389719,carrot
+nutrition5k,dish_1563389719,cherry tomatoes
+nutrition5k,dish_1563389719,grilled chicken
+nutrition5k,dish_1563389719,onions
+nutrition5k,dish_1563391989,arugula
+nutrition5k,dish_1563391989,bell peppers
+nutrition5k,dish_1563391989,broccoli
+nutrition5k,dish_1563391989,cabbage
+nutrition5k,dish_1563391989,chicken thighs
+nutrition5k,dish_1563391989,chili
+nutrition5k,dish_1563391989,cilantro
+nutrition5k,dish_1563391989,fish
+nutrition5k,dish_1563391989,garlic
+nutrition5k,dish_1563391989,hominy
+nutrition5k,dish_1563391989,jalapenos
+nutrition5k,dish_1563391989,lemon juice
+nutrition5k,dish_1563391989,lime
+nutrition5k,dish_1563391989,olive oil
+nutrition5k,dish_1563391989,onions
+nutrition5k,dish_1563391989,parsley
+nutrition5k,dish_1563391989,pepper
+nutrition5k,dish_1563391989,quinoa
+nutrition5k,dish_1563391989,salt
+nutrition5k,dish_1563391989,squash
+nutrition5k,dish_1563391989,tomatillo
+nutrition5k,dish_1563391989,tomatoes
+nutrition5k,dish_1563391989,zucchini
+nutrition5k,dish_1563475874,cauliflower
+nutrition5k,dish_1563475874,honeydew melons
+nutrition5k,dish_1563475874,pineapple
+nutrition5k,dish_1563476463,beef
+nutrition5k,dish_1563476463,brown rice
+nutrition5k,dish_1563476463,brownies
+nutrition5k,dish_1563476463,cheese pizza
+nutrition5k,dish_1563476463,chili
+nutrition5k,dish_1563476463,cilantro
+nutrition5k,dish_1563476463,cream
+nutrition5k,dish_1563476463,garlic
+nutrition5k,dish_1563476463,ginger
+nutrition5k,dish_1563476463,jalapenos
+nutrition5k,dish_1563476463,lemon juice
+nutrition5k,dish_1563476463,lime
+nutrition5k,dish_1563476463,mushroom
+nutrition5k,dish_1563476463,olive oil
+nutrition5k,dish_1563476463,onions
+nutrition5k,dish_1563476463,pasta
+nutrition5k,dish_1563476463,salmon
+nutrition5k,dish_1563476463,salt
+nutrition5k,dish_1563476463,shallots
+nutrition5k,dish_1563476463,sour cream
+nutrition5k,dish_1563476463,spinach (raw)
+nutrition5k,dish_1563476463,thyme
+nutrition5k,dish_1563476463,wine
+nutrition5k,dish_1563480608,beef
+nutrition5k,dish_1563480608,broccoli
+nutrition5k,dish_1563480608,brown rice
+nutrition5k,dish_1563480608,cauliflower
+nutrition5k,dish_1563480608,chard
+nutrition5k,dish_1563480608,cherry tomatoes
+nutrition5k,dish_1563480608,chili
+nutrition5k,dish_1563480608,cilantro
+nutrition5k,dish_1563480608,cream
+nutrition5k,dish_1563480608,cucumbers
+nutrition5k,dish_1563480608,figs
+nutrition5k,dish_1563480608,garlic
+nutrition5k,dish_1563480608,ginger
+nutrition5k,dish_1563480608,jalapenos
+nutrition5k,dish_1563480608,lemon juice
+nutrition5k,dish_1563480608,lime
+nutrition5k,dish_1563480608,mushroom
+nutrition5k,dish_1563480608,mustard
+nutrition5k,dish_1563480608,olive oil
+nutrition5k,dish_1563480608,onions
+nutrition5k,dish_1563480608,pasta
+nutrition5k,dish_1563480608,salmon
+nutrition5k,dish_1563480608,salt
+nutrition5k,dish_1563480608,shallots
+nutrition5k,dish_1563480608,sour cream
+nutrition5k,dish_1563480608,spinach (raw)
+nutrition5k,dish_1563480608,thyme
+nutrition5k,dish_1563480608,vinegar
+nutrition5k,dish_1563480608,wine
+nutrition5k,dish_1563481061,beef
+nutrition5k,dish_1563481061,chard
+nutrition5k,dish_1563481061,cherry tomatoes
+nutrition5k,dish_1563481061,cream
+nutrition5k,dish_1563481061,cucumbers
+nutrition5k,dish_1563481061,figs
+nutrition5k,dish_1563481061,garlic
+nutrition5k,dish_1563481061,mushroom
+nutrition5k,dish_1563481061,mustard
+nutrition5k,dish_1563481061,olive oil
+nutrition5k,dish_1563481061,onions
+nutrition5k,dish_1563481061,pasta
+nutrition5k,dish_1563481061,salt
+nutrition5k,dish_1563481061,sour cream
+nutrition5k,dish_1563481061,spinach (raw)
+nutrition5k,dish_1563481061,thyme
+nutrition5k,dish_1563481061,vinegar
+nutrition5k,dish_1563481061,wine
+nutrition5k,dish_1563550976,bacon
+nutrition5k,dish_1563550976,cheese
+nutrition5k,dish_1563550976,roasted potatoes
+nutrition5k,dish_1563550976,scrambled eggs
+nutrition5k,dish_1563551006,bacon
+nutrition5k,dish_1563551006,cheese
+nutrition5k,dish_1563551006,country rice
+nutrition5k,dish_1563551006,roasted potatoes
+nutrition5k,dish_1563551006,scrambled eggs
+nutrition5k,dish_1563563264,grilled chicken
+nutrition5k,dish_1563563264,olives
+nutrition5k,dish_1563566965,arugula
+nutrition5k,dish_1563566965,blueberries
+nutrition5k,dish_1563566965,chard
+nutrition5k,dish_1563566965,chickpeas
+nutrition5k,dish_1563566965,garlic
+nutrition5k,dish_1563566965,mustard
+nutrition5k,dish_1563566965,mustard greens
+nutrition5k,dish_1563566965,olive oil
+nutrition5k,dish_1563566965,parsley
+nutrition5k,dish_1563566965,pecans
+nutrition5k,dish_1563566965,pepper
+nutrition5k,dish_1563566965,salt
+nutrition5k,dish_1563566965,vinegar
+nutrition5k,dish_1563566965,wild rice
+nutrition5k,dish_1563567372,chard
+nutrition5k,dish_1563567372,cherry tomatoes
+nutrition5k,dish_1563567372,chive
+nutrition5k,dish_1563567372,fish
+nutrition5k,dish_1563567372,garlic
+nutrition5k,dish_1563567372,kale
+nutrition5k,dish_1563567372,lemon juice
+nutrition5k,dish_1563567372,olive oil
+nutrition5k,dish_1563567372,parsley
+nutrition5k,dish_1563567372,pizza
+nutrition5k,dish_1563567372,salt
+nutrition5k,dish_1563567372,shallots
+nutrition5k,dish_1563567372,wheat berry
+nutrition5k,dish_1563823390,broccoli
+nutrition5k,dish_1563823390,cauliflower
+nutrition5k,dish_1563823390,chicken
+nutrition5k,dish_1563823390,garlic
+nutrition5k,dish_1563823390,ginger
+nutrition5k,dish_1563823390,green beans
+nutrition5k,dish_1563823390,green onions
+nutrition5k,dish_1563823390,lime
+nutrition5k,dish_1563823390,olive oil
+nutrition5k,dish_1563823390,salt
+nutrition5k,dish_1563823390,soy sauce
+nutrition5k,dish_1563823390,spinach (raw)
+nutrition5k,dish_1563823390,steak
+nutrition5k,dish_1563823390,tofu
+nutrition5k,dish_1563823390,vinegar
+nutrition5k,dish_1563823390,wheat berry
+nutrition5k,dish_1563823390,white rice
+nutrition5k,dish_1563824406,bell peppers
+nutrition5k,dish_1563824406,carrot
+nutrition5k,dish_1563824406,cherry tomatoes
+nutrition5k,dish_1563824406,grilled chicken
+nutrition5k,dish_1563824406,olives
+nutrition5k,dish_1563824406,onions
+nutrition5k,dish_1563897794,berries
+nutrition5k,dish_1563897981,bacon
+nutrition5k,dish_1563897981,scrambled eggs
+nutrition5k,dish_1563908996,bell peppers
+nutrition5k,dish_1563908996,caesar salad
+nutrition5k,dish_1563908996,chicken
+nutrition5k,dish_1563908996,garlic
+nutrition5k,dish_1563908996,green beans
+nutrition5k,dish_1563908996,jalapenos
+nutrition5k,dish_1563908996,millet
+nutrition5k,dish_1563908996,olive oil
+nutrition5k,dish_1563908996,onions
+nutrition5k,dish_1563908996,pepper
+nutrition5k,dish_1563908996,salt
+nutrition5k,dish_1563908996,spinach (raw)
+nutrition5k,dish_1563908996,tomatoes
+nutrition5k,dish_1563997418,almonds
+nutrition5k,dish_1563997418,blueberries
+nutrition5k,dish_1563997418,brown rice
+nutrition5k,dish_1563997418,carrot
+nutrition5k,dish_1563997418,cilantro
+nutrition5k,dish_1563997418,garlic
+nutrition5k,dish_1563997418,jalapenos
+nutrition5k,dish_1563997418,lemon juice
+nutrition5k,dish_1563997418,mustard
+nutrition5k,dish_1563997418,olive oil
+nutrition5k,dish_1563997418,parsley
+nutrition5k,dish_1563997418,pepper
+nutrition5k,dish_1563997418,salt
+nutrition5k,dish_1563997418,shallots
+nutrition5k,dish_1563997418,spinach (raw)
+nutrition5k,dish_1563997418,steak
+nutrition5k,dish_1563997418,tatsoi
+nutrition5k,dish_1563997418,vinegar
+nutrition5k,dish_1563998210,arugula
+nutrition5k,dish_1563998210,basil
+nutrition5k,dish_1563998210,butter
+nutrition5k,dish_1563998210,chicken
+nutrition5k,dish_1563998210,cream
+nutrition5k,dish_1563998210,garlic
+nutrition5k,dish_1563998210,lemon juice
+nutrition5k,dish_1563998210,mushroom
+nutrition5k,dish_1563998210,olive oil
+nutrition5k,dish_1563998210,oregano
+nutrition5k,dish_1563998210,pepper
+nutrition5k,dish_1563998210,rosemary
+nutrition5k,dish_1563998210,salt
+nutrition5k,dish_1563998210,shallots
+nutrition5k,dish_1563998210,thyme
+nutrition5k,dish_1563998210,wheat berry
+nutrition5k,dish_1563998210,white wine
+nutrition5k,dish_1564083508,cherry tomatoes
+nutrition5k,dish_1564083508,grilled chicken
+nutrition5k,dish_1564083508,olives
+nutrition5k,dish_1564168739,pepperoni
+nutrition5k,dish_1564168739,sandwiches
+nutrition5k,dish_1564170173,bell peppers
+nutrition5k,dish_1564170173,cherry tomatoes
+nutrition5k,dish_1564170173,olives
+nutrition5k,dish_1564170173,onions
+nutrition5k,dish_1564170836,arugula
+nutrition5k,dish_1564170836,brown rice
+nutrition5k,dish_1564170836,olive oil
+nutrition5k,dish_1564170836,pepper
+nutrition5k,dish_1564170836,salmon
+nutrition5k,dish_1564170836,salt
+nutrition5k,dish_1564170836,thyme
+nutrition5k,dish_1564171935,arugula
+nutrition5k,dish_1564171935,brown rice
+nutrition5k,dish_1564171935,olive oil
+nutrition5k,dish_1564171935,pepper
+nutrition5k,dish_1564171935,salmon
+nutrition5k,dish_1564171935,salt
+nutrition5k,dish_1564171935,thyme
+nutrition5k,dish_1564171935,wheat berry
+nutrition5k,dish_1564427455,cherry tomatoes
+nutrition5k,dish_1564427455,grilled chicken
+nutrition5k,dish_1564427455,olives
+nutrition5k,dish_1564428404,cherry tomatoes
+nutrition5k,dish_1564428404,garlic
+nutrition5k,dish_1564428404,mixed greens
+nutrition5k,dish_1564428404,mustard
+nutrition5k,dish_1564428404,olive oil
+nutrition5k,dish_1564428404,onions
+nutrition5k,dish_1564428404,pears
+nutrition5k,dish_1564428404,salt
+nutrition5k,dish_1564428404,vinegar
+nutrition5k,dish_1564515049,artichokes
+nutrition5k,dish_1564515049,arugula
+nutrition5k,dish_1564515049,bell peppers
+nutrition5k,dish_1564515049,broccoli
+nutrition5k,dish_1564515049,carrot
+nutrition5k,dish_1564515049,chive
+nutrition5k,dish_1564515049,fish
+nutrition5k,dish_1564515049,garlic
+nutrition5k,dish_1564515049,lime
+nutrition5k,dish_1564515049,olive oil
+nutrition5k,dish_1564515049,onions
+nutrition5k,dish_1564515049,parsley
+nutrition5k,dish_1564515049,pepper
+nutrition5k,dish_1564515049,salt
+nutrition5k,dish_1564515049,snow peas
+nutrition5k,dish_1564515049,squash
+nutrition5k,dish_1564515049,wheat berry
+nutrition5k,dish_1564515049,white beans
+nutrition5k,dish_1564515049,zucchini
+nutrition5k,dish_1564516760,carrot
+nutrition5k,dish_1564516760,chicken thighs
+nutrition5k,dish_1564516760,eggplant
+nutrition5k,dish_1564516760,garlic
+nutrition5k,dish_1564516760,lemon juice
+nutrition5k,dish_1564516760,mushroom
+nutrition5k,dish_1564516760,olive oil
+nutrition5k,dish_1564516760,pepper
+nutrition5k,dish_1564516760,quinoa
+nutrition5k,dish_1564516760,salt
+nutrition5k,dish_1564516760,shallots
+nutrition5k,dish_1564516760,spinach (cooked)
+nutrition5k,dish_1564516760,squash
+nutrition5k,dish_1564516760,wine
+nutrition5k,dish_1564518850,frozen yogurt
+nutrition5k,dish_1564588719,chilaquiles
+nutrition5k,dish_1564588719,sausage
+nutrition5k,dish_1564588919,blueberries
+nutrition5k,dish_1564588919,chia seeds
+nutrition5k,dish_1564588919,egg whites
+nutrition5k,dish_1564588919,greek yogurt
+nutrition5k,dish_1564588919,milk
+nutrition5k,dish_1564588919,olive oil
+nutrition5k,dish_1564588919,sweet potato
+nutrition5k,dish_1564675411,egg whites
+nutrition5k,dish_1564675411,turkey bacon
+nutrition5k,dish_1564685229,bell peppers
+nutrition5k,dish_1564685229,cherry tomatoes
+nutrition5k,dish_1564685229,cucumbers
+nutrition5k,dish_1564685229,green beans
+nutrition5k,dish_1564685229,ketchup
+nutrition5k,dish_1564685229,lettuce
+nutrition5k,dish_1564685229,lime
+nutrition5k,dish_1564685229,millet
+nutrition5k,dish_1564685229,mixed greens
+nutrition5k,dish_1564685229,olive oil
+nutrition5k,dish_1564685229,onions
+nutrition5k,dish_1564685229,pepper
+nutrition5k,dish_1564685229,salt
+nutrition5k,dish_1564685229,spinach (raw)
+nutrition5k,dish_1564685229,steak
+nutrition5k,dish_1564685229,vinegar
+nutrition5k,dish_1564685450,bell peppers
+nutrition5k,dish_1564685450,cherry tomatoes
+nutrition5k,dish_1564685450,cucumbers
+nutrition5k,dish_1564685450,ketchup
+nutrition5k,dish_1564685450,lettuce
+nutrition5k,dish_1564685450,lime
+nutrition5k,dish_1564685450,millet
+nutrition5k,dish_1564685450,mixed greens
+nutrition5k,dish_1564685450,olive oil
+nutrition5k,dish_1564685450,onions
+nutrition5k,dish_1564685450,pepper
+nutrition5k,dish_1564685450,pizza
+nutrition5k,dish_1564685450,salt
+nutrition5k,dish_1564685450,spinach (raw)
+nutrition5k,dish_1564685450,steak
+nutrition5k,dish_1564685450,vinegar
+nutrition5k,dish_1564690167,arugula
+nutrition5k,dish_1564690167,bell peppers
+nutrition5k,dish_1564690167,chickpeas
+nutrition5k,dish_1564690167,garlic
+nutrition5k,dish_1564690167,green beans
+nutrition5k,dish_1564690167,ketchup
+nutrition5k,dish_1564690167,lemon juice
+nutrition5k,dish_1564690167,lentils
+nutrition5k,dish_1564690167,millet
+nutrition5k,dish_1564690167,olive oil
+nutrition5k,dish_1564690167,onions
+nutrition5k,dish_1564690167,parsley
+nutrition5k,dish_1564690167,pears
+nutrition5k,dish_1564690167,pepper
+nutrition5k,dish_1564690167,salt
+nutrition5k,dish_1564690167,spinach (raw)
+nutrition5k,dish_1564690167,steak
+nutrition5k,dish_1564690167,vinegar
+nutrition5k,dish_1564774805,arugula
+nutrition5k,dish_1564774805,broccoli
+nutrition5k,dish_1564774805,cherry tomatoes
+nutrition5k,dish_1564774805,chive
+nutrition5k,dish_1564774805,garlic
+nutrition5k,dish_1564774805,kale
+nutrition5k,dish_1564774805,lemon juice
+nutrition5k,dish_1564774805,lentils
+nutrition5k,dish_1564774805,mayonnaise
+nutrition5k,dish_1564774805,olive oil
+nutrition5k,dish_1564774805,parsley
+nutrition5k,dish_1564774805,pepper
+nutrition5k,dish_1564774805,pickles
+nutrition5k,dish_1564774805,salmon
+nutrition5k,dish_1564774805,salt
+nutrition5k,dish_1564774805,shallots
+nutrition5k,dish_1565020796,bacon
+nutrition5k,dish_1565020796,egg whites
+nutrition5k,dish_1565032748,arugula
+nutrition5k,dish_1565032748,beef
+nutrition5k,dish_1565032748,broccoli
+nutrition5k,dish_1565032748,chili
+nutrition5k,dish_1565032748,figs
+nutrition5k,dish_1565032748,garlic
+nutrition5k,dish_1565032748,green onions
+nutrition5k,dish_1565032748,kale
+nutrition5k,dish_1565032748,mustard
+nutrition5k,dish_1565032748,olive oil
+nutrition5k,dish_1565032748,onions
+nutrition5k,dish_1565032748,orange juice
+nutrition5k,dish_1565032748,salt
+nutrition5k,dish_1565032748,soy sauce
+nutrition5k,dish_1565032748,squash
+nutrition5k,dish_1565032748,strawberries
+nutrition5k,dish_1565032748,vinegar
+nutrition5k,dish_1565032748,white rice
+nutrition5k,dish_1565107092,egg whites
+nutrition5k,dish_1565107092,scrambled eggs
+nutrition5k,dish_1565379868,bok choy
+nutrition5k,dish_1565379868,cabbage
+nutrition5k,dish_1565379868,carrot
+nutrition5k,dish_1565379868,garlic
+nutrition5k,dish_1565379868,green onions
+nutrition5k,dish_1565379868,mixed greens
+nutrition5k,dish_1565379868,olive oil
+nutrition5k,dish_1565379868,pepper
+nutrition5k,dish_1565379868,pork
+nutrition5k,dish_1565379868,radishes
+nutrition5k,dish_1565379868,rice noodles
+nutrition5k,dish_1565379868,salt
+nutrition5k,dish_1565379868,soy sauce
+nutrition5k,dish_1565379868,sugar
+nutrition5k,dish_1565379868,vinegar
+nutrition5k,dish_1565379868,white rice
+nutrition5k,dish_1565637608,arugula
+nutrition5k,dish_1565637608,cherry tomatoes
+nutrition5k,dish_1565637608,chicken breast
+nutrition5k,dish_1565637608,garlic
+nutrition5k,dish_1565637608,olive oil
+nutrition5k,dish_1565637608,onions
+nutrition5k,dish_1565637608,parmesan cheese
+nutrition5k,dish_1565637608,parsley
+nutrition5k,dish_1565637608,pineapple
+nutrition5k,dish_1565637608,pork
+nutrition5k,dish_1565637608,quinoa
+nutrition5k,dish_1565637608,rosemary
+nutrition5k,dish_1565637608,salt
+nutrition5k,dish_1565637608,spinach (raw)
+nutrition5k,dish_1565637608,thyme
+nutrition5k,dish_1565637608,wheat berry
+nutrition5k,dish_1565637608,white rice
+nutrition5k,dish_1565637608,zucchini
+nutrition5k,dish_1565725156,bell peppers
+nutrition5k,dish_1565725156,carrot
+nutrition5k,dish_1565725156,cherry tomatoes
+nutrition5k,dish_1565725156,chicken
+nutrition5k,dish_1565725156,olives
+nutrition5k,dish_1565725156,onions
+nutrition5k,dish_1565808943,cherry tomatoes
+nutrition5k,dish_1565812116,arugula
+nutrition5k,dish_1565812116,blueberries
+nutrition5k,dish_1565812116,chard
+nutrition5k,dish_1565812116,mustard
+nutrition5k,dish_1565812116,olive oil
+nutrition5k,dish_1565812116,pepper
+nutrition5k,dish_1565812116,salt
+nutrition5k,dish_1565812116,vinegar
+nutrition5k,dish_1565812116,walnuts
+nutrition5k,dish_1565812146,arugula
+nutrition5k,dish_1565812146,blueberries
+nutrition5k,dish_1565812146,chard
+nutrition5k,dish_1565812146,mustard
+nutrition5k,dish_1565812146,olive oil
+nutrition5k,dish_1565812146,pepper
+nutrition5k,dish_1565812146,pineapple
+nutrition5k,dish_1565812146,salt
+nutrition5k,dish_1565812146,vinegar
+nutrition5k,dish_1565812146,walnuts
+nutrition5k,dish_1565896701,cauliflower
+nutrition5k,dish_1565896701,chard
+nutrition5k,dish_1565896701,garlic
+nutrition5k,dish_1565896701,kale
+nutrition5k,dish_1565896701,lime
+nutrition5k,dish_1565896701,olive oil
+nutrition5k,dish_1565896701,salt
+nutrition5k,dish_1565896701,steak
+nutrition5k,dish_1565896701,wheat berry
+nutrition5k,dish_1565898659,brown rice
+nutrition5k,dish_1565898659,carrot
+nutrition5k,dish_1565898659,cherry tomatoes
+nutrition5k,dish_1565898659,chili
+nutrition5k,dish_1565898659,cilantro
+nutrition5k,dish_1565898659,garlic
+nutrition5k,dish_1565898659,ginger
+nutrition5k,dish_1565898659,jalapenos
+nutrition5k,dish_1565898659,lemon juice
+nutrition5k,dish_1565898659,lime
+nutrition5k,dish_1565898659,olive oil
+nutrition5k,dish_1565898659,olives
+nutrition5k,dish_1565898659,onions
+nutrition5k,dish_1565898659,salmon
+nutrition5k,dish_1565898659,salt
+nutrition5k,dish_1565898659,shallots
+nutrition5k,dish_1565898659,spinach (raw)
+nutrition5k,dish_1565898659,tuna
+nutrition5k,dish_1565981848,carrot
+nutrition5k,dish_1565981848,chard
+nutrition5k,dish_1565981848,cherry tomatoes
+nutrition5k,dish_1565981848,chive
+nutrition5k,dish_1565981848,fish
+nutrition5k,dish_1565981848,garlic
+nutrition5k,dish_1565981848,lemon juice
+nutrition5k,dish_1565981848,olive oil
+nutrition5k,dish_1565981848,parsley
+nutrition5k,dish_1565981848,pepper
+nutrition5k,dish_1565981848,salt
+nutrition5k,dish_1565981848,shallots
+nutrition5k,dish_1565981848,tofu
+nutrition5k,dish_1565981848,wheat berry
+nutrition5k,dish_1565981898,arugula
+nutrition5k,dish_1565981898,blueberries
+nutrition5k,dish_1565981898,carrot
+nutrition5k,dish_1565981898,chard
+nutrition5k,dish_1565981898,cherry tomatoes
+nutrition5k,dish_1565981898,chive
+nutrition5k,dish_1565981898,fish
+nutrition5k,dish_1565981898,garlic
+nutrition5k,dish_1565981898,lemon juice
+nutrition5k,dish_1565981898,mustard
+nutrition5k,dish_1565981898,olive oil
+nutrition5k,dish_1565981898,parsley
+nutrition5k,dish_1565981898,pepper
+nutrition5k,dish_1565981898,salt
+nutrition5k,dish_1565981898,shallots
+nutrition5k,dish_1565981898,tofu
+nutrition5k,dish_1565981898,vinegar
+nutrition5k,dish_1565981898,walnuts
+nutrition5k,dish_1565981898,wheat berry
+nutrition5k,dish_1566316525,bacon
+nutrition5k,dish_1566316525,bell peppers
+nutrition5k,dish_1566316525,cucumbers
+nutrition5k,dish_1566316525,garlic
+nutrition5k,dish_1566316525,mustard
+nutrition5k,dish_1566316525,olive oil
+nutrition5k,dish_1566316525,radishes
+nutrition5k,dish_1566316525,salt
+nutrition5k,dish_1566316525,vinegar
+nutrition5k,dish_1566332268,avocado
+nutrition5k,dish_1566332268,caesar dressing
+nutrition5k,dish_1566332268,chicken
+nutrition5k,dish_1566332268,cucumbers
+nutrition5k,dish_1566332268,olives
+nutrition5k,dish_1566332268,spinach (raw)
+nutrition5k,dish_1566414342,arugula
+nutrition5k,dish_1566414342,basil
+nutrition5k,dish_1566414342,butter
+nutrition5k,dish_1566414342,chicken
+nutrition5k,dish_1566414342,cream
+nutrition5k,dish_1566414342,garlic
+nutrition5k,dish_1566414342,lemon juice
+nutrition5k,dish_1566414342,mushroom
+nutrition5k,dish_1566414342,olive oil
+nutrition5k,dish_1566414342,oregano
+nutrition5k,dish_1566414342,pepper
+nutrition5k,dish_1566414342,quinoa
+nutrition5k,dish_1566414342,roasted potatoes
+nutrition5k,dish_1566414342,rosemary
+nutrition5k,dish_1566414342,salt
+nutrition5k,dish_1566414342,shallots
+nutrition5k,dish_1566414342,thyme
+nutrition5k,dish_1566414342,wheat berry
+nutrition5k,dish_1566414342,white wine
+nutrition5k,dish_1566414754,arugula
+nutrition5k,dish_1566414754,basil
+nutrition5k,dish_1566414754,butter
+nutrition5k,dish_1566414754,chicken
+nutrition5k,dish_1566414754,country rice
+nutrition5k,dish_1566414754,cream
+nutrition5k,dish_1566414754,fish
+nutrition5k,dish_1566414754,garlic
+nutrition5k,dish_1566414754,green beans
+nutrition5k,dish_1566414754,green onions
+nutrition5k,dish_1566414754,lemon juice
+nutrition5k,dish_1566414754,mushroom
+nutrition5k,dish_1566414754,olive oil
+nutrition5k,dish_1566414754,onions
+nutrition5k,dish_1566414754,oregano
+nutrition5k,dish_1566414754,pepper
+nutrition5k,dish_1566414754,roasted potatoes
+nutrition5k,dish_1566414754,rosemary
+nutrition5k,dish_1566414754,salt
+nutrition5k,dish_1566414754,shallots
+nutrition5k,dish_1566414754,thyme
+nutrition5k,dish_1566414754,wheat berry
+nutrition5k,dish_1566414754,white wine
+nutrition5k,dish_1566419577,caesar salad
+nutrition5k,dish_1566419577,cheese pizza
+nutrition5k,dish_1566419577,green beans
+nutrition5k,dish_1566419577,olive oil
+nutrition5k,dish_1566501473,almonds
+nutrition5k,dish_1566501473,carrot
+nutrition5k,dish_1566501473,cherry tomatoes
+nutrition5k,dish_1566501473,lemon juice
+nutrition5k,dish_1566501473,olives
+nutrition5k,dish_1566501473,onions
+nutrition5k,dish_1566501473,tuna
+nutrition5k,dish_1566849895,carrot
+nutrition5k,dish_1566849895,olives
+nutrition5k,dish_1566920304,egg whites
+nutrition5k,dish_1566920339,egg whites
+nutrition5k,dish_1566920339,olive oil
+nutrition5k,dish_1566920339,sweet potato
+nutrition5k,dish_1566931519,mixed greens
+nutrition5k,dish_1566931519,olives
+nutrition5k,dish_1566933226,arugula
+nutrition5k,dish_1566933226,basil
+nutrition5k,dish_1566933226,brown rice
+nutrition5k,dish_1566933226,chicken thighs
+nutrition5k,dish_1566933226,couscous
+nutrition5k,dish_1566933226,garlic
+nutrition5k,dish_1566933226,lemon juice
+nutrition5k,dish_1566933226,olive oil
+nutrition5k,dish_1566933226,parsley
+nutrition5k,dish_1566933226,radishes
+nutrition5k,dish_1566933226,salt
+nutrition5k,dish_1566933226,thyme
+nutrition5k,dish_1566933226,vinegar
+nutrition5k,dish_1567007719,cantaloupe
+nutrition5k,dish_1567020366,broccoli
+nutrition5k,dish_1567020366,brussels sprouts
+nutrition5k,dish_1567020366,olive oil
+nutrition5k,dish_1567020366,pepper
+nutrition5k,dish_1567020366,salt
+nutrition5k,dish_1567023262,greek salad
+nutrition5k,dish_1567106620,bell peppers
+nutrition5k,dish_1567106620,cherry tomatoes
+nutrition5k,dish_1567106794,blue cheese
+nutrition5k,dish_1567106794,garlic
+nutrition5k,dish_1567106794,lettuce
+nutrition5k,dish_1567106794,mixed greens
+nutrition5k,dish_1567106794,mustard
+nutrition5k,dish_1567106794,olive oil
+nutrition5k,dish_1567106794,salt
+nutrition5k,dish_1567106794,vinegar
+nutrition5k,dish_1567106794,walnuts
+nutrition5k,dish_1567108037,arugula
+nutrition5k,dish_1567108037,beef
+nutrition5k,dish_1567108037,bok choy
+nutrition5k,dish_1567108037,chickpeas
+nutrition5k,dish_1567108037,garlic
+nutrition5k,dish_1567108037,lemon juice
+nutrition5k,dish_1567108037,millet
+nutrition5k,dish_1567108037,olive oil
+nutrition5k,dish_1567108037,onions
+nutrition5k,dish_1567108037,parsley
+nutrition5k,dish_1567108037,pears
+nutrition5k,dish_1567108037,pepper
+nutrition5k,dish_1567108037,salt
+nutrition5k,dish_1567108037,shallots
+nutrition5k,dish_1567108037,spinach (cooked)
+nutrition5k,dish_1567108037,vinegar
+nutrition5k,dish_1567110556,cherry tomatoes
+nutrition5k,dish_1567110556,cucumbers
+nutrition5k,dish_1567110556,green beans
+nutrition5k,dish_1567110556,lettuce
+nutrition5k,dish_1567110556,lime
+nutrition5k,dish_1567110556,mixed greens
+nutrition5k,dish_1567110556,olive oil
+nutrition5k,dish_1567110556,onions
+nutrition5k,dish_1567110556,pepper
+nutrition5k,dish_1567110556,salt
+nutrition5k,dish_1567110556,vinegar
+nutrition5k,dish_1567526888,berries
+nutrition5k,dish_1567526888,egg whites
+nutrition5k,dish_1567526888,olive oil
+nutrition5k,dish_1567526888,salsa
+nutrition5k,dish_1567526888,sweet potato
+nutrition5k,dish_1567526888,watermelon
+nutrition5k,dish_1567526888,yam
+nutrition5k,dish_1567625343,avocado
+nutrition5k,dish_1567625343,chard
+nutrition5k,dish_1567625343,kale
+nutrition5k,dish_1567628157,apple
+nutrition5k,dish_1567628157,arugula
+nutrition5k,dish_1567628157,bulgur
+nutrition5k,dish_1567628157,chard
+nutrition5k,dish_1567628157,country rice
+nutrition5k,dish_1567628157,cranberries
+nutrition5k,dish_1567628157,fish
+nutrition5k,dish_1567628157,garlic
+nutrition5k,dish_1567628157,green onions
+nutrition5k,dish_1567628157,kale
+nutrition5k,dish_1567628157,lemon juice
+nutrition5k,dish_1567628157,mustard greens
+nutrition5k,dish_1567628157,olive oil
+nutrition5k,dish_1567628157,onions
+nutrition5k,dish_1567628157,parsley
+nutrition5k,dish_1567628157,salt
+nutrition5k,dish_1567628157,shallots
+nutrition5k,dish_1567629081,cheese pizza
+nutrition5k,dish_1567789154,sausage
+nutrition5k,dish_1567801520,bok choy
+nutrition5k,dish_1567801520,caesar salad
+nutrition5k,dish_1567801520,garlic
+nutrition5k,dish_1567801520,pepper
+nutrition5k,dish_1567801520,pork
+nutrition5k,dish_1567801520,salt
+nutrition5k,dish_1567801520,soy sauce
+nutrition5k,dish_1567801520,sugar
+nutrition5k,dish_1567801520,white rice
+nutrition5k,dish_1568315132,avocado
+nutrition5k,dish_1568315132,beef
+nutrition5k,dish_1568315132,bok choy
+nutrition5k,dish_1568315132,brown rice
+nutrition5k,dish_1568315132,chili
+nutrition5k,dish_1568315132,cilantro
+nutrition5k,dish_1568315132,garlic
+nutrition5k,dish_1568315132,ginger
+nutrition5k,dish_1568315132,green beans
+nutrition5k,dish_1568315132,jalapenos
+nutrition5k,dish_1568315132,lemon juice
+nutrition5k,dish_1568315132,lime
+nutrition5k,dish_1568315132,millet
+nutrition5k,dish_1568315132,mushroom
+nutrition5k,dish_1568315132,olive oil
+nutrition5k,dish_1568315132,olives
+nutrition5k,dish_1568315132,onions
+nutrition5k,dish_1568315132,quinoa
+nutrition5k,dish_1568315132,salmon
+nutrition5k,dish_1568315132,salt
+nutrition5k,dish_1568315132,shallots
+nutrition5k,dish_1568315132,spinach (cooked)
+nutrition5k,dish_1568315132,spinach (raw)
+nutrition5k,dish_1568315132,tomatoes
+nutrition5k,dish_1568315132,vinegar
+nutrition5k,dish_1568401064,avocado
+nutrition5k,dish_1568401064,broccoli
+nutrition5k,dish_1568401064,chicken
+nutrition5k,dish_1568401064,mixed greens
+nutrition5k,dish_1568405183,cucumbers
+nutrition5k,dish_1568405183,garlic
+nutrition5k,dish_1568405183,mustard
+nutrition5k,dish_1568405183,mustard greens
+nutrition5k,dish_1568405183,olive oil
+nutrition5k,dish_1568405183,salt
+nutrition5k,dish_1568405183,spinach (raw)
+nutrition5k,dish_1568405183,tomatoes
+nutrition5k,dish_1568405183,vinegar
+nutrition5k,dish_1568664972,bell peppers
+nutrition5k,dish_1568664972,chicken
+nutrition5k,dish_1568664972,cucumbers
+nutrition5k,dish_1568664972,garlic
+nutrition5k,dish_1568664972,jalapenos
+nutrition5k,dish_1568664972,millet
+nutrition5k,dish_1568664972,mustard
+nutrition5k,dish_1568664972,mustard greens
+nutrition5k,dish_1568664972,olive oil
+nutrition5k,dish_1568664972,onions
+nutrition5k,dish_1568664972,pepper
+nutrition5k,dish_1568664972,salt
+nutrition5k,dish_1568664972,spinach (raw)
+nutrition5k,dish_1568664972,tomatoes
+nutrition5k,dish_1568664972,vinegar
+nutrition5k,dish_1568666061,bell peppers
+nutrition5k,dish_1568666061,brussels sprouts
+nutrition5k,dish_1568666061,caesar salad
+nutrition5k,dish_1568666061,cheese pizza
+nutrition5k,dish_1568666061,chicken
+nutrition5k,dish_1568666061,cucumbers
+nutrition5k,dish_1568666061,garlic
+nutrition5k,dish_1568666061,jalapenos
+nutrition5k,dish_1568666061,kale
+nutrition5k,dish_1568666061,lemon juice
+nutrition5k,dish_1568666061,millet
+nutrition5k,dish_1568666061,olive oil
+nutrition5k,dish_1568666061,onions
+nutrition5k,dish_1568666061,parsley
+nutrition5k,dish_1568666061,pepper
+nutrition5k,dish_1568666061,salt
+nutrition5k,dish_1568666061,spinach (raw)
+nutrition5k,dish_1568666061,tatsoi
+nutrition5k,dish_1568666061,tomatoes
+nutrition5k,dish_1568666303,artichokes
+nutrition5k,dish_1568666303,broccoli
+nutrition5k,dish_1568666303,chicken
+nutrition5k,dish_1568666303,lettuce
+dfood_tj,100,coarse grain
+dfood_tj,100,leaf lettuce
+dfood_tj,100,shepherd
+dfood_tj,100,zizania carrot shredded pork
+dfood_tj,1003,coarse grain
+dfood_tj,1003,fried cabbage
+dfood_tj,1003,fried meat with onion
+dfood_tj,1003,lettuce shredded meat
+dfood_tj,1005,buckwheat bread
+dfood_tj,1005,chinese cabbage
+dfood_tj,1005,egg
+dfood_tj,102,cut white duck
+dfood_tj,102,lettuce shredded meat
+dfood_tj,102,pumpkin
+dfood_tj,102,rice
+dfood_tj,1027,grilled pork ribs
+dfood_tj,1027,rice
+dfood_tj,1027,roast meat with white radish
+dfood_tj,1027,sauteed vegetable
+dfood_tj,1061,chinese cabbage
+dfood_tj,1061,coarse grain
+dfood_tj,1061,pork stuffed green pepper
+dfood_tj,1061,sauteed vegetable
+dfood_tj,1073,buckwheat bread
+dfood_tj,1073,chinese cabbage
+dfood_tj,1073,egg
+dfood_tj,1090,buckwheat bread
+dfood_tj,1090,chinese cabbage
+dfood_tj,1090,egg
+dfood_tj,1095,chinese cabbage meatballs
+dfood_tj,1095,coarse grain
+dfood_tj,1095,lettuce shredded meat
+dfood_tj,1095,white radish with scallion oil
+dfood_tj,1107,buckwheat bread
+dfood_tj,1107,chinese cabbage
+dfood_tj,1107,egg
+dfood_tj,1118,chinese cabbage
+dfood_tj,1118,coarse grain
+dfood_tj,1118,squash
+dfood_tj,1118,zizania carrot shredded pork
+dfood_tj,1124,buckwheat bread
+dfood_tj,1124,chinese cabbage
+dfood_tj,1124,egg
+dfood_tj,1129,braise in soy sauce carp
+dfood_tj,1129,rice
+dfood_tj,1129,sauteed bean sprouts
+dfood_tj,1129,scallion oil winter melon
+dfood_tj,114,coarse grain
+dfood_tj,114,sauteed vegetable
+dfood_tj,114,scallion oil winter melon
+dfood_tj,114,squash
+dfood_tj,1146,chinese cabbage
+dfood_tj,1146,coarse grain
+dfood_tj,1146,sauteed sweet corn with pine nuts
+dfood_tj,1146,sirloin tomatoes
+dfood_tj,1175,buckwheat bread
+dfood_tj,1175,chinese cabbage
+dfood_tj,1175,egg
+dfood_tj,1180,braised shrimp in chili oil
+dfood_tj,1180,leaf lettuce
+dfood_tj,1180,rice
+dfood_tj,1180,scallion oil winter melon
+dfood_tj,1209,buckwheat bread
+dfood_tj,1209,chinese cabbage
+dfood_tj,1209,egg
+dfood_tj,1226,buckwheat bread
+dfood_tj,1226,chinese cabbage
+dfood_tj,1226,egg
+dfood_tj,1248,chinese cabbage
+dfood_tj,1248,coarse grain
+dfood_tj,1248,sauteed bean sprouts
+dfood_tj,1248,steamed chicken with mushroom
+dfood_tj,1254,coarse grain
+dfood_tj,1254,sauteed vegetable
+dfood_tj,1254,scallion oil winter melon
+dfood_tj,1254,steamed meatball
+dfood_tj,1277,buckwheat bread
+dfood_tj,1277,chinese cabbage
+dfood_tj,1277,egg
+dfood_tj,1282,braised pork with tofu skin knot
+dfood_tj,1282,chinese cabbage meatballs
+dfood_tj,1282,coarse grain
+dfood_tj,1282,scallion oil winter melon
+dfood_tj,1299,chinese cabbage
+dfood_tj,1299,coarse grain
+dfood_tj,1299,fried meat with onion
+dfood_tj,1299,fried yam
+dfood_tj,1305,coarse grain
+dfood_tj,1305,sauteed bean sprouts
+dfood_tj,1305,scallion oil winter melon
+dfood_tj,1305,steamed chicken
+dfood_tj,134,chinese cabbage
+dfood_tj,134,coarse grain
+dfood_tj,134,fried fungus mushroom
+dfood_tj,134,stir-fry celery
+dfood_tj,1350,coarse grain
+dfood_tj,1350,grilled pork ribs
+dfood_tj,1350,sauteed vegetable
+dfood_tj,1350,scallion oil winter melon
+dfood_tj,1362,buckwheat bread
+dfood_tj,1362,chinese cabbage
+dfood_tj,1362,egg
+dfood_tj,1367,coarse grain
+dfood_tj,1367,grilled pork ribs
+dfood_tj,1367,scallion oil winter melon
+dfood_tj,1367,squash
+dfood_tj,1379,buckwheat bread
+dfood_tj,1379,chinese cabbage
+dfood_tj,1379,egg
+dfood_tj,138,cucumber fried pork
+dfood_tj,138,fried cauliflower
+dfood_tj,138,rice
+dfood_tj,138,white radish with scallion oil
+dfood_tj,1384,chinese cabbage meatballs
+dfood_tj,1384,coarse grain
+dfood_tj,1384,sauteed vegetable
+dfood_tj,1384,shepherd
+dfood_tj,1413,buckwheat bread
+dfood_tj,1413,chinese cabbage
+dfood_tj,1413,egg
+dfood_tj,1435,braised fish fillets
+dfood_tj,1435,chinese cabbage
+dfood_tj,1435,rice
+dfood_tj,1435,sauteed vegetable
+dfood_tj,144,chinese cabbage
+dfood_tj,144,coarse grain
+dfood_tj,144,cowpea
+dfood_tj,144,sauteed bean sprouts
+dfood_tj,1441,leaf lettuce
+dfood_tj,1441,rice
+dfood_tj,1441,scallion oil winter melon
+dfood_tj,1441,steamed meatball
+dfood_tj,1452,carrot braised short ribs
+dfood_tj,1452,coarse grain
+dfood_tj,1452,fried meat with onion
+dfood_tj,1452,leaf lettuce
+dfood_tj,1464,buckwheat bread
+dfood_tj,1464,chinese cabbage
+dfood_tj,1464,egg
+dfood_tj,148,carrot braised short ribs
+dfood_tj,148,eggplant with mince pork
+dfood_tj,148,rice
+dfood_tj,148,spinach
+dfood_tj,15,egg
+dfood_tj,15,sea cucumber
+dfood_tj,15,steamed vegetable bun
+dfood_tj,1515,buckwheat bread
+dfood_tj,1515,chinese cabbage
+dfood_tj,1515,egg
+dfood_tj,152,coarse grain
+dfood_tj,152,leaf lettuce
+dfood_tj,152,shepherd
+dfood_tj,152,zizania carrot shredded pork
+dfood_tj,1520,chinese cabbage meatballs
+dfood_tj,1520,coarse grain
+dfood_tj,1520,pork stuffed green pepper
+dfood_tj,1520,sauteed vegetable
+dfood_tj,1532,buckwheat bread
+dfood_tj,1532,chinese cabbage
+dfood_tj,1532,egg
+dfood_tj,1549,buckwheat bread
+dfood_tj,1549,chinese cabbage
+dfood_tj,1549,egg
+dfood_tj,1571,coarse grain
+dfood_tj,1571,fried meat with onion
+dfood_tj,1571,sauteed vegetable
+dfood_tj,1571,stewed sirloin potatoes
+dfood_tj,160,coarse grain
+dfood_tj,160,sauteed sweet corn with pine nuts
+dfood_tj,160,sauteed vegetable
+dfood_tj,160,stir-fried pork with egg and fungus
+dfood_tj,1600,buckwheat bread
+dfood_tj,1600,chinese cabbage
+dfood_tj,1600,egg
+dfood_tj,1605,braised fungus with pork slice
+dfood_tj,1605,coarse grain
+dfood_tj,1605,sauteed sweet corn with pine nuts
+dfood_tj,1605,sauteed vegetable
+dfood_tj,1617,buckwheat bread
+dfood_tj,1617,chinese cabbage
+dfood_tj,1617,egg
+dfood_tj,1628,coarse grain
+dfood_tj,1628,cut white duck
+dfood_tj,1628,sauteed bean sprouts
+dfood_tj,1628,scallion oil winter melon
+dfood_tj,1645,coarse grain
+dfood_tj,1645,fried cabbage
+dfood_tj,1645,sirloin tomatoes
+dfood_tj,1645,squash
+dfood_tj,166,chinese cabbage
+dfood_tj,166,coarse grain
+dfood_tj,166,green pepper meat
+dfood_tj,166,sauteed bean sprouts
+dfood_tj,168,coarse grain
+dfood_tj,168,cucumber fried pork
+dfood_tj,168,squash
+dfood_tj,168,white radish with scallion oil
+dfood_tj,1680,buckwheat bread
+dfood_tj,1680,chinese cabbage
+dfood_tj,1680,egg
+dfood_tj,1697,braised pork with tofu skin knot
+dfood_tj,1697,coarse grain
+dfood_tj,1697,sauteed vegetable
+dfood_tj,1697,white radish with scallion oil
+dfood_tj,172,coarse grain
+dfood_tj,172,grilled pork ribs
+dfood_tj,172,sauteed vegetable
+dfood_tj,172,scallion oil winter melon
+dfood_tj,1731,chicken braised with brown sauce
+dfood_tj,1731,chinese cabbage
+dfood_tj,1731,coarse grain
+dfood_tj,1731,sauteed bean sprouts
+dfood_tj,1737,coarse grain
+dfood_tj,1737,fried meat with onion
+dfood_tj,1737,sauteed vegetable
+dfood_tj,1737,squash
+dfood_tj,1743,braised shrimp in chili oil
+dfood_tj,1743,coarse grain
+dfood_tj,1743,sauteed vegetable
+dfood_tj,1743,scallion oil winter melon
+dfood_tj,1772,buckwheat bread
+dfood_tj,1772,chinese cabbage
+dfood_tj,1772,egg
+dfood_tj,178,coarse grain
+dfood_tj,178,sauteed bitter melon
+dfood_tj,178,sauteed lettuce
+dfood_tj,178,white rice shrimp
+dfood_tj,1783,coarse grain
+dfood_tj,1783,cucumber in sauce
+dfood_tj,1783,steamed perch
+dfood_tj,1783,white radish with scallion oil
+dfood_tj,1794,chinese cabbage meatballs
+dfood_tj,1794,coarse grain
+dfood_tj,1794,sauteed vegetable
+dfood_tj,1794,steamed meatball
+dfood_tj,1800,chinese cabbage
+dfood_tj,1800,coarse grain
+dfood_tj,1800,shredded pork and green pepper
+dfood_tj,1800,squash
+dfood_tj,1806,buckwheat bread
+dfood_tj,1806,chinese cabbage
+dfood_tj,1806,egg
+dfood_tj,1817,coarse grain
+dfood_tj,1817,sauteed vegetable
+dfood_tj,1817,scallion oil winter melon
+dfood_tj,1817,steamed meatball
+dfood_tj,1840,buckwheat bread
+dfood_tj,1840,chinese cabbage
+dfood_tj,1840,egg
+dfood_tj,1845,chinese cabbage meatballs
+dfood_tj,1845,coarse grain
+dfood_tj,1845,sauteed vegetable
+dfood_tj,1845,steamed pomfret
+dfood_tj,1857,buckwheat bread
+dfood_tj,1857,chinese cabbage
+dfood_tj,1857,egg
+dfood_tj,186,chinese cabbage
+dfood_tj,186,coarse grain
+dfood_tj,186,cowpea
+dfood_tj,186,sauteed bean sprouts
+dfood_tj,1902,coarse grain
+dfood_tj,1902,cucumber fried pork
+dfood_tj,1902,scallion oil winter melon
+dfood_tj,1902,steamed chicken
+dfood_tj,1974,buckwheat bread
+dfood_tj,1974,chinese cabbage
+dfood_tj,1974,egg
+dfood_tj,1979,coarse grain
+dfood_tj,1979,eggplant with mince pork
+dfood_tj,1979,sauteed shrimp meat
+dfood_tj,1979,sauteed vegetable
+dfood_tj,1985,coarse grain
+dfood_tj,1985,sauteed vegetable
+dfood_tj,1985,scrambled egg with tomato
+dfood_tj,1985,squash
+dfood_tj,1991,buckwheat bread
+dfood_tj,1991,chinese cabbage
+dfood_tj,1991,egg
+dfood_tj,2002,coarse grain
+dfood_tj,2002,fried cabbage
+dfood_tj,2002,scallion oil winter melon
+dfood_tj,2002,steamed meatball
+dfood_tj,2008,buckwheat bread
+dfood_tj,2008,chinese cabbage
+dfood_tj,2008,egg
+dfood_tj,2025,buckwheat bread
+dfood_tj,2025,chinese cabbage
+dfood_tj,2025,egg
+dfood_tj,2058,coarse grain
+dfood_tj,2058,grilled pork ribs
+dfood_tj,2058,lettuce shredded meat
+dfood_tj,2058,sauteed vegetable
+dfood_tj,2070,buckwheat bread
+dfood_tj,2070,chinese cabbage
+dfood_tj,2070,egg
+dfood_tj,2081,buckwheat bread
+dfood_tj,2081,chinese cabbage
+dfood_tj,2081,egg
+dfood_tj,2109,chinese cabbage meatballs
+dfood_tj,2109,coarse grain
+dfood_tj,2109,sauteed vegetable
+dfood_tj,2109,stewed sirloin potatoes
+dfood_tj,2115,buckwheat bread
+dfood_tj,2115,chinese cabbage
+dfood_tj,2115,egg
+dfood_tj,2120,braised fish fillets
+dfood_tj,2120,coarse grain
+dfood_tj,2120,fried cauliflower
+dfood_tj,2120,sauteed vegetable
+dfood_tj,2132,buckwheat bread
+dfood_tj,2132,chinese cabbage
+dfood_tj,2132,egg
+dfood_tj,2143,coarse grain
+dfood_tj,2143,cut white duck
+dfood_tj,2143,fried meat with onion
+dfood_tj,2143,sauteed bean sprouts
+dfood_tj,2149,buckwheat bread
+dfood_tj,2149,chinese cabbage
+dfood_tj,2149,egg
+dfood_tj,2154,coarse grain
+dfood_tj,2154,fried cauliflower
+dfood_tj,2154,sauteed vegetable
+dfood_tj,2154,steamed meatball
+dfood_tj,2166,buckwheat bread
+dfood_tj,2166,chinese cabbage
+dfood_tj,2166,egg
+dfood_tj,2171,braised pork with tofu skin knot
+dfood_tj,2171,coarse grain
+dfood_tj,2171,sauteed vegetable
+dfood_tj,2171,stir-fry celery
+dfood_tj,2188,chicken braised with brown sauce
+dfood_tj,2188,coarse grain
+dfood_tj,2188,sauteed vegetable
+dfood_tj,2188,scallion oil winter melon
+dfood_tj,2199,buckwheat bread
+dfood_tj,2199,chinese cabbage
+dfood_tj,2199,egg
+dfood_tj,2204,coarse grain
+dfood_tj,2204,cucumber fried pork
+dfood_tj,2204,sauteed sweet corn with pine nuts
+dfood_tj,2204,sauteed vegetable
+dfood_tj,2216,buckwheat bread
+dfood_tj,2216,chinese cabbage
+dfood_tj,2216,egg
+dfood_tj,2244,coarse grain
+dfood_tj,2244,cucumber in sauce
+dfood_tj,2244,pork liver
+dfood_tj,2244,white radish with scallion oil
+dfood_tj,2255,carrot braised short ribs
+dfood_tj,2255,coarse grain
+dfood_tj,2255,eggplant with mince pork
+dfood_tj,2255,sauteed vegetable
+dfood_tj,2289,braised beef
+dfood_tj,2289,chinese cabbage
+dfood_tj,2289,coarse grain
+dfood_tj,2289,sauteed vegetable
+dfood_tj,2295,broccoli with oyster sauce
+dfood_tj,2295,coarse grain
+dfood_tj,2295,cut white duck
+dfood_tj,2295,sauteed bean sprouts
+dfood_tj,2301,buckwheat bread
+dfood_tj,2301,chinese cabbage
+dfood_tj,2301,egg
+dfood_tj,2311,chinese cabbage
+dfood_tj,2311,coarse grain
+dfood_tj,2311,sirloin tomatoes
+dfood_tj,2311,squash
+dfood_tj,233,coarse grain
+dfood_tj,233,cowpea
+dfood_tj,233,sauteed vegetable
+dfood_tj,233,shredded pork with vegetables
+dfood_tj,2334,buckwheat bread
+dfood_tj,2334,chinese cabbage
+dfood_tj,2334,egg
+dfood_tj,235,coarse grain
+dfood_tj,235,lettuce shredded meat
+dfood_tj,235,roast meat with white radish
+dfood_tj,235,sauteed vegetable
+dfood_tj,239,coarse grain
+dfood_tj,239,sauteed bitter melon
+dfood_tj,239,sauteed vegetable
+dfood_tj,239,shredded pork and green pepper
+dfood_tj,2390,coarse grain
+dfood_tj,2390,fried meat with onion
+dfood_tj,2390,sauteed vegetable
+dfood_tj,2390,steamed pomfret
+dfood_tj,2395,coarse grain
+dfood_tj,2395,sauteed bean sprouts
+dfood_tj,2395,sirloin tomatoes
+dfood_tj,2395,stir-fry celery
+dfood_tj,2412,coarse grain
+dfood_tj,2412,sauteed vegetable
+dfood_tj,2412,scallion oil winter melon
+dfood_tj,2412,steamed meatball
+dfood_tj,2418,buckwheat bread
+dfood_tj,2418,chinese cabbage
+dfood_tj,2418,egg
+dfood_tj,2423,coarse grain
+dfood_tj,2423,fried meat with onion
+dfood_tj,2423,roast meat with white radish
+dfood_tj,2423,sauteed vegetable
+dfood_tj,243,chinese cabbage
+dfood_tj,243,coarse grain
+dfood_tj,243,green pepper meat
+dfood_tj,243,sauteed bean sprouts
+dfood_tj,2440,chicken braised with brown sauce
+dfood_tj,2440,chinese cabbage
+dfood_tj,2440,coarse grain
+dfood_tj,2440,sauteed vegetable
+dfood_tj,245,coarse grain
+dfood_tj,245,cucumber fried pork
+dfood_tj,245,squash
+dfood_tj,245,white radish with scallion oil
+dfood_tj,2457,braised fish fillets
+dfood_tj,2457,chinese cabbage
+dfood_tj,2457,coarse grain
+dfood_tj,2457,sauteed vegetable
+dfood_tj,2463,coarse grain
+dfood_tj,2463,sauteed vegetable
+dfood_tj,2463,scallion oil winter melon
+dfood_tj,2463,stewed chicken with three cups sauce
+dfood_tj,249,coarse grain
+dfood_tj,249,grilled pork ribs
+dfood_tj,249,sauteed vegetable
+dfood_tj,249,scallion oil winter melon
+dfood_tj,2503,buckwheat bread
+dfood_tj,2503,chinese cabbage
+dfood_tj,2503,egg
+dfood_tj,2508,coarse grain
+dfood_tj,2508,fried meat with onion
+dfood_tj,2508,sauteed vegetable
+dfood_tj,2508,steamed perch
+dfood_tj,2514,broccoli with oyster sauce
+dfood_tj,2514,coarse grain
+dfood_tj,2514,fry pea
+dfood_tj,2514,sauteed bean sprouts
+dfood_tj,2553,buckwheat bread
+dfood_tj,2553,chinese cabbage
+dfood_tj,2553,egg
+dfood_tj,2563,coarse grain
+dfood_tj,2563,sauteed vegetable
+dfood_tj,2563,scrambled egg with tomato
+dfood_tj,2563,squash
+dfood_tj,2573,chinese cabbage
+dfood_tj,2573,coarse grain
+dfood_tj,2573,lettuce shredded meat
+dfood_tj,2573,sauteed vegetable
+dfood_tj,2585,buckwheat bread
+dfood_tj,2585,chinese cabbage
+dfood_tj,2585,egg
+dfood_tj,2590,coarse grain
+dfood_tj,2590,fried cauliflower
+dfood_tj,2590,sauteed vegetable
+dfood_tj,2590,sweet and sour spare ribs
+dfood_tj,2596,coarse grain
+dfood_tj,2596,lettuce shredded meat
+dfood_tj,2596,scallion oil winter melon
+dfood_tj,2596,squash
+dfood_tj,2613,broccoli with oyster sauce
+dfood_tj,2613,coarse grain
+dfood_tj,2613,fry pea
+dfood_tj,2613,sauteed bean sprouts
+dfood_tj,2619,buckwheat bread
+dfood_tj,2619,chinese cabbage
+dfood_tj,2619,egg
+dfood_tj,263,beer duck
+dfood_tj,263,cowpea
+dfood_tj,263,rice
+dfood_tj,263,sauteed vegetable
+dfood_tj,2630,chinese cabbage
+dfood_tj,2630,coarse grain
+dfood_tj,2630,fried meat with onion
+dfood_tj,2630,squash
+dfood_tj,2636,buckwheat bread
+dfood_tj,2636,chinese cabbage
+dfood_tj,2636,egg
+dfood_tj,2664,coarse grain
+dfood_tj,2664,sauteed vegetable
+dfood_tj,2664,squash
+dfood_tj,2664,steamed meatball
+dfood_tj,2675,braised pork with tofu skin knot
+dfood_tj,2675,coarse grain
+dfood_tj,2675,sauteed vegetable
+dfood_tj,2675,stir-fry celery
+dfood_tj,2681,chinese cabbage
+dfood_tj,2681,coarse grain
+dfood_tj,2681,roast meat with white radish
+dfood_tj,2681,squash
+dfood_tj,269,rice
+dfood_tj,269,roast meat with white radish
+dfood_tj,269,sauteed vegetable
+dfood_tj,269,shredded pork and green pepper
+dfood_tj,2702,coarse grain
+dfood_tj,2702,cucumber fried pork
+dfood_tj,2702,sauteed sweet corn with pine nuts
+dfood_tj,2702,sauteed vegetable
+dfood_tj,2714,buckwheat bread
+dfood_tj,2714,chinese cabbage
+dfood_tj,2714,egg
+dfood_tj,275,rice
+dfood_tj,275,sauteed vegetable
+dfood_tj,275,steamed meatball
+dfood_tj,2776,chinese cabbage
+dfood_tj,2776,coarse grain
+dfood_tj,2776,sirloin tomatoes
+dfood_tj,2776,squash
+dfood_tj,2787,chicken braised with brown sauce
+dfood_tj,2787,coarse grain
+dfood_tj,2787,sauteed vegetable
+dfood_tj,2787,scallion oil winter melon
+dfood_tj,2804,coarse grain
+dfood_tj,2804,cucumber fried pork
+dfood_tj,2804,sauteed sweet corn with pine nuts
+dfood_tj,2804,sauteed vegetable
+dfood_tj,2821,chinese cabbage
+dfood_tj,2821,coarse grain
+dfood_tj,2821,pork stuffed green pepper
+dfood_tj,2821,sauteed vegetable
+dfood_tj,2827,coarse grain
+dfood_tj,2827,cucumber in sauce
+dfood_tj,2827,fried cauliflower
+dfood_tj,2827,white radish with scallion oil
+dfood_tj,2837,carrot braised short ribs
+dfood_tj,2837,coarse grain
+dfood_tj,2837,sauteed vegetable
+dfood_tj,2837,scallion oil winter melon
+dfood_tj,2860,coarse grain
+dfood_tj,2860,fish-flavored shredded pork
+dfood_tj,2860,scallion oil winter melon
+dfood_tj,2860,squash
+dfood_tj,2877,broccoli with oyster sauce
+dfood_tj,2877,coarse grain
+dfood_tj,2877,fry pea
+dfood_tj,2877,sauteed bean sprouts
+dfood_tj,2899,buckwheat bread
+dfood_tj,2899,chinese cabbage
+dfood_tj,2899,egg
+dfood_tj,2910,chinese cabbage
+dfood_tj,2910,coarse grain
+dfood_tj,2910,grilled chicken kebab
+dfood_tj,2910,sauteed vegetable
+dfood_tj,2933,buckwheat bread
+dfood_tj,2933,chinese cabbage
+dfood_tj,2933,egg
+dfood_tj,2938,coarse grain
+dfood_tj,2938,fried meat with onion
+dfood_tj,2938,sauteed vegetable
+dfood_tj,2938,steamed perch
+dfood_tj,2961,chinese cabbage
+dfood_tj,2961,coarse grain
+dfood_tj,2961,scrambled egg with tomato
+dfood_tj,2961,squash
+dfood_tj,2967,buckwheat bread
+dfood_tj,2967,chinese cabbage
+dfood_tj,2967,egg
+dfood_tj,2989,braised beef
+dfood_tj,2989,coarse grain
+dfood_tj,2989,sauteed vegetable
+dfood_tj,2989,squash
+dfood_tj,2995,braised beef
+dfood_tj,2995,chinese cabbage
+dfood_tj,2995,coarse grain
+dfood_tj,2995,sauteed vegetable
+dfood_tj,3,sauteed lettuce
+dfood_tj,3,spiced goose
+dfood_tj,3001,buckwheat bread
+dfood_tj,3001,chinese cabbage
+dfood_tj,3001,egg
+dfood_tj,3029,broccoli with oyster sauce
+dfood_tj,3029,coarse grain
+dfood_tj,3029,sauteed bean sprouts
+dfood_tj,3029,steamed chicken
+dfood_tj,303,eggplant with mince pork
+dfood_tj,303,rice
+dfood_tj,303,sauteed shrimp meat
+dfood_tj,303,sauteed vegetable
+dfood_tj,3040,chicken braised with brown sauce
+dfood_tj,3040,coarse grain
+dfood_tj,3040,fried cauliflower
+dfood_tj,3040,sauteed vegetable
+dfood_tj,3046,chinese cabbage
+dfood_tj,3046,coarse grain
+dfood_tj,3046,shredded pork in beijing sauce
+dfood_tj,3046,squash
+dfood_tj,305,chinese cabbage
+dfood_tj,305,fried cauliflower
+dfood_tj,305,fried fungus mushroom
+dfood_tj,305,rice
+dfood_tj,3057,chinese cabbage
+dfood_tj,3057,coarse grain
+dfood_tj,3057,grilled pork ribs
+dfood_tj,3057,sauteed vegetable
+dfood_tj,3069,buckwheat bread
+dfood_tj,3069,chinese cabbage
+dfood_tj,3069,egg
+dfood_tj,3074,coarse grain
+dfood_tj,3074,sauteed vegetable
+dfood_tj,3074,squash
+dfood_tj,3074,steamed perch
+dfood_tj,309,chinese cabbage
+dfood_tj,309,rice
+dfood_tj,309,sauteed lettuce
+dfood_tj,309,steamed pomfret
+dfood_tj,3091,chicken braised with brown sauce
+dfood_tj,3091,coarse grain
+dfood_tj,3091,fried cauliflower
+dfood_tj,3091,sauteed vegetable
+dfood_tj,3097,buckwheat bread
+dfood_tj,3097,chinese cabbage
+dfood_tj,3097,egg
+dfood_tj,3119,coarse grain
+dfood_tj,3119,fried cauliflower
+dfood_tj,3119,sauteed vegetable
+dfood_tj,3119,steamed meatball
+dfood_tj,3125,chinese cabbage
+dfood_tj,3125,coarse grain
+dfood_tj,3125,sirloin tomatoes
+dfood_tj,3125,squash
+dfood_tj,3131,buckwheat bread
+dfood_tj,3131,chinese cabbage
+dfood_tj,3131,egg
+dfood_tj,3159,coarse grain
+dfood_tj,3159,lettuce shredded meat
+dfood_tj,3159,sauteed vegetable
+dfood_tj,3159,stewed chicken with three cups sauce
+dfood_tj,3187,coarse grain
+dfood_tj,3187,grilled pork ribs
+dfood_tj,3187,sauteed vegetable
+dfood_tj,3187,scallion oil winter melon
+dfood_tj,3199,buckwheat bread
+dfood_tj,3199,chinese cabbage
+dfood_tj,3199,egg
+dfood_tj,3233,buckwheat bread
+dfood_tj,3233,chinese cabbage
+dfood_tj,3233,egg
+dfood_tj,3261,coarse grain
+dfood_tj,3261,sauteed vegetable
+dfood_tj,3261,scallion oil winter melon
+dfood_tj,3261,steamed meatball
+dfood_tj,328,potato silk
+dfood_tj,328,rice
+dfood_tj,328,sauteed bitter melon
+dfood_tj,328,sauteed vegetable
+dfood_tj,338,rice
+dfood_tj,338,scallion oil winter melon
+dfood_tj,338,steamed chicken
+dfood_tj,338,sweet potato leaves
+dfood_tj,344,rice
+dfood_tj,344,sauteed vegetable
+dfood_tj,344,shredded pork in beijing sauce
+dfood_tj,344,squash
+dfood_tj,353,chinese cabbage
+dfood_tj,353,rice
+dfood_tj,353,sauteed lettuce
+dfood_tj,353,steamed pomfret
+dfood_tj,359,leaf lettuce
+dfood_tj,359,rice
+dfood_tj,359,steamed perch
+dfood_tj,359,stir-fry celery
+dfood_tj,363,buckwheat bread
+dfood_tj,363,chinese cabbage
+dfood_tj,363,egg
+dfood_tj,377,rice
+dfood_tj,377,scallion oil winter melon
+dfood_tj,377,shredded pork in beijing sauce
+dfood_tj,377,squash
+dfood_tj,379,coarse grain
+dfood_tj,379,lettuce shredded meat
+dfood_tj,379,sauteed vegetable
+dfood_tj,379,stir-fry celery
+dfood_tj,38,green pepper meat
+dfood_tj,38,potato silk
+dfood_tj,38,rice
+dfood_tj,38,sauteed vegetable
+dfood_tj,383,rice
+dfood_tj,383,sauteed vegetable
+dfood_tj,383,shredded pork and green pepper
+dfood_tj,383,steamed perch
+dfood_tj,394,chinese cabbage
+dfood_tj,394,coarse grain
+dfood_tj,394,shredded pork with vegetables
+dfood_tj,394,tumis kangkung
+dfood_tj,396,coarse grain
+dfood_tj,396,sauteed vegetable
+dfood_tj,396,scrambled egg with tomato
+dfood_tj,396,shredded pork and green pepper
+dfood_tj,400,chinese cabbage
+dfood_tj,400,coarse grain
+dfood_tj,400,fried cauliflower
+dfood_tj,400,steamed chicken with mushroom
+dfood_tj,404,chinese cabbage
+dfood_tj,404,coarse grain
+dfood_tj,404,sauteed lettuce
+dfood_tj,404,steamed pomfret
+dfood_tj,434,chinese cabbage
+dfood_tj,434,fried cauliflower
+dfood_tj,434,rice
+dfood_tj,434,steamed chicken with mushroom
+dfood_tj,450,coarse grain
+dfood_tj,450,cowpea
+dfood_tj,450,sauteed vegetable
+dfood_tj,450,shredded pork with vegetables
+dfood_tj,459,cut white duck
+dfood_tj,459,lettuce shredded meat
+dfood_tj,459,rice
+dfood_tj,459,sauteed vegetable
+dfood_tj,471,braised fungus with pork slice
+dfood_tj,471,chinese cabbage
+dfood_tj,471,rice
+dfood_tj,471,sweet potato leaves
+dfood_tj,473,chinese cabbage
+dfood_tj,473,fried cauliflower
+dfood_tj,473,rice
+dfood_tj,473,steamed chicken with mushroom
+dfood_tj,48,grilled pork ribs
+dfood_tj,48,rice
+dfood_tj,48,sauteed vegetable
+dfood_tj,48,scallion oil winter melon
+dfood_tj,481,braised pork with tofu skin knot
+dfood_tj,481,rice
+dfood_tj,481,stir-fry celery
+dfood_tj,481,sweet potato leaves
+dfood_tj,487,chinese cabbage
+dfood_tj,487,fried cauliflower
+dfood_tj,487,rice
+dfood_tj,487,steamed chicken with mushroom
+dfood_tj,5,sauteed lettuce
+dfood_tj,5,spiced goose
+dfood_tj,503,braised fungus with pork slice
+dfood_tj,503,chinese cabbage
+dfood_tj,503,coarse grain
+dfood_tj,503,pumpkin
+dfood_tj,517,coarse grain
+dfood_tj,517,cut white duck
+dfood_tj,517,lettuce shredded meat
+dfood_tj,517,sauteed lettuce
+dfood_tj,519,fried yam
+dfood_tj,519,rice
+dfood_tj,519,steamed perch
+dfood_tj,519,sweet potato leaves
+dfood_tj,521,chinese cabbage
+dfood_tj,521,coarse grain
+dfood_tj,521,roast meat with white radish
+dfood_tj,521,sauteed vegetable
+dfood_tj,596,rice
+dfood_tj,596,spinach
+dfood_tj,596,steamed perch
+dfood_tj,596,stir-fry celery
+dfood_tj,630,chinese cabbage
+dfood_tj,630,fried cauliflower
+dfood_tj,630,rice
+dfood_tj,630,steamed chicken with mushroom
+dfood_tj,636,braised pork with tofu skin knot
+dfood_tj,636,rice
+dfood_tj,636,spinach
+dfood_tj,636,stir-fry celery
+dfood_tj,642,coarse grain
+dfood_tj,642,lettuce shredded meat
+dfood_tj,642,sauteed vegetable
+dfood_tj,642,stir-fry celery
+dfood_tj,650,chinese cabbage
+dfood_tj,650,coarse grain
+dfood_tj,650,cowpea
+dfood_tj,674,coarse grain
+dfood_tj,674,fried yam
+dfood_tj,674,sauteed vegetable
+dfood_tj,674,steamed perch
+dfood_tj,68,coarse grain
+dfood_tj,68,cut white duck
+dfood_tj,68,lettuce shredded meat
+dfood_tj,68,sauteed vegetable
+dfood_tj,698,braised pork with tofu skin knot
+dfood_tj,698,coarse grain
+dfood_tj,698,stir-fry celery
+dfood_tj,698,tumis kangkung
+dfood_tj,700,broccoli with oyster sauce
+dfood_tj,700,chinese cabbage
+dfood_tj,700,fry pea
+dfood_tj,700,rice
+dfood_tj,706,lettuce shredded meat
+dfood_tj,706,rice
+dfood_tj,706,sauteed vegetable
+dfood_tj,706,stir-fry celery
+dfood_tj,718,braise in soy sauce carp
+dfood_tj,718,cowpea
+dfood_tj,718,rice
+dfood_tj,718,sauteed vegetable
+dfood_tj,72,coarse grain
+dfood_tj,72,roast meat with white radish
+dfood_tj,72,sauteed vegetable
+dfood_tj,72,shredded pork and green pepper
+dfood_tj,732,cucumber fried pork
+dfood_tj,732,rice
+dfood_tj,732,squash
+dfood_tj,732,white radish with scallion oil
+dfood_tj,744,cucumber fried pork
+dfood_tj,744,fried cauliflower
+dfood_tj,744,rice
+dfood_tj,744,white radish with scallion oil
+dfood_tj,752,amaranth
+dfood_tj,752,carrot braised short ribs
+dfood_tj,752,eggplant with mince pork
+dfood_tj,752,rice
+dfood_tj,756,chinese cabbage
+dfood_tj,756,pork stuffed green pepper
+dfood_tj,756,rice
+dfood_tj,756,sauteed vegetable
+dfood_tj,764,braised pork with tofu skin knot
+dfood_tj,764,fried towel gourd
+dfood_tj,764,leaf lettuce
+dfood_tj,764,rice
+dfood_tj,776,buckwheat bread
+dfood_tj,776,chinese cabbage
+dfood_tj,776,egg
+dfood_tj,784,buckwheat bread
+dfood_tj,784,chinese cabbage
+dfood_tj,784,egg
+dfood_tj,792,carrot braised short ribs
+dfood_tj,792,chinese cabbage meatballs
+dfood_tj,792,coarse grain
+dfood_tj,792,sauteed vegetable
+dfood_tj,802,buckwheat bread
+dfood_tj,802,chinese cabbage
+dfood_tj,802,egg
+dfood_tj,806,chinese cabbage meatballs
+dfood_tj,806,coarse grain
+dfood_tj,806,grilled pork ribs
+dfood_tj,806,sauteed vegetable
+dfood_tj,820,chinese cabbage meatballs
+dfood_tj,820,coarse grain
+dfood_tj,820,sauteed bean sprouts
+dfood_tj,820,steamed chicken
+dfood_tj,830,coarse grain
+dfood_tj,830,fried meat with onion
+dfood_tj,830,sauteed vegetable
+dfood_tj,830,zizania carrot shredded pork
+dfood_tj,838,coarse grain
+dfood_tj,838,leaf lettuce
+dfood_tj,838,shepherd
+dfood_tj,838,shredded pork and green pepper
+dfood_tj,840,coarse grain
+dfood_tj,840,scallion oil winter melon
+dfood_tj,840,shredded pork in beijing sauce
+dfood_tj,840,squash
+dfood_tj,850,buckwheat bread
+dfood_tj,850,chinese cabbage
+dfood_tj,850,egg
+dfood_tj,856,buckwheat bread
+dfood_tj,856,chinese cabbage
+dfood_tj,856,egg
+dfood_tj,864,coarse grain
+dfood_tj,864,sauteed lettuce
+dfood_tj,864,sirloin tomatoes
+dfood_tj,864,steamed pomfret
+dfood_tj,866,chinese cabbage
+dfood_tj,866,chinese cabbage meatballs
+dfood_tj,866,coarse grain
+dfood_tj,866,fried cauliflower
+dfood_tj,870,braised pork with tofu skin knot
+dfood_tj,870,coarse grain
+dfood_tj,870,fried towel gourd
+dfood_tj,870,leaf lettuce
+dfood_tj,872,carrot braised short ribs
+dfood_tj,872,coarse grain
+dfood_tj,872,fried cabbage
+dfood_tj,872,lettuce shredded meat
+dfood_tj,888,buckwheat bread
+dfood_tj,888,chinese cabbage
+dfood_tj,888,egg
+dfood_tj,898,buckwheat bread
+dfood_tj,898,chinese cabbage
+dfood_tj,898,egg
+dfood_tj,9,braised duck with soy sauce
+dfood_tj,9,rice
+dfood_tj,9,spinach
+dfood_tj,90,chinese cabbage
+dfood_tj,90,coarse grain
+dfood_tj,90,pork stuffed green pepper
+dfood_tj,90,sauteed lettuce
+dfood_tj,902,braised pork with tofu skin knot
+dfood_tj,902,coarse grain
+dfood_tj,902,leaf lettuce
+dfood_tj,902,stir-fry celery
+dfood_tj,914,chinese cabbage meatballs
+dfood_tj,914,coarse grain
+dfood_tj,914,leaf lettuce
+dfood_tj,914,sweet and sour spare ribs
+dfood_tj,918,braised fish fillets
+dfood_tj,918,coarse grain
+dfood_tj,918,fried cauliflower
+dfood_tj,918,leaf lettuce
+dfood_tj,953,buckwheat bread
+dfood_tj,953,chinese cabbage
+dfood_tj,953,egg
+dfood_tj,963,carrot braised short ribs
+dfood_tj,963,chinese cabbage meatballs
+dfood_tj,963,coarse grain
+dfood_tj,963,leaf lettuce
+dfood_tj,965,buckwheat bread
+dfood_tj,965,chinese cabbage
+dfood_tj,965,egg
+dfood_tj,967,coarse grain
+dfood_tj,967,fried yam
+dfood_tj,967,leaf lettuce
+dfood_tj,967,steamed meatball
+dfood_tj,969,coarse grain
+dfood_tj,969,scallion oil winter melon
+dfood_tj,969,squash
+dfood_tj,969,steamed chicken
+dfood_tj,971,buckwheat bread
+dfood_tj,971,chinese cabbage
+dfood_tj,971,egg
+dfood_tj,979,chicken braised with brown sauce
+dfood_tj,979,coarse grain
+dfood_tj,979,cowpea
+dfood_tj,979,sauteed vegetable
+dfood_tj,981,broccoli with oyster sauce
+dfood_tj,981,chinese cabbage
+dfood_tj,981,coarse grain
+dfood_tj,981,cut white duck
+dfood_tj,989,braised fish fillets
+dfood_tj,989,coarse grain
+dfood_tj,989,leaf lettuce
+dfood_tj,989,shredded pork and green pepper
+dfood_tj,995,chinese cabbage meatballs
+dfood_tj,995,coarse grain
+dfood_tj,995,leaf lettuce
+dfood_tj,995,steamed perch
