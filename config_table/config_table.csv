@@ -1,79 +1,79 @@
 run,date,dataset,model,settings,prompt,input,meals,group
-nutrition5k_macros_n50_s42,2026-10-27,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_flash38_macros_n50_s42,2026-10-30,Nutrition5k,gemini-3.8-flash,thinking: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_gpt-luna_macros_n50_s42,2026-11-08,Nutrition5k,gpt-6-luna,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_sol_macros_n50_s42,2026-11-01,Nutrition5k,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_claude-haiku-low_macros_n50_s42,2026-11-08,Nutrition5k,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_sonnet_macros_n50_s42,2026-11-01,Nutrition5k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_claude-opus-low_macros_n50_s42,2026-11-08,Nutrition5k,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_allimage_n50_s42,2026-10-25,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_flash38_n50_s42,2026-10-25,OmniFood8k,gemini-3.8-flash,thinking: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_gpt-luna_macros_n50_s42,2026-11-08,OmniFood8k,gpt-6-luna,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_sol_n50_s42,2026-10-26,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_astra_n50_s42,2026-11-10,OmniFood8k,gpt-6-astra,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_claude-haiku-low_macros_n50_s42,2026-11-08,OmniFood8k,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_sonnet_n50_s42,2026-11-01,OmniFood8k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-omnifood8k_1image_claude-opus-low_macros_n50_s42,2026-11-08,OmniFood8k,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_lite_macros_n50_s42,2026-10-30,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_flash38_macros_n50_s42,2026-10-30,SNAPMe,gemini-3.8-flash,thinking: low,P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_gpt-luna_macros_n50_s42,2026-11-08,SNAPMe,gpt-6-luna,reasoning: low,P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_sol_macros_n50_s42,2026-11-02,SNAPMe,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_claude-haiku-low_macros_n50_s42,2026-11-08,SNAPMe,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_sonnet_macros_n50_s42,2026-11-01,SNAPMe,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-snapme_claude-opus-low_macros_n50_s42,2026-11-08,SNAPMe,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_lite_macros_n50_s42,2026-10-30,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_flash38_macros_n50_s42,2026-10-30,ACETADA,gemini-3.8-flash,thinking: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_gpt-luna_macros_n50_s42,2026-11-08,ACETADA,gpt-6-luna,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_gpt-sol_macros_n50_s42,2026-11-08,ACETADA,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_claude-haiku-low_macros_n50_s42,2026-11-08,ACETADA,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_sonnet_macros_n50_s42,2026-11-01,ACETADA,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-acetada_claude-opus-low_macros_n50_s42,2026-11-08,ACETADA,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_lite_macros_oblique_n50_s42,2026-10-30,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_flash38_macros_oblique_n50_s42,2026-10-30,DFood-Tj,gemini-3.8-flash,thinking: low,P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_gpt-luna_macros_oblique_n50_s42,2026-11-08,DFood-Tj,gpt-6-luna,reasoning: low,P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_gpt-sol_macros_oblique_n50_s42,2026-11-08,DFood-Tj,gpt-6.1-sol,reasoning: low,P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_claude-haiku-low_macros_oblique_n50_s42,2026-11-08,DFood-Tj,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_sonnet_macros_oblique_n50_s42,2026-11-01,DFood-Tj,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-dfood_claude-opus-low_macros_oblique_n50_s42,2026-11-08,DFood-Tj,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,"kép (ferde), JPEG 90",50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
-nutrition5k_lite_recipe_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-nutrition5k_lite_anchor_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-nutrition5k_lite_portion_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-nutrition5k_lite_check_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_check,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-nutrition5k_lite_recipecheck_n50_s42,2026-11-10,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-omnifood8k_lite_recipe_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-omnifood8k_lite_anchor_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-omnifood8k_lite_portion_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-omnifood8k_lite_check_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_check,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-omnifood8k_lite_recipecheck_n50_s42,2026-11-10,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-snapme_lite_recipe_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-snapme_lite_anchor_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,"kép, JPEG 90",49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-snapme_lite_portion_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,"kép, JPEG 90",49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-snapme_lite_check_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_check,"kép, JPEG 90",49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-snapme_lite_recipecheck_n50_s42,2026-11-10,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,"kép, JPEG 90",49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-acetada_lite_recipe_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-acetada_lite_anchor_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-acetada_lite_portion_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-acetada_lite_check_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_check,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-acetada_lite_recipecheck_n50_s42,2026-11-10,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,"kép, JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-dfood_lite_recipe_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép (ferde), JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-dfood_lite_anchor_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,"kép (ferde), JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-dfood_lite_portion_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,"kép (ferde), JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-dfood_lite_check_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_check,"kép (ferde), JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-dfood_lite_recipecheck_oblique_n50_s42,2026-11-10,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,"kép (ferde), JPEG 90",50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
-omnifood8k_1image_n50_s42,2026-10-25,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"6 kép, JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-macros50_35,2026-10-25,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"2 kép (felülnézet, ferde), JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-new_overhead_dfood_tj_n50_s42_gemini_flash_lite_pre,2026-10-24,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3,"kép (felülnézet), JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-new_oblique_dfood_tj_n50_s42_gemini_flash_lite_pre,2026-10-24,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3,"kép (ferde), JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-new_both_dfood_tj_n50_s42_gemini_flash_lite_pre,2026-10-23,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3,"2 kép (felülnézet, ferde), JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-nutrition5k_lite_prep_n50_s42,2026-11-05,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep,"kép, JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-nutrition5k_lite_preptextcalc_n50_s42,2026-11-05,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep_textcalc,"kép, JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-omnifood8k_lite_prep_n50_s42,2026-11-05,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep,"kép, JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-omnifood8k_lite_preptextcalc_n50_s42,2026-11-05,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep_textcalc,"kép, JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-snapme_lite_prep_n50_s42,2026-11-05,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_prep,"kép, JPEG 90",49,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-snapme_lite_preptextcalc_n50_s42,2026-11-05,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_prep_textcalc,"kép, JPEG 90",49,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-omnifood8k_allimage_density_n50_s42,2026-10-25,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_density,"6 kép, JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-dens50,2026-10-24,DFood-Tj,gemini-3.1-flash-lite,"temperature 0,1",P3_density,"2 kép (felülnézet, ferde), JPEG 90",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
-new_both_dfood_tj_n350_s42_gemini_3.1_flash_lite_pre,2026-10-24,DFood-Tj,gemini-3.1-flash-lite,"temperature 0,1",P3,"2 kép (felülnézet, ferde), JPEG 90",350,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+nutrition5k_macros_n50_s42,2026-10-27,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_flash38_macros_n50_s42,2026-10-30,Nutrition5k,gemini-3.8-flash,thinking: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_gpt-luna_macros_n50_s42,2026-11-08,Nutrition5k,gpt-6-luna,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_sol_macros_n50_s42,2026-11-01,Nutrition5k,gpt-6.1-sol,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_claude-haiku-low_macros_n50_s42,2026-11-08,Nutrition5k,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_sonnet_macros_n50_s42,2026-11-01,Nutrition5k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_claude-opus-low_macros_n50_s42,2026-11-08,Nutrition5k,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_allimage_n50_s42,2026-10-25,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_flash38_n50_s42,2026-10-25,OmniFood8k,gemini-3.8-flash,thinking: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_gpt-luna_macros_n50_s42,2026-11-08,OmniFood8k,gpt-6-luna,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_sol_n50_s42,2026-10-26,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_astra_n50_s42,2026-11-10,OmniFood8k,gpt-6-astra,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_claude-haiku-low_macros_n50_s42,2026-11-08,OmniFood8k,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_sonnet_n50_s42,2026-11-01,OmniFood8k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+omnifood8k_1image_claude-opus-low_macros_n50_s42,2026-11-08,OmniFood8k,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_lite_macros_n50_s42,2026-10-30,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_flash38_macros_n50_s42,2026-10-30,SNAPMe,gemini-3.8-flash,thinking: low,P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_gpt-luna_macros_n50_s42,2026-11-08,SNAPMe,gpt-6-luna,reasoning: low,P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_sol_macros_n50_s42,2026-11-02,SNAPMe,gpt-6.1-sol,reasoning: low,P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_claude-haiku-low_macros_n50_s42,2026-11-08,SNAPMe,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_sonnet_macros_n50_s42,2026-11-01,SNAPMe,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+snapme_claude-opus-low_macros_n50_s42,2026-11-08,SNAPMe,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,kép,49,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_lite_macros_n50_s42,2026-10-30,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_flash38_macros_n50_s42,2026-10-30,ACETADA,gemini-3.8-flash,thinking: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_gpt-luna_macros_n50_s42,2026-11-08,ACETADA,gpt-6-luna,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_gpt-sol_macros_n50_s42,2026-11-08,ACETADA,gpt-6.1-sol,reasoning: low,P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_claude-haiku-low_macros_n50_s42,2026-11-08,ACETADA,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_sonnet_macros_n50_s42,2026-11-01,ACETADA,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+acetada_claude-opus-low_macros_n50_s42,2026-11-08,ACETADA,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,kép,50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_lite_macros_oblique_n50_s42,2026-10-30,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_flash38_macros_oblique_n50_s42,2026-10-30,DFood-Tj,gemini-3.8-flash,thinking: low,P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_gpt-luna_macros_oblique_n50_s42,2026-11-08,DFood-Tj,gpt-6-luna,reasoning: low,P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_gpt-sol_macros_oblique_n50_s42,2026-11-08,DFood-Tj,gpt-6.1-sol,reasoning: low,P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_claude-haiku-low_macros_oblique_n50_s42,2026-11-08,DFood-Tj,claude-haiku-5-5,"effort: low, max. 4000 token",P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_sonnet_macros_oblique_n50_s42,2026-11-01,DFood-Tj,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+dfood_claude-opus-low_macros_oblique_n50_s42,2026-11-08,DFood-Tj,claude-opus-5-5,"effort: low, max. 4000 token",P3_macros,kép (ferde),50,Előmérés: modellek (\ref{tab:elomeres_modellek}.~táblázat)
+nutrition5k_lite_recipe_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+nutrition5k_lite_anchor_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+nutrition5k_lite_portion_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+nutrition5k_lite_check_n50_s42,2026-11-09,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_check,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+nutrition5k_lite_recipecheck_n50_s42,2026-11-10,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+omnifood8k_lite_recipe_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+omnifood8k_lite_anchor_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+omnifood8k_lite_portion_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+omnifood8k_lite_check_n50_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_check,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+omnifood8k_lite_recipecheck_n50_s42,2026-11-10,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+snapme_lite_recipe_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+snapme_lite_anchor_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,kép,49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+snapme_lite_portion_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,kép,49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+snapme_lite_check_n50_s42,2026-11-09,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_check,kép,49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+snapme_lite_recipecheck_n50_s42,2026-11-10,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,kép,49,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+acetada_lite_recipe_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+acetada_lite_anchor_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+acetada_lite_portion_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+acetada_lite_check_n50_s42,2026-11-09,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_check,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+acetada_lite_recipecheck_n50_s42,2026-11-10,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,kép,50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+dfood_lite_recipe_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép (ferde),50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+dfood_lite_anchor_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_anchor,kép (ferde),50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+dfood_lite_portion_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_portion,kép (ferde),50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+dfood_lite_check_oblique_n50_s42,2026-11-09,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_check,kép (ferde),50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+dfood_lite_recipecheck_oblique_n50_s42,2026-11-10,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe_check,kép (ferde),50,Előmérés: promptváltozatok (\ref{tab:elomeres_promptok}.~táblázat)
+omnifood8k_1image_n50_s42,2026-10-25,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,6 kép,50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+macros50_35,2026-10-25,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"2 kép (felülnézet, ferde)",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+new_overhead_dfood_tj_n50_s42_gemini_flash_lite_pre,2026-10-24,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3,kép (felülnézet),50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+new_oblique_dfood_tj_n50_s42_gemini_flash_lite_pre,2026-10-24,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3,kép (ferde),50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+new_both_dfood_tj_n50_s42_gemini_flash_lite_pre,2026-10-23,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3,"2 kép (felülnézet, ferde)",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+nutrition5k_lite_prep_n50_s42,2026-11-05,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep,kép,50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+nutrition5k_lite_preptextcalc_n50_s42,2026-11-05,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep_textcalc,kép,50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+omnifood8k_lite_prep_n50_s42,2026-11-05,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep,kép,50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+omnifood8k_lite_preptextcalc_n50_s42,2026-11-05,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_prep_textcalc,kép,50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+snapme_lite_prep_n50_s42,2026-11-05,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_prep,kép,49,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+snapme_lite_preptextcalc_n50_s42,2026-11-05,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_prep_textcalc,kép,49,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+omnifood8k_allimage_density_n50_s42,2026-10-25,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_density,6 kép,50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+dens50,2026-10-24,DFood-Tj,gemini-3.1-flash-lite,"temperature 0,1",P3_density,"2 kép (felülnézet, ferde)",50,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
+new_both_dfood_tj_n350_s42_gemini_3.1_flash_lite_pre,2026-10-24,DFood-Tj,gemini-3.1-flash-lite,"temperature 0,1",P3,"2 kép (felülnézet, ferde)",350,Előmérés: bemenet és feldolgozás (\ref{tab:elomeres_eljarasok}.~táblázat)
 nutribench_natural_lite_n50_s42,2026-11-02,NutriBench,gemini-3.5-flash-lite,"temperature 0,1",NUTRIBENCH,szöveg,50,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
 nutribench_natural_38low_n50_s42,2026-11-02,NutriBench,gemini-3.8-flash,thinking: low,NUTRIBENCH,szöveg,50,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
 nutribench_natural_gpt-luna_n50_s42,2026-11-08,NutriBench,gpt-6-luna,reasoning: low,NUTRIBENCH,szöveg,50,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
@@ -81,32 +81,32 @@ nutribench_natural_sol_n50_s42,2026-11-02,NutriBench,gpt-6.1-sol,reasoning: low,
 nutribench_natural_claude-haiku-low_n50_s42,2026-11-08,NutriBench,claude-haiku-5-5,"effort: low, max. 4000 token",NUTRIBENCH,szöveg,50,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
 nutribench_natural_sonnet_n50_s42,2026-11-02,NutriBench,claude-sonnet-5-5,"effort: low, max. 4000 token",NUTRIBENCH,szöveg,50,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
 nutribench_natural_claude-opus-low_n50_s42,2026-11-08,NutriBench,claude-opus-5-5,"effort: low, max. 4000 token",NUTRIBENCH,szöveg,50,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
-snapme_lite_hint_n50_s42,2026-11-02,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros_hint,"kép + ételnévlista, JPEG 90",49,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
-snapme_sol_hint_n50_s42,2026-11-02,SNAPMe,gpt-6.1-sol,reasoning: low,P3_macros_hint,"kép + ételnévlista, JPEG 90",49,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
-snapme_sonnet_hint_n50_s42,2026-11-02,SNAPMe,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros_hint,"kép + ételnévlista, JPEG 90",49,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
-omnifood8k_lite_macros_confirm_s42,2026-10-25--11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",100,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-omnifood8k_lite_recipe_confirm_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",100,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-nutrition5k_sol_med_t1000_q80_n50_s42,2026-11-02,Nutrition5k,gpt-6.1-sol,"reasoning: medium, max. 1000 token",P3_macros,"kép, JPEG 80",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-n5k_lite_macros_q90_n50_s42,2026-11-14,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-n5k_lite_macros_q80_n50_s42,2026-11-14,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 80",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-kizart_results/n50_s42_gemini_flash_lite_pre,2026-10-23,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3,"kép, JPEG 90",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-kizart_results/n50_s42_gemini_flash_lite_pre,2026-10-23,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3,"kép, JPEG 90",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-kizart_results/n50_s42_gemini_flash_lite_pre,2026-10-23,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3,"kép, JPEG 90",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-omnifood8k_1image_sol_recipe_n50_s42,2026-11-10,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_recipe,"kép, JPEG 90",50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
-final_n5k_lite_macros,2026-11-12,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",250,Döntési mérés
-final_n5k_lite_recipe,2026-11-12,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",250,Döntési mérés
-final_n5k_sonnet_macros,2026-11-12,Nutrition5k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",250,Döntési mérés
-final_n5k_sol_macros,2026-11-12,Nutrition5k,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",250,Döntési mérés
-final_omni_lite_macros,2026-11-12,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",300,Döntési mérés
-final_omni_lite_recipe,2026-11-12,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,"kép, JPEG 90",300,Döntési mérés
-final_omni_sonnet_macros,2026-11-12,OmniFood8k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",300,Döntési mérés
-final_omni_sol_macros,2026-11-12,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",300,Döntési mérés
-final_omni_sol_recipe,2026-11-13,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_recipe,"kép, JPEG 90",300,Döntési mérés
-final_snapme_lite_macros,2026-11-12,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",248,Döntési mérés
-final_snapme_lite_hint,2026-11-12,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros_hint,"kép + ételnévlista, JPEG 90",248,Döntési mérés
-final_acetada_lite_macros,2026-11-12,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép, JPEG 90",250,Döntési mérés
-final_acetada_sonnet_macros,2026-11-12,ACETADA,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép, JPEG 90",250,Döntési mérés
-final_acetada_sol_macros,2026-11-12--11-13,ACETADA,gpt-6.1-sol,reasoning: low,P3_macros,"kép, JPEG 90",250,Döntési mérés
-final_dfood_lite_macros,2026-11-12,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,"kép (ferde), JPEG 90",600,Döntési mérés
-final_dfood_sonnet_macros,2026-11-12,DFood-Tj,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,"kép (ferde), JPEG 90",600,Döntési mérés
-final_dfood_sol_macros,2026-11-13,DFood-Tj,gpt-6.1-sol,reasoning: low,P3_macros,"kép (ferde), JPEG 90",600,Döntési mérés
+snapme_lite_hint_n50_s42,2026-11-02,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros_hint,kép + ételnévlista,49,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
+snapme_sol_hint_n50_s42,2026-11-02,SNAPMe,gpt-6.1-sol,reasoning: low,P3_macros_hint,kép + ételnévlista,49,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
+snapme_sonnet_hint_n50_s42,2026-11-02,SNAPMe,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros_hint,kép + ételnévlista,49,Előmérés: szöveges bemenet (\ref{tab:elomeres_nutribench}.~táblázat) és SNAPMe-ételnévlista
+omnifood8k_lite_macros_confirm_s42,2026-10-25--11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,100,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+omnifood8k_lite_recipe_confirm_s42,2026-11-09,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,100,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+nutrition5k_sol_med_t1000_q80_n50_s42,2026-11-02,Nutrition5k,gpt-6.1-sol,"reasoning: medium, max. 1000 token",P3_macros,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+n5k_lite_macros_q90_n50_s42,2026-11-14,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+n5k_lite_macros_q80_n50_s42,2026-11-14,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+kizart_results/n50_s42_gemini_flash_lite_pre,2026-10-23,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+kizart_results/n50_s42_gemini_flash_lite_pre,2026-10-23,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+kizart_results/n50_s42_gemini_flash_lite_pre,2026-10-23,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+omnifood8k_1image_sol_recipe_n50_s42,2026-11-10,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_recipe,kép,50,"Egyéb előmérések: megerősítő mérés, reasoning-szint, JPEG-minőség, kalibráció, konzisztencia"
+final_n5k_lite_macros,2026-11-12,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,250,Döntési mérés
+final_n5k_lite_recipe,2026-11-12,Nutrition5k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,250,Döntési mérés
+final_n5k_sonnet_macros,2026-11-12,Nutrition5k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,250,Döntési mérés
+final_n5k_sol_macros,2026-11-12,Nutrition5k,gpt-6.1-sol,reasoning: low,P3_macros,kép,250,Döntési mérés
+final_omni_lite_macros,2026-11-12,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,300,Döntési mérés
+final_omni_lite_recipe,2026-11-12,OmniFood8k,gemini-3.5-flash-lite,"temperature 0,1",P3_recipe,kép,300,Döntési mérés
+final_omni_sonnet_macros,2026-11-12,OmniFood8k,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,300,Döntési mérés
+final_omni_sol_macros,2026-11-12,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_macros,kép,300,Döntési mérés
+final_omni_sol_recipe,2026-11-13,OmniFood8k,gpt-6.1-sol,reasoning: low,P3_recipe,kép,300,Döntési mérés
+final_snapme_lite_macros,2026-11-12,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,248,Döntési mérés
+final_snapme_lite_hint,2026-11-12,SNAPMe,gemini-3.5-flash-lite,"temperature 0,1",P3_macros_hint,kép + ételnévlista,248,Döntési mérés
+final_acetada_lite_macros,2026-11-12,ACETADA,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép,250,Döntési mérés
+final_acetada_sonnet_macros,2026-11-12,ACETADA,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép,250,Döntési mérés
+final_acetada_sol_macros,2026-11-12--11-13,ACETADA,gpt-6.1-sol,reasoning: low,P3_macros,kép,250,Döntési mérés
+final_dfood_lite_macros,2026-11-12,DFood-Tj,gemini-3.5-flash-lite,"temperature 0,1",P3_macros,kép (ferde),600,Döntési mérés
+final_dfood_sonnet_macros,2026-11-12,DFood-Tj,claude-sonnet-5-5,"effort: low, max. 4000 token",P3_macros,kép (ferde),600,Döntési mérés
+final_dfood_sol_macros,2026-11-13,DFood-Tj,gpt-6.1-sol,reasoning: low,P3_macros,kép (ferde),600,Döntési mérés

@@ -15,18 +15,29 @@ The settings are taken from what the run actually did, not from the run name:
   - date: first and last call timestamp;
   - number of meals: distinct sample ids among the final records.
 The JPEG quality is not recorded in the manifest or the records; it is a constant of the
-program that ran: JPEG_QUALITY = 90 in benchmark.py, 80 in jpeg80_benchmark.py. The runs
-made with jpeg80_benchmark.py are listed in JPEG80 (their manifests' benchmark_sha256
-equals the committed jpeg80_benchmark.py).
+program that ran (JPEG_QUALITY), so it is not in the table. For the runs whose program
+version is committed here, --versions reports it.
 
 Output (folder config_table/):
   config_table.csv   one row per run
   config_table.tex   LaTeX longtable rows, grouped by where the result is reported
+
+    venv/bin/python config_table.py --versions
+
+additionally writes program_versions.csv: for every listed run, whether the program version
+that ran it (the manifest's benchmark_sha256) is one of the versions of the benchmark
+programs committed in this git repository, and if so which program and its JPEG_QUALITY.
+It needs the git history (it runs git log / git show), so its result is only meaningful
+in the repository where the runs were committed.
 """
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
+import re
+import subprocess
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -125,9 +136,6 @@ GROUPS: list[tuple[str, list[tuple[str, str | None]]]] = [
         "dfood_lite_macros", "dfood_sonnet_macros", "dfood_sol_macros")]),
 ]
 
-# runs made with jpeg80_benchmark.py (JPEG_QUALITY = 80); every other image run: 90
-JPEG80 = {"n5k_lite_macros_q80_n50_s42", "nutrition5k_sol_med_t1000_q80_n50_s42"}
-
 DATASET_HU = {"nutrition5k": "Nutrition5k", "omnifood8k": "OmniFood8k", "snapme": "SNAPMe",
               "acetada": "ACETADA", "dfood_tj": "DFood-Tj", "nutribench_natural": "NutriBench"}
 VIEW_HU = {"overhead": "felülnézet", "oblique": "ferde"}
@@ -196,7 +204,6 @@ def describe(run: str, ds_filter: str | None) -> dict:
             inp += " (" + ", ".join(VIEW_HU[v] for v in views) + ")"
         if modality == "image+text":
             inp += " + ételnévlista"
-        inp += f", JPEG {80 if run in JPEG80 else 90}"
     ts = sorted(r["ts"][:10] for r in recs if r.get("ts"))
     date = ts[0] if ts[0] == ts[-1] else f"{ts[0]}--{ts[-1][5:]}"
     return {"run": run, "date": date,
@@ -207,6 +214,54 @@ def describe(run: str, ds_filter: str | None) -> dict:
 
 def tex_escape(s: str) -> str:
     return s.replace("_", "\\_")
+
+
+PROGRAMS = ("benchmark.py", "jpeg80_benchmark.py", "benchmark_new.py",
+            "double_call_benchmark.py")
+
+
+def committed_versions() -> dict[str, tuple[str, str]]:
+    """sha256 of every committed version of the benchmark programs -> (program, JPEG)."""
+    git = ["git", "-C", str(HERE)]
+    commits = subprocess.run(git + ["log", "--format=%H", "--all", "--", *PROGRAMS],
+                             check=True, capture_output=True, text=True).stdout.split()
+    out = {}
+    for c in commits:
+        for prog in PROGRAMS:
+            r = subprocess.run(git + ["show", f"{c}:{prog}"], capture_output=True)
+            if r.returncode != 0:
+                continue
+            m = re.search(rb"^JPEG_QUALITY = (\d+)", r.stdout, re.M)
+            out[hashlib.sha256(r.stdout).hexdigest()] = (prog, m.group(1).decode() if m else "")
+    return out
+
+
+def versions(rows: list[dict], out: Path) -> None:
+    known = committed_versions()
+    res = []
+    for run in dict.fromkeys(r["run"] for r in rows):
+        hashes = {json.loads(p.read_text()).get("benchmark_sha256")
+                  for p in run_dir(run).glob("manifest_*.json")}
+        if None in hashes:
+            res.append({"run": run, "sha256": "", "in_repo": "no hash recorded",
+                        "program": "", "jpeg_quality": ""})
+            continue
+        found = [known.get(h) for h in sorted(hashes)]
+        res.append({"run": run, "sha256": " ".join(h[:12] for h in sorted(hashes)),
+                    "in_repo": "yes" if all(found) else "no",
+                    "program": " ".join(sorted({f[0] for f in found if f})),
+                    "jpeg_quality": " ".join(sorted({f[1] for f in found if f}))})
+    with (out / "program_versions.csv").open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(res[0]), lineterminator="\n")
+        w.writeheader()
+        w.writerows(res)
+    n = len(res)
+    yes = sum(r["in_repo"] == "yes" for r in res)
+    nohash = sum(r["in_repo"] == "no hash recorded" for r in res)
+    fin = [r for r in res if r["run"].startswith("final_")]
+    print(f"{n} runs: program version in the repository {yes}, not {n - yes} "
+          f"(of these, no hash recorded: {nohash}); final runs in the repository: "
+          f"{sum(r['in_repo'] == 'yes' for r in fin)}/{len(fin)}")
 
 
 def main() -> None:
@@ -236,6 +291,8 @@ def main() -> None:
         w.writerows(rows)
     (out / "config_table.tex").write_text("\n".join(lines) + "\n")
     print(f"{len(rows)} rows -> {out}")
+    if "--versions" in sys.argv[1:]:
+        versions(rows, out)
 
 
 if __name__ == "__main__":
