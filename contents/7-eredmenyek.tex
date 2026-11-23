@@ -69,7 +69,7 @@ következőt eggyel kisebb számmal szorzom, és így tovább, úgy, hogy egy ko
 konfidenciaintervallumok korrekció nélküliek, a szignifikanciáról a korrigált 
 $p$-érték dönt.
 
-\paragraph{}Az előmérésekben ($n = 50$) a páros különbségek konfidenciaintervallumát 
+\paragraph{}Az előmérésekben (adathalmazonként 50 étel) a páros különbségek konfidenciaintervallumát 
 ugyanígy, \az{\ref{eq:se_arany}}.~egyenlet szerinti standard hibával és Student-eloszlással 
 számoltam. Ezek az összehasonlítások felderítő jellegűek voltak: sok beállítást 
 vetettem össze ugyanazokon az ételeken, így egy-egy intervallum véletlenül is 
@@ -152,8 +152,8 @@ egyik modell szénhidrátban mért különbsége sem haladta meg a 7 százalékp
 \paragraph{}A modellek sorrendje a célmennyiségtől is függ. Az OmniFood8k-n a Sol, az Astra 
 és az Opus energiában pontosabb volt a Flash-Lite-nál, a különbség $-15{,}8$ ($-23{,}6$; $-8{,}0$), 
 $-14{,}6$ ($-22{,}4$; $-6{,}9$), illetve $-10{,}5$ ($-17{,}6$; $-3{,}3$) százalékpont volt, 
-szénhidrátban viszont mindhárom pontatlanabb volt. Egyik modell sem 
-volt tehát minden adathalmazon és minden célmennyiségben a legpontosabb.
+szénhidrátban viszont mindhárom pontatlanabb volt. Az előmérésben egyik modell sem 
+volt minden adathalmazon és minden célmennyiségben a legpontosabb.
 
 \paragraph{}A Claude Haiku 5.5 a Nutrition5k-n és az OmniFood8k-n adta a legnagyobb 
 szénhidráthibát (88,3, illetve 133,1\%). Az OmniFood8k-n a skillje kimutathatóan negatív volt, 
@@ -336,8 +336,8 @@ P3\_prep\_textcalc második, csak szöveges lépése (4.~bemenettípus) a P3\_pr
 OmniFood8k-n az energia hibáját $-6{,}0$ ($-9{,}7$; $-2{,}4$), a zsírét $-8{,}7$ ($-13{,}2$; $-4{,}3$) 
 százalékponttal csökkentette, a SNAPMe-n viszont a szénhidrátét 4,5 (0,3; 8,8) százalékponttal 
 növelte, a Nutrition5k-n pedig nem változtatott kimutathatóan. A második hívás ára, hogy a költség 
-1,71--1,80-szorosára, a válaszidő mediánja 2,14--2,34-szeresére nő. A javulás tehát 
-adathalmazfüggő. Az OmniFood8k-n a P3\_recipe egyetlen hívással is $-8{,}2$ százalékponttal 
+1,71--1,80-szorosára, a válaszidő mediánja 2,14--2,34-szeresére nő. Az előmérésben a 
+különbség iránya adathalmazonként eltért. Az OmniFood8k-n a P3\_recipe egyetlen hívással is $-8{,}2$ százalékponttal 
 csökkentette a zsír hibáját a P3\_macros-hoz képest (\ref{tab:elomeres_promptok}.~táblázat).
 
 \paragraph{}A P3\_density az OmniFood8k-n hat képpel nem változtatta kimutathatóan az energia 
@@ -456,8 +456,8 @@ felső h.), valamint a tömegbecslés meredeksége.}
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrrrrrr}
 \hline
- & & \multicolumn{3}{c}{Energia pMAE (\%)} & \multicolumn{2}{c}{Tömegtorzítás (\%)} & Tömeg- \\
-Adathalmaz & Étel & becslés & $\hat d\,m$ & $d\,\hat m$ & alsó h. & felső h. & meredekség \\
+ & Ételek & \multicolumn{3}{c}{Energia pMAE (\%)} & \multicolumn{2}{c}{Tömegtorzítás (\%)} & Tömeg- \\
+Adathalmaz & száma & becslés & $\hat d\,m$ & $d\,\hat m$ & alsó h. & felső h. & meredekség \\
 \hline
 Nutrition5k & 50 & 30{,}7 $\pm$ 4{,}9 & 17{,}4 $\pm$ 6{,}0 & 22{,}1 $\pm$ 5{,}2 & $-$9{,}8 & $-$19{,}1 & 0{,}75 \\
 OmniFood8k & 50 & 49{,}3 $\pm$ 5{,}3 & 49{,}5 $\pm$ 5{,}4 & 25{,}7 $\pm$ 6{,}0 & $+$16{,}5 & $+$6{,}7 & 0{,}89 \\
@@ -468,21 +468,22 @@ SNAPMe & 48 & 43{,}3 $\pm$ 10{,}6 & 27{,}0 $\pm$ 9{,}7 & 38{,}6 $\pm$ 11{,}3 & $
 \end{tabular}
 \end{table}
 
-\paragraph{}Az OmniFood8k-n az energiahiba szinte teljesen az energiasűrűségből adódik: a 
+\paragraph{}Az előmérésben az OmniFood8k-n az energiahiba szinte teljesen az energiasűrűségből 
+adódott: a 
 pontos tömeg nem csökkentené a hibát (49,5\%, a becslésé 49,3\%), a pontos energiasűrűség 
-25,7\%-ra csökkentené. A modell energiasűrűsége itt a referencia-tömeggel számolva 
-46,1\%-kal kevesebb energiát ad a referenciánál. A SNAPMe-n fordított a helyzet: a pontos 
+25,7\%-ra csökkentené. A Flash-Lite energiasűrűsége itt a referencia-tömeggel számolva 
+46,1\%-kal kevesebb energiát adott a referenciánál. A SNAPMe-n fordított volt a helyzet: a pontos 
 tömeggel 27,0\%, a pontos energiasűrűséggel 38,6\% lenne a hiba. A Nutrition5k-n, az 
-ACETADA-n és a DFood-Tj-n a két rész hasonló nagyságú (16,5--22,1\%). A két részhiba 
+ACETADA-n és a DFood-Tj-n a két rész hasonló nagyságú volt (16,5--22,1\%). A két részhiba 
 összege nem adja ki a teljes hibát, mert egy étkezésen belül a két tényező hibája 
 erősítheti vagy kiolthatja egymást.
 
-\paragraph{}A tömegbecslés meredeksége mind az öt adathalmazon 1-nél kisebb volt 
-(0,53--0,89), vagyis a becsült tömegek szűkebb tartományban szóródnak, mint a 
-referencia-tömegek. Ezzel összhangban a felső harmad tömegtorzítása minden adathalmazon 
-kisebb volt az alsóénál: a nagy adagokat a modell a kicsikhez képest alulbecsülte. A 
-különbség a SNAPMe-n a legnagyobb ($+34{,}8$ és $-28{,}6\%$), a DFood-Tj-n a legkisebb 
-($-16{,}7$ és $-20{,}1\%$), ahol a modell minden harmadban alulbecsülte a tömeget.
+\paragraph{}Az előmérésben a Flash-Lite tömegbecslésének meredeksége mind az öt adathalmazon 
+1-nél kisebb volt (0,53--0,89), vagyis a becsült tömegek szűkebb tartományban szóródtak, mint 
+a referencia-tömegek. Ezzel összhangban a felső harmad tömegtorzítása minden adathalmazon 
+kisebb volt az alsóénál: a nagy adagokat a Flash-Lite a kicsikhez képest alulbecsülte. A 
+különbség a SNAPMe-n volt a legnagyobb ($+34{,}8$ és $-28{,}6\%$), a DFood-Tj-n a legkisebb 
+($-16{,}7$ és $-20{,}1\%$), ahol a Flash-Lite minden harmadban alulbecsülte a tömeget.
 
 
 \section{A döntési mérés eredményei}
@@ -519,7 +520,7 @@ DFood-Tj    & 23,2 & 18,0 & $-5{,}1$ ($-6{,}8$; $-3{,}5$) & 15,4 & $-7{,}7$ ($-1
 \end{tabular}
 \end{table}
 
-\paragraph{}A különbség hátterét a kiegészítő eredmények mutatják (\ref{sec:leiro_eredmenyek}.~alfejezet): 
+\paragraph{}A kiegészítő eredmények szerint (\ref{sec:leiro_eredmenyek}.~alfejezet) 
 a Nutrition5k-n, az OmniFood8k-n és az ACETADA-n a két drágább modell jóval erősebben 
 túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-Lite alulbecslése 
 volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
@@ -527,8 +528,8 @@ volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lit
 \subsection{A referenciarekordból képzett ételnév-lista hatása}
 \paragraph{}A B család (2.~bemenettípus, \ref{sec:bemenet_tipusok}.~alfejezet) azt vizsgálta, hogyan változik a Flash-Lite becslése a SNAPMe adathalmazon, ha a kép
 mellett megkapja az étkezés tételeinek nevét is, a referenciarekordból, a tömegük nélkül. A szénhidrátbecslés
-hibáján a névlista nem változtatott ($-0{,}3$ százalékpont, 95\%-os konfidenciaintervallum: $-2{,}9$ és $+2{,}3$
-között, Holm-korrigált $p = 0{,}80$), a zsírbecslés hibáját viszont jelentősen csökkentette ($48{,}9\%$-ról
+hibáján a névlista nem változtatott szignifikánsan ($-0{,}3$ százalékpont, 95\%-os konfidenciaintervallum: $-2{,}9$ és $+2{,}3$
+között, Holm-korrigált $p = 0{,}80$), a zsírbecslés hibáját viszont szignifikánsan csökkentette ($48{,}9\%$-ról
 $37{,}9\%$-ra, $-11{,}0$ százalékpont, $-14{,}7$ és $-7{,}3$ között, Holm-korrigált $p < 0{,}001$).
 \paragraph{}Ez az eredmény nem egy szabad felhasználói leírás hatását méri. A névlista ugyanabból a rekordból
 származik, mint a referenciaértékek, és az FNDDS leírásai gyakran az elkészítés módját és a zsírtartalmat is
@@ -634,8 +635,8 @@ mediánja és átlaga a tesztelt ételeken, a költség a futás összes hívás
 \small
 \begin{tabular}{lllrrrr}
 \hline
- & & & & \multicolumn{2}{c}{Válaszidő (s)} & Költség \\
-Adathalmaz & Modell & Prompt & Hívás & medián & átlag & (\$/1000 étkezés) \\
+ & & & Hívások & \multicolumn{2}{c}{Válaszidő (s)} & Költség \\
+Adathalmaz & Modell & Prompt & száma & medián & átlag & (\$/1000 étkezés) \\
 \hline
 Nutrition5k & Flash-Lite & P3\_macros & 250 & 2{,}1 & 2{,}2 & 1{,}03 \\
  & Flash-Lite & P3\_recipe & 250 & 2{,}3 & 5{,}8 & 1{,}12 \\
@@ -721,9 +722,9 @@ energia viszonya szerint négy csoportba soroltam (\ref{tab:hihetoseg}.~tábláz
 energiája.}
 \label{tab:hihetoseg}
 \small
-\begin{tabular}{p{6.2cm}rp{5.2cm}}
+\begin{tabular}{p{6.0cm}rp{5.0cm}}
 \hline
-Csoport & Tétel & Példák \\
+Csoport & Tételek száma & Példák \\
 \hline
 Csak a tömegszabály jelzett, a makrotápanyagok 0,1--2,4~g-mal haladják meg a tétel tömegét 
   & 17 & csokoládé, vaj, cukor, méz, olaj, chips, aszalt füge \\
@@ -736,10 +737,16 @@ $E_m$ a megadott energia több mint ötszöröse & 4 & lásd a szövegben \\
 
 \paragraph{}Az alkoholos italoknál a jelzés a szabályból adódik: az alkohol energiáját 
 (7~kcal/g) a 4/4/9-es képlet nem tartalmazza \cite{fao2003foodenergy}. A vodkára például 
-mindhárom makrotápanyag 0~g, a megadott energia 96~kcal. A citromnál a képlet a teljes 
-szénhidráttartalmat 4~kcal/g-mal számolja, a rostra azonban 2~kcal/g, a szerves savakra 
-3~kcal/g érvényes \cite{fao2003foodenergy}, ezért ezeket a jelzéseket sem tekintem 
-hibának. A tejnél (30~g, 48~kcal, a makrotápanyagokból 19~kcal) és a spenótnál (40~g, 
+mindhárom makrotápanyag 0~g, a megadott energia 96~kcal. A négy citromtételből háromnál a 
+megadott értékek a USDA FoodData Central nyers, héj nélküli citromra 100 grammra közölt 
+értékeinek (29~kcal, 9,3~g szénhidrát, 1,1~g fehérje, 0,3~g zsír) a tétel tömegével arányos, 
+kerekített megfelelői \cite{usda_fdc_lemon}. Ezekre a táblázati értékekre a szabály 
+ugyanúgy jelez: a makrotápanyagokból számolt energia 100 grammra 44,3~kcal. A képlet ugyanis 
+a teljes szénhidráttartalmat 4~kcal/g-mal számolja, holott ebből 2,8~g rost 
+\cite{usda_fdc_lemon}, amelyre 2~kcal/g, a szerves savakra pedig 3~kcal/g érvényes 
+\cite{fao2003foodenergy}. Ezért ezt a három jelzést nem tekintem hibának. A negyedik 
+citromtétel (80~g, 20~kcal, 7,0~g szénhidrát) a táblázati értékeknél kevesebb energiát és 
+szénhidrátot ad. A tejnél (30~g, 48~kcal, a makrotápanyagokból 19~kcal) és a spenótnál (40~g, 
 25~kcal, a makrotápanyagokból 12~kcal) a megadott energia 29, illetve 13~kcal-lal 
 nagyobb a makrotápanyagokból számoltnál.
 
@@ -791,12 +798,14 @@ referenciaértékek átlagának százalékában, így az eredmény a pMAE-vel az
 \centering
 \caption{Az ismételt hívások közötti ingadozás: az ételenkénti szórás négyzetes átlaga 
 energiában és szénhidrátban, a referenciaértékek átlagának százalékában. Ételenként két 
-hívás: a döntési mérés futása és egy korábbi, azonos beállítású futás.}
+hívás: a döntési mérés futása és egy korábbi, azonos beállítású futás. Ételek száma: a két 
+futásban közös ételek száma.}
 \label{tab:konzisztencia}
 \small
 \begin{tabular}{lllrrr}
 \hline
-Adathalmaz & Modell & Prompt & Étel & Energia (\%) & Szénhidrát (\%) \\
+ & & & Ételek & & \\
+Adathalmaz & Modell & Prompt & száma & Energia (\%) & Szénhidrát (\%) \\
 \hline
 Nutrition5k & Flash-Lite & P3\_macros & 50 & 11{,}8 & 14{,}0 \\
  & Flash-Lite & P3\_recipe & 50 & 10{,}7 & 15{,}2 \\

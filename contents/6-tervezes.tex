@@ -76,7 +76,9 @@ válaszai mentésre és kiértékelésre kerülnek.
     és csak a JSON-objektum szövegből való kiemelése után váltak feldolgozhatóvá.
     \item Konzisztencia: ugyanarra a bemenetre, azonos beállítással ismételt hívások
     becsléseinek eltérése. Ételenként az ismételt becslések szórása, és ezek
-    négyzetes átlaga a referenciaértékek átlagához viszonyítva. Így az eredmény a pMAE-vel
+    négyzetes átlaga a referenciaértékek átlagához viszonyítva. Az ételenkénti szórások 
+    négyzetes átlaga az ismételt mérések ingadozásának bevett mérőszáma, az alanyon belüli 
+    szórás \cite{bland1996measurement}; itt az alany az étel. Így az eredmény a pMAE-vel
     azonos skálán értelmezhető.
 \end{enumerate}
 
@@ -195,13 +197,13 @@ a tömegük nélkül. Ez a szöveg nem a felhasználó szabad leírása, hanem a
     és ha két méret is lehetséges, azt választja, amelyet a viszonyítási tárgyak alátámasztanak, 
     nem a szokásos adagot. A leírásmezőben meg kell neveznie a használt viszonyítási tárgyat.
     \item \textbf{P3\_check:} a modell a leírásmezőben előbb vázlatot ír minden tétel 
-    tömegéről, szénhidrát-, fehérje- és zsírtartalmáról és energiájáról, majd négy szempontból 
-    ellenőrzi. A becsült energia legfeljebb kb. 15\%-kal térjen el attól, ami a makrotápanyagokból 
-    az Atwater-faktorokkal adódik (4~kcal/g szénhidrát és fehérje, 9~kcal/g zsír 
-    \cite{fao2003foodenergy}); a három makrotápanyag grammban mért összege ne haladja meg a 
-    tömeget (főtt ételeknél a prompt szerint ez jellemzően a tömeg 10--40\%-a, olajoknál és 
-    zsiradékoknál legfeljebb 100\%); minden étel és ital pontosan egyszer szerepeljen; az összes 
-    tömeg és energia legyen hihető a képen látható ételhez. A javításokat a leírásmezőben 
+    tömegéről, szénhidrát-, fehérje- és zsírtartalmáról és energiájáról, majd a vázlatot négy 
+    szempont szerint ellenőrzi: a becsült energia legfeljebb kb. 15\%-kal térhet el attól, ami a 
+    makrotápanyagokból az Atwater-faktorokkal adódik (4~kcal/g szénhidrát és fehérje, 9~kcal/g 
+    zsír \cite{fao2003foodenergy}); a három makrotápanyag grammban mért összege nem haladhatja 
+    meg a tömeget (főtt ételeknél a prompt szerint ez jellemzően a tömeg 10--40\%-a, olajoknál és 
+    zsiradékoknál legfeljebb 100\%); minden étel és ital pontosan egyszer szerepelhet; az összes 
+    tömegnek és energiának hihetőnek kell lennie a képen látható ételhez. A javításokat a leírásmezőben 
     rögzíti, a javított értékeket a tétellistába írja.
     \item \textbf{P3\_recipe\_check:} a P3\_recipe és a P3\_check egyesítése: előbb az étel 
     szokásos elkészítése, utána a vázlat és az ellenőrzés.
@@ -333,7 +335,7 @@ hibás kísérletek és a várakozások idejét nem tartalmazza.
 \paragraph{}Az előmérési protokoll feladata, hogy minél több mérési paraméter
 hatását feltárhatóvá tegye, miközben kontrollálja az ebből adódó többletköltség
 nagyságát. Ennek érdekében a mintaszámot ezen mérések során a döntési mérési protokollhoz
-képest kisebb, $n=50$ értékben rögzítettem. Ez több összehasonlítást tesz lehetővé, viszont
+képest kisebb értékben, adathalmazonként 50 ételben rögzítettem. Ez több összehasonlítást tesz lehetővé, viszont
 kisebb pontossággal teszi megismerhetővé a vizsgált paraméter hatását. A kisebb elemszám
 hatására adódhatnak olyan mérések, amelyek során a mérésre kiválasztott minták az adathalmazból
 kedveznek a mért paraméter pontosságának, vagy rontják azt.
@@ -492,7 +494,7 @@ Holm-korrigált $p$-értéke $0{,}05$ alatt van.}
 \hline
 Kérdés & Bemenet és konfiguráció & Adathalmaz & Elsődleges mérőszám & Összehasonlítás & Döntési szempont \\
 \hline
-1. & kép, P3\_macros; előmérés: 8 modell ($n = 50$); döntési mérés: Flash-Lite, Sonnet, Sol 
+1. & kép, P3\_macros; előmérés: 8 modell, adathalmazonként 50 étel; döntési mérés: Flash-Lite, Sonnet, Sol 
    & előmérés: Nutrition5k, OmniFood8k, ACETADA, DFood-Tj, SNAPMe; döntési mérés: ugyanezek a SNAPMe nélkül 
    & szénhidrát pMAE; kiegészítő: energia, tömeg, fehérje, zsír 
    & páros, adathalmazonként 
@@ -538,10 +540,10 @@ Kérdés & Bemenet és konfiguráció & Adathalmaz & Elsődleges mérőszám & �
 
 \section{Az utólagos kalibráció elvetése}
 Az első mérési körben a Gemini Flash-Lite becslései szisztematikus torzítást mutattak: 
-a nagyobb adagokat rendre alulbecsülte, és az energiaértékek átlagos előjeles hibája 
-adathalmazonként jelentősen eltért. Ez a torzítás
+a nagyobb adagokat a kisebbekhez képest alulbecsülte, és az energiaértékek átlagos előjeles hibája 
+adathalmazonként erősen eltért. Ez a torzítás
 az ACETADA adathalmazon elhanyagolható volt (\mbox{$-1{,}6\%$}), a Nutrition5k-n
-mérsékelt (\mbox{$-11{,}1\%$}), az OmniFood8k-n viszont jelentős (\mbox{$-45{,}0\%$}).
+mérsékelt (\mbox{$-11{,}1\%$}), az OmniFood8k-n viszont nagy (\mbox{$-45{,}0\%$}).
 Egy adott adathalmazon illesztett utólagos korrekció, például a becsült és a valós érték
 közötti lineáris leképezés, ugyanazon az adathalmazon képes csökkenteni ezt a rendszeres
 eltérést: az első mérési körben a kihagyásos (leave-one-out) módon illesztett lineáris
