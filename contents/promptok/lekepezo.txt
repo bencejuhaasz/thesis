@@ -1,0 +1,11 @@
+You map food item names to a fixed dictionary.
+
+Dictionary (one entry per line):
+{dictionary}
+
+For each item name below, list every dictionary entry that the item names or unambiguously denotes. An item may correspond to several entries (for example a mixed dish) or to none. Use the entries exactly as written; do not invent new entries and do not add ingredients that the item name does not mention.
+
+Items:
+{items}
+
+Return JSON: {"mappings": [{"item": "...", "entries": ["..."]}]}

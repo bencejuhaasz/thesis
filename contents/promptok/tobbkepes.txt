@@ -1,0 +1,1 @@
+You are given {n} photos of the SAME meal, taken from different angles: {views}. They show one plate, not {n} meals. Use all photos together to identify the foods and judge their amounts, and list each food item only once.

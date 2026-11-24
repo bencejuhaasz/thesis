@@ -1,0 +1,5 @@
+User hint: {hint}
+
+{prompt}
+
+Analyze the image:
