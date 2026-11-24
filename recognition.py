@@ -64,6 +64,10 @@ Output (folder recognition/):
   datasets[_flash38].csv    per dataset: dictionary size, distinct item names, names with
                             no entry, returned entries, entries equal to a dictionary entry
   agreement.csv             per dataset: agreement of the two mappings
+  agreement_types.csv       per dataset: how the two mappings of the distinct names differ
+                            (same set, both empty, only one mapping has entries, one set
+                            contains the other, other), the share of the Flash-Lite-only
+                            names with >= 2 entries, and the mean number of entries per name
   (no suffix: the Flash-Lite mapping; _flash38: the Gemini 3.8 Flash mapping)
 """
 from __future__ import annotations
@@ -413,6 +417,36 @@ def cmd_agree(a) -> None:
                      "items": len(occ), "items_same_%": round(100 * sum(occ) / len(occ), 1)})
         print("  ".join(f"{k} {v}" for k, v in rows[-1].items()))
     write_csv(OUT / "agreement.csv", rows)
+    types = []
+    for ds in RUNS:
+        names = sorted(n for d, n in main if d == ds)
+        count = dict.fromkeys(["same", "same_empty", "flash_lite_only", "flash38_only", "flash_lite_more",
+                               "flash38_more", "other"], 0)
+        lite_only_2plus = 0
+        for n in names:
+            m, o = main[(ds, n)], other[(ds, n)]
+            if m == o:
+                k = "same" if m else "same_empty"
+            elif o and not m:
+                k = "flash_lite_only"
+                lite_only_2plus += len(o) >= 2
+            elif m and not o:
+                k = "flash38_only"
+            elif m < o:
+                k = "flash_lite_more"
+            elif o < m:
+                k = "flash38_more"
+            else:
+                k = "other"
+            count[k] += 1
+        row = {"dataset": ds, "names": len(names)}
+        row.update({f"{k}_%": round(100 * v / len(names), 1) for k, v in count.items()})
+        row["flash_lite_only_2plus_%"] = round(100 * lite_only_2plus / max(count["flash_lite_only"], 1), 1)
+        row["entries_per_name_flash_lite"] = round(sum(len(other[(ds, n)]) for n in names) / len(names), 2)
+        row["entries_per_name_flash38"] = round(sum(len(main[(ds, n)]) for n in names) / len(names), 2)
+        types.append(row)
+        print("  ".join(f"{k} {v}" for k, v in row.items()))
+    write_csv(OUT / "agreement_types.csv", types)
 
 
 def main() -> None:
