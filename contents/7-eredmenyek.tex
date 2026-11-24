@@ -620,6 +620,125 @@ adathalmazon pontosabb a másiknál.
 vagyis a két drágább modell szénhidráthibája ott közel akkora, mint a leave-one-out 
 mediánbecslésé. Negatív volt a skill az OmniFood8k-n a Sonnetnél ($-0{,}40$) és a 
 Solnál ($-0{,}20$), valamint a DFood-Tj-n a Flash-Lite-nál ($-0{,}25$).
+\subsection{Az ételek és összetevők megnevezése}
+\label{sec:felismeres}
+\paragraph{}A P3\_macros prompt tételenként a tétel nevét is kéri, így a döntési mérés 
+futásaiból az is vizsgálható, mennyire egyeznek a modell által megnevezett tételek az 
+adathalmaz referencia-tételneveivel. A vizsgálatba azok az adathalmazok kerültek, amelyek 
+tételszintű referencianeveket adnak meg. A Nutrition5k összetevőket, a DFood-Tj menüételeket, 
+az ACETADA gyakran összetett ételneveket, a SNAPMe FNDDS-ételleírásokat 
+sorol fel, az OmniFood8k pedig tételneveket nem ad meg. A NutriBench nem szerepelt a döntési 
+mérésben, és a bemenete az ételeket szövegesen megnevezi, így ott a tételnevek egyezése nem a 
+felismerést mérné. A vizsgált futások a Nutrition5k, a DFood-Tj és az ACETADA P3\_macros-futásai mindhárom modellel, 
+valamint a SNAPMe Flash-Lite P3\_macros-futása. A SNAPMe P3\_macros\_hint futását, amely a kép mellett a referenciarekordból képzett 
+ételnév-listát is megkapta, kihagytam, mert a bemenete a referencianeveket tartalmazza. A vizsgálat a hipotézisvizsgálatba bevont ételeken 
+készült, és leíró jellegű, hipotézisvizsgálatot nem tartalmaz.
+
+\paragraph{}A modell tételneve és a referencianév ritkán azonos szövegű, ezért a 
+megfeleltetést két lépésben végeztem, mindkettőt a \texttt{recognition.py} programmal. Az 
+adathalmaz összes referencianevéből szótárat képeztem kisbetűsítéssel, a szóközök 
+egységesítésével, ismétlődések nélkül. A szótár a Nutrition5k-n 249, a DFood-Tj-n 98, a 
+SNAPMe-n 1151, az ACETADA-n 181 elemből állt. A döntési mérés P3\_macros-futásaiban megadott 
+tételneveket nagy nyelvi modell segítségével képeztem le a szótár elemeire, a modellt a 
+\texttt{recognition.py} API-n keresztül hívta. A leképezést végző modell csak a tételneveket és 
+a teljes szótárat kapta meg, a képet és az étel referencianeveit nem, és csak olyan szótári 
+elemet adhatott vissza, amelyet a tételnév megnevez vagy egyértelműen jelöl. Ha ilyen nem volt, 
+a prompt szerint üres listát kellett adnia. A leképezést először a Gemini 3.5 Flash-Lite végezte 
+0,1-es temperature beállítással. A leképezéseinek szúrópróbaszerű átnézésekor több olyan tételnevet találtam, amelyhez a 
+szótárban egyértelműen megfelelő elem tartozott, a Flash-Lite mégsem képezte le rá. A 
+DFood-Tj „napa cabbage” kifejezést tartalmazó 26 tételnevéből a Flash-Lite csak 3-at 
+képezett le a szótár „chinese cabbage” elemére, a „napa cabbage” és a „stir-fried napa 
+cabbage” nevet például üresen hagyta. Ezért a leképezést a Gemini 3.8 Flash modellel is 
+elvégeztem low thinking-szinttel, azonos prompttal és szótárral, mindkét esetben hívásonként 
+25 tételnévvel. A Gemini 3.8 Flash ugyanebből a 26 tételnévből 23-at képezett le a „chinese 
+cabbage” elemre. A Gemini 3.8 Flash eredményét tekintem fő eredménynek, a Flash-Lite 
+eredménye összehasonlításként szerepel.
+
+\paragraph{}A visszaadott elemeket a RapidFuzz Python-könyvtár 3.14.6-os verziójával 
+illesztettem a szótárhoz. Minden visszaadott elemhez a \texttt{process.extractOne} függvény 
+kereste meg a szótár leghasonlóbb elemét a \texttt{fuzz.token\_sort\_ratio} hasonlósági 
+függvénnyel, és az elemet akkor tartottam meg, ha a hasonlóság a 0-tól 100-ig terjedő skálán 
+legalább 85 volt. A \texttt{token\_sort\_ratio} a két szöveget szavakra bontja, a szavakat 
+ábécérendbe rendezi, és a rendezett szövegek beszúrásokkal és törlésekkel mért szerkesztési 
+távolságából számol hasonlóságot, a két szöveg együttes hosszára normalizálva. Azért ezt a 
+függvényt választottam, mert a szavak sorrendjét figyelmen kívül hagyja, a csak részben egyező 
+szöveget viszont nem tekinti teljes egyezésnek. Az egyszerű \texttt{fuzz.ratio} a „chinese 
+cabbage” és a „cabbage chinese” párra 46,7 pontot ad, a \texttt{token\_sort\_ratio} 100-at. A 
+\texttt{token\_set\_ratio} és a \texttt{partial\_ratio} a „rice” és a „brown rice” párra 100 
+pontot ad, pedig a kettő két különböző szótári elem lehet, a \texttt{token\_sort\_ratio} erre a 
+párra 57,1-et. A 85-ös küszöböt a leképezés futtatása előtt rögzítettem. A Gemini 3.8 Flash 
+minden visszaadott eleme a tisztítás után pontosan egyezett egy szótári elemmel, a Flash-Lite 
+elemeinek pedig 99,7\%-a. Az illesztés így csak a Flash-Lite elemeinek 0,3\%-át érintette, és a 
+80 és 95 közötti küszöbök az eredményen legfeljebb 0,2 százalékpontot változtattak.
+
+\paragraph{}Két mérőszámot használtam, mindkettőt az ételekre összegzett hányadosként, a 
+konfidenciaintervallumot a pMAE-vel azonos módon, \az{\ref{sec:ertekeles}}.~alfejezetben 
+leírtak szerint számolva.
+\begin{itemize}
+    \item A lefedettség a referencianevek közül azoknak az aránya, amelyekre az étel valamelyik 
+    tételének leképezése rámutat.
+    \item A találati arány a tételek közül azoknak az aránya, amelyeknek legalább egy leképezett 
+    eleme szerepel az étel referencia-tételnevei között. A leképezés nélküli tétel nem számít 
+    találatnak.
+\end{itemize}
+Az ACETADA egyik ételénél mindhárom becslő modell, a SNAPMe egyik ételénél a Flash-Lite nem 
+sorolt fel tételt, mert a válaszuk szerint a képen nem látszott étel. A modellek leírása 
+szerint az ACETADA-képen színkalibráló kártya, a SNAPMe-képen üres kulacs látható. Ezekhez az ételekhez nincs tételnév, 
+ezért egyik mérőszámban sem szerepelnek, így az ACETADA-n 199, a SNAPMe-n 198 étel maradt. Az 
+eredményeket \az{\ref{tab:felismeres}}.~táblázat tartalmazza.
+
+\begin{table}[h]
+\centering
+\caption{A megnevezett tételek egyezése a referencia-tételnevekkel a döntési mérés 
+P3\_macros-futásaiban. Lefedettség és találati arány százalékban, 95\%-os konfidenciaintervallummal, a 
+Gemini 3.8 Flash és a Gemini 3.5 Flash-Lite leképezésével.}
+\label{tab:felismeres}
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{llrrllll}
+\hline
+ & & Ételek & Tételek & \multicolumn{2}{c}{Gemini 3.8 Flash leképezés} & \multicolumn{2}{c}{Flash-Lite leképezés} \\
+Adathalmaz & Modell & száma & száma & lefedettség & találati arány & lefedettség & találati arány \\
+\hline
+Nutrition5k & Flash-Lite & 200 & 535 & 25,5 (22,2; 28,8) & 70,3 (66,5; 74,1) & 25,6 (22,4; 28,8) & 69,9 (65,5; 74,3) \\
+ & Sonnet & 200 & 687 & 28,7 (25,3; 32,0) & 62,2 (57,8; 66,5) & 28,8 (25,6; 32,0) & 62,0 (57,5; 66,5) \\
+ & Sol & 200 & 772 & 24,8 (21,7; 28,0) & 50,0 (45,6; 54,4) & 27,2 (24,2; 30,3) & 53,2 (49,0; 57,4) \\
+\hline
+DFood-Tj & Flash-Lite & 250 & 922 & 23,1 (20,7; 25,4) & 23,6 (21,2; 26,1) & 23,3 (20,4; 26,1) & 23,6 (20,7; 26,6) \\
+ & Sonnet & 250 & 951 & 30,0 (27,5; 32,4) & 29,5 (27,1; 32,0) & 26,1 (23,2; 28,9) & 25,3 (22,6; 28,1) \\
+ & Sol & 250 & 1112 & 22,8 (20,6; 25,1) & 19,2 (17,2; 21,1) & 21,8 (19,5; 24,0) & 18,3 (16,3; 20,3) \\
+\hline
+ACETADA & Flash-Lite & 199 & 1016 & 31,5 (28,7; 34,3) & 35,1 (32,3; 38,0) & 44,7 (41,5; 47,8) & 50,1 (47,1; 53,1) \\
+ & Sonnet & 199 & 1117 & 42,1 (39,1; 45,0) & 43,4 (40,3; 46,5) & 52,6 (49,3; 55,8) & 54,2 (50,9; 57,4) \\
+ & Sol & 199 & 1283 & 37,0 (34,1; 39,8) & 33,5 (30,3; 36,7) & 51,7 (49,1; 54,3) & 46,9 (43,8; 50,1) \\
+\hline
+SNAPMe & Flash-Lite & 198 & 361 & 25,2 (20,7; 29,8) & 39,3 (33,8; 44,9) & 36,7 (31,4; 42,0) & 56,0 (50,5; 61,4) \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{}A két leképezés a különböző tételnevek 73,1\%-ában egyezett a Nutrition5k-n, 
+66,9\%-ában az ACETADA-n, 62,9\%-ában a DFood-Tj-n és 46,3\%-ában a SNAPMe-n, vagyis ezeknél a 
+tételneveknél a két leképező ugyanazokat a szótári elemeket adta vissza. A lefedettség és a találati arány 
+a Nutrition5k-n és a DFood-Tj-n a két leképezéssel legfeljebb 4,2 százalékponttal tért el, a 
+SNAPMe-n és az ACETADA-n a Flash-Lite leképezésével 10,5--16,7 százalékponttal nagyobb volt. A 
+SNAPMe-n a Flash-Lite tételnevenként átlagosan 1,81, a Gemini 3.8 Flash 0,79 szótári elemet adott 
+vissza. A csak a Flash-Lite által leképezett tételnevek aránya a SNAPMe-n 26,5\%, a 
+Nutrition5k-n 6,7\% volt, és ezeknek 54,4, illetve 63,0\%-ában a Flash-Lite legalább két 
+szótári elemet adott. Például a SNAPMe „spinach” tételnevét a Flash-Lite a szótár mind a négy, 
+csak spenótot leíró elemére leképezte, vagyis a nyers, a frissen főzött, a fagyasztottan főzött 
+és az olajjal készült spenótra, a Gemini 3.8 Flash pedig egyikre sem.
+
+\paragraph{}A mért értékekben a felismerés mellett az is megjelenik, hogy a modell és a 
+referencia milyen részletességgel nevezi meg az ételt, és hogy a leképezés hogyan kezeli az 
+eltérő részletességet. Ezért az értékeket adathalmazon belül értelmezem, a két leképezés 
+eredményét együtt nézve. A DFood-Tj-n, ahol a referencia menüételeket sorol fel, a tételnevek 
+60,9\%-ához a Gemini 3.8 Flash, 66,3\%-ához a Flash-Lite nem rendelt szótári elemet. Az 
+adathalmazon belüli sorrend a két leképezéssel egyezett. A Nutrition5k-n, a DFood-Tj-n és az 
+ACETADA-n mindkét leképezéssel a Sonnet lefedettsége volt a legnagyobb és a Sol találati aránya a 
+legkisebb, és mindhárom adathalmazon a Sol sorolta fel a legtöbb tételt. A modellek közötti különbségeket statisztikai próbával nem vizsgáltam, és több modellpár 
+konfidenciaintervalluma átfed.
+
 \section{Költség, válaszidő, stabilitás és konzisztencia}
 
 \subsection{Költség és válaszidő}
@@ -867,5 +986,11 @@ referenciaátlag 2127,5\%-a, a korábbi futás zsír-pMAE-je 482,7\%. Nélküle
 (49 ételen) az ételenkénti szórás 4,7\%, a két futás pMAE-je 60,6 és 60,3\%.
 
 \section{Korlátok}
+\paragraph{}\Az{\ref{sec:felismeres}}.~alfejezetben vizsgált tételnév-egyezés a felismerés 
+mellett a megnevezés részletességétől és a leképező modelltől is függ, a két leképezés a 
+tételnevek 46--73\%-ában adott azonos eredményt. Mindkét leképező a Gemini-családba tartozik, 
+és a Flash-Lite leképező ugyanaz a modell, mint a vizsgált Flash-Lite. Így nem választható el, 
+hogy a leképező a saját modellcsaládja megfogalmazásait könnyebben felelteti-e meg, és ennek a 
+hatásnak a nagysága nem ismert.
 % TODO: n=50 előmérések; felderítő hatások felülbecslése (ACETADA Lite--Sonnet); a hihetőségi szabályok korlátai; napok közti ismétlés; a csúcsmodellek csak részben mérve
 \clearpage

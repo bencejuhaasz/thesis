@@ -152,7 +152,7 @@ amely arra kéri a  nagy nyelvi modellt, hogy a fényképen látható tényleges
 ne egy feltételezett szokásos adagméretre kerekítsen.
 \paragraph{}A vizsgált változatok a következők:
 \begin{enumerate}
-    \item \textbf{P3:} Sterling és társai \cite{sterling2026vlm} munkájából átvett utasítás. Ételenként a tömeg és az energia becslését kéri.
+    \item \textbf{P3:} Sterling és társai \cite{sterling2026vlm} munkájából átvett utasítás. A modell egy étkezés képén több tételt is felsorolhat, tételnek a modell által külön felsorolt ételt, italt vagy összetevőt nevezem. Az utasítás tételenként kéri a tömeg és az energia becslését, az étkezés becslése pedig a tételek becsléseinek összege.
     \item \textbf{P3\_macros:} ugyanaz a szöveg, kiegészítve a szénhidrát-, fehérje- és
     zsírtartalom kérésével tételenként, valamint a kimeneti szerkezet megfelelő
     bővítésével.
@@ -530,8 +530,8 @@ Kérdés & Bemenet és konfiguráció & Adathalmaz & Elsődleges mérőszám & �
    & modellek között, adathalmazonként 
    & leíró \\
 6. & kép, P3\_macros tétellistái 
-   & % TODO
-   & % TODO
+   & Nutrition5k, DFood-Tj, ACETADA, SNAPMe 
+   & lefedettség és találati arány a referencia-tételnevekhez képest 
    & megnevezett és címkézett tételek 
    & leíró \\
 \hline
