@@ -327,7 +327,11 @@ helyett az energia hibáját $-3{,}4$ ($-6{,}7$; $-0{,}2$) százalékponttal cs�
 szénhidrátét és a zsírét nem változtatta kimutathatóan, a költséget viszont 2,16-szorosára növelte. 
 A DFood-Tj-n a felülnézeti kép a ferde helyett, illetve a két kép együtt a ferde egymagában helyett 
 egyik mért célmennyiségben sem adott kimutatható különbséget. A döntési mérés ennek megfelelően 
-hívásonként egy képet használt, a DFood-Tj-n a ferde nézetet.
+hívásonként egy képet használt, a DFood-Tj-n a ferde nézetet. A ferde képet a program a képpárok 
+sorrendje alapján választotta ki, abból a feltevésből, hogy egy pár kisebb azonosítójú képe a 
+felülnézet. A döntési mérés 250 tesztelt DFood-Tj-ételének képeit utólag szemrevételeztem, és 
+14 esetben, mind a 971-es azonosító alatt, a ferdének jelölt kép felülnézet volt. A nézetcímkék 
+egy része tehát fordított, így ebben az összehasonlításban is lehet néhány felcserélt pár.
 
 \paragraph{}A P3\_prep, amely a tételeket elkészítési módjukkal együtt nevezteti meg, a 
 P3\_macros-hoz képest a költséget alig változtatta (1,02--1,07-szeres), és csak a SNAPMe-n 
@@ -525,6 +529,18 @@ a Nutrition5k-n, az OmniFood8k-n és az ACETADA-n a két drágább modell jóval
 túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-Lite alulbecslése 
 volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
 
+\paragraph{}A DFood-Tj képeinek egy részén a tányér konyhai mérlegen áll, és a mérleg által 
+kijelzett érték leolvasható. A tesztelt 250 étel közül 143-nál legalább egy modell szöveges 
+leírása megemlíti a mérlegről leolvasott értéket. Ezt a csoportosítást a modellek leírásából 
+képeztem, a képeket ebből a szempontból nem ellenőriztem, így a többi 107 étel között is lehet 
+olyan, amelynek képén a kijelző látszik. A 143 ételen a Sol tömegbecslésének pMAE-je 4,2\%, a 
+többi 107 ételen 14,5\% volt. A mérleg említése nélküli 107 ételen az A család DFood-Tj-különbségei 
+kisebbek voltak, a Sonneté $-3{,}0$ ($-5{,}6$; $-0{,}5$), a Solé $-1{,}5$ ($-6{,}6$; $3{,}5$) 
+százalékpont, és az utóbbi nem volt kimutatható. Ez utólagos, leíró bontás, hipotézisvizsgálat 
+nélkül, a számokat a \texttt{dfood\_merleg.py} program adja. A DFood-Tj-n kapott eredmény ezért 
+nem választható el attól, hogy a modellek leolvashatták a mérleg kijelzőjét, és a Sol esetében 
+a különbség a mérleg említése nélküli ételeken nem maradt meg.
+
 \subsection{A referenciarekordból képzett ételnév-lista hatása}
 \paragraph{}A B család (2.~bemenettípus, \ref{sec:bemenet_tipusok}.~alfejezet) azt vizsgálta, hogyan változik a Flash-Lite becslése a SNAPMe adathalmazon, ha a kép
 mellett megkapja az étkezés tételeinek nevét is, a referenciarekordból, a tömegük nélkül. A szénhidrátbecslés
@@ -605,7 +621,7 @@ $-12{,}1$ százalékpont) és zsírban ($-12{,}2$, illetve $-17{,}3$) pontosabb,
 volt a Flash-Lite-nál. A Nutrition5k-n energiában ($+5{,}5$, illetve $+7{,}5$) és 
 tömegben ($+9{,}2$, illetve $+7{,}6$ százalékpont) a Flash-Lite volt a pontosabb. A 
 DFood-Tj-n a Sol tömegbecslésének pMAE-je 8,6\%, $11{,}2$ százalékponttal kisebb a 
-Flash-Lite-énál. Az ACETADA-n a Sonnet és a Flash-Lite között egyik célmennyiségben sem 
+Flash-Lite-énál. A mérleg kijelzőjét említő ételeken ez az érték 4,2, a többin 14,5\% volt. Az ACETADA-n a Sonnet és a Flash-Lite között egyik célmennyiségben sem 
 volt kimutatható különbség.
 
 \paragraph{}A Sonnet és a Sol között az öt célmennyiség és a négy adathalmaz 20 
@@ -986,6 +1002,12 @@ referenciaátlag 2127,5\%-a, a korábbi futás zsír-pMAE-je 482,7\%. Nélküle
 (49 ételen) az ételenkénti szórás 4,7\%, a két futás pMAE-je 60,6 és 60,3\%.
 
 \section{Korlátok}
+\paragraph{}A DFood-Tj-n a ferde nézetet a képpárok sorrendje alapján választottam ki, és utólagos 
+szemrevételezés szerint a tesztelt 250 étel közül 14-nél a kiválasztott kép felülnézet volt. Ugyanezen 
+adathalmaz képeinek egy részén a mérleg kijelzője is leolvasható, így ott a becslés nem kizárólag a 
+kép alapján készült. Mindhárom modell ugyanazokat a képeket kapta, de a kijelzett értéket eltérő 
+mértékben használhatták, ezért a DFood-Tj-n mért különbségek részben ebből is adódhatnak, és az 
+eredmények nem általánosíthatók olyan képekre, amelyeken mérleg nem látszik.
 \paragraph{}\Az{\ref{sec:felismeres}}.~alfejezetben vizsgált tételnév-egyezés a felismerés 
 mellett a megnevezés részletességétől és a leképező modelltől is függ, a két leképezés a 
 tételnevek 46--73\%-ában adott azonos eredményt. Mindkét leképező a Gemini-családba tartozik, 
