@@ -1,0 +1,58 @@
+{
+  "invocations": [
+    {
+      "started": "2026-11-24T10:03:53",
+      "model": {
+        "label": "gemini-3.8-flash-low",
+        "provider": "gemini",
+        "model": "gemini-3.8-flash",
+        "temperature": null,
+        "extra": {
+          "thinking_config": {
+            "thinking_level": "low"
+          }
+        },
+        "output_mode": "schema",
+        "min_interval_s": 12.0
+      },
+      "batch": 25,
+      "prompt": "You map food item names to a fixed dictionary.\n\nDictionary (one entry per line):\n{dictionary}\n\nFor each item name below, list every dictionary entry that the item names or unambiguously denotes. An item may correspond to several entries (for example a mixed dish) or to none. Use the entries exactly as written; do not invent new entries and do not add ingredients that the item name does not mention.\n\nItems:\n{items}\n\nReturn JSON: {{\"mappings\": [{{\"item\": \"...\", \"entries\": [\"...\"]}}]}}",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "mappings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "string"
+                },
+                "entries": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "item",
+                "entries"
+              ]
+            }
+          }
+        },
+        "required": [
+          "mappings"
+        ]
+      },
+      "benchmark_sha256": "5c09df47ecfc1156888b5ce9b0751cf873b92a78768c0fc4d1f6cfe6ccd09797",
+      "dictionary_sha256": {
+        "nutrition5k": "5bec36829840327f59d8b0579c51c4fd10244f7468e31798019617d3e36172c4",
+        "dfood_tj": "53ae6e6e632796003ce5cdfc5b251f6de4621326807adb8689f4cb8a010f07c8",
+        "snapme": "43c0fd60ecfccb6463aa5cf69edf0a9cfeeb8fbd3877c943185e9e870eb10c33",
+        "acetada": "859a5839da88d501ce20e48d8ea0de64aac54738d1431ec6550097f9da709e65"
+      }
+    }
+  ]
+}
