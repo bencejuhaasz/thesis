@@ -1,30 +1,3 @@
-#!/usr/bin/env python3
-"""
-consistency.py - how much does the SAME model give different answers to the SAME photo?
-Needs a run with REPEATS >= 2 (benchmark.py --repeats 3). Put it next to benchmark.py.
-
-    venv/bin/python consistency.py --runs nutrition5k_lite_rep3_n50_s42
-    venv/bin/python consistency.py --runs RUN --bootstrap 2000      # CI of the averaging gain
-
-Per run x target (meals with >= 2 parsed repeats):
-  within_SD       pooled SD of the repeats of one meal (units)       sqrt(mean of per-meal variances)
-  within_%        within_SD / mean truth * 100                        same scale as pMAE
-  RC              repeatability coefficient = 2.77 * within_SD: two calls on the same photo
-                  differ by less than this in 95% of cases (Bland-Altman)
-  RC_%            RC / mean truth * 100
-  CV_med%         median over meals of SD / mean of that meal's predictions
-  ICC             between-meal share of prediction variance (1 = repeats agree perfectly
-                  relative to how much meals differ; one-way random, ICC(1,1))
-  noise_share%    within-repeat variance / mean squared error of a single call: the part of
-                  the error that averaging several calls could remove at most
-  identical%      meals where every repeat gave exactly the same value
-  pMAE_r0/r1/..   pMAE of each repeat alone (single call)
-  pMAE_single     mean of those
-  pMAE_avg        pMAE of the per-meal mean of the repeats
-  gain_pp         pMAE_avg - pMAE_single (negative = averaging helps) [bootstrap CI over meals]
-Item lists: mean pairwise Jaccard of the item names between repeats, SD of the item count.
-Output: consistency/consistency.csv
-"""
 import argparse
 import itertools
 import json
@@ -61,7 +34,6 @@ def names(pred):
 
 
 def target_stats(P: np.ndarray, t: np.ndarray, boot: int, rng) -> dict:
-    """P: meals x repeats (complete rows), t: truth per meal."""
     n, k = P.shape
     tm = t.mean()
     var_w = P.var(axis=1, ddof=1)

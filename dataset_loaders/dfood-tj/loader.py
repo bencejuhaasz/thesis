@@ -1,44 +1,3 @@
-"""DFood-TJ loader (Jin et al., Scientific Data 13:975, 2026; doi 10.1038/s41597-026-07334-9).
-
-Layout per the paper's "Data Records" section (+ the user's directory listing):
-
-    DFoodTJ/
-        DFoodTJ-F-Nutr/DFoodTJ-F-Nutr/
-            img/                 3,280 meal photos of 91 hospitalized diabetic patients
-            truth/truth.xls      per image: image id, food id, carb, fat, protein,
-                                 fiber, calorie  ("actual mass values of each
-                                 nutrient per image")
-            truth/truth_raw.xlsx + patient id, date, Chinese food names, food ids,
-                                 measured food weights (nutrients derive from these)
-        DFoodTJ-Rec/{train,val,test}/<class>/   284,933 images, 351 classes
-        DFoodTJ-Rec/truth_list/{train,val,test}_list.txt
-                                 paper: "subfolder number, picture number, category
-                                 number"; the released files have 2 fields per line
-        DFoodTJ-Nutr/density.xlsx  351 food types: density (g/ml), mass densities
-                                 (g/g; kcal/g), volume densities (g/ml; kcal/ml), EN names
-        DFoodTJ-Seg.zip          3,932 images + Labelme-derived masks (not loaded here)
-
-The paper does not publish the exact column names or the image file naming,
-so columns are matched by keyword (English and Chinese). If a required column
-cannot be matched unambiguously, the loader raises and lists the real columns:
-then pass `colmap=` explicitly. Units are not stated in Data Records; Table 5
-of the paper uses g and kcal. `atwater_ratio` is reported so you can check
-kcal vs kJ on the real file.
-
-Requires: pandas, openpyxl (xlsx), xlrd (legacy .xls).
-
-Returns
-    load_fnutr -> (images, raw)
-        images: one row per image, columns image_id, food_id, carb_g, fat_g,
-                protein_g, fiber_g, kcal, path, has_file, atwater_ratio
-                (+ any other columns of truth.xls, untouched)
-                + from truth_raw: mass_g, n_items_gt, food_names, mass_ok
-                  (see _add_mass: mass_g is NaN where the item rows don't
-                  reproduce the image's kcal and food ids)
-        raw:    truth_raw.xlsx as read (or None), with matched columns renamed
-    load_rec    -> one row per image: path, split, class_dir (+ list-file label)
-    load_density-> density.xlsx as read, or None if not present
-"""
 from __future__ import annotations
 
 import os
@@ -50,7 +9,6 @@ import pandas as pd
 IMG_EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 NUTR = ["carb_g", "fat_g", "protein_g", "fiber_g", "kcal"]
 
-# keyword lists, checked against a normalised column name (lowercase, no spaces)
 KEYS = {
     "image_id":  ("image", "img", "picture", "pic", "photo", "图片", "图像", "照片"),
     "food_id":   ("food_id", "foodid", "food", "食物编号", "食物id", "食物"),
@@ -59,13 +17,11 @@ KEYS = {
     "protein_g": ("protein", "蛋白"),
     "fiber_g":   ("fiber", "fibre", "纤维"),
     "kcal":      ("calor", "energy", "kcal", "热量", "能量", "卡路里"),
-    # truth_raw only
     "patient_id": ("patient", "患者", "病人"),
     "date":       ("date", "time", "日期", "时间"),
     "weight_g":   ("weight", "mass", "gram", "重量", "克"),
     "food_name":  ("name", "名称", "菜名", "食物名"),
 }
-# specific targets first so that e.g. "food" does not swallow "food weight"
 ORDER = ["carb_g", "fat_g", "protein_g", "fiber_g", "kcal", "patient_id",
          "date", "weight_g", "food_name", "image_id", "food_id"]
 
@@ -75,7 +31,6 @@ def _norm(s) -> str:
 
 
 def _match(df: pd.DataFrame, targets: list[str]) -> dict[str, str]:
-    """target -> column, only where exactly one unused column matches."""
     cm, used = {}, set()
     for tgt in [t for t in ORDER if t in targets]:
         cands = [c for c in df.columns if c not in used
@@ -92,7 +47,7 @@ def _match(df: pd.DataFrame, targets: list[str]) -> dict[str, str]:
 def _read_table(path: Path) -> pd.DataFrame:
     try:
         return pd.read_excel(path)
-    except ImportError as e:  # .xls needs xlrd, .xlsx needs openpyxl
+    except ImportError as e:
         raise ImportError(f"{path.name}: {e}. pip install xlrd openpyxl") from e
 
 
@@ -104,7 +59,6 @@ def _find(root: Path, pattern: str) -> Path | None:
 
 
 def _id_key(v) -> str | None:
-    """'0042', 42, 42.0, '42.jpg' -> '42' (numeric ids lose leading zeros)."""
     if pd.isna(v):
         return None
     s = Path(str(v).strip()).stem
@@ -123,19 +77,10 @@ def _index_images(d: Path) -> dict[str, Path]:
 
 
 def _food_ids(v) -> list[int]:
-    """'[0,159,8]' / 3 / '3' -> sorted list of ints."""
     return sorted(int(x) for x in re.findall(r"\d+", str(v)))
 
 
 def _add_mass(images: pd.DataFrame, raw: pd.DataFrame) -> pd.DataFrame:
-    """Per-image total food weight from truth_raw.
-
-    truth_raw has one block of rows per image: the first row of a block carries
-    the Image ID (and Date), the following item rows of the same image leave
-    them empty (merged cells). So: forward-fill the Image ID, group, sum.
-    Check per image: the items' kcal must add up to truth.xls kcal and the item
-    food ids must equal truth.xls Food ID. Failing images get mass_g = NaN.
-    """
     r = raw.copy()
     r["_key"] = r["image_id"].ffill().map(_id_key)
     for c in ("weight_g", "kcal"):
@@ -168,12 +113,11 @@ def _add_mass(images: pd.DataFrame, raw: pd.DataFrame) -> pd.DataFrame:
 
 
 def load_fnutr(root: str | Path, colmap: dict[str, str] | None = None):
-    """root = the DFoodTJ dir, or anything containing truth/ and img/."""
     root = Path(root)
     truth = _find(root, "truth.xls") or _find(root, "truth.xlsx")
     if truth is None:
         raise FileNotFoundError(f"no truth.xls under {root}")
-    base = truth.parent.parent                       # .../DFoodTJ-F-Nutr
+    base = truth.parent.parent
     images = _read_table(truth)
 
     need = ["image_id", "food_id", *NUTR]
@@ -212,7 +156,6 @@ def load_fnutr(root: str | Path, colmap: dict[str, str] | None = None):
 
 
 def load_rec(root: str | Path) -> pd.DataFrame:
-    """One row per image in DFoodTJ-Rec/{train,val,test}/<class>/."""
     rec = Path(root)
     rec = rec if rec.name == "DFoodTJ-Rec" else rec / "DFoodTJ-Rec"
     rows = []
@@ -229,10 +172,6 @@ def load_rec(root: str | Path) -> pd.DataFrame:
     df = pd.DataFrame(rows, columns=["path", "split", "class_dir"])
     df["class_id"] = pd.to_numeric(df["class_dir"], errors="coerce").astype("Int64")
 
-    # truth_list/<split>_list.txt. The paper says "subfolder number, picture
-    # number, category number" per line, but the released files have 2 fields,
-    # so the columns are kept generic (list_0, list_1, ...) and NOT interpreted.
-    # Inspect them (see __main__) before using them as labels.
     lists = rec / "truth_list"
     if not lists.is_dir():
         lists = next((p for p in rec.rglob("truth_list") if p.is_dir()), lists)

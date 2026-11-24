@@ -1,22 +1,3 @@
-#!/usr/bin/env python3
-"""
-calibration_check.py - reproduces the numbers cited in the thesis section
-"Az utólagos kalibráció elvetése" (post-hoc calibration and per-target bias).
-No API calls. Put it next to analyze.py; it reuses analyze.py's loader, so the
-meals, the repeat averaging and the parse filter are exactly the same.
-
-    venv/bin/python calibration_check.py RUN [RUN ...] [--dataset NAME]
-
-RUN = run name under results/ (same spec syntax as analyze.py: NAME[@VARIANT]).
-For every run, on the meals with a parsed answer, it prints:
-  bias%   100 * sum(pred - true) / sum(true), per target
-  kcal pMAE
-    raw     no correction
-    scale   leave-one-out level correction: pred_i * sum(true_-i) / sum(pred_-i)
-            (the same as analyze.py compare --calibrate)
-    linear  leave-one-out linear correction: true = a * pred + b, fitted on the
-            other meals, applied to meal i
-"""
 from __future__ import annotations
 
 import argparse
@@ -29,7 +10,6 @@ TARGETS = ["kcal", "mass_g", "carb_g", "protein_g", "fat_g"]
 
 
 def load(spec: str, target: str, dataset: str | None):
-    """(pred, true) arrays for one target, or None if the run has no such field."""
     try:
         _, vals = A._compare_load(spec, target, dataset)
     except SystemExit:
@@ -51,8 +31,7 @@ def loo_linear(p, t):
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser()
     ap.add_argument("runs", nargs="+")
     ap.add_argument("--dataset", default=None)
     a = ap.parse_args()

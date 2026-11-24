@@ -1,28 +1,3 @@
-"""OmniFood8K loader (Yu et al., CVPR 2026).
-
-Layout follows the authors' own dataloader (yudongjian/OmniFood8K-food,
-utils/utils_data222.py, class Nutrition8k):
-
-    <root>/
-        train_new333.txt           split files (any *train*.txt / *test*.txt
-        test_new333.txt            is accepted; or pass them explicitly)
-        <data_dir>/<sample>/camera_4.jpg   view the authors train/test on
-                           *.jpg / *.png   other views (6 per dish per paper)
-    data_dir is "1-data" in the authors' code, "8036" in the public release;
-    it is auto-detected (the dir in which the sample paths exist).
-
-Split-file line, whitespace separated (NOTE: order differs from Nutrition5k):
-    <sample_relpath> <mass_g> <energy> <protein_g> <fat_g> <carb_g>
-
-ENERGY UNIT: in the public release the energy column is kJ, not kcal
-(Atwater 4P+4C+9F over it gives ~0.239 = 1/4.184). energy_unit="auto"
-decides from that ratio and refuses to guess if it is neither ~1 nor ~0.239.
-
-No fiber, no text description in the split files.
-
-Returns one DataFrame indexed by sample, with split, the 5 targets,
-`image_path` (camera_4.jpg), `views` (all camera_*.jpg found), `n_views`.
-"""
 from __future__ import annotations
 
 import re

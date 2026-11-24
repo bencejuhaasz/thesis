@@ -1,26 +1,3 @@
-#!/usr/bin/env python3
-"""
-benchmark.py - benchmark VLM APIs on the thesis datasets via their loader.py files.
-
-Put this file in the folder that CONTAINS the dataset folders
-(e.g. ~/cactus_remote or /home2/juhbe8). Then:
-
-    python benchmark.py --inspect snapme      # what does that loader return? (no API calls)
-    python benchmark.py --dry-run             # full pipeline with a fake model, no API calls
-    python benchmark.py                       # real run, config below
-    python benchmark.py --datasets snapme --models gemini-flash-lite --run-name pilot1
-    python benchmark.py --datasets dfood_tj --prompt P3_macros --n 50 --run-name macros50
-
-Everything you normally tweak is in the CONFIG section. Results go to
-results/<run_name>/ : results.jsonl (one line per call, append-only, resumable),
-manifest.json (config + selected sample ids), summary.csv.
-
-API keys come from the environment:
-    GEMINI_API_KEY (or GOOGLE_API_KEY), OPENAI_API_KEY, ANTHROPIC_API_KEY
-Install only the SDKs you use:
-    pip install google-genai openai anthropic pillow pandas numpy
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -44,99 +21,44 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 
 
-# ----------------CONFIG-------------------
-
-
 RUN_NAME = "pilot"
-REPEATS = 1  
-MAX_IMAGE_SIDE = 1024 # longer side
+REPEATS = 1
+MAX_IMAGE_SIDE = 1024
 JPEG_QUALITY = 90
-MAX_RETRIES = 3 # per call
+MAX_RETRIES = 3
 
 TARGETS = ["kcal", "mass_g", "carb_g", "protein_g", "fat_g"]
 
-# root: folder
-# fn: function for load
-# colmap   : {standard_name: loader_column}. Standard names: sample_id,
-#            image_path, text, + TARGETS. Unmapped standard names are taken
-#            if the loader already uses that name; missing ones stay NaN.
-#            sample_id may be "__index__" to use the DataFrame index.
-# query    : pandas .query() string applied after mapping (e.g. "split == 'test'")
-# use_text : send the `text` column too (image+text); text-only if no image column
-# select   : {"mode": "all"} |
-#            {"mode": "range", "start": 0, "stop": 50} |
-#            {"mode": "random", "n": 50, "seed": 42}
-#            Rows are sorted by sample_id first, so the selection does not depend
-#            on the loader's row order. For "random", a larger n with the same
-#            seed is a superset of a smaller n (n=50 is a prefix of n=100).
-#            Optional "by": <column> samples whole units instead of rows (n = number
-#            of units, every row of a chosen unit is kept). With "by" + "random",
-#            units are ranked by a seeded hash of their value, so the same unit gets
-#            the same rank in every run: runs whose tables share units pick the same
-#            ones (DFood-TJ: same meals under overhead / oblique / both).
-# prompt   : prompt variant for this dataset (see Prompt section); None = PROMPT_VARIANT
-# prepare  : name of a function in PREPARE run on the mapped table before `query`
-# --inspect: check dataset
-# --sheet  : contact sheet of a dataset's photos, grouped by meal (view check)
 
-# DFood-TJ photos. Most meals have 2 photos: overhead + 45 deg oblique.
-#   "both"     ONE request per 2-photo meal with BOTH photos in it (multi-view),
-#              in DFOOD_SEND_ORDER; the prompt says they show the same meal
-#   "overhead" / "oblique": one photo per 2-photo meal
-#   "each"     every photo is its own sample, 1-photo meals included (this is what
-#              "both" did before; not comparable with the other three)
-# "both" / "overhead" / "oblique" use only 2-photo meals and, with select "by":
-# "meal_key", the same meals -> the three runs are paired.
 DFOOD_VIEWS = "oblique"
-# Which view the LOWER image_id of a pair is. Assumed, not documented:
-# VERIFY with `python benchmark.py --sheet dfood_tj` before using "overhead"/"oblique".
 DFOOD_PAIR_ORDER = ("overhead", "oblique")
-# Order of the two photos inside a "both" request (photo 1, photo 2).
 DFOOD_SEND_ORDER = ("overhead", "oblique")
 
-# OmniFood8k: the loader lists every camera photo of a sample in `views`
-# (camera_*.jpg, sorted by camera number). Which ones to send:
-#   "default"  the loader's image_path only (what round 1 used)
-#   [0] / [1] / [0, 1] / ...  positions in the sorted camera list; several = ONE
-#              request with all of them + the multi-view note
-#   "all"      every camera photo of the sample
-# Only samples with >= OMNIFOOD_MIN_VIEWS photos are kept (not for "default"), so runs
-# with [0], [1] and [0, 1] draw the SAME samples (paired). Check the cameras first:
-#   python benchmark.py --sheet omnifood8k   and   --inspect omnifood8k (n_views counts)
 OMNIFOOD_VIEWS = [0]
 OMNIFOOD_MIN_VIEWS = 2
 
 DATASETS = {
     "nutrition5k": dict(
         enabled=True, root="Nutrition5K", loader="loader.py",
-        fn="load_nutrition5k", pick=0,   # returns (dishes, ingredients)
+        fn="load_nutrition5k", pick=0,
         colmap={"sample_id": "dish_id", "image_path": "rgb_path",
                 "kcal": "total_calories", "mass_g": "total_mass", "carb_g": "total_carb",
                 "protein_g": "total_protein", "fat_g": "total_fat"},
-        # only dishes with an overhead RGB photo and valid labels (as Sterling et al.)
-        # TODO: Sterling also dropped 31 dishes with deprecated ingredients (-> 3,229)
         query="has_overhead and total_mass > 0 and total_calories > 0", use_text=False,
         select={"mode": "random", "n": 50, "seed": 42},
     ),
     "snapme": dict(
-        # images only from the CS copy (snapme_nut_db holds a second copy of every
-        # photo); the loader still lives one level up, in snapme/
         enabled=True, root="snapme/snapme_cs_db", loader="../loader.py",
-        fn="load_snapme", pick=1, prepare="snapme_names",        # returns (items, images)
+        fn="load_snapme", pick=1, prepare="snapme_names",
         colmap={"sample_id": "__index__", "image_path": "path", "text": "description"},
-        # "has_file and not packaged" drops package-front photos (a different task)
-        query="has_file", use_text=False,  # NOTE: description contains grams ->
-        select={"mode": "random", "n": 50, "seed": 42},  # use_text=True leaks portion GT
+        query="has_file", use_text=False,
+        select={"mode": "random", "n": 50, "seed": 42},
     ),
     "acetada": dict(
         enabled=True, root="ACETADA/ACETADA-release", loader="loader.py",
-        fn="load_acetada", pick=0,       # returns (meals, items)
-        # photo = BEFORE eating. mass_g: "consumed_g" or "served_g" - use the one
-        # the nutrient labels refer to (check, see notes). descriptions contain grams.
+        fn="load_acetada", pick=0,
         colmap={"sample_id": "before_filepath", "image_path": "before_path",
                 "mass_g": "consumed_g"},
-        # 2 photos are linked to both a Breakfast and a Dinner row; the photos were
-        # taken at 07:38 / 07:52, so the Dinner rows carry the wrong photo -> dropped
         query="has_before and not suspect and not (meal_type == 'Dinner' and "
               "before_filepath in ['ACETADA/3088/2021-10-19_07-38-50.jpg', "
               "'ACETADA/3057/2021-08-03_07-52-35.jpg'])",
@@ -147,26 +69,20 @@ DATASETS = {
         enabled=False, root="OmniFood8k/0-OminiFood8k", loader="loader.py",
         fn="load_omnifood8k", pick=None,
         colmap={"sample_id": "sample"},
-        prepare="omnifood_views",        # OMNIFOOD_VIEWS above
+        prepare="omnifood_views",
         query="split == 'test' and has_image", use_text=False,
         select={"mode": "random", "n": 50, "seed": 42},
     ),
     "dfood_tj": dict(
         enabled=False, root="DFood-Tj", loader="loader.py",
-        fn="load_fnutr", pick=0,         # returns (images, items)
-        # mass_g comes from the updated loader (sum of truth_raw weights; NaN where
-        # the item rows don't reproduce the image's kcal -> 3 images)
+        fn="load_fnutr", pick=0,
         colmap={"sample_id": "image_id", "image_path": "path"},
-        prompt=None,                     # None = PROMPT_VARIANT
-        prepare="dfood_views",           # adds meal_key, n_views, view (+ pairs for "both")
+        prompt=None,
+        prepare="dfood_views",
         query="has_file" + ("" if DFOOD_VIEWS == "each" else f" and view == '{DFOOD_VIEWS}'"),
         use_text=False,
-        # by="meal_key": n = 50 meals, the same ones for overhead / oblique / both.
-        # Same seed: n=50 = the first 50 meals of n=350 (dev set for new methods)
         select={"mode": "random", "n": 350, "seed": 42, "by": "meal_key"},
     ),
-    # NutriBench (text-only): two description styles = two datasets, so the summary
-    # keeps them apart. natural: household measures; metric: grams are given.
     "nutribench_natural": dict(
         enabled=False, root="nutribench", loader="loader.py",
         fn="load_nutribench", pick=None,
@@ -183,47 +99,25 @@ DATASETS = {
     ),
 }
 
-# -------------------------------------Models---------------------------------------
-# provider: "gemini" | "openai" | "anthropic" | "deepseek" | "dummy"
-# temperature : None/value
-# extra: passed to call
-#   gemini    {"thinking_config": {"thinking_budget": 0}}  or {"thinking_level": "low"}
-#   openai    {"reasoning_effort": "low", "max_completion_tokens": 4000, "seed": 1}
-#   anthropic {"effort": "low", "max_tokens": 8000, "thinking": {"type": "between_tools"}}
-# price: $/M
-# min_interval_s: between calls
-# output_mode: optional per-model override of OUTPUT_MODE (DeepSeek: "json_mode",
-#              it has no json_schema mode); recorded per call as output_mode
 MODELS = [
-    # ---- Gemini, free tier (pricing page, Oct 2026) -----------------------------
-    # Quotas are per model AND per project: an exhausted model does not block the others.
-    # RPD resets at midnight Pacific. Per-model limits: aistudio.google.com/rate-limit
-    # Free tier: Google may use prompts/images to improve its products.
-    # price = published paid price, so cost_usd shows what the run WOULD cost.
-    # Gemini 3: Google recommends temperature 1.0 (None = default); below 1.0 can loop.
-    # Thinking default: Flash-Lite = minimal, Flash = high (slow: 291-410 s in round 1).
-    # extra={"thinking_config": {"thinking_level": "low"}}   # minimal|low|medium|high
     dict(label="gemini-flash-lite", provider="gemini", model="gemini-3.5-flash-lite",
          enabled=False, temperature=0.1, extra={}, price={"in": 0.30, "out": 2.50},
-         min_interval_s=6.0),        # round 1 model; label kept so old results still match
+         min_interval_s=6.0),
     dict(label="gemini-3.1-flash-lite", provider="gemini", model="gemini-3.1-flash-lite",
          enabled=True, temperature=0.1, extra={}, price={"in": 0.25, "out": 1.50},
-         min_interval_s=6.0),        # GA of the Flash-Lite Sterling tested; shutdown >= 2027-05-07
+         min_interval_s=6.0),
     dict(label="gemini-3-flash-preview", provider="gemini", model="gemini-3-flash-preview",
          enabled=False, temperature=None, extra={"thinking_config": {"thinking_level": "low"}},
          price={"in": 0.50, "out": 3.00}, min_interval_s=12.0),
-                                     # most likely Sterling's "Gemini 3.0 Flash" (MAE 80.7)
     dict(label="gemini-3.6-flash", provider="gemini", model="gemini-3.6-flash",
          enabled=False, temperature=None, extra={"thinking_config": {"thinking_level": "low"}},
-         price={"in": 0.75, "out": 3.75}, min_interval_s=12.0),   # price doubles 2027-01-01
+         price={"in": 0.75, "out": 3.75}, min_interval_s=12.0),
     dict(label="gemini-flash", provider="gemini", model="gemini-3.8-flash",
          enabled=False, temperature=0.1, extra={}, price={"in": 0.75, "out": 3.75},
-         min_interval_s=12.0),       # round 1 settings (default = high thinking); ~20 RPD free
+         min_interval_s=12.0),
     dict(label="gemini-3.8-flash-low", provider="gemini", model="gemini-3.8-flash",
          enabled=False, temperature=None, extra={"thinking_config": {"thinking_level": "low"}},
-         price={"in": 0.75, "out": 3.75}, min_interval_s=12.0),   # price doubles 2027-01-01
-    # 2.5 family: free on the pricing page, but Google limits 2.5 access to projects that
-    # used it before -> a new project probably gets errors. Sterling: 2.5 Flash MAE 111.1.
+         price={"in": 0.75, "out": 3.75}, min_interval_s=12.0),
     dict(label="gemini-2.5-flash", provider="gemini", model="gemini-2.5-flash",
          enabled=False, temperature=0.1, extra={}, price={"in": 0.30, "out": 2.50},
          min_interval_s=12.0),
@@ -233,17 +127,12 @@ MODELS = [
     dict(label="gemini-2.5-pro", provider="gemini", model="gemini-2.5-pro",
          enabled=False, temperature=0.1, extra={}, price={"in": 1.25, "out": 10.00},
          min_interval_s=12.0),
-    # NOT free: gemini-4-argon, gemini-3.1-pro-preview, gemini-omni-1.1-flash.
-    # ---- OpenAI / Anthropic: keep your existing entries below ----------------------    
     dict(label="gpt-mini", provider="openai", model="gpt-5.4-mini",
          enabled=False, temperature=None, extra={}, price={"in": 0.75, "out": 4.50},
          min_interval_s=0.0),
     dict(label="gpt", provider="openai", model="gpt-5.5",
          enabled=False, temperature=None, extra={}, price={"in": 5.00, "out": 30.00},
          min_interval_s=0.0),
-    # Claude 5.5: temperature is rejected (400), thinking is adaptive by default.
-    # Sonnet 5.5: extra={"thinking": {"type": "between_tools"}} turns off up-front thinking.
-    # Both: extra={"effort": "low"} lowers thinking effort.
     dict(label="claude-haiku", provider="anthropic", model="claude-haiku-5-5",
          enabled=False, temperature=None, extra={}, price={"in": 0.10, "out": 0.50},
          min_interval_s=0.0),
@@ -253,12 +142,6 @@ MODELS = [
     dict(label="claude-sonnet-low", provider="anthropic", model="claude-sonnet-5-5",
          enabled=False, temperature=None, extra={"effort": "low", "max_tokens": 4000},
          price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
-    # ---- DeepSeek (key: DEEPSEEK_API_KEY) -------------------------------------
-    # Only deepseek-flash (V4.1-Flash) takes images; deepseek-v4-pro is text-only.
-    # OpenAI-compatible API, but JSON only as json_object (no schema) -> json_mode:
-    # the prompt's example structure is what keeps the format; parse_fail counts misses.
-    # price: peak rate; off-peak is half (0.15 / 0.60). Servers in China: think
-    # twice before sending DFood-TJ patient photos.
     dict(label="deepseek-flash", provider="deepseek", model="deepseek-flash",
          base_url="https://api.deepseek.com", output_mode="json_mode",
          enabled=False, temperature=None, extra={"max_tokens": 4000},
@@ -274,28 +157,9 @@ MODELS = [
      price={"in": 2.00, "out": 10.00}, min_interval_s=0.0),
 ]
 
-# --- Prompt ------------------------------------------------------------
-# PROMPT_VARIANT (default for every dataset without its own prompt=):
-#   "P3"        exact P3 from Sterling et al. 2026 (their code, below). It asks
-#               only for per-item calories + grams, so you get kcal and mass_g.
-#   "P3_macros" same instructions, extended to carb/protein/fat per item.
-#               This is a MODIFIED prompt, not the paper's; label it as such.
-#   "P3_density" P3 portion rules + explicit per-item energy-density reasoning;
-#               kcal = grams x kcal_per_100g computed here (own method, see below).
 PROMPT_VARIANT = "P3"
-# OUTPUT_MODE:
-#   "schema"    provider-native strict JSON schema (most reliable)
-#   "json_mode" Gemini mime=json / OpenAI json_object, no schema (Anthropic: none);
-#               closest to what Sterling's code did for OpenAI
-#   "none"      plain text; JSON extracted from the reply (like their Claude path)
 OUTPUT_MODE = "schema"
 
-# ---- Verbatim from Sterling et al.'s public code -------------------------
-# https://github.com/charterer/vlm-food-benchmark  pipeline/code/analyzers/prompting.py
-# MIT License, Copyright (c) 2026 Sam Sterling and contributors.
-# NOTE: the code's P3 is longer than the excerpt printed in the paper: it adds the
-# "For each visible food item" block, the JSON instruction + example structure,
-# and build_canonical_prompt() appends "\n\nAnalyze the image:".
 CANONICAL_JSON_SCHEMA_EXAMPLE = """{
   "general_description": "Brief description of the meal",
   "items": [
@@ -324,21 +188,15 @@ Return ONLY valid JSON (no markdown, no extra text) matching this structure:
 
 
 def build_canonical_prompt(base: str, user_hint: str | None = None) -> str:
-    """Same as their build_canonical_prompt()."""
     if user_hint:
         return f"User hint: {user_hint}\n\n{base}\n\nAnalyze the image:"
     return base + "\n\nAnalyze the image:"
-# ---- end of verbatim part --------------------------------------------------
 
-# Multi-view note (not from the paper): put in front of the image prompt when a
-# request carries more than one photo (DFOOD_VIEWS = "both"). The P3 text itself
-# stays verbatim.
 MULTIVIEW_NOTE = (
     "You are given {n} photos of the SAME meal, taken from different angles: {views}. "
     "They show one plate, not {n} meals. Use all photos together to identify the "
     "foods and judge their amounts, and list each food item only once.")
 VIEW_TEXT = {"overhead": "overhead (top-down)", "oblique": "from a 45-degree angle"}
-# other view names (e.g. OmniFood "camera_2") are shown as "camera 2"
 
 
 def multiview_note(views: list[str]) -> str:
@@ -346,7 +204,6 @@ def multiview_note(views: list[str]) -> str:
                      for i, v in enumerate(views, 1))
     return MULTIVIEW_NOTE.format(n=len(views), views=desc)
 
-# Modified P3 (not from the paper): same instructions, macros added.
 MACROS_JSON_SCHEMA_EXAMPLE = """{
   "general_description": "Brief description of the meal",
   "items": [
@@ -377,12 +234,6 @@ def _replace_once(text: str, old: str, new: str) -> str:
     return text.replace(old, new)
 
 
-# --- NutriBench prompt (text-only): TODO write it ------------------------
-# Your own prompt, not from any paper. The meal description replaces
-# {description}; without the placeholder it is appended at the end.
-# A run with an empty prompt stops before any API call.
-# With OUTPUT_MODE "json_mode"/"none" the prompt itself must ask for this JSON
-# structure (MACROS_JSON_SCHEMA_EXAMPLE); with "schema" it is enforced anyway.
 PROMPT_NUTRIBENCH = """You are a clinical nutrition assistant. A person has described a meal they ate. Estimate the nutrient content of exactly that meal.
 
 CRITICAL INSTRUCTIONS:
@@ -403,13 +254,6 @@ Return ONLY valid JSON (no markdown, no extra text) matching this structure:
 Meal description:
 \"\"\"{description}\"\"\""""
 
-# --- Energy-density prompt (own method, not from a paper) --------------------
-# P3's portion instructions verbatim; the per-item block is replaced by explicit
-# density reasoning. The model never states kcal: per item it gives kcal_per_100g
-# and grams, and kcal = grams x kcal_per_100g / 100 is computed here. Only general
-# nutrition knowledge (food-group ranges as in standard composition tables), no
-# dataset-specific values. DENSITY_ANCHORS = False removes the range table
-# (ablation: does the reasoning structure alone help, or the anchors?).
 DENSITY_ANCHORS = True
 
 DENSITY_ITEM_BLOCK = """For each visible food item, work in this order:
@@ -452,31 +296,13 @@ PROMPT_P3_DENSITY = _replace_once(_replace_once(
     PROMPT_P3_ANTI_SNAP, _P3_ITEM_BLOCK,
     DENSITY_ITEM_BLOCK + (DENSITY_ANCHOR_TABLE if DENSITY_ANCHORS else "")),
     CANONICAL_JSON_SCHEMA_EXAMPLE, DENSITY_JSON_SCHEMA_EXAMPLE)
-DENSITY_PROPS = {   # per-item fields BEFORE the numbers: the reasoning comes first
+DENSITY_PROPS = {
     "cooking_method": {"type": "string"},
     "visible_added_fat": {"type": "string", "enum": ["none", "light", "moderate", "heavy"]},
     "reference_food": {"type": "string"},
     "kcal_per_100g": {"type": "number"},
 }
 
-# variant -> prompt text, {target: per-item JSON field}, kind
-#   kind "image": text column goes in as "User hint:", + "Analyze the image:" (P3 style)
-#   kind "text" : description inserted at {description}
-#   props: extra per-item fields (placed before the summed fields)
-#   density_field: per-item kcal/100 g; meal kcal = sum(grams x density / 100)
-# meal-level prediction = sum over items
-# --- P3_prep / P3_prep_textcalc (own method) ------------------------------------
-# P3_prep          : 1 call  = P3_macros + name items with preparation, list sauces/oils.
-# P3_prep_textcalc : 2 calls = P3_prep on the photo, then a text-only NUTRIBENCH call
-#                    that re-estimates the nutrients from the item names + grams.
-# Both stages return exactly the P3_macros output (same JSON structure and fields).
-# Stage 1 (image): PROMPT_P3_MACROS + an instruction to name each item with its
-#   preparation and to list visible sauces/oils/drinks as separate items.
-# Stage 2 (text only): the stage-1 list "name (N g); ..." goes to the NUTRIBENCH
-#   prompt, which uses the stated grams and re-estimates the nutrients.
-# Final prediction: kcal/carb/protein/fat from stage 2, mass_g from stage 1 (the
-# portion comes from the photo only). Each record also keeps stage1_text,
-# stage2_input and pred_stage1 (stage 1's own macros) for analysis.
 P3_PREP_NAMING = (
     "Name each item specifically, including how it was prepared and anything added that you "
     "can see (e.g. \"white rice, steamed\", \"chicken thigh, stir-fried in oil\", "
@@ -503,14 +329,10 @@ VARIANTS = {
 
 
 def prompt_base(variant: str) -> str:
-    """Prompt text of a variant."""
     return VARIANTS[variant]["base"]
 
 
 def schema_for(fields: dict, extra: dict | None = None) -> dict:
-    """Strict JSON schema matching the example structure (all fields required,
-    additionalProperties false: required by OpenAI strict mode and Anthropic).
-    Property order = generation order: name, extra (reasoning), numbers."""
     props = {"name": {"type": "string"}}
     props.update({k: dict(v) for k, v in (extra or {}).items()})
     props.update({f: {"type": "number"} for f in fields.values()})
@@ -537,9 +359,6 @@ def schema_of(variant: str) -> dict:
 def variant_of(cfg: dict) -> str:
     return cfg.get("prompt") or PROMPT_VARIANT
 
-# ======================================================================
-# Dataset loading
-# ======================================================================
 
 STANDARD = ["sample_id", "image_path", "text", *TARGETS]
 _SKIP_FN = {"load_image", "load_rgb"}
@@ -552,7 +371,7 @@ def import_loader(name: str, cfg: dict):
         raise FileNotFoundError(f"[{name}] loader not found: {path}")
     spec = importlib.util.spec_from_file_location(f"loader_{name}", path)
     mod = importlib.util.module_from_spec(spec)
-    sys.path.insert(0, str(root))          # loader may import siblings
+    sys.path.insert(0, str(root))
     try:
         spec.loader.exec_module(mod)
     finally:
@@ -607,7 +426,6 @@ def standardize(name: str, cfg: dict, df: pd.DataFrame, root: Path) -> pd.DataFr
                            f"Columns: {list(df.columns)}")
         else:
             out[std] = np.nan
-    # keep other loader columns for query= filters (prefixed only if they clash)
     for c in df.columns:
         cc = c if c not in out.columns else f"src_{c}"
         out[cc] = df[c].to_numpy()
@@ -616,7 +434,7 @@ def standardize(name: str, cfg: dict, df: pd.DataFrame, root: Path) -> pd.DataFr
         out["sample_id"] = df.index.astype(str).to_numpy()
     out["sample_id"] = out["sample_id"].astype(str)
     dup = out.groupby("sample_id").cumcount()
-    if (dup > 0).any():   # several rows per id (views, ...) -> make keys unique
+    if (dup > 0).any():
         out.loc[dup > 0, "sample_id"] += "#" + dup[dup > 0].astype(str)
 
     def _resolve(p):
@@ -634,12 +452,6 @@ def standardize(name: str, cfg: dict, df: pd.DataFrame, root: Path) -> pd.DataFr
 
 
 def dfood_views(df: pd.DataFrame) -> pd.DataFrame:
-    """DFood-TJ: group photos into meals and label the view of each photo.
-    Same meal = consecutive image_ids with identical labels (food types + all
-    nutrient values). Heuristic: check groups with `--sheet dfood_tj`.
-    With DFOOD_VIEWS == "both", each 2-photo meal becomes ONE row (view "both")
-    whose image_paths holds both photos in DFOOD_SEND_ORDER; its sample_id is
-    "<id1>+<id2>". The per-photo rows of other meals are kept (for --inspect)."""
     if DFOOD_VIEWS not in ("both", "overhead", "oblique", "each"):
         raise ValueError(f"DFOOD_VIEWS={DFOOD_VIEWS!r}: use both | overhead | oblique | each")
     if sorted(DFOOD_SEND_ORDER) != sorted(DFOOD_PAIR_ORDER):
@@ -663,7 +475,7 @@ def dfood_views(df: pd.DataFrame) -> pd.DataFrame:
     merged = []
     for _, g in df[is_pair].groupby("meal_key", sort=True):
         by_view = {r["view"]: r.to_dict() for _, r in g.iterrows()}
-        first = dict(by_view[DFOOD_SEND_ORDER[0]])     # labels are identical in a pair
+        first = dict(by_view[DFOOD_SEND_ORDER[0]])
         first["sample_id"] = "+".join(str(by_view[v]["sample_id"]) for v in DFOOD_SEND_ORDER)
         first["image_paths"] = [by_view[v]["image_path"] for v in DFOOD_SEND_ORDER]
         first["image_views"] = list(DFOOD_SEND_ORDER)
@@ -677,7 +489,6 @@ def dfood_views(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def paths_of(row) -> list[str]:
-    """All image paths of a row: image_paths (multi-view) or the single image_path."""
     ps = row.get("image_paths") if hasattr(row, "get") else None
     if isinstance(ps, (list, tuple)) and len(ps):
         return [str(p) for p in ps]
@@ -696,7 +507,6 @@ def _camera_no(p) -> tuple:
 
 
 def omnifood_views(df: pd.DataFrame) -> pd.DataFrame:
-    """OmniFood8k: choose which camera photos go into each request (OMNIFOOD_VIEWS)."""
     if OMNIFOOD_VIEWS == "default":
         return df
     if "views" not in df:
@@ -720,8 +530,6 @@ def omnifood_views(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def snapme_names(df):
-    """SNAPMe text = the food names the participant chose in ASA24, WITHOUT the
-    '(N g)' amounts (they are the portion ground truth). Only used with use_text."""
     import re
     def names(s):
         if not isinstance(s, str):
@@ -738,7 +546,6 @@ PREPARE = {"snapme_names": snapme_names, "dfood_views": dfood_views, "omnifood_v
 
 
 def _unit_rank(value, seed) -> int:
-    """Seeded hash rank of a unit: the same value gets the same rank in every run."""
     h = hashlib.sha256(f"{seed}:{value}".encode()).digest()
     return int.from_bytes(h[:8], "big")
 
@@ -748,7 +555,7 @@ def select_rows(df: pd.DataFrame, sel: dict) -> pd.DataFrame:
     mode = sel.get("mode", "all")
     if mode not in ("all", "range", "random"):
         raise ValueError(f"unknown select mode {mode!r}")
-    if by is None:                                  # row sampling (unchanged)
+    if by is None:
         df = df.sort_values("sample_id", kind="stable").reset_index(drop=True)
         if mode == "all":
             return df
@@ -756,7 +563,6 @@ def select_rows(df: pd.DataFrame, sel: dict) -> pd.DataFrame:
             return df.iloc[sel.get("start", 0): sel.get("stop", len(df))]
         order = np.random.default_rng(sel.get("seed", 0)).permutation(len(df))
         return df.iloc[order[: sel["n"]]]
-    # unit sampling: pick units (e.g. meals), keep all their rows
     if by not in df.columns:
         raise KeyError(f"select by={by!r}: no such column")
     df = df.sort_values([by, "sample_id"], kind="stable").reset_index(drop=True)
@@ -774,7 +580,6 @@ def select_rows(df: pd.DataFrame, sel: dict) -> pd.DataFrame:
 
 
 def input_problems(name: str, cfg: dict, df: pd.DataFrame) -> list[str]:
-    """Things that would make API calls pointless (cost money for nothing)."""
     probs = []
     if not VARIANTS[variant_of(cfg)]["base"].strip():
         probs.append(f"[{name}] prompt variant {variant_of(cfg)!r} is empty - write it first")
@@ -835,7 +640,7 @@ def inspect_dataset(name: str, cfg: dict) -> None:
             vc = df[c].value_counts(dropna=False)
             if 1 < len(vc) <= 12 and len(vc) <= len(df) / 2:
                 print(f"  {c}: {vc.to_dict()}")
-        except TypeError:          # unhashable (lists, paths in lists, ...)
+        except TypeError:
             continue
     print("\nground-truth stats (all rows after query):")
     print(df[TARGETS].describe().round(1).to_string())
@@ -855,8 +660,6 @@ def inspect_dataset(name: str, cfg: dict) -> None:
 
 
 def contact_sheet(name: str, cfg: dict, n_groups: int = 12, seed: int = 0) -> Path:
-    """One row per meal (meal_key) or per photo, captions = sample_id + view.
-    Written to results/sheet_<name>.jpg - open it and check the views."""
     from PIL import Image, ImageDraw, ImageOps
     root, _, out = call_loader(name, cfg)
     df = standardize(name, cfg, pick_frame(name, cfg, out), root)
@@ -903,8 +706,6 @@ def contact_sheet(name: str, cfg: dict, n_groups: int = 12, seed: int = 0) -> Pa
     return path
 
 
-#---------------Model calls------------------------------
-
 def prepare_image(path: str | None) -> tuple[bytes, str, list[int]] | None:
     if not path:
         return None
@@ -916,7 +717,7 @@ def prepare_image(path: str | None) -> tuple[bytes, str, list[int]] | None:
         with Image.open(io.BytesIO(data)) as im:
             return data, mime, list(im.size)
     with Image.open(path) as im:
-        im = ImageOps.exif_transpose(im).convert("RGB")   # phone photos: fix rotation
+        im = ImageOps.exif_transpose(im).convert("RGB")
         im.thumbnail((MAX_IMAGE_SIDE, MAX_IMAGE_SIDE))
         buf = io.BytesIO()
         im.save(buf, "JPEG", quality=JPEG_QUALITY)
@@ -927,15 +728,10 @@ _CLIENTS: dict = {}
 
 
 def _client(name, factory):
-    """Create each SDK client once. (dict.setdefault(k, factory()) would build a new
-    client on every call, ~45 ms, inside the timed latency window.)"""
     if name not in _CLIENTS:
         _CLIENTS[name] = factory()
     return _CLIENTS[name]
 
-
-# Provider calls take `imgs`: a list of prepare_image() tuples (empty = text-only).
-# Images go in DFOOD_SEND_ORDER / image_paths order, numbered by position.
 
 def call_gemini(m, prompt, imgs, schema):
     from google import genai
@@ -985,8 +781,6 @@ def call_openai(m, prompt, imgs, schema):
 
 
 def call_deepseek(m, prompt, imgs, schema):
-    """DeepSeek: OpenAI-compatible chat completions with its own base_url and key.
-    No json_schema support: json_mode -> json_object, schema mode is not offered."""
     from openai import OpenAI
     client = _client("deepseek", lambda: OpenAI(
         base_url=m.get("base_url", "https://api.deepseek.com"),
@@ -1013,13 +807,10 @@ def call_deepseek(m, prompt, imgs, schema):
 
 
 def output_mode_of(m) -> str:
-    """The model's own output_mode if it has one, else OUTPUT_MODE."""
     return m.get("output_mode") or OUTPUT_MODE
 
 
 def call_anthropic(m, prompt, imgs, schema):
-    """Claude 5.5 models: no temperature/top_p (400 error), no forced tool_choice on
-    Sonnet 5.5, adaptive thinking on by default -> native JSON schema via output_config."""
     import anthropic
     client = _client("anthropic", anthropic.Anthropic)
     content = []
@@ -1030,28 +821,25 @@ def call_anthropic(m, prompt, imgs, schema):
     content.append({"type": "text", "text": prompt})
     extra = dict(m.get("extra", {}))
     output_config = {}
-    if output_mode_of(m) == "schema":               # Anthropic has no schema-less JSON mode
+    if output_mode_of(m) == "schema":
         output_config["format"] = {"type": "json_schema", "schema": schema}
-    if "effort" in extra:                      # "low" | "medium" | "high" | ...
+    if "effort" in extra:
         output_config["effort"] = extra.pop("effort")
     kw = dict(model=m["model"], max_tokens=extra.pop("max_tokens", 8000),
               messages=[{"role": "user", "content": content}])
     if output_config:
         kw["output_config"] = output_config
-    if m.get("temperature") is not None:       # only for older models that accept it
+    if m.get("temperature") is not None:
         kw["extra_body"] = {"temperature": m["temperature"]}
-    kw.update(extra)                           # e.g. thinking={"type": "between_tools"}
+    kw.update(extra)
     r = client.messages.create(**kw)
-    # select blocks by type: thinking blocks may come first
     text = "".join(b.text for b in r.content if b.type == "text") or None
     usage = {"in": r.usage.input_tokens, "out": r.usage.output_tokens, "reasoning": None,
-             "stop_reason": r.stop_reason}   # thinking tokens are inside output_tokens
+             "stop_reason": r.stop_reason}
     return text, usage
 
 
 def call_dummy(m, prompt, imgs, schema):
-    """Fake model for --dry-run: plausible random numbers, no network.
-    usage["in"] = number of images, so a dry run shows what would be sent."""
     rnd = random.Random(hash((prompt, imgs[0][2][0] if imgs else 0, len(imgs))) & 0xFFFF)
     big = {"estimated_calories", "estimated_weight_grams", "kcal_per_100g"}
     props = schema["properties"]["items"]["items"]["properties"]
@@ -1077,8 +865,6 @@ PROVIDERS = {"gemini": call_gemini, "openai": call_openai,
 
 
 def _extract_json(text: str):
-    """json.loads, falling back to the first {...} block (as Sterling's code does
-    for non-schema replies). Returns (obj, used_fallback)."""
     try:
         return json.loads(text), False
     except json.JSONDecodeError:
@@ -1094,14 +880,11 @@ def _extract_json(text: str):
         pass
     m = re.search(r"\{.*\}", text, re.DOTALL)
     if m:
-        return json.loads(m.group(0)), True      # may raise -> parse error
+        return json.loads(m.group(0)), True
     raise json.JSONDecodeError("no JSON object found", text, 0)
 
 
 def parse(text: str | None, variant: str):
-    """-> (prediction dict or None, error string or None).
-    Meal-level prediction = sum of the per-item fields (as in the paper).
-    Density variants: kcal = sum(grams x kcal_per_100g / 100) over the items."""
     var = VARIANTS[variant]
     fields = var["fields"]
     if text is None:
@@ -1140,13 +923,7 @@ def parse(text: str | None, variant: str):
     return pred, None
 
 
-# ======================================================================
-# Run
-# ======================================================================
-
 def build_prompt(row, use_text: bool, variant: str) -> tuple[str, bool]:
-    """-> (prompt, text_was_added). With several photos (image_views), the
-    multi-view note goes in front; the variant's text is unchanged."""
     v = VARIANTS[variant]
     text = row.get("text")
     text = text.strip() if use_text and isinstance(text, str) and text.strip() else None
@@ -1156,7 +933,6 @@ def build_prompt(row, use_text: bool, variant: str) -> tuple[str, bool]:
         if "{description}" in v["base"]:
             return v["base"].replace("{description}", text), True
         return f"{v['base']}\n\n{text}", True
-    # image prompts: text goes in as their 'User hint'
     prompt = build_canonical_prompt(prompt_base(variant), text)
     views = views_of(row)
     if views and len(views) > 1:
@@ -1180,7 +956,7 @@ def done_keys(path: Path) -> set:
                 r = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            if r.get("api_ok"):   # API failures are retried on the next run
+            if r.get("api_ok"):
                 keys.add((r["dataset"], r["sample_id"], r["model_label"], r["repeat"],
                           r.get("prompt_variant"), r.get("output_mode")))
     return keys
@@ -1197,11 +973,10 @@ def run(datasets: dict, models: list, run_name: str) -> Path:
         frames[name] = load_dataset(name, cfg)
         print(f"[{name}] {len(frames[name])} rows selected")
         probs = input_problems(name, cfg, frames[name])
-        if probs:   # fail before any API call
+        if probs:
             raise SystemExit("\n".join(["Input problems, nothing was sent:"] + probs))
 
     manifest = {"run_name": run_name, "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                # which code produced the run (compare with sha256sum benchmark.py)
                 "benchmark_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 "output_mode": OUTPUT_MODE, "max_image_side": MAX_IMAGE_SIDE,
                 "dfood_views": DFOOD_VIEWS, "dfood_pair_order": DFOOD_PAIR_ORDER,
@@ -1247,7 +1022,7 @@ def run(datasets: dict, models: list, run_name: str) -> Path:
                             prompt_variant=variant, output_mode=output_mode_of(m),
                             modality=("image+text" if imgs and has_text else
                                       "image" if imgs else "text"),
-                            image_size=imgs[0][2] if imgs else None,   # first image
+                            image_size=imgs[0][2] if imgs else None,
                             n_images=len(imgs),
                             image_sizes=[i[2] for i in imgs] if len(imgs) > 1 else None,
                             image_views=views_of(row),
@@ -1265,8 +1040,6 @@ def run(datasets: dict, models: list, run_name: str) -> Path:
 
 
 def two_stage_call(m, prompt, imgs, variant, last_call):
-    """Stage 1 on the photo, stage 2 on the stage-1 item list (text only).
-    -> (record, pred, parse_error). Usage, cost and latency are the sum of both calls."""
     s1, s2 = VARIANTS[variant]["two_stage"]
     r1 = call_with_retries(m, prompt, imgs, schema_of(s1), last_call)
     if not r1["api_ok"]:
@@ -1305,7 +1078,7 @@ def call_with_retries(m, prompt, imgs, schema, last_call) -> dict:
             return {"api_ok": True, "text": text, "usage": usage,
                     "latency_s": round(time.perf_counter() - t0, 3),
                     "retries": attempt, "error": None}
-        except Exception as e:                 # noqa: BLE001 - log every API failure
+        except Exception as e:
             err, tb = f"{type(e).__name__}: {e}", traceback.format_exc(limit=2)
             if attempt < MAX_RETRIES:
                 time.sleep(min(60, 2 ** attempt * 5))
@@ -1318,7 +1091,6 @@ def cost_of(m, usage):
     if not p or not usage or usage.get("in") is None:
         return None
     out = (usage.get("out") or 0) + (usage.get("reasoning") or 0 if m["provider"] == "gemini" else 0)
-    # Gemini reports thoughts separately from candidates; OpenAI includes reasoning in completion.
     return round(usage["in"] / 1e6 * p["in"] + out / 1e6 * p["out"], 6)
 
 
@@ -1341,7 +1113,6 @@ def summarize(res_path: Path, csv_path: Path) -> pd.DataFrame:
                                       if isinstance(p, dict))),
              "latency_mean_s": round(g["latency_s"].dropna().mean(), 2),
              "latency_p50_s": round(g["latency_s"].dropna().median(), 2),
-             # check for multi-view runs: 2 images and roughly twice the input tokens
              "images_per_call": round(g["n_images"].dropna().mean(), 2)
                                 if "n_images" in g and g["n_images"].notna().any() else None,
              "tokens_in_p50": (pd.Series([u.get("in") for u in g["usage"] if isinstance(u, dict)],
@@ -1371,7 +1142,7 @@ def summarize(res_path: Path, csv_path: Path) -> pd.DataFrame:
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
+    ap = argparse.ArgumentParser()
     ap.add_argument("--inspect", metavar="DATASET", help="show loader output, no API calls")
     ap.add_argument("--datasets", nargs="+", help="override enabled datasets")
     ap.add_argument("--models", nargs="+", help="override enabled models (labels)")
@@ -1388,7 +1159,6 @@ def main():
     ap.add_argument("--sheet", metavar="DATASET", help="contact sheet of photos by meal")
     a = ap.parse_args()
 
-    # unknown names -> clear message instead of a bare KeyError
     for given in [a.inspect, a.sheet, *(a.datasets or [])]:
         if given is not None and given not in DATASETS:
             ap.error(f"unknown dataset {given!r}; choose from {list(DATASETS)}")
@@ -1413,7 +1183,7 @@ def main():
         {n: c for n, c in DATASETS.items() if c.get("enabled")}
     if a.prompt:
         ds = {n: {**c, "prompt": a.prompt} for n, c in ds.items()}
-    if a.n is not None:                 # same seed/pool: n=50 is a prefix of n=350
+    if a.n is not None:
         ds = {n: {**c, "select": {**c.get("select", {}), "mode": "random", "n": a.n}}
               for n, c in ds.items()}
     if a.use_text:

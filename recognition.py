@@ -1,75 +1,3 @@
-#!/usr/bin/env python3
-"""
-recognition.py - food / ingredient recognition of the decision measurement (no new
-estimation runs): the item names the models gave in the final P3_macros runs are compared
-with the reference names of the meals.
-
-    venv/bin/python recognition.py dict --n5k-root PATH --dfood-root PATH \
-                                        --snapme-root PATH --acetada-root PATH
-    venv/bin/python recognition.py map --mapper flash38      # API calls
-    venv/bin/python recognition.py score --mapper flash38    # no API calls
-    venv/bin/python recognition.py agree                     # the two mappings compared
-  (--mapper flash-lite, the default, is the first mapping: mapping.jsonl, scores.csv)
-
-Protocol (fixed before the mapping run, 2026-11-23; commit aec291a). Extended on
-2026-11-23, after the Nutrition5k / DFood-Tj scoring (commit b6452e6), with the same
-protocol to the two other image datasets that have item-level reference names (SNAPMe,
-ACETADA - the second level of the 2026-11-21 plan) and with the manual check of the
-mapping (commit fad60f3). OmniFood8k has no item names and is not evaluated.
-Changed on 2026-11-23 evening, after the mapping of all four datasets (commit 4839e0f):
-a spot check of the Flash-Lite mappings showed many errors, so the mapping is also done
-by a stronger model, Gemini 3.8 Flash (the measurement's setting: thinking level low), with
-the same prompt, dictionary, batches and threshold; its result is the main result, the
-Flash-Lite mapping is reported for comparison. The manual check is dropped (the
-2026-11-18 decision: no manual annotation; the two mappings are compared instead).
-  - Runs: final_{n5k,dfood,acetada}_{lite,sonnet,sol}_macros and final_snapme_lite_macros
-    (final_snapme_lite_hint is left out: its input contains the reference names), the
-    tested positions only (the same meals as the descriptive results of the decision
-    measurement: prereg_tests.load_run). Item names: the parsed answer's item_names
-    (pred.item_names) of the meal's record.
-  - Dictionary: every reference name of the dataset (Nutrition5k: ingr_name; DFood-Tj:
-    food_names split at '; '; SNAPMe: Food_Description of the items with a photo;
-    ACETADA: the food item names, as given - compound names are not split), cleaned:
-    Unicode NFKC, lowercase, whitespace collapsed, stripped, duplicates removed. The
-    meal's reference = its cleaned names (a set).
-  - Mapping: a language model with the measurement's settings and JSON schema, called
-    through benchmark.call_with_retries: Gemini 3.8 Flash (thinking level low; main) and
-    Gemini 3.5 Flash-Lite (temperature 0.1; comparison). The model sees only the item
-    names (25 per call, each distinct cleaned name once per dataset, sorted) and the
-    whole dictionary - not the image and not the meal's reference. PROMPT below.
-  - Matching: every entry the model returned is matched to the closest dictionary entry
-    with rapidfuzz fuzz.token_sort_ratio (word order ignored, a subset is not a full
-    match); kept if the score is >= the threshold. Main threshold: 85. Sensitivity:
-    80, 85, 90, 95. Reported: the share of entries that equal a dictionary entry after
-    cleaning.
-  - Metrics per run (ratios of sums over meals, 95% CI with the delta method and Student
-    t, as for pMAE: significance.ratio_stats):
-      recall    = reference names covered by the mapped entries of the meal's items
-                  / all reference names
-      precision = items with at least one mapped entry in the meal's reference
-                  / all items (an item with no mapped entry counts as wrong)
-    Descriptive only, no hypothesis test.
-  - Agreement of the two mappings (agree): per dataset, the share of the distinct item
-    names, and of the item occurrences in the scored runs, for which the two mappings
-    give the same set of dictionary entries (after the 85 threshold).
-
-Output (folder recognition/):
-  reference.csv     dataset, sample_id, name (cleaned) for the tested meals
-  dictionary_<dataset>.txt
-  items.csv         run, dataset, sample_id, item (raw), name (cleaned)
-  mapping[_flash38].jsonl   one record per API call (appended; finished batches skipped)
-  manifest[_flash38].json   the mapping settings (model entry, prompt template, batch
-                            size, dictionary sha256), one entry per invocation
-  scores[_flash38].csv      run x threshold: recall and precision with 95% CI, counts
-  datasets[_flash38].csv    per dataset: dictionary size, distinct item names, names with
-                            no entry, returned entries, entries equal to a dictionary entry
-  agreement.csv             per dataset: agreement of the two mappings
-  agreement_types.csv       per dataset: how the two mappings of the distinct names differ
-                            (same set, both empty, only one mapping has entries, one set
-                            contains the other, other), the share of the Flash-Lite-only
-                            names with >= 2 entries, and the mean number of entries per name
-  (no suffix: the Flash-Lite mapping; _flash38: the Gemini 3.8 Flash mapping)
-"""
 from __future__ import annotations
 
 import argparse
@@ -148,7 +76,6 @@ def read_csv(path: Path) -> list[dict]:
 
 
 def tested_items() -> list[dict]:
-    """run, dataset, sample_id, item for every parsed tested meal of the six runs."""
     sys.path.insert(0, str(HERE))
     import prereg_tests as P
     rows = []
@@ -161,7 +88,7 @@ def tested_items() -> list[dict]:
             for line in (RESULTS / run / "results.jsonl").open():
                 r = json.loads(line)
                 if r.get("pred") and str(r["sample_id"]) in tested:
-                    last[str(r["sample_id"])] = r     # the last parsed record counts
+                    last[str(r["sample_id"])] = r
             if set(last) != tested:
                 raise SystemExit(f"{run}: {len(tested - set(last))} tested meals without items")
             for sid in sorted(last):
@@ -172,9 +99,7 @@ def tested_items() -> list[dict]:
     return rows
 
 
-# ---------------------------------------------------------------- dict
 def loader(folder: str):
-    """The dataset_loaders/<folder>/loader.py module (each folder has its own loader.py)."""
     import importlib.util
     spec = importlib.util.spec_from_file_location(
         f"loader_{folder}", HERE / "dataset_loaders" / folder / "loader.py")
@@ -227,7 +152,6 @@ def cmd_dict(a) -> None:
     write_csv(OUT / "reference.csv", rows)
 
 
-# ---------------------------------------------------------------- map
 def batches(ds: str) -> list[list[str]]:
     names = sorted({r["name"] for r in read_csv(OUT / "items.csv") if r["dataset"] == ds})
     return [names[i:i + BATCH] for i in range(0, len(names), BATCH)]
@@ -275,9 +199,7 @@ def cmd_map(a) -> None:
                                 ensure_ascii=False))
 
 
-# ---------------------------------------------------------------- score
 def mapped_entries(mapper: str = "flash-lite") -> tuple[dict, dict]:
-    """(dataset, name) -> list of returned entries; plus counts of the parsing."""
     out, stats = {}, {"names": 0, "by_text": 0, "by_position": 0, "missing": 0}
     for line in (OUT / f"mapping{suffix(mapper)}.jsonl").open():
         r = json.loads(line)
@@ -322,7 +244,7 @@ def cmd_score(a) -> None:
     if missing:
         raise SystemExit(f"{len(missing)} item names are not mapped yet: run 'map'")
 
-    best = {}                       # (dataset, entry) -> (dictionary entry, score)
+    best = {}
     n_entries = n_exact = 0
     dstat = {ds: {"dataset": ds, "dictionary": len(words[ds]), "names": 0,
                   "names_no_entry": 0, "entries": 0, "entries_exact": 0} for ds in RUNS}
@@ -388,7 +310,6 @@ def cmd_score(a) -> None:
 
 
 def mapped_after_threshold(mapper: str) -> dict:
-    """(dataset, name) -> set of dictionary entries kept with the main threshold."""
     from rapidfuzz import fuzz, process
     words = {ds: (OUT / f"dictionary_{ds}.txt").read_text().split("\n")[:-1] for ds in RUNS}
     entries, _ = mapped_entries(mapper)

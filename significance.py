@@ -1,45 +1,3 @@
-#!/usr/bin/env python3
-"""
-significance.py - how significant is a difference between two summary.csv rows?
-
-Put it next to benchmark.py. No API calls; reads results/<run>/results.jsonl.
-    python significance.py results/*/summary.csv
-    python significance.py summary_all.csv                 # merged file with a 'run' column
-    python significance.py summary_all.csv --deltas 1 2 3 5 10 20 30 40 --out significance
-
-Metrics (all in percent, so a difference is in percentage points, pp):
-    <t>_pMAE%   = 100 * sum|p - t| / sum t           (same as summary.csv)
-    <t>_bias%   = 100 * sum(p - t) / sum t           (summary.csv 'bias' in % of the mean truth)
-    latency     : Delta = RELATIVE difference of latency_mean_s, in % of the mean
-  for t in kcal, mass_g, carb_g, protein_g, fat_g.
-
-Standard error of one run (delta method for a ratio of sums, n = meals):
-    R  = metric / 100                      x_i = |p_i - t_i|  (pMAE)  or  p_i - t_i  (bias)
-    u_i = x_i - R * t_i
-    SE = 100 * sqrt( sum u_i^2 / (n (n - 1)) ) / mean(t)                       [pp]
-Difference of two runs A, B:
-    SE_diff = sqrt( SE_A^2 + SE_B^2 - 2 rho SE_A SE_B )
-              rho = 0 : different meals (unpaired)
-              rho > 0 : the same meals (paired; rho = correlation of u_i between the runs)
-    z = Delta / SE_diff        p = two-sided p of z (Student t, df = n - 1; normal without scipy)
-  p < 0.05 needs |z| > ~2.0, p < 0.01 needs ~2.7, p < 0.001 needs ~3.5  (n = 50)
-  Shortcut with the summary.csv numbers only:  SE(pMAE) ~= k * pMAE / sqrt(n),  k is printed
-  per dataset (usually 0.8 - 1.2).
-
-Output folder (--out, default significance/):
-    summary_with_se.csv  every input row, ORIGINAL columns unchanged, appended:
-                         <t>_pMAE_SE, <t>_bias%, <t>_bias%_SE, <t>_pMAE_MDD_unpaired,
-                         <t>_pMAE_MDD_paired  (MDD = smallest difference with p < 0.05)
-    p_by_delta.csv       one row per run x metric: SE, rho used, and the p value a
-                         difference of 1, 2, 3, 5, 10, 20, 30, 40 pp would have,
-                         unpaired and paired (assuming the other run has the same SE)
-    pairs.csv            every pair of rows on the same dataset with >= --min-common
-                         shared meals: the actual paired Delta, SE_diff, z, p, rho
-The paired p values in p_by_delta.csv use the median rho of the real pairs of that
-dataset and metric (pairs.csv); empty if a dataset has no pair yet.
-Many comparisons -> some p < 0.05 by chance (20 tests: ~1 expected). Decide the main
-comparisons in advance, or use Holm on the pairs you report.
-"""
 from __future__ import annotations
 
 import argparse
@@ -62,23 +20,19 @@ try:
 
     def p_two_sided(z, n):
         return float(2 * _student_t.sf(abs(z), max(n - 1, 1)))
-except Exception:                                   # scipy missing -> normal
+except Exception:
     P_METHOD = "normal approximation (pip install scipy for Student t)"
 
     def p_two_sided(z, n):
         return math.erfc(abs(z) / math.sqrt(2))
 
 
-# ----------------------------------------------------------------------
-# loading
-# ----------------------------------------------------------------------
-
 def read_summaries(paths: list[str]) -> pd.DataFrame:
     frames = []
     for s in paths:
         p = Path(s)
         df = pd.read_csv(p, dtype=str, keep_default_na=False)
-        if "run" not in df.columns:                 # results/<run>/summary.csv
+        if "run" not in df.columns:
             df.insert(0, "run", p.resolve().parent.name)
             df.attrs["added_run"] = True
         df["_source"] = str(p)
@@ -105,8 +59,6 @@ def manifest_view(res: Path) -> str | None:
 
 
 def unit_of(dataset: str, sid, view: str | None) -> str:
-    """Meal key used for pairing: DFood-TJ '613+614' / '613' (overhead) / '614' (oblique)
-    -> 613. Other datasets: the sample_id itself."""
     s = str(sid)
     if dataset != "dfood_tj":
         return s
@@ -123,7 +75,6 @@ _CACHE: dict = {}
 
 
 def load_group(res: Path, dataset, model, prompt, output) -> pd.DataFrame | None:
-    """Per meal: pred and truth for every target + latency, like benchmark.summarize()."""
     if res not in _CACHE:
         rows = [json.loads(l) for l in res.open() if l.strip()]
         df = pd.DataFrame(rows)
@@ -139,8 +90,6 @@ def load_group(res: Path, dataset, model, prompt, output) -> pd.DataFrame | None
     if g.empty:
         return None
     lat = g.groupby(g["sample_id"].astype(str))["latency_s"].mean() if "latency_s" in g else None
-    # every call counts (F2): p_k = mean over the parsed calls (unchanged), z_k = mean
-    # over all calls with a failed call (API error or unparsable answer) as estimate 0
     recs = {}
     for _, r in g.iterrows():
         sid = str(r["sample_id"])
@@ -154,7 +103,7 @@ def load_group(res: Path, dataset, model, prompt, output) -> pd.DataFrame | None
             if tv is None:
                 continue
             pv = pred.get(k)
-            if ok and pv is None:            # target not asked by this prompt
+            if ok and pv is None:
                 continue
             d[f"t_{k}"] = float(tv)
             d.setdefault(f"z_{k}", []).append(float(pv) if ok else 0.0)
@@ -162,8 +111,8 @@ def load_group(res: Path, dataset, model, prompt, output) -> pd.DataFrame | None
                 d.setdefault(f"p_{k}", []).append(float(pv))
     out = pd.DataFrame({sid: {k: (float(np.mean(v)) if isinstance(v, list) else v)
                               for k, v in d.items()} for sid, d in recs.items()}).T
-    for k in TARGETS:                        # a failed call says nothing about targets
-        if f"p_{k}" not in out:              # the prompt never asks for
+    for k in TARGETS:
+        if f"p_{k}" not in out:
             out = out.drop(columns=[c for c in (f"z_{k}", f"t_{k}") if c in out])
     if lat is not None:
         out["latency_s"] = lat.reindex(out.index)
@@ -172,12 +121,7 @@ def load_group(res: Path, dataset, model, prompt, output) -> pd.DataFrame | None
     return out
 
 
-# ----------------------------------------------------------------------
-# statistics
-# ----------------------------------------------------------------------
-
 def ratio_stats(x: np.ndarray, t: np.ndarray):
-    """value (in %), SE (pp), residuals u for a ratio of sums 100*sum(x)/sum(t)."""
     n = len(t)
     R = x.sum() / t.sum()
     u = x - R * t
@@ -195,7 +139,6 @@ def metric_arrays(d: pd.DataFrame, k: str, kind: str):
 
 
 def metric_arrays_all(d: pd.DataFrame, k: str):
-    """|z - t| over all calls, a failed call counted as estimate 0 (F2)."""
     sub = d[[f"z_{k}", f"t_{k}"]].dropna() if f"z_{k}" in d and f"t_{k}" in d else None
     if sub is None or len(sub) < 3:
         return None
@@ -241,7 +184,7 @@ def paired(dA: pd.DataFrame, dB: pd.DataFrame, k: str, kind: str, min_common: in
         return None
     ua, ub = ua.loc[common], ub.loc[common]
     same_t = np.isclose(ua["t"], ub["t"], rtol=1e-6, atol=1e-6)
-    if not same_t.all():                         # same key, other meal -> drop
+    if not same_t.all():
         ua, ub = ua[same_t], ub[same_t]
         if len(ua) < min_common:
             return None
@@ -263,12 +206,8 @@ def stars(p):
     return "***" if p < 0.001 else "**" if p < 0.01 else "*" if p < 0.05 else "." if p < 0.1 else ""
 
 
-# ----------------------------------------------------------------------
-
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1],
-                                 formatter_class=argparse.RawDescriptionHelpFormatter,
-                                 epilog=__doc__.split("\n", 2)[2])
+    ap = argparse.ArgumentParser()
     ap.add_argument("summaries", nargs="+", help="summary.csv file(s); merged files need a 'run' column")
     ap.add_argument("--results", default=str(HERE / "results"), help="folder with <run>/results.jsonl")
     ap.add_argument("--deltas", nargs="+", type=float, default=[1, 2, 3, 5, 10, 20, 30, 40])
@@ -298,7 +237,6 @@ def main():
             else:
                 data[key] = d
                 metr[key] = run_metrics(d)
-                # consistency with summary.csv (catches a wrong file / group)
                 for k in TARGETS:
                     c = f"{k}_pMAE%"
                     if c in row and row[c] not in ("", None) and c in metr[key]:
@@ -314,7 +252,6 @@ def main():
                         extra[f"{k}_bias%_SE"] = round(b["SE"], 2)
         extra_rows.append(extra)
 
-    # --- real pairs: same dataset, shared meals
     pair_rows = []
     keys = list(data)
     for ka, kb in combinations(keys, 2):
@@ -334,7 +271,6 @@ def main():
     rho_typ = (pairs.groupby(["dataset", "metric"])["rho"].median().to_dict()
                if len(pairs) else {})
 
-    # --- p for fixed deltas, per run x metric
     for key in keys:
         row = summ.loc[key]
         for mn, s in metr[key].items():
@@ -359,7 +295,6 @@ def main():
                 ex[f"{base}_pMAE_MDD_unpaired"] = rec["MDD95_unpaired"]
                 ex[f"{base}_pMAE_MDD_paired"] = rec["MDD95_paired"]
 
-    # --- write
     orig_cols = [c for c in summ.columns if c != "_source"]
     wide = summ[orig_cols].copy()
     ex = pd.DataFrame(extra_rows, index=summ.index)
@@ -373,7 +308,6 @@ def main():
     long.to_csv(out_dir / "p_by_delta.csv", index=False)
     pairs.to_csv(out_dir / "pairs.csv", index=False)
 
-    # --- terminal view
     if len(long):
         print("p value of a difference of Δ pp (paired = same meals, typical rho of the dataset)")
         print("  * p<0.05  ** p<0.01  *** p<0.001\n")

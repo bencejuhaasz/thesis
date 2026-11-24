@@ -1,35 +1,3 @@
-#!/usr/bin/env python3
-"""
-config_table.py - the measurement configuration of every run whose result is reported in
-the thesis (F5: reproducible record of the configurations). No API calls.
-
-    venv/bin/python config_table.py
-
-The settings are taken from what the run actually did, not from the run name:
-  - dataset, model (API id), prompt variant, input modality, number of images and the
-    DFood-Tj view(s): from the call records in results.jsonl ('final' records);
-  - temperature and the provider-specific settings (reasoning / effort / thinking level,
-    output token limit): from the manifest entry of the model label used in the run;
-  - DFood-Tj view of the one-image runs: from the manifest ('dfood_views'), because the
-    record stores the view names only for multi-image calls;
-  - date: first and last call timestamp;
-  - number of meals: distinct sample ids among the final records.
-The JPEG quality is not recorded in the manifest or the records; it is a constant of the
-program that ran (JPEG_QUALITY), so it is not in the table. For the runs whose program
-version is committed here, --versions reports it.
-
-Output (folder config_table/):
-  config_table.csv   one row per run
-  config_table.tex   LaTeX longtable rows, grouped by where the result is reported
-
-    venv/bin/python config_table.py --versions
-
-additionally writes program_versions.csv: for every listed run, whether the program version
-that ran it (the manifest's benchmark_sha256) is one of the versions of the benchmark
-programs committed in this git repository, and if so which program and its JPEG_QUALITY.
-It needs the git history (it runs git log / git show), so its result is only meaningful
-in the repository where the runs were committed.
-"""
 from __future__ import annotations
 
 import csv
@@ -42,8 +10,6 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 
-# (group title, [(run folder, dataset filter or None), ...]); a run is listed once, in the
-# first group where its result is reported.
 DS5 = ("nutrition5k", "omnifood8k", "snapme", "acetada", "dfood")
 GROUPS: list[tuple[str, list[tuple[str, str | None]]]] = [
     ("Előmérés: modellek (\\ref{tab:elomeres_modellek}.~táblázat)", [
@@ -186,8 +152,6 @@ def describe(run: str, ds_filter: str | None) -> dict:
     dataset, modality, n_img = one("dataset"), one("modality"), one("n_images")
     views = one("image_views")
     if n_img is None and modality != "text":
-        # first-round records (2026-10-23) have no n_images / image_sizes field: the
-        # program then sent one image per call, whose size is in 'image_size'
         if one("image_sizes") is not None or one("image_size") is None:
             raise SystemExit(f"{run}: cannot tell the number of images")
         n_img = 1
@@ -221,7 +185,6 @@ PROGRAMS = ("benchmark.py", "jpeg80_benchmark.py", "benchmark_new.py",
 
 
 def committed_versions() -> dict[str, tuple[str, str]]:
-    """sha256 of every committed version of the benchmark programs -> (program, JPEG)."""
     git = ["git", "-C", str(HERE)]
     commits = subprocess.run(git + ["log", "--format=%H", "--all", "--", *PROGRAMS],
                              check=True, capture_output=True, text=True).stdout.split()

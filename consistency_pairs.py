@@ -1,27 +1,3 @@
-#!/usr/bin/env python3
-"""
-consistency_pairs.py - consistency of the final round, as pre-registered
-(notes/prereg_final_2026-11-12.md): the final runs re-ran the meals of the earlier,
-already analysed positions; on those meals the final answer is compared with the answer
-of an EARLIER run with the same configuration. Two independent calls per meal, so the
-metrics are those of consistency.py with k = 2 repeats. No API calls.
-Put it next to consistency.py, significance.py and prereg_tests.py.
-
-    venv/bin/python consistency_pairs.py                     # find the earlier runs itself
-    venv/bin/python consistency_pairs.py --pair final_n5k_lite_macros=nutrition5k_macros_n50_s42
-
-Matching (automatic): an earlier run (results/*, not final_*, not *q80*) matches a final
-run if it has the same dataset, model label, prompt variant and output mode, and its
-manifest has the same model entry (model id and extra settings), the same prompt text,
-use_text, image side, DFood view and OmniFood view settings. All candidates are printed;
-if several match, the one with the most shared meals is used. CHECK THE PRINTED PAIRS.
-
-Meals: only the excluded (earlier) positions of the final run's seed order, present in
-both runs with the same ground truth; repeat 0 of the earlier run.
-
-Output: consistency_pairs/consistency_pairs.csv (one row per final run x target) and
-consistency_pairs/pairs_used.csv.
-"""
 from __future__ import annotations
 
 import argparse
@@ -34,9 +10,9 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import consistency as C  # noqa: E402
-import significance as sig  # noqa: E402
-import prereg_tests as P  # noqa: E402
+import consistency as C
+import significance as sig
+import prereg_tests as P
 
 TARGETS = ["kcal", "mass_g", "carb_g", "protein_g", "fat_g"]
 ARMS = sorted({r for fam in P.FAMILIES.values() for A, B, _ in fam for r in (A, B)})
@@ -48,7 +24,6 @@ def manifests(run_dir: Path):
 
 
 def signature(run_dir: Path):
-    """(group, config) of a single-group run, or None."""
     res = run_dir / "results.jsonl"
     if not res.exists():
         return None
@@ -75,7 +50,6 @@ def signature(run_dir: Path):
 
 
 def preds(run_dir: Path, ds: str, view):
-    """unit -> (pred dict, truth dict), repeat 0, parsed records only."""
     df = C.load(run_dir / "results.jsonl")
     df = df[(df["repeat"] == 0) & df["parse_ok"].astype(bool)]
     out = {}
@@ -99,7 +73,7 @@ def excluded_units(final: str, results: Path):
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
+    ap = argparse.ArgumentParser()
     ap.add_argument("--pair", nargs="*", default=[], help="FINAL=EARLIER overrides")
     a = ap.parse_args()
     results = HERE / "results"
@@ -121,7 +95,7 @@ def main():
             [r for r, (g2, c2) in sigs.items() if g2 == g and c2 == cfg]
         best, best_n = None, 0
         for c in cands:
-            ep = preds(results / c, ds, view)   # same DFood view: part of the matched config
+            ep = preds(results / c, ds, view)
             n = sum(1 for u in excl if u in fp and u in ep)
             print(f"{final:30s} candidate {c:45s} shared excluded meals {n}")
             if n > best_n:

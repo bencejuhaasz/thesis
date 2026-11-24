@@ -1,16 +1,3 @@
-"""Nutrition5k loader.
-
-Expected layout under `root` (= the `nutrition5k_dataset/` directory):
-    metadata/dish_metadata_cafe1.csv
-    metadata/dish_metadata_cafe2.csv
-    metadata/ingredient_metadata.csv
-    dish_ids/splits/*.txt                      (one dish_id per line)
-    imagery/realsense_overhead/<dish_id>/rgb.png
-
-Returns two pandas DataFrames:
-    dishes      - one row per dish (totals, cafe, split, overhead-image path)
-    ingredients - long format, one row per (dish, ingredient)
-"""
 from __future__ import annotations
 
 import csv
@@ -22,17 +9,11 @@ DISH_COLS = ["dish_id", "total_calories", "total_mass",
              "total_fat", "total_carb", "total_protein"]
 INGR_COLS = ["ingr_id", "ingr_name", "grams",
              "calories", "fat", "carb", "protein"]
-N_I = len(INGR_COLS)  # 7 fields per ingredient
+N_I = len(INGR_COLS)
 
 
 def _parse_row(row: list[str]) -> tuple[list[str], list[list[str]]]:
-    """Split one variable-length CSV row into dish fields + ingredient chunks.
-
-    The README lists a `num_ingrs` column, but some copies of the CSV lack it.
-    The two layouts are unambiguous: (len-6) and (len-7) can't both be
-    divisible by 7, so we detect which one we have and verify it.
-    """
-    while row and row[-1].strip() == "":       # tolerate trailing commas
+    while row and row[-1].strip() == "":
         row = row[:-1]
     n = len(row)
     if (n - 6) % N_I == 0:
@@ -88,8 +69,6 @@ def load_nutrition5k(root: str | Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     num = INGR_COLS[2:]
     ingredients[num] = ingredients[num].astype(float)
 
-    # Official splits: keep every split file as a boolean column
-    # (e.g. in_rgb_train_ids), plus a convenience `split` for the RGB split.
     splits = _read_splits(root)
     for name, ids in splits.items():
         dishes[f"in_{name}"] = dishes["dish_id"].isin(ids)

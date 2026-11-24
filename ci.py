@@ -1,41 +1,3 @@
-#!/usr/bin/env python3
-"""
-ci.py - 95% confidence intervals for every run in results/ (no API calls).
-
-Put it next to benchmark.py AND significance.py (same loader and formulas).
-    python ci.py                                 # every results/*/summary.csv
-    python ci.py --exclude smoke dry             # skip runs whose name contains these
-    python ci.py --runs runA runB                # only these runs
-    python ci.py --bootstrap 5000                # + percentile bootstrap CI (normality check)
-    python ci.py --level 0.90                    # other confidence level
-
-Per run (summary.csv row) and target (kcal, mass_g, carb_g, protein_g, fat_g):
-    pMAE%   = 100 * sum|p - t| / sum t     CI = pMAE +- t_crit * SE
-    MAE     (units)                         CI = the pMAE CI x mean truth / 100
-    bias%   = 100 * sum(p - t) / sum t      CI as above, + p value of "bias = 0"
-            (CI not containing 0 <=> systematic under/over-estimation, p < 1 - level)
-    SE: delta method on the per-meal errors (the deviation of estimate and control
-    value), Student t with df = n - 1, i.e. normal assumption for the MEAN error.
-    --bootstrap N adds the percentile bootstrap CI (resampling meals, no normality
-    assumption). If both agree, the normal assumption is fine.
-    latency_mean_s: mean +- t * SD / sqrt(n).
-    skill   = 1 - sum|p - t| / sum|m_i - t|, m_i = median truth of the OTHER meals of the run
-            (leave-one-out "always say the typical value" guess = the dataset's own spread).
-            1 = perfect, 0 = no better than that guess, < 0 = worse. CI by the delta method
-            on the ratio, p value of "skill = 0" (two-sided).
-Also per run and target, how far ONE meal can be off (not a CI, the spread of the
-individual errors): the 5th and 95th percentile of the per-meal % error 100*(p-t)/t
--> "90% of meals are between X% and Y%".
-
-Output (--out, default ci/):
-    ci_long.csv      one row per run x metric: value, SE, CI_low, CI_high (+ boot), p_bias0 / p_skill0
-    skill_by_model.csv  skill (with CI and p) per model setup x dataset x target, one row each;
-                     also printed as a model x dataset table per target
-    summary_ci.csv   every summary.csv row, ORIGINAL columns unchanged, appended:
-                     <t>_pMAE_CI_low/high, <t>_MAE_CI_low/high, <t>_bias%, <t>_bias%_CI_low/high,
-                     <t>_bias_p, <t>_meal_err_p5/p95, <t>_skill, <t>_skill_CI_low/high, <t>_skill_p,
-                     latency_mean_CI_low/high
-"""
 from __future__ import annotations
 
 import argparse
@@ -72,9 +34,7 @@ def boot_ci(x, t, level, B, rng):
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1],
-                                 formatter_class=argparse.RawDescriptionHelpFormatter,
-                                 epilog=__doc__.split("\n", 2)[2])
+    ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(HERE / "results"))
     ap.add_argument("--runs", nargs="+")
     ap.add_argument("--exclude", nargs="+", default=[])
@@ -130,7 +90,7 @@ def main():
                 if kind == "bias":
                     z = v / se if se > 0 else float("nan")
                     rec["p_bias0"] = sig.p_two_sided(z, n) if z == z else float("nan")
-                    pos = t > 0                    # meals with true value 0 have no % error
+                    pos = t > 0
                     e_pct = 100 * x[pos] / t[pos]
                     p5, p95 = (np.percentile(e_pct, [5, 95]) if len(e_pct) else (np.nan, np.nan))
                     rec["meal_err_p5"], rec["meal_err_p95"] = float(p5), float(p95)
@@ -140,7 +100,7 @@ def main():
                     extra[f"{k}_meal_err_p5"], extra[f"{k}_meal_err_p95"] = round(p5, 1), round(p95, 1)
                 else:
                     tm = t.mean()
-                    za = sig.metric_arrays_all(d, k)      # F2: failed call = estimate 0
+                    za = sig.metric_arrays_all(d, k)
                     if za is not None:
                         va, sea, _ = sig.ratio_stats(za[1], za[2])
                         tca = t_crit(len(za[2]), a.level)
@@ -226,7 +186,6 @@ def main():
                               f"{k}_skill_CI_high", f"{k}_skill_p") if c in ex]
     order += [c for c in ("latency_mean_CI_low", "latency_mean_CI_high") if c in ex]
     pd.concat([summ[orig], ex[order]], axis=1).to_csv(out / "summary_ci.csv", index=False)
-    # --- skill per model setup x dataset
     sk = long[long["metric"].str.endswith("_skill")].copy() if len(long) else pd.DataFrame()
     if len(sk):
         def ipc(v):

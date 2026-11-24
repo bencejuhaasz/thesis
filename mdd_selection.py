@@ -1,19 +1,3 @@
-#!/usr/bin/env python3
-"""
-mdd_selection.py - the power rule that chose the datasets of hypothesis family A
-(notes/prereg_final_2026-11-12.md: "felderítő |Δ| ≥ MDD n = 200-nál, adathalmazonkénti σ_d-vel").
-No API calls; reads the exploratory n = 50 runs under results/.
-
-    venv/bin/python mdd_selection.py
-
-For each dataset and each pair (Flash-Lite P3_macros vs Sonnet / Sol P3_macros), target carb_g:
-  d_i      = |p_B - t| - |p_A - t|                 per meal (paired, same truth)
-  Δ        = 100 * Σd / Σt                         exploratory difference, pp
-  σ_d      = 100 * sd(d_i) / mean(t)               per-meal SD of the error differences, pp
-  MDD      = (z_{1-α'/2} + z_{1-β}) * σ_d / √n     α' = 0.05 / m, m = 8, power 1-β = 0.8, n = 200
-A dataset enters family A if |Δ| ≥ MDD. Expected: Nutrition5k, OmniFood8k, ACETADA, DFood-Tj
-pass, SNAPMe does not.
-"""
 from __future__ import annotations
 
 import json
@@ -28,8 +12,6 @@ RESULTS = HERE / "results"
 TARGET = "carb_g"
 M, ALPHA, POWER, N_FINAL = 8, 0.05, 0.8, 200
 
-# exploratory runs: (Flash-Lite, Sonnet, Sol); the OmniFood folder names are swapped:
-# omnifood8k_allimage_n50_s42 holds the 1-image Flash-Lite P3_macros run
 RUNS = {
     "nutrition5k": ("nutrition5k_macros_n50_s42", "nutrition5k_sonnet_macros_n50_s42",
                     "nutrition5k_sol_macros_n50_s42"),
@@ -45,7 +27,6 @@ RUNS = {
 
 
 def load(run: str) -> dict:
-    """sample_id -> last parsed record (failed answers drop out, as in the exploration)."""
     out = {}
     for line in (RESULTS / run / "results.jsonl").open():
         if line.strip():

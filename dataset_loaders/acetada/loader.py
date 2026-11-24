@@ -1,27 +1,3 @@
-"""ACETADA loader (Coburn et al., arXiv 2507.07048) — for the public release:
-
-    ACETADA-release/
-        ACETADA-HF-dataset.csv     806 rows = 806 meals (before + after photo)
-        ACETADA/<participant_id>/  images (3001..3154, 152 participants)
-
-CSV schema (wide):
-    participant_id, date, meal_type, food_item_count,
-    total_kcal, total_protein_g, total_carbs_g, total_fat_g,
-    total_portion_g, total_consumed_g,
-    {before,after}_{filename,filepath,date,time,timestamp,gps_latitude,gps_longitude}
-    food_item_<n>_{name,before_portion_g,after_portion_g,consumed_g,
-                   energy_kcal,protein_g,carbs_g,fat_g}      n = 1..15
-
-Returns (meals, items):
-    meals - one row per meal, standard names (kcal, protein_g, carb_g, fat_g,
-            served_g, consumed_g), before/after image paths, GPS, timestamp,
-            text descriptions, and consistency-check columns.
-    items - one row per food item (meal_idx = meals index).
-
-Label semantics (paper + check in __main__): nutrients are for the CONSUMED
-amount, while the before photo shows the SERVED amount. Use `description_served`
-as the text input for a before photo; `description_consumed` matches the label.
-"""
 from __future__ import annotations
 
 import os
@@ -57,7 +33,6 @@ def _index_images(img_root: Path) -> dict[str, list[Path]]:
 
 
 def _resolve(fp, fn, bases: list[Path], idx) -> Path | None:
-    """Try filepath relative to the release, then a unique filename match."""
     if isinstance(fp, str) and fp.strip():
         p = Path(fp.strip())
         for cand in ([p] if p.is_absolute() else [b / p for b in bases]):
@@ -112,7 +87,6 @@ def load_acetada(root: str | Path = ".", csv: str | Path | None = None):
     meal_cols = [c for c in raw.columns if not ITEM_RX.match(c)]
     meals = raw[meal_cols].rename(columns=MEAL_RENAME).copy()
 
-    # ---- images ---------------------------------------------------------
     img_root = root / "ACETADA"
     idx = _index_images(img_root)
     bases = [csv.parent, root, img_root]
@@ -129,7 +103,6 @@ def load_acetada(root: str | Path = ".", csv: str | Path | None = None):
         if ts in meals:
             new[f"{side}_dt"] = pd.to_datetime(meals[ts], errors="coerce")
 
-    # ---- per-meal aggregates from items + consistency checks -------------
     g = items.groupby("meal_idx")
     agg = g[["served_g", "leftover_g", "consumed_g", *NUTR]].sum(min_count=1)
     new["n_items"] = g.size().reindex(meals.index, fill_value=0).to_numpy()
@@ -192,8 +165,6 @@ if __name__ == "__main__":
     it = items
     print(f"items: consumed = served - leftover: "
           f"{_maxdiff(it.consumed_g, it.served_g - it.leftover_g.fillna(0))}")
-    # which mass do the item nutrients belong to? energy density per gram should
-    # be the same food property whichever is right; compare scatter of kcal/g.
     ok = (it.kcal > 0) & (it.consumed_g > 0) & (it.served_g > 0) & (it.leftover_g > 0)
     if ok.any():
         r_cons = np.corrcoef(it.kcal[ok], it.consumed_g[ok])[0, 1]

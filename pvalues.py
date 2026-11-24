@@ -1,34 +1,3 @@
-#!/usr/bin/env python3
-"""
-pvalues.py - p values for every pair of runs on the same dataset, from results/.
-
-Put it next to benchmark.py AND significance.py (it reuses significance.py's loader
-and formulas, so both give the same numbers). No API calls.
-
-    python pvalues.py                                   # every results/*/summary.csv
-    python pvalues.py --exclude smoke dry pre           # skip runs whose name contains these
-    python pvalues.py --runs runA runB runC             # only these runs
-    python pvalues.py --metrics kcal_pMAE% carb_g_pMAE% # default: every pMAE metric
-    python pvalues.py --bias                            # also the bias% metrics
-
-For every dataset, every pair of runs, every metric:
-    paired   (both runs scored the same meals, >= --min-common shared):
-             Delta = B - A on the shared meals, SE from the per-meal differences,
-             Student t test (df = n - 1)  +  Wilcoxon signed-rank p (no normality
-             assumption; needs scipy) as a robustness check
-    unpaired (different meals): Delta of the two runs' own values,
-             SE = sqrt(SE_A^2 + SE_B^2), normal/t approximation. Weaker: prefer paired.
-    95% CI of Delta, and Holm-corrected p within each family (default: one family =
-    one dataset x one metric, i.e. all pairs compared on that metric).
-    pMAE: Delta < 0 means B is more accurate.  bias%: Delta = change of the bias.
-
-Output (--out, default pvalues/):
-    pvalues.csv   one row per dataset x metric x pair, sorted by p
-    The terminal shows the same, grouped, with * p<0.05 ** p<0.01 *** p<0.001
-    (stars on the Holm p; '.' = p<0.1).
-Run names, not sheet rows: the 'label' column (model | prompt | images per call | n)
-helps to find the matching row in your sheet.
-"""
 from __future__ import annotations
 
 import argparse
@@ -54,7 +23,6 @@ except Exception:
 
 
 def align(dA, dB, k, kind, min_common):
-    """Per-meal x (|e| or e) of both runs on the shared meals with identical truth."""
     a, b = sig.metric_arrays(dA, k, kind), sig.metric_arrays(dB, k, kind)
     if a is None or b is None:
         return None
@@ -83,7 +51,6 @@ def t_crit(n):
 
 
 def holm(p: pd.Series) -> pd.Series:
-    """Holm step-down adjusted p values (NaN kept)."""
     out = pd.Series(np.nan, index=p.index)
     q = p.dropna().sort_values()
     m, running = len(q), 0.0
@@ -100,9 +67,7 @@ def label_of(row, n):
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1],
-                                 formatter_class=argparse.RawDescriptionHelpFormatter,
-                                 epilog=__doc__.split("\n", 2)[2])
+    ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(HERE / "results"))
     ap.add_argument("--runs", nargs="+", help="only these run names")
     ap.add_argument("--exclude", nargs="+", default=[], help="skip runs whose name contains any of these")

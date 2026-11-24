@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-"""
-plausibility_check.py - how many schema-valid answers contain physically implausible
-numbers? No API calls; reads the raw model answers (the 'text' field) in results/.
-
-    venv/bin/python plausibility_check.py                 # every results/final_* run
-    venv/bin/python plausibility_check.py RUN [RUN ...]   # only these runs
-
-Per item of a parsed answer (estimated_* fields), two rules:
-  mass rule    carbohydrate + protein + fat > weight                 (macros heavier than the food)
-  energy rule  |4*carb + 4*protein + 9*fat - calories| > 50% of calories, with calories >= 20 kcal
-               (Atwater factors; 50% tolerance because fiber, alcohol and rounding
-               make the match approximate)
-Counted on every parsed answer of the run (all positions, the last record per meal,
-like the loader of significance.py). Output: plausibility/plausibility.csv, and the
-flagged items in plausibility/flagged_items.csv.
-"""
 from __future__ import annotations
 
 import json
@@ -48,7 +31,7 @@ def check_run(run: str, results: Path):
         try:
             obj = json.loads(r.get("text") or "")
         except (json.JSONDecodeError, TypeError):
-            continue  # parsed via the fallback; raw text is not plain JSON
+            continue
         meals += 1
         bad_here = False
         for it in obj.get("items", []) or []:

@@ -1,25 +1,3 @@
-#!/usr/bin/env python3
-"""
-final_descriptive.py - the descriptive (not tested) results of the final round, as listed
-in notes/prereg_final_2026-11-12.md ("Leíró eredmények"). No API calls.
-Put it next to prereg_tests.py and significance.py; it uses the same loader and the same
-tested positions (the earlier, already analysed positions are excluded).
-
-    venv/bin/python final_descriptive.py
-
-Output (folder final_descriptive/):
-  accuracy.csv  per arm x target: n (parsed meals), n_calls, success_rate, pMAE_all (failed
-                call counted as estimate 0) and pMAE (parsed calls only) and bias% with
-                95% CI (delta method, Student t),
-                slope (pred on truth), skill vs the leave-one-out median guess, and the
-                bias% in the lower / middle / upper third of the true values
-  pairs.csv     paired differences with 95% CI, descriptive only (no decision, no Holm):
-                the A-block model pairs for kcal, mass_g, protein_g, fat_g, and
-                Sonnet vs Sol for every target
-  ops.csv       per arm: calls, api_fail, parse_fail (summary.csv, all positions),
-                calls_tested, failed_tested (tested positions),
-                latency mean / p50 on the tested positions, cost per 1000 calls
-"""
 from __future__ import annotations
 
 import sys
@@ -30,9 +8,9 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import significance as sig  # noqa: E402
-import prereg_tests as P  # noqa: E402
-from scipy.stats import t as _t  # noqa: E402
+import significance as sig
+import prereg_tests as P
+from scipy.stats import t as _t
 
 TARGETS = ["kcal", "mass_g", "carb_g", "protein_g", "fat_g"]
 ARMS = sorted({r for fam in P.FAMILIES.values() for A, B, _ in fam for r in (A, B)})
@@ -65,7 +43,7 @@ def accuracy(run, d):
         terc = [100 * (p[third == j] - t[third == j]).sum() / t[third == j].sum() for j in range(3)]
         lo, hi = ci(v, se, n)
         blo, bhi = ci(b, seb, n)
-        za = sig.metric_arrays_all(d, k)          # F2: failed call = estimate 0
+        za = sig.metric_arrays_all(d, k)
         n_all = len(za[2])
         va, sea, _ = sig.ratio_stats(za[1], za[2])
         alo, ahi = ci(va, sea, n_all)
@@ -113,7 +91,7 @@ def main():
     ops.to_csv(out / "ops.csv", index=False)
 
     pd.set_option("display.width", 250)
-    short = lambda s: s.str.replace("final_", "")  # noqa: E731
+    short = lambda s: s.str.replace("final_", "")
     a2 = acc.copy(); a2["run"] = short(a2["run"])
     for k in ("carb_g", "kcal"):
         print(f"\n=== {k} (tested positions)")

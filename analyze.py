@@ -1,34 +1,3 @@
-#!/usr/bin/env python3
-"""
-analyze.py - offline analysis of benchmark runs (no API calls).
-
-Put it next to benchmark.py (in the folder that contains the dataset folders).
-
-    python analyze.py compare   BASELINE OTHER ... [--target carb_g] [--calibrate]
-    python analyze.py decompose RUN ... [--target carb_g] [--only-ids RUN]
-    python analyze.py spread    [--targets kcal carb_g mass_g]
-    python analyze.py sameset   RUN RUN ... [--contains RUN]
-
-A RUN / spec is   NAME[:FIELD][@VARIANT]
-    NAME     run name (results/<NAME>/results.jsonl) or a path to a results.jsonl
-    FIELD    prediction key to score (default = --target)
-    VARIANT  only records of this prompt variant (if a run holds several)
---dataset limits every command to one dataset (needed if a run holds several).
-
-compare    paired comparison on the meals present in EVERY spec: pMAE, MAE, bias,
-           r, slope, skill vs the leave-one-out median guess, logSD (spread of
-           ln(pred/true), i.e. error without bias); delta vs the first spec with a
-           paired bootstrap 95% CI and a Wilcoxon p. --calibrate removes each
-           spec's overall level first (leave-one-out scale factor).
-decompose  target = grams x (target per gram); splits the log error into portion
-           and density, with the counterfactuals "grams exact" / "density exact".
-           Needs true mass: taken from the records (gt.mass_g); for old DFood-TJ
-           runs without it, from DFood-Tj/loader.py.
-spread     how much each dataset's ground truth varies (median-guess pMAE = the
-           score a model must beat); uses benchmark.py's loaders/colmap/query.
-sameset    did several runs use the same meals? (DFood-TJ "613+614"/"613"/"614"
-           are mapped to one meal; other datasets compare sample_ids directly)
-"""
 from __future__ import annotations
 
 import argparse
@@ -43,12 +12,7 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 
 
-# ======================================================================
-# shared helpers
-# ======================================================================
-
 def parse_spec(spec: str, default_field: str):
-    """NAME[:FIELD][@VARIANT] -> (path to results.jsonl, field, variant)."""
     variant = None
     if "@" in spec:
         spec, variant = spec.rsplit("@", 1)
@@ -81,10 +45,6 @@ def run_label(path: Path, field: str, variant: str | None) -> str:
     return f"{path.parent.name}:{field}" + (f"@{variant}" if variant else "")
 
 
-# ======================================================================
-# compare
-# ======================================================================
-
 def _compare_load(spec: str, target: str, dataset: str | None):
     p, field, variant = parse_spec(spec, target)
     recs = read_records(p, dataset, variant)
@@ -93,7 +53,7 @@ def _compare_load(spec: str, target: str, dataset: str | None):
         raise SystemExit(f"{spec}: several dataset/model/variant groups {sorted(groups)}; "
                          "use --dataset and/or @VARIANT")
     by = {}
-    for r in recs:                           # repeats -> mean prediction
+    for r in recs:
         pv, tv = r["pred"].get(field), (r.get("gt") or {}).get(target)
         if pv is None or tv is None:
             continue
@@ -114,7 +74,6 @@ def _stats(p, t):
 
 
 def _loo_scale(p, t):
-    """Pure level correction: each meal x (sum true / sum pred) of the OTHER meals."""
     return np.array([p[i] * (t.sum() - t[i]) / (p.sum() - p[i]) for i in range(len(p))])
 
 
@@ -160,15 +119,10 @@ def cmd_compare(a):
               f"Wilcoxon p {pv}  meals better {100 * np.mean(e < base_e):.0f}%")
 
 
-# ======================================================================
-# decompose
-# ======================================================================
-
 _DFOOD_TRUTH = None
 
 
 def _dfood_truth(root: Path) -> pd.DataFrame:
-    """True mass per DFood-TJ image, for old runs whose records lack gt.mass_g."""
     global _DFOOD_TRUTH
     if _DFOOD_TRUTH is None:
         spec = importlib.util.spec_from_file_location("dfood_loader", root / "loader.py")
@@ -261,10 +215,6 @@ def cmd_decompose(a):
             _decompose_one(name, g.reset_index(drop=True), a.target, out)
 
 
-# ======================================================================
-# spread
-# ======================================================================
-
 def _spread(v: pd.Series) -> dict | None:
     t = pd.to_numeric(v, errors="coerce").dropna()
     t = t[t > 0].to_numpy(float)
@@ -317,10 +267,6 @@ def cmd_spread(a):
     print(f"\n-> {out}")
 
 
-# ======================================================================
-# sameset
-# ======================================================================
-
 def _manifest_units(run: str, dataset: str) -> list:
     mans = sorted((HERE / "results" / run).glob("manifest_*.json"))
     if not mans:
@@ -335,11 +281,11 @@ def _manifest_units(run: str, dataset: str) -> list:
         return out
     view = m.get("dfood_views") or "?"
     out = []
-    for sid in ids:                       # a pair = two consecutive image ids
+    for sid in ids:
         nums = [int(x) for x in str(sid).split("#")[0].split("+")]
         meal = min(nums)
         if len(nums) == 1 and view == "oblique":
-            meal -= 1                     # oblique = higher id of the pair
+            meal -= 1
         out.append(meal)
     print(f"{run:28s} view={view:9s} n={len(out):4d}  first: {out[:5]}  ({mans[-1].name})")
     return out
@@ -366,12 +312,8 @@ def cmd_sameset(a):
     print("SAME set in all runs" if ok else "NOT the same set")
 
 
-# ======================================================================
-
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1],
-                                 formatter_class=argparse.RawDescriptionHelpFormatter,
-                                 epilog=__doc__.split("\n", 2)[2])
+    ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     c = sub.add_parser("compare", help="paired comparison of runs on the same meals")

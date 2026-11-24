@@ -1,24 +1,3 @@
-"""NutriBench loader (Hua et al., ICLR 2025) — text-only meal descriptions.
-
-Hugging Face layout (dongx1997/NutriBench), parquet shards:
-    v1/wweia_meal_metric-*.parquet   (5,532)   US meals, gram amounts
-    v1/wweia_meal_natural-*.parquet  (5,532)   same meals, household units
-    v1/who_meal_metric-*.parquet     (527)     FAO/WHO GIFT meals, grams
-    v1/who_meal_natural-*.parquet    (266)
-    v2/train-*.parquet               (15,617)  24 countries, has
-                                               `country`, `serving_type`
-
-Columns: meal_description, carb, protein, fat (g), energy (kcal)
-[v2: + country (ISO alpha-3), serving_type ('metric' | 'natural')].
-No fiber, no mass, no images.
-
-Returns one DataFrame with columns:
-    meal_description, carb_g, protein_g, fat_g, kcal, version,
-    source ('wweia' | 'who' | None), serving_type, country, meal_key
-`meal_key` groups rows with identical nutrient values (+ country): the
-metric and natural phrasings of the same meal share ground truth, so they
-are not independent samples — group by it when computing CIs or splitting.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -34,7 +13,7 @@ def _read_any(paths: list[Path]) -> pd.DataFrame:
     frames = []
     for p in paths:
         if p.suffix == ".parquet":
-            frames.append(pd.read_parquet(p))     # needs pyarrow
+            frames.append(pd.read_parquet(p))
         elif p.suffix == ".csv":
             frames.append(pd.read_csv(p))
         elif p.suffix in (".jsonl", ".json"):

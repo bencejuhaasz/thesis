@@ -1,27 +1,3 @@
-#!/usr/bin/env python3
-"""
-prereg_tests.py - the pre-registered hypothesis tests of the final round
-(notes/prereg_final_2026-11-12.md). No API calls. Put it next to significance.py;
-it reuses significance.py's loader and formulas (delta-method SE, Student t), so the
-numbers are computed the same way as in pvalues.py.
-
-    venv/bin/python prereg_tests.py                  # all families
-    venv/bin/python prereg_tests.py --families A B   # only these
-
-What it does, per test (exactly as pre-registered):
-  - only the TESTED positions of the seed-42 order enter the test (the earlier,
-    already analysed positions are excluded); the position of a meal is its place in
-    the run manifest's sample_ids list (first manifest of the run; all manifests of a
-    run must list the same sample_ids, otherwise the script stops)
-  - paired comparison on the meals scored in both arms (missing / unparsed pairs drop
-    out and are counted)
-  - Delta = pMAE(B) - pMAE(A) in percentage points (negative = B more accurate),
-    SE from the per-meal differences (delta method), two-sided Student t, df = n - 1,
-    95% CI without correction, Wilcoxon signed-rank p as a robustness check
-  - Holm correction within each family; significant if p_holm < 0.05
-
-Output: prereg_tests/prereg_tests.csv and the same table in the terminal.
-"""
 from __future__ import annotations
 
 import argparse
@@ -35,20 +11,18 @@ import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import significance as sig  # noqa: E402
+import significance as sig
 
 try:
     from scipy.stats import t as _t, wilcoxon as _wilcoxon
 except Exception:
     raise SystemExit("scipy is needed (pip install scipy)")
 
-# tested positions (1-based, inclusive) of the seed-42 order, per dataset
 POS = {"nutrition5k": (51, 250), "omnifood8k": (101, 300), "acetada": (51, 250),
        "dfood_tj": (351, 600), "snapme": (51, 250)}
 RUNDS = {"n5k": "nutrition5k", "omni": "omnifood8k", "acetada": "acetada",
          "dfood": "dfood_tj", "snapme": "snapme"}
 
-# family -> list of (A run, B run, target); Delta = B - A
 FAMILIES = {
     "A": [(f"final_{d}_lite_macros", f"final_{d}_{o}_macros", "carb_g")
           for d in ("n5k", "omni", "acetada", "dfood") for o in ("sonnet", "sol")],
@@ -61,8 +35,6 @@ FAMILIES = {
 
 
 def load_run(run: str, results: Path):
-    """Per-meal frame of the run's only (dataset, model, prompt, output) group, restricted
-    to the tested positions; returns (frame, dataset, n_tested_positions)."""
     res = results / run / "results.jsonl"
     if not res.exists():
         raise SystemExit(f"{run}: no results.jsonl")
@@ -119,7 +91,7 @@ def test(dA, dB, k):
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
+    ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(HERE / "results"))
     ap.add_argument("--families", nargs="+", default=list(FAMILIES))
     ap.add_argument("--out", default="prereg_tests")
@@ -154,7 +126,6 @@ def main():
 
 
 def sig_holm(p: pd.Series) -> pd.Series:
-    """Holm step-down adjusted p values within one family."""
     out = pd.Series(np.nan, index=p.index)
     q = p.dropna().sort_values()
     m, running = len(q), 0.0
