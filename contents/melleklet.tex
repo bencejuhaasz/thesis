@@ -24,3 +24,50 @@ Futás & Dátum & Adathalmaz & Modell & Beállítás & Prompt & Bemenet & Étele
 \csname @@input\endcsname contents/konfiguraciok_sorok 
 \end{longtable}}
 \end{landscape}
+
+\section{A promptok teljes szövege}
+\label{sec:promptszovegek}
+\lstdefinestyle{prompt}{basicstyle=\ttfamily\scriptsize, breaklines=true, breakatwhitespace=true, frame=single, columns=fullflexible}
+
+\paragraph{}Ez a fejezet a \ref{sec:promptok}.~alfejezetben leírt promptok teljes szövegét közli.
+
+\paragraph{}A képes változatok szövegét a modell az \ref{lst:prompt_keret}.~kódrészletben látható 
+keretben kapta, amelyben a \texttt{\{prompt\}} helyére a változat szövege került. 
+A \texttt{User hint} sor és az utána következő üres sor csak a P3\_macros\_hint változatnál szerepelt. 
+Ott a \texttt{\{hint\}} helyére az étkezés referenciarekordjában szereplő ételnevek 
+kerültek tömeg nélkül, pontosvesszővel elválasztva és a \texttt{Foods in this meal:} 
+szöveggel bevezetve, a változat szövege pedig azonos a P3\_macros szövegével. 
+Ha egy kérés több képet tartalmazott, a keret elé egy üres sorral elválasztva a 
+\ref{lst:prompt_tobbkepes}.~kódrészletben látható megjegyzés került, amelyben 
+az \texttt{\{n\}} a képek száma, a \texttt{\{views\}} pedig a képek nézetének 
+felsorolása a küldés sorrendjében. A keretet és a P3 teljes szövegét, a JSON-példával 
+együtt, Sterling és társai \cite{sterling2026vlm} nyilvános kódjából vettem át 
+(\url{https://github.com/charterer/vlm-food-benchmark}, MIT-licenc), amely a 
+cikkben közölt kivonatnál hosszabb utasítást tartalmaz. A többi változat a 
+P3 szövegének módosítása vagy saját szöveg.
+
+\lstinputlisting[style=prompt, caption={A képes kérések kerete}, label={lst:prompt_keret}]{contents/promptok/keret_kep.txt}
+\lstinputlisting[style=prompt, caption={A többképes kérések megjegyzése}, label={lst:prompt_tobbkepes}]{contents/promptok/tobbkepes.txt}
+\lstinputlisting[style=prompt, caption={A P3 prompt}, label={lst:prompt_p3}]{contents/promptok/P3.txt}
+\lstinputlisting[style=prompt, caption={A P3\_macros és a P3\_macros\_hint prompt}, label={lst:prompt_p3_macros}]{contents/promptok/P3_macros.txt}
+\lstinputlisting[style=prompt, caption={A P3\_prep prompt, a P3\_prep\_textcalc első lépése}, label={lst:prompt_p3_prep}]{contents/promptok/P3_prep.txt}
+\lstinputlisting[style=prompt, caption={A P3\_recipe prompt}, label={lst:prompt_p3_recipe}]{contents/promptok/P3_recipe.txt}
+\lstinputlisting[style=prompt, caption={A P3\_anchor prompt}, label={lst:prompt_p3_anchor}]{contents/promptok/P3_anchor.txt}
+\lstinputlisting[style=prompt, caption={A P3\_portion prompt}, label={lst:prompt_p3_portion}]{contents/promptok/P3_portion.txt}
+\lstinputlisting[style=prompt, caption={A P3\_check prompt}, label={lst:prompt_p3_check}]{contents/promptok/P3_check.txt}
+\lstinputlisting[style=prompt, caption={A P3\_recipe\_check prompt}, label={lst:prompt_p3_recipe_check}]{contents/promptok/P3_recipe_check.txt}
+\lstinputlisting[style=prompt, caption={A P3\_density prompt}, label={lst:prompt_p3_density}]{contents/promptok/P3_density.txt}
+
+\paragraph{}A csak szöveges bemenetet használó NutriBench-prompt a \ref{lst:prompt_nutribench}.~kódrészletben látható, 
+a \texttt{\{description\}} helyére az étkezés szöveges leírása került. A P3\_prep\_textcalc 
+második lépése ugyanezt a promptot használta, a leírás helyén az első lépés tételeivel, tételenként a 
+modell által adott névvel és a grammra kerekített tömeggel, pontosvesszővel elválasztva.
+
+\lstinputlisting[style=prompt, caption={A NutriBench prompt}, label={lst:prompt_nutribench}]{contents/promptok/NUTRIBENCH.txt}
+
+\paragraph{}Az ételek és összetevők megnevezésének vizsgálatához (\ref{sec:felismeres}.~alfejezet) 
+használt leképező prompt a \ref{lst:prompt_lekepezo}.~kódrészletben látható. A \texttt{\{dictionary\}} 
+helyére az adathalmaz szótára került soronként egy bejegyzéssel, az \texttt{\{items\}} helyére pedig 
+legfeljebb 25 tételnév sorszámozva.
+
+\lstinputlisting[style=prompt, caption={A leképező prompt}, label={lst:prompt_lekepezo}]{contents/promptok/lekepezo.txt}
