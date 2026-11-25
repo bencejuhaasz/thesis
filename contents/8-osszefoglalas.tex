@@ -13,7 +13,7 @@ a feldolgozási stratégiák értékelésére összpontosít, ezért a témabeje
 implementáció helyett a mérések alapján javasolt becslési folyamatot kitekintésként \az{\ref{sec:javasolt_folyamat}}.~alfejezet írja le.
 
 \section{Eredmények}
-\paragraph{}A döntési mérésben a Flash-Lite szénhidrát-pMAE-je 23,2 és 53,6\% között volt. Az 
+\paragraph{}A modellek egymáshoz viszonyított pontossága adathalmazonként eltért. A döntési mérésben a Flash-Lite szénhidrát-pMAE-je 23,2 és 53,6\% között volt. Az 
 adathalmazok konyhája, fényképezési körülményei és referenciaértékeinek forrása is eltér, 
 és a referenciaértékek szóródása is különböző, ezért a pMAE az adathalmazok között nem hasonlítható 
 össze. A DFood-Tj-n például a referenciaértékek kis szóródása miatt már a mediánbecslés is kis pMAE-t ad. 
@@ -27,8 +27,8 @@ minden adathalmazon és minden célmennyiségben a legpontosabb.
 energiasűrűség becsléséből adódott, a SNAPMe-n inkább a tömegéből, a többi adathalmazon a két rész 
 hasonló nagyságú volt, és a Flash-Lite a nagy adagokat a kicsikhez képest mindenhol alulbecsülte. 
 Több kép megadása az előmérésben nem javított egyértelműen, és a promptváltozatok közül 
-szénhidrátban egyik sem javított következetesen. Az előmérésben a promptváltozatok közül 
-a P3\_recipe csökkentette leginkább a zsírbecslés hibáját az OmniFood8k-n, és a döntési mérés 
+szénhidrátban egyik sem javított következetesen. Az előmérésben a
+a P3\_recipe prompt csökkentette leginkább a zsírbecslés hibáját az OmniFood8k-n, és a döntési mérés 
 ezt a javulást a Flash-Lite-nál és a Solnál is szignifikánsan megerősítette, a szénhidrátbecslés 
 hibáján viszont egyik adathalmazon sem változtatott.
 
@@ -60,7 +60,7 @@ mérésekkel azonos módon előkészíti, vagyis az EXIF-adatok szerint elforgat
 legfeljebb 1024 képpontra kicsinyíti és JPEG formátumba kódolja, majd egyetlen hívással, JSON-séma 
 szerinti válaszkéréssel elküldi a modellnek. A javasolt alapprompt a P3\_macros, mert a cukorbetegség szempontjából 
 legfontosabb szénhidrátbecslésen a P3\_recipe nem javított, és a Flash-Lite átlagos válaszidejét növelte. 
-Ha a zsírbecslés pontossága is fontos, a P3\_recipe használata indokolt lehet.A választ az alkalmazás a 
+Ha a zsírbecslés pontossága is fontos, a P3\_recipe használata indokolt lehet. A választ az alkalmazás a 
 hihetőségi szabályokkal ellenőrzi, és a felismert tételeket a becsült tömeggel és tápértékkel együtt 
 a felhasználó elé teszi, aki a tételeket és a mennyiségeket a mentés előtt javíthatja. Az alapeset a 
 szinkron feldolgozás, amelyben a felhasználó megvárja a választ, ez a Flash-Lite mért 2,1--2,6~s-os 
