@@ -1,10 +1,78 @@
 \chapter{Összefoglalás}
-\textbf{Az elvégzett feladatok összefoglalása, összehasonlítva a kitűzött célokkal. Továbblépési lehetőségek, kérdések megadása, kitekintés.
-}
+
 \section{Feladat}
-\textbf{A kitűzött célok felsorolása, reflexió mindre.
-}
+\paragraph{}A dolgozat célja az volt, hogy egy cukorbetegség kezelését támogató alkalmazás 
+étkezésnaplózó funkciójához kereskedelmi API-n elérhető multimodális nagy nyelvi modellek 
+pontosságát és használhatóságát értékelje, és megvizsgálja, hogy a becslés javítható-e. Ehhez öt 
+képes és egy szöveges adathalmazon egységes mérési keretrendszert készítettem, amely a modellek 
+válaszát JSON-séma szerint kéri, a becsléseket a referenciaértékekkel veti össze, és minden futás 
+beállításait rögzíti. Az 50 ételes előmérések eredményei alapján előre rögzített döntési mérést 
+terveztem, amelynek hipotéziseit az előmérésben fel nem használt ételeken, Holm-korrekcióval 
+vizsgáltam. Az ételek és összetevők megnevezését leíró jelleggel értékeltem. A dolgozat a modellek és 
+a feldolgozási stratégiák értékelésére összpontosít, ezért a témabejelentőben szereplő integrált 
+implementáció helyett a mérések alapján javasolt becslési folyamatot kitekintésként \az{\ref{sec:javasolt_folyamat}}.~alfejezet írja le.
+
 \section{Eredmények}
-\textbf{Egy bekezdésben összefoglalva az eredmények fejezet, következtetések levonása.}
+\paragraph{}A döntési mérésben a Flash-Lite szénhidrát-pMAE-je 23,2 és 53,6\% között volt. Az 
+adathalmazok konyhája, fényképezési körülményei és referenciaértékeinek forrása is eltér, 
+és a referenciaértékek szóródása is különböző, ezért a pMAE az adathalmazok között nem hasonlítható 
+össze. A DFood-Tj-n például a referenciaértékek kis szóródása miatt már a mediánbecslés is kis pMAE-t ad. 
+A Flash-Lite a Nutrition5k-n, az OmniFood8k-n és az ACETADA-n szénhidrátban szignifikánsan pontosabb volt 
+a nála nagyjából öt-hatszor drágább Sonnetnél és Solnál, a DFood-Tj-n viszont mindkét drágább modell volt 
+a pontosabb. Ez utóbbi eredmény nem választható el attól, hogy a DFood-Tj képeinek egy részén a 
+mérleg kijelzője is leolvasható. Más célmennyiségekben a sorrend eltért, így egyik modell sem volt 
+minden adathalmazon és minden célmennyiségben a legpontosabb.
+
+\paragraph{}Az előmérés hibaforrás-bontása szerint az OmniFood8k-n az energiahiba szinte teljesen az 
+energiasűrűség becsléséből adódott, a SNAPMe-n inkább a tömegéből, a többi adathalmazon a két rész 
+hasonló nagyságú volt, és a Flash-Lite a nagy adagokat a kicsikhez képest mindenhol alulbecsülte. 
+Több kép megadása az előmérésben nem javított egyértelműen, és a promptváltozatok közül 
+szénhidrátban egyik sem javított következetesen. Az előmérésben a promptváltozatok közül 
+a P3\_recipe csökkentette leginkább a zsírbecslés hibáját az OmniFood8k-n, és a döntési mérés 
+ezt a javulást a Flash-Lite-nál és a Solnál is szignifikánsan megerősítette, a szénhidrátbecslés 
+hibáján viszont egyik adathalmazon sem változtatott.
+
+\paragraph{}A SNAPMe-n a referenciarekordból képzett ételnév-lista a Flash-Lite zsírhibáját 
+szignifikánsan csökkentette, a szénhidráthibáját nem változtatta. Mivel a névlista ugyanabból a 
+rekordból származik, mint a referenciaértékek, ez felső becslés arra, amit egy felhasználói leírás 
+elérhet. A csak szöveges NutriBench-leírásokon a modellek pontossága nem különbözött kimutathatóan, 
+a költségük viszont igen.
+
+\paragraph{}A Flash-Lite minden adathalmazon a leggyorsabb és a legolcsóbb modell volt. A döntési 
+mérés 5546 hívása között nem volt sikertelen hívás vagy fel nem dolgozható válasz, a JSON-sémának 
+megfelelő válaszok között azonban négy nagyságrendi hibát is találtam. Az ugyanarra az ételre adott 
+két becslés szénhidrátban az ételenkénti szórás alapján a referenciaátlag 4,6--27,2\%-ával 
+ingadozott. A modellek által megnevezett tételek a Gemini 3.8 Flash leképezésével a referencianevek 
+22,8--42,1\%-át fedték le, és ez az érték a referencia részletességétől és a leképező modelltől is 
+függött.
+
+\paragraph{}Az eredmények alapján egy étkezésnaplózó alkalmazáshoz a Flash-Lite egy képpel és a 
+P3\_macros prompttal a vizsgált modellek közül a legkedvezőbb költségű kiindulópont, amely a 
+legtöbb vizsgált adathalmazon szénhidrátban a drágább modelleknél is pontosabb volt. A becslés hibája 
+azonban ételenként nagy lehet, ezért az eredményt a felhasználónak ellenőrizhető és javítható 
+javaslatként érdemes megjeleníteni.
+
 \section{Jövőbeli tervek}
-\textbf{Egy bekezdésben, a mérések és a kiértékelés után.}
+\subsection{Javasolt becslési folyamat}
+\label{sec:javasolt_folyamat}
+\paragraph{}A javasolt folyamatban a felhasználó lefényképezi az étkezést, az alkalmazás a képet a 
+mérésekkel azonos módon előkészíti, vagyis az EXIF-adatok szerint elforgatja, a hosszabbik oldalát 
+legfeljebb 1024 képpontra kicsinyíti és JPEG formátumba kódolja, majd egyetlen hívással, JSON-séma 
+szerinti válaszkéréssel elküldi a modellnek. A javasolt alapprompt a P3\_macros, mert a cukorbetegség szempontjából 
+legfontosabb szénhidrátbecslésen a P3\_recipe nem javított, és a Flash-Lite átlagos válaszidejét növelte. 
+Ha a zsírbecslés pontossága is fontos, a P3\_recipe használata indokolt lehet.A választ az alkalmazás a 
+hihetőségi szabályokkal ellenőrzi, és a felismert tételeket a becsült tömeggel és tápértékkel együtt 
+a felhasználó elé teszi, aki a tételeket és a mennyiségeket a mentés előtt javíthatja. Az alapeset a 
+szinkron feldolgozás, amelyben a felhasználó megvárja a választ, ez a Flash-Lite mért 2,1--2,6~s-os 
+medián válaszidejével elfogadható várakozást jelent. Lehetőség a háttérben végzett feldolgozás is, 
+amelyben a kérés adatbázisba kerül, és az alkalmazás értesíti a felhasználót, ha a becslés elkészült. 
+Ez a lassabb modelleknél vagy rossz hálózati kapcsolat esetén lehet előnyös.
+
+\subsection{További vizsgálatok}
+\paragraph{}A mérések adathalmazokon készültek, ezért a következő lépés az alkalmazás leendő 
+felhasználóinak étkezésein végzett mérés lenne, a felhasználók saját szöveges leírásával, amely a 
+referenciarekordból képzett névlistával szemben a valós szöveges bemenet hatását mutatná meg. Érdemes 
+lenne megvizsgálni, hogy több hívás becsléseinek átlagolása mennyit csökkent a hibán és az 
+ingadozáson, és a konfidenciaintervallumokat a résztvevőnkénti csoportosítás figyelembevételével is 
+kiszámítani. A csúcsszintű modellek teljes körű mérése, valamint a képen látható ismert méretű 
+tárgyak és a felhasználó által megadott adag felhasználása szintén további vizsgálatot igényel.
