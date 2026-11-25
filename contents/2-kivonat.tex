@@ -1,6 +1,22 @@
 \chapter*{Kivonat}
-% Minimum 2000 karakter, maximum két oldalas tartalmi összefoglaló a dolgozat nyelve szerinti nyelven
-\paragraph{}\textbf{Work In Progress: Két összefoglaló bekezdés a dolgozat elkészülte után, ha már tudom, hogy
-mi történt és hova jutottam. Itt szerintem az eredményt kellene majd kimondanom,
-és röviden bemutatni az oda vezető út lényegét.}
+\paragraph{}A dolgozat azt vizsgálja, hogy a kereskedelmi API-n elérhető multimodális nagy nyelvi 
+modellek mennyire pontosan becsülik egy étkezés tömegét, energia- és makrotápanyag-tartalmát 
+fénykép vagy szöveges leírás alapján, egy cukorbetegség kezelését támogató alkalmazás 
+étkezésnaplózó funkciójához. Öt képes és egy szöveges nyilvános adathalmazon egységes mérési 
+keretrendszerrel hasonlítottam össze a Google, az OpenAI és az Anthropic modelljeit több árszinten, 
+valamint promptváltozatokat, több nézőpontból készült képeket és szöveges bemenetet. Az 50 ételes 
+előmérések alapján előre rögzített döntési mérést végeztem, amelynek hipotéziseit az előmérésben 
+fel nem használt ételeken, Holm-korrekcióval vizsgáltam. A pontosság mellett a költséget, a 
+válaszidőt, a strukturált kimenet megbízhatóságát, a válaszok konzisztenciáját és az ételek 
+megnevezését is értékeltem.
+
+\paragraph{}A legolcsóbb és leggyorsabb vizsgált modell, a Gemini Flash-Lite szénhidrátban a 
+Nutrition5k, az OmniFood8k és az ACETADA adathalmazon szignifikánsan pontosabb volt a nagyjából 
+öt-hatszor drágább Claude Sonnet és GPT-6.1 Sol modellnél, a DFood-Tj-n viszont a drágább modellek 
+voltak pontosabbak. A promptváltozatok szénhidrátban nem javítottak következetesen, az étel szokásos 
+elkészítési módját is figyelembe vevő P3\_recipe prompt viszont az OmniFood8k-n csökkentette a 
+zsírbecslés hibáját. A döntési mérés 5546 hívása között nem volt sikertelen hívás, a sémának 
+megfelelő válaszok között azonban nagyságrendi hibák is előfordultak, és a becslés hibája 
+ételenként nagy lehet. Ezért a becslést egy alkalmazásban a felhasználó által ellenőrizhető és 
+javítható javaslatként érdemes megjeleníteni.
 \clearpage
