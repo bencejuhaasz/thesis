@@ -4,7 +4,15 @@
 \label{sec:konfiguraciok}
 \paragraph{}A \ref{tab:konfiguraciok}.~táblázat minden olyan futás beállításait tartalmazza, amelynek eredménye a dolgozatban szerepel. A táblázatot a \texttt{config\_table.py} program állítja elő, API-hívás nélkül. Az adathalmazt, a modellt, a promptváltozatot, a bemenetet és az ételek számát a futás hívásonkénti rekordjaiból (\texttt{results.jsonl}) olvassa ki, a temperature-, a reasoning- és a tokenkeret-beállítást pedig a futás manifestjéből tölti be. A futás neve az eredményeit tartalmazó mappa neve. Néhány név nem a tényleges beállítást tükrözi (például az \texttt{omnifood8k\_\allowbreak{}1image\_\allowbreak{}n50\_\allowbreak{}s42} hat képpel futott), ezért a bemenet oszlop a hívásrekordok szerinti értéket mutatja. Minden képes futásban a kép hosszabbik oldala legfeljebb 1024 képpont volt, és a modell JSON-séma szerint válaszolt.
 
-\paragraph{}A mérések során egyes paramétereket a parancssor mellett a programfájlban is módosítottam, ezért a manifestben rögzített program-ellenőrzőösszeg futásonként eltérhet a közzétett végső változatétól. A futások beállításait ettől függetlenül a manifest (a prompt szövege, a JSON-séma, a modellbeállítások, az adathalmaz-szűrés és a mintavétel) és a hívásrekordok rögzítik; ezekből készült a táblázat. A JPEG-minőséget sem a manifest, sem a hívásrekordok nem rögzítik, ezért a táblázat nem tartalmazza. A képeket minden futásban 90-es JPEG-minőséggel kódoltam, kivéve az \texttt{n5k\_\allowbreak{}lite\_\allowbreak{}macros\_\allowbreak{}q80\_\allowbreak{}n50\_\allowbreak{}s42} és a \texttt{nutrition5k\_\allowbreak{}sol\_\allowbreak{}med\_\allowbreak{}t1000\_\allowbreak{}q80\_\allowbreak{}n50\_\allowbreak{}s42} futást, amelyeket a 80-as minőséggel kódoló \texttt{jpeg80\_benchmark.py} futtatott.
+\paragraph{}A mérések során egyes paramétereket a parancssor mellett a programfájlban is módosítottam, 
+ezért a manifestben rögzített program-ellenőrzőösszeg futásonként eltérhet a közzétett végső 
+változatétól. A futások beállításait ettől függetlenül a manifest (a prompt szövege, a JSON-séma, 
+a modellbeállítások, az adathalmaz-szűrés és a mintavétel) és a hívásrekordok rögzítik. Ezekből 
+készült a táblázat. A JPEG-minőséget sem a manifest, sem a hívásrekordok nem rögzítik, ezért a 
+táblázat nem tartalmazza. A képeket minden futásban 90-es JPEG-minőséggel kódoltam, kivéve az 
+\texttt{n5k\_\allowbreak{}lite\_\allowbreak{}macros\_\allowbreak{}q80\_\allowbreak{}n50\_\allowbreak{}s42} 
+és a \texttt{nutrition5k\_\allowbreak{}sol\_\allowbreak{}med\_\allowbreak{}t1000\_\allowbreak{}q80\_\allowbreak{}n50\_\allowbreak{}s42} futást, 
+amelyeket a 80-as minőséggel kódoló \texttt{jpeg80\_benchmark.py} futtatott.
 
 \begin{landscape}
 {\linespread{1}\selectfont\scriptsize\setlength{\tabcolsep}{3pt}
