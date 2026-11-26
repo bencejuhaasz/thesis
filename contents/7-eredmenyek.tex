@@ -156,9 +156,8 @@ szénhidrátban viszont mindhárom pontatlanabb volt. Az előmérésben egyik mo
 volt minden adathalmazon és minden célmennyiségben a legpontosabb.
 
 \paragraph{}A Claude Haiku 5.5 a Nutrition5k-n és az OmniFood8k-n adta a legnagyobb 
-szénhidráthibát (88,3, illetve 133,1\%). Az OmniFood8k-n a skillje kimutathatóan negatív volt, 
-vagyis a becslése rosszabb volt a mediánbecslésnél. Ugyanezen az adathalmazon a két Gemini-modell szénhidrát-skillje kimutathatóan pozitív, a Haikué kimutathatóan negatív volt, 
-a többi modellé pedig nem tért el kimutathatóan a nullától.
+szénhidráthibát (88,3, illetve 133,1\%). Az OmniFood8k-n a két Gemini-modell szénhidrát-skillje kimutathatóan pozitív, a Haikué kimutathatóan negatív volt, 
+a többi modellé pedig nem tért el kimutathatóan a nullától. A Haiku becslése tehát ott rosszabb volt a mediánbecslésnél.
 
 \paragraph{}A DFood-Tj-n minden modell szénhidrát-pMAE-je (15,6--26,5\%) kisebb, 
 mint bármelyik modellé a többi adathalmazon, a skill viszont a Sol (0,11) 
@@ -525,8 +524,8 @@ DFood-Tj    & 23,2 & 18,0 & $-5{,}1$ ($-6{,}8$; $-3{,}5$) & 15,4 & $-7{,}7$ ($-1
 \end{table}
 
 \paragraph{}A kiegészítő eredmények szerint (\ref{sec:leiro_eredmenyek}.~alfejezet) 
-a Nutrition5k-n, az OmniFood8k-n és az ACETADA-n a két drágább modell jóval erősebben 
-túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-Lite alulbecslése 
+a Nutrition5k-n és az OmniFood8k-n a két drágább modell jóval, az ACETADA-n kisebb mértékben 
+erősebben túlbecsülte a szénhidrátot, mint a Flash-Lite, a DFood-Tj-n viszont a Flash-Lite alulbecslése 
 volt a nagyobb. Az A család eredménye ezért nem jelenti azt, hogy a Flash-Lite általában pontosabb.
 
 \paragraph{}A DFood-Tj képeinek egy részén a tányér konyhai mérlegen áll, és a mérleg által 
@@ -555,8 +554,8 @@ valódi felhasználói leírás elérhet.
 
 \subsection{A P3\_recipe prompt hatása}
 \paragraph{}A C családok a P3\_recipe promptot vetették össze a P3\_macros-szal. Az OmniFood8k-n a P3\_recipe a zsírbecslés hibáját 
-a Flash-Lite-nál $4{,}8$ százalékponttal ($67{,}1\%$-ról $62{,}3\%$-ra, $p < 0{,}001$), a Solnál $5{,}1$ százalékponttal
- ($49{,}8\%$-ról $44{,}7\%$-ra, $p < 0{,}001$) csökkentette, vagyis a felderítő mérésben talált javulás nagyobb mintán, 
+a Flash-Lite-nál $4{,}8$ százalékponttal ($67{,}1\%$-ról $62{,}3\%$-ra, $-6{,}4$ és $-3{,}2$ között, $p < 0{,}001$), a Solnál $5{,}1$ százalékponttal
+ ($49{,}8\%$-ról $44{,}7\%$-ra, $-6{,}8$ és $-3{,}5$ között, $p < 0{,}001$) csökkentette, vagyis a felderítő mérésben talált javulás nagyobb mintán, 
  egy másik modellnél is megismétlődött. A szénhidrátbecslésen a P3\_recipe egyik adathalmazon sem változtatott szignifikánsan 
  (OmniFood8k: $+0{,}5$ százalékpont, $-2{,}6$ és $+3{,}6$ között; Nutrition5k: $-2{,}0$ százalékpont, $-5{,}8$ és $+1{,}8$ között; 
  Holm-korrigált $p = 0{,}74$, illetve $0{,}59$).
@@ -567,7 +566,7 @@ a Flash-Lite-nál $4{,}8$ százalékponttal ($67{,}1\%$-ról $62{,}3\%$-ra, $p <
 hipotézisvizsgálat nélkül, 95\%-os konfidenciaintervallummal közlöm. Ezek a tesztelt 
 eredmények értelmezését segítik, önmagukban azonban nem megerősített állítások.
 \paragraph{}A Nutrition5k-n a szénhidrát torzítása a Flash-Lite-nál $+12\%$, a Sonnetnél 
-$+49\%$, a Solnál $+50\%$ volt, az OmniFood8k-n $+10\%$, $+63\%$, illetve $+45\%$. 
+$+49\%$, a Solnál $+50\%$ volt, az OmniFood8k-n $+10\%$, $+63\%$, illetve $+45\%$, az ACETADA-n $+11\%$, $+18\%$, illetve $+27\%$. 
 A túlbecslés mindhárom modellnél a kis szénhidráttartalmú ételeken volt a legnagyobb: a 
 referenciaérték szerinti alsó harmadban a Nutrition5k-n a Flash-Lite torzítása $+64\%$, a két 
 drágább modellé $+133$ és $+157\%$ között volt, az OmniFood8k-n $+149\%$, illetve $+284$ és 
@@ -750,8 +749,7 @@ csak spenótot leíró elemére leképezte, vagyis a nyers, a frissen főzött, 
 referencia milyen részletességgel nevezi meg az ételt, és hogy a leképezés hogyan kezeli az 
 eltérő részletességet. Ezért az értékeket adathalmazon belül értelmezem, a két leképezés 
 eredményét együtt nézve. A DFood-Tj-n, ahol a referencia elkészített fogásokat sorol fel, a tételnevek 
-60,9\%-ához a Gemini 3.8 Flash, 66,3\%-ához a Flash-Lite nem rendelt szótári elemet. Az 
-adathalmazon belüli sorrend a két leképezéssel egyezett. A Nutrition5k-n, a DFood-Tj-n és az 
+60,9\%-ához a Gemini 3.8 Flash, 66,3\%-ához a Flash-Lite nem rendelt szótári elemet. A Nutrition5k-n, a DFood-Tj-n és az 
 ACETADA-n mindkét leképezéssel a Sonnet lefedettsége volt a legnagyobb és a Sol találati aránya a 
 legkisebb, és mindhárom adathalmazon a Sol sorolta fel a legtöbb tételt. A modellek közötti különbségeket statisztikai próbával nem vizsgáltam, és több modellpár 
 konfidenciaintervalluma átfed.
@@ -920,7 +918,7 @@ azonos modellazonosítóval és modellbeállítással, azonos promptszöveggel, 
 bemenettel, képmérettel és nézettel készült. Futáson belül ismételt hívásokat 
 nem használtam. A Nutrition5k Flash-Lite P3\_macros futásához több előmérési futás is 
 megfelelt ezeknek a feltételeknek, közülük az elsőt, a 2026.~október~27-it választottam. 
-Az előmérési futások 3--17 nappal a döntési mérés előtt készültek. A közös ételek száma 
+Az előmérési futások 3--18 nappal a döntési mérés előtt készültek. A közös ételek száma 
 futásonként 50. Az OmniFood8k két Flash-Lite futásánál 100, mert az előre rögzített 
 megerősítő mérés (\ref{sec:ertekeles}.~alfejezet) további 50 ételt dolgozott fel. A 
 SNAPMe-n 49, mert egy étel képfájlja nem volt beolvasható (\ref{sec:sikertelen}.~alfejezet).
@@ -1020,7 +1018,7 @@ voltak kimutathatók, és a kisebb hatású prompt- és bemeneti változatokat e
 A csúcsszintű modelleket csak az előmérésben vizsgáltam, a GPT-6 Astrát csak az OmniFood8k-n, a 
 Google csúcsmodelljét pedig egyáltalán nem, így a döntési mérés pontosság- és költségösszevetése 
 az olcsó és a középső árszintre vonatkozik.
-\paragraph{}A konfidenciaintervallumok egymástól független ételeket feltételeznek. 
+\paragraph{}A konfidenciaintervallumok és a $p$-értékek egymástól független ételeket feltételeznek. 
 Az ACETADA-n, a SNAPMe-n és a DFood-Tj-n azonban ugyanattól a résztvevőtől több étkezés is származik 
 \cite{coburn2025acetada, larke2023snapme, jin2026dfoodtj}, és ezek egymáshoz hasonlóak lehetnek, ezért ezeken 
 az adathalmazokon a becslés valódi bizonytalansága nagyobb lehet a közöltnél. Az intervallumok 
@@ -1028,7 +1026,7 @@ emellett csak az adott adathalmaz ételeire érvényesek, egy alkalmazás felhas
 nem, mert azok összetétele és fényképezési körülményei eltérhetnek az adathalmazokétól.
 \paragraph{}A hihetőségi szabályok csak a tételek belső ellentmondásait jelzik, a belsőleg 
 következetes, de téves becsléseket, például egy rosszul felismert ételt vagy egy hibás adagot nem. 
-A konzisztencia mérésében ételenként két hívás állt rendelkezésre, amelyek között 3--17 nap telt el, 
+A konzisztencia mérésében ételenként két hívás állt rendelkezésre, amelyek között 3--18 nap telt el, 
 így a hívások véletlen ingadozása nem választható el a szolgáltató időközbeni esetleges változtatásainak 
 hatásától. A mérőszám azt is feltételezi, hogy az ingadozás nem függ az étel nagyságától.
 \paragraph{}Egy cukorbetegeknek szóló alkalmazásban a felhasználóhoz köthető étkezési fényképek és leírások 
