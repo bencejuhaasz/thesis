@@ -655,11 +655,11 @@ megfeleltetést két lépésben végeztem, mindkettőt a \texttt{recognition.py}
 adathalmaz összes referencianevéből szótárat képeztem kisbetűsítéssel, a szóközök 
 egységesítésével, ismétlődések nélkül. A szótár a Nutrition5k-n 249, a DFood-Tj-n 98, a 
 SNAPMe-n 1151, az ACETADA-n 181 elemből állt. A döntési mérés P3\_macros-futásaiban megadott 
-tételneveket nagy nyelvi modell segítségével képeztem le a szótár elemeire, a modellt a 
-\texttt{recognition.py} API-n keresztül hívta. A leképezést végző modell csak a tételneveket és 
+tételneveket nagy nyelvi modell segítségével képeztem le a szótár elemeire, ennek implementációja a 
+\texttt{recognition.py} programban található, a becslésekhez hasonlóan szintén kereskedelmi API-n keresztül elérve a modellt. A leképezést végző modell csak a tételneveket és 
 a teljes szótárat kapta meg, a képet és az étel referencianeveit nem, és csak olyan szótári 
-elemet adhatott vissza, amelyet a tételnév megnevez vagy egyértelműen jelöl. Ha ilyen nem volt, 
-a prompt szerint üres listát kellett adnia. A leképezést először a Gemini 3.5 Flash-Lite végezte 
+elemet adhatott vissza a prompt utasítása szerint, amelyet a tételnév megnevez vagy egyértelműen jelöl. Ha ilyen nem volt, 
+üres listát kellett adnia. A leképezést először a Gemini 3.5 Flash-Lite végezte 
 0,1-es temperature beállítással. A leképezéseinek szúrópróbaszerű átnézésekor több olyan tételnevet találtam, amelyhez a 
 szótárban egyértelműen megfelelő elem tartozott, a Flash-Lite mégsem képezte le rá. A 
 DFood-Tj „napa cabbage” kifejezést tartalmazó 26 tételnevéből a Flash-Lite csak 3-at 

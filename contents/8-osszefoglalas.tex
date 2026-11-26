@@ -67,6 +67,11 @@ szinkron feldolgozás, amelyben a felhasználó megvárja a választ, ez a Flash
 medián válaszidejével elfogadható várakozást jelent. Lehetőség a háttérben végzett feldolgozás is, 
 amelyben a kérés adatbázisba kerül, és az alkalmazás értesíti a felhasználót, ha a becslés elkészült. 
 Ez a lassabb modelleknél vagy rossz hálózati kapcsolat esetén lehet előnyös.
+Egy kérés feldolgozásának ideje szinte teljes egészében a szolgáltató válaszára való várakozás, 
+az alkalmazás szerverén végzett számítás ehhez képest elhanyagolható. Ezért érdemes a kéréseket 
+a szerveren nem blokkoló módon, aszinkron hálózati hívásokkal vagy egy kérési sor segítségével 
+kezelni, így a szerver egy válaszra várva is fogadhat és továbbíthat újabb kéréseket, és kevés 
+erőforrással egyszerre sok felhasználót szolgálhat ki.
 
 \subsection{További vizsgálatok}
 \paragraph{}A mérések adathalmazokon készültek, ezért a következő lépés az alkalmazás leendő 
