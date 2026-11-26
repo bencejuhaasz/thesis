@@ -1,7 +1,7 @@
 \chapter*{Kivonat}
 \paragraph{}A dolgozat azt vizsgálja, hogy a kereskedelmi API-n elérhető multimodális nagy nyelvi 
 modellek mennyire pontosan becsülik egy étkezés tömegét, energia- és makrotápanyag-tartalmát 
-fénykép vagy szöveges leírás alapján, egy cukorbetegség kezelését támogató alkalmazás 
+fénykép, szöveges leírás vagy a kettő együttes felhasználásával, egy cukorbetegség kezelését támogató alkalmazás 
 étkezésnaplózó funkciójához. Öt képes és egy szöveges nyilvános adathalmazon egységes mérési 
 keretrendszerrel hasonlítottam össze a Google, az OpenAI és az Anthropic modelljeit több árszinten, 
 valamint promptváltozatokat, több nézőpontból készült képeket és szöveges bemenetet. Az 50 ételes 
@@ -10,9 +10,9 @@ fel nem használt ételeken, Holm-korrekcióval vizsgáltam. A pontosság mellet
 válaszidőt, a strukturált kimenet megbízhatóságát, a válaszok konzisztenciáját és az ételek 
 megnevezését is értékeltem.
 
-\paragraph{}A legolcsóbb és leggyorsabb vizsgált modell, a Gemini Flash-Lite szénhidrátban a 
+\paragraph{}A döntési mérés modelljei közül a legolcsóbb és leggyorsabb, a Gemini Flash-Lite szénhidrátban a 
 Nutrition5k, az OmniFood8k és az ACETADA adathalmazon szignifikánsan pontosabb volt a nagyjából 
-öt-hatszor drágább Claude Sonnet és GPT-6.1 Sol modellnél, a DFood-Tj-n viszont a drágább modellek 
+öt-hatszor drágább Claude Sonnet és GPT-6.1 Sol modelleknél, a DFood-Tj-n viszont a drágább modellek 
 voltak pontosabbak. A promptváltozatok szénhidrátban nem javítottak következetesen, az étel szokásos 
 elkészítési módját is figyelembe vevő P3\_recipe prompt viszont az OmniFood8k-n csökkentette a 
 zsírbecslés hibáját. A döntési mérés 5546 hívása között nem volt sikertelen hívás, a sémának 

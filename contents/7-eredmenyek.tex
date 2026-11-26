@@ -157,8 +157,8 @@ volt minden adathalmazon és minden célmennyiségben a legpontosabb.
 
 \paragraph{}A Claude Haiku 5.5 a Nutrition5k-n és az OmniFood8k-n adta a legnagyobb 
 szénhidráthibát (88,3, illetve 133,1\%). Az OmniFood8k-n a skillje kimutathatóan negatív volt, 
-vagyis a becslése rosszabb volt a mediánbecslésnél. Ugyanezen az adathalmazon a két Gemini-modell szénhidrát-skillje kimutathatóan pozitív volt, a 
-többi modellé pedig a Haiku kivételével nem tért el kimutathatóan a nullától.
+vagyis a becslése rosszabb volt a mediánbecslésnél. Ugyanezen az adathalmazon a két Gemini-modell szénhidrát-skillje kimutathatóan pozitív, a Haikué kimutathatóan negatív volt, 
+a többi modellé pedig nem tért el kimutathatóan a nullától.
 
 \paragraph{}A DFood-Tj-n minden modell szénhidrát-pMAE-je (15,6--26,5\%) kisebb, 
 mint bármelyik modellé a többi adathalmazon, a skill viszont a Sol (0,11) 
@@ -621,7 +621,7 @@ $-12{,}1$ százalékpont) és zsírban ($-12{,}2$, illetve $-17{,}3$) pontosabb,
 volt a Flash-Lite-nál. A Nutrition5k-n energiában ($+5{,}5$, illetve $+7{,}5$) és 
 tömegben ($+9{,}2$, illetve $+7{,}6$ százalékpont) a Flash-Lite volt a pontosabb. A 
 DFood-Tj-n a Sol tömegbecslésének pMAE-je 8,6\%, $11{,}2$ százalékponttal kisebb a 
-Flash-Lite-énál. A mérleg kijelzőjét említő ételeken ez az érték 4,2, a többin 14,5\% volt. Az ACETADA-n a Sonnet és a Flash-Lite között egyik célmennyiségben sem 
+Flash-Lite-énál. A mérleg kijelzőjét említő 143 ételen a Sol tömeg-pMAE-je 4,2, a többi 107 ételen 14,5\% volt. Az ACETADA-n a Sonnet és a Flash-Lite között egyik célmennyiségben sem 
 volt kimutatható különbség.
 
 \paragraph{}A Sonnet és a Sol között az öt célmennyiség és a négy adathalmaz 20 
@@ -641,7 +641,7 @@ Solnál ($-0{,}20$), valamint a DFood-Tj-n a Flash-Lite-nál ($-0{,}25$).
 \paragraph{}A P3\_macros prompt tételenként a tétel nevét is kéri, így a döntési mérés 
 futásaiból az is vizsgálható, mennyire egyeznek a modell által megnevezett tételek az 
 adathalmaz referencia-tételneveivel. A vizsgálatba azok az adathalmazok kerültek, amelyek 
-tételszintű referencianeveket adnak meg. A Nutrition5k összetevőket, a DFood-Tj menüételeket, 
+tételszintű referencianeveket adnak meg. A Nutrition5k összetevőket, a DFood-Tj elkészített fogásokat, 
 az ACETADA gyakran összetett ételneveket, a SNAPMe FNDDS-ételleírásokat 
 sorol fel, az OmniFood8k pedig tételneveket nem ad meg. A NutriBench nem szerepelt a döntési 
 mérésben, és a bemenete az ételeket szövegesen megnevezi, így ott a tételnevek egyezése nem a 
@@ -655,10 +655,10 @@ megfeleltetést két lépésben végeztem, mindkettőt a \texttt{recognition.py}
 adathalmaz összes referencianevéből szótárat képeztem kisbetűsítéssel, a szóközök 
 egységesítésével, ismétlődések nélkül. A szótár a Nutrition5k-n 249, a DFood-Tj-n 98, a 
 SNAPMe-n 1151, az ACETADA-n 181 elemből állt. A döntési mérés P3\_macros-futásaiban megadott 
-tételneveket nagy nyelvi modell segítségével képeztem le a szótár elemeire, ennek implementációja a 
-\texttt{recognition.py} programban található, a becslésekhez hasonlóan szintén kereskedelmi API-n keresztül elérve a modellt. A leképezést végző modell csak a tételneveket és 
-a teljes szótárat kapta meg, a képet és az étel referencianeveit nem, és csak olyan szótári 
-elemet adhatott vissza a prompt utasítása szerint, amelyet a tételnév megnevez vagy egyértelműen jelöl. Ha ilyen nem volt, 
+tételneveket nagy nyelvi modell segítségével képeztem le a szótár elemeire. Ennek implementációja a 
+\texttt{recognition.py} programban található, amely a modellt a becslésekhez hasonlóan kereskedelmi API-n keresztül hívja. A leképezést végző modell csak a tételneveket és 
+a teljes szótárat kapta meg, a képet és az étel referencianeveit nem, és a prompt utasítása szerint csak olyan szótári 
+elemet adhatott vissza, amelyet a tételnév megnevez vagy egyértelműen jelöl. Ha ilyen nem volt, 
 üres listát kellett adnia. A leképezést először a Gemini 3.5 Flash-Lite végezte 
 0,1-es temperature beállítással. A leképezéseinek szúrópróbaszerű átnézésekor több olyan tételnevet találtam, amelyhez a 
 szótárban egyértelműen megfelelő elem tartozott, a Flash-Lite mégsem képezte le rá. A 
@@ -687,8 +687,9 @@ minden visszaadott eleme a tisztítás után pontosan egyezett egy szótári ele
 elemeinek pedig 99,7\%-a. Az illesztés így csak a Flash-Lite elemeinek 0,3\%-át érintette, és a 
 80 és 95 közötti küszöbök az eredményen legfeljebb 0,2 százalékpontot változtattak.
 
-\paragraph{}Két mérőszámot használtam, mindkettőt az ételekre összegzett hányadosként, a 
-konfidenciaintervallumot a pMAE-vel azonos módon, \az{\ref{sec:ertekeles}}.~alfejezetben 
+\paragraph{}Két mérőszámot használtam, mindkettőt a pMAE-hez hasonlóan összegek hányadosaként, vagyis a 
+számlálót és a nevezőt is az összes ételre összegezve, így minden referencianév, illetve tétel azonos 
+súllyal számít. A konfidenciaintervallumot a pMAE-vel azonos módon, \az{\ref{sec:ertekeles}}.~alfejezetben 
 leírtak szerint számolva.
 \begin{itemize}
     \item A lefedettség a referencianevek közül azoknak az aránya, amelyekre az étel valamelyik 
@@ -748,7 +749,7 @@ csak spenótot leíró elemére leképezte, vagyis a nyers, a frissen főzött, 
 \paragraph{}A mért értékekben a felismerés mellett az is megjelenik, hogy a modell és a 
 referencia milyen részletességgel nevezi meg az ételt, és hogy a leképezés hogyan kezeli az 
 eltérő részletességet. Ezért az értékeket adathalmazon belül értelmezem, a két leképezés 
-eredményét együtt nézve. A DFood-Tj-n, ahol a referencia menüételeket sorol fel, a tételnevek 
+eredményét együtt nézve. A DFood-Tj-n, ahol a referencia elkészített fogásokat sorol fel, a tételnevek 
 60,9\%-ához a Gemini 3.8 Flash, 66,3\%-ához a Flash-Lite nem rendelt szótári elemet. Az 
 adathalmazon belüli sorrend a két leképezéssel egyezett. A Nutrition5k-n, a DFood-Tj-n és az 
 ACETADA-n mindkét leképezéssel a Sonnet lefedettsége volt a legnagyobb és a Sol találati aránya a 
@@ -798,8 +799,8 @@ SNAPMe & Flash-Lite & P3\_macros & 248 & 2{,}2 & 2{,}3 & 0{,}88 \\
 \end{tabular}
 \end{table}
 
-\paragraph{}A Flash-Lite minden adathalmazon a leggyorsabb és a legolcsóbb 
-modell volt. A medián válaszideje 2,1--2,6~s, a Sonneté 3,5--4,3~s, a Solé 
+\paragraph{}A döntési mérés három modellje közül a Flash-Lite minden adathalmazon a leggyorsabb 
+és a legolcsóbb volt. A medián válaszideje 2,1--2,6~s, a Sonneté 3,5--4,3~s, a Solé 
 8,1--10,3~s volt P3\_macros prompttal, vagyis a Sonnet nagyjából 1,6--1,8-szor, 
 a Sol 3,6--4,6-szor annyi ideig válaszolt, mint a Flash-Lite. A költségben 
 nagyobb a különbség: a Flash-Lite 1000 hívása 0,9--1,5~\$, a Sonneté 
@@ -1020,8 +1021,8 @@ A csúcsszintű modelleket csak az előmérésben vizsgáltam, a GPT-6 Astrát c
 Google csúcsmodelljét pedig egyáltalán nem, így a döntési mérés pontosság- és költségösszevetése 
 az olcsó és a középső árszintre vonatkozik.
 \paragraph{}A konfidenciaintervallumok egymástól független ételeket feltételeznek. 
-Az ACETADA-ban és a SNAPMe-ben azonban ugyanattól a résztvevőtől több étkezés is származik 
-\cite{coburn2025acetada, larke2023snapme}, és ezek egymáshoz hasonlóak lehetnek, ezért ezeken 
+Az ACETADA-ban, a SNAPMe-ben és a DFood-Tj-ben azonban ugyanattól a résztvevőtől több étkezés is származik 
+\cite{coburn2025acetada, larke2023snapme, jin2026dfoodtj}, és ezek egymáshoz hasonlóak lehetnek, ezért ezeken 
 az adathalmazokon a becslés valódi bizonytalansága nagyobb lehet a közöltnél. Az intervallumok 
 emellett csak az adott adathalmaz ételeire érvényesek, egy alkalmazás felhasználóinak étkezéseire 
 nem, mert azok összetétele és fényképezési körülményei eltérhetnek az adathalmazokétól.

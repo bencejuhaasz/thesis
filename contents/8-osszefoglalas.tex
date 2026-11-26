@@ -38,7 +38,7 @@ rekordból származik, mint a referenciaértékek, ez felső becslés arra, amit
 elérhet. A csak szöveges NutriBench-leírásokon a modellek pontossága nem különbözött kimutathatóan, 
 a költségük viszont igen.
 
-\paragraph{}A Flash-Lite minden adathalmazon a leggyorsabb és a legolcsóbb modell volt. A döntési 
+\paragraph{}A döntési mérés három modellje közül a Flash-Lite minden adathalmazon a leggyorsabb és a legolcsóbb volt. A döntési 
 mérés 5546 hívása között nem volt sikertelen hívás vagy fel nem dolgozható válasz, a JSON-sémának 
 megfelelő válaszok között azonban négy nagyságrendi hibát is találtam. Az ugyanarra az ételre adott 
 két becslés szénhidrátban az ételenkénti szórás alapján a referenciaátlag 4,6--27,2\%-ával 
@@ -47,7 +47,7 @@ ingadozott. A modellek által megnevezett tételek a Gemini 3.8 Flash leképezé
 függött.
 
 \paragraph{}Az eredmények alapján egy étkezésnaplózó alkalmazáshoz a Flash-Lite egy képpel és a 
-P3\_macros prompttal a vizsgált modellek közül a legkedvezőbb költségű kiindulópont, amely a 
+P3\_macros prompttal a döntési mérés modelljei közül a legkedvezőbb költségű kiindulópont, amely a 
 legtöbb vizsgált adathalmazon szénhidrátban a drágább modelleknél is pontosabb volt. A becslés hibája 
 azonban ételenként nagy lehet, ezért az eredményt a felhasználónak ellenőrizhető és javítható 
 javaslatként érdemes megjeleníteni.

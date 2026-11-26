@@ -40,7 +40,7 @@ termékek csomagolásának elejéről készült fotóit használom. A csomagolt 
 így a döntési mérés 199 tesztelt SNAPMe-ételéből 26 csomagolt termék. Ezeknél a becslés inkább 
 a termék felismerésén múlik, mint az adag becslésén.
 
-Az adatok feldolgozásához a Pandas programkönyvtárat használtam, a Pythonnak pedig a 3.14-es verzióját.
+Az adatok feldolgozásához a Pandas programkönyvtárat használtam, a Pythonnak pedig a 3.14-es verzióját. A modelleket a szolgáltatók hivatalos Python-könyvtárain keresztül hívtam, a \texttt{google-genai} 2.33.0-s, az \texttt{anthropic} 2.1.0-s és az \texttt{openai} 3.37.0-s verziójával, a teljes csomaglistát a \texttt{requirements.txt} tartalmazza.
 
 \section{A mérési környezet kialakítása}
 A \texttt{benchmark.py} a tesztméréseket a következő módon valósítja meg:
@@ -48,13 +48,22 @@ Megkeresi és betölti a \texttt{loader.py} programokat az alkönyvtárakból.
 Betölti a választott adathalmazokat egy Pandas dataframe objektumba. A fájl konfigurációs változói segítségével
 lehetőség van az adathalmazok részhalmazát használni. A részhalmazok  kiválasztása egy véletlenszerű sorbarendezés után, vagy állítható tartománnyal történik. A véletlenszerű kiválasztáshoz megadható a
 reprodukálhatóság érdekében egy seed érték, valamint a méret meghatározására egy "n" paraméter szolgál, amely megadja, hogy hányadik indexig kell a kiválasztást
-végezni. A véletlenszerű sorbarendezést a numpy könyvtár végzi. Az állítható tartomány módot választva a rekordok azonosító (sample\_id) szerint rendezett sorrendjében lehet kijelölni a használandó résztartományt.
+végezni. A véletlenszerű sorbarendezést a numpy könyvtár végzi. 
+A DFood-Tj-ben minden kép külön rekord, és egy étkezésről két kép készült, ezért ott a 
+kiválasztás egysége nem a kép, hanem az étkezés, hogy egy étkezés két képe együtt maradjon, 
+és az \texttt{n} paraméter az étkezések számát adja meg.
+A program az étkezéseket egy sorszámmal azonosítja, és véletlenszerű kiválasztásnál a seedből és ebből a sorszámból képzett 
+szöveg SHA-256 hash-értéke szerint rendezi sorba őket. Így a sorrend véletlenszerű, de minden 
+futásban azonos, és egy étkezés helye akkor sem változik, ha a szűrés más étkezéseket kihagy. 
+Az állítható tartomány módban a többi adathalmazon a rekordok azonosító (sample\_id) szerint 
+rendezett sorrendjében, a DFood-Tj-n pedig az étkezések sorszáma szerint lehet kijelölni a 
+használandó résztartományt.
 A program ezután fájlba írja a mérés konfigurációs paramétereit.
 Betölti az adathalmazhoz tartozó képeket és a konfigurációs változók valamint a megadott argumentumok szerint megformázza a mérni kívánt nagy nyelvi modellek
 felé küldendő szöveges prompt utasítást. 
 Változók segítségével konfigurálható, hogy mely nagy nyelvi modellek milyen paraméterekkel dolgozzák fel a kéréseket, milyen API végponton.
 Ezután elküldi a kérést a program az API végpont felé. Állítható, hogy sikertelen válasz esetén hány újrapróbálkozás megengedett.
-A prompt utasítások szerint json formátumban kell a nagy nyelvi modelleknek válaszolniuk a kérésekre, a következő lépésben ezen formátum szerint történik a szöveges
+A prompt utasítások szerint json formátumban kell a nagy nyelvi modelleknek válaszolniuk a kérésekre, ezt a program a kéréssel elküldött JSON-sémával is előírja, és a következő lépésben ezen formátum szerint történik a szöveges
 válasz feldolgozása. Ha ebben hiba történik, abban az esetben már nincs újrapróbálkozás, hanem nem értelmezhetőként naplózásra kerül a kapott válasz.
 Miután az adathalmaz minden kiválasztott rekordjához megtörténtek a kérések az API végpont felé, a kapott eredményekről egy összefoglaló csv fájlt ír ki a program.
 
@@ -242,7 +251,7 @@ típusonként eltér, ezért az eredményeik nem vonhatók össze, és az eredm�
 mindig megadom, melyik típusról van szó.
 \begin{enumerate}
     \item \textbf{Csak kép:} egy vagy több fénykép, szöveg nélkül. Ide tartozik a P3, a P3\_macros 
-    és a többi képes változat: ezekben a futásokban a modell a képen kívül semmilyen leírást nem kapott.
+    és a többi képes változat, ezekben a futásokban a modell a képen kívül semmilyen leírást nem kapott.
     \item \textbf{Kép és a referenciarekordból képzett szöveg:} a kép mellett a résztvevő által 
     naplózott ételek FNDDS-leírása, tömeg nélkül (SNAPMe, P3\_macros\_hint). 
     A szöveg a referenciaannotációból származik, ezért pontosabban nevezi meg az ételeket, mint 
@@ -250,7 +259,7 @@ mindig megadom, melyik típusról van szó.
     \item \textbf{Csak szöveg, referenciaadatokból nyelvi modellel fogalmazva:} a NutriBench 
     leírásai, amelyeket a szerzők a felmérésekben rögzített ételekből és mennyiségekből 
     GPT-4o-mini segítségével készítettek. A NutriBench v1 grammos (metric) és hétköznapi 
-    mértékegységű (natural) leírásai közül a hétköznapi változatot használtam: a szöveg az ételeket és a mennyiségüket 
+    mértékegységű (natural) leírásai közül a hétköznapi változatot használtam. A szöveg az ételeket és a mennyiségüket 
     is megadja, de grammok nélkül, hétköznapi mértékegységben vagy darabszámban (például „egy 
     uncia”, „egy közepes zacskó”, „egy szendvics”).
     \item \textbf{Kép, majd a modell saját leírása:} a P3\_prep\_textcalc második lépése, amely 
@@ -423,15 +432,15 @@ $p$-érték kisebb, mint 0,05. A hatás nagyságát korrekció nélküli 95\%-os
 közlöm.
 Ez a becslés pontosságát mutatja, a szignifikanciáról a korrigált $p$-érték dönt.
 
-\paragraph{}Az A család vizsgálatába azok az adathalmazok tartoznak, amelyeken az 
-előmérésben talált különbség elérte a 200 elemes mintán 
-kimutatható legkisebb különbséget (MDD). Ezt páros összehasonlításra a
+\paragraph{}Az A család vizsgálatába azok az adathalmazok tartoznak, amelyeken az előmérésben 
+talált különbség legalább az egyik drágább modellnél elérte a 200 elemes mintán kimutatható 
+legkisebb különbséget (MDD). Ezt páros összehasonlításra a
 \begin{equation}
   \mathrm{MDD} = \left(z_{1-\alpha'/2} + z_{1-\beta}\right)\frac{\sigma_d}{\sqrt{n}}
 \end{equation}
 összefüggéssel számoltam, ahol $\sigma_d$ az ételenkénti hibakülönbségek szórása az 
 előmérésben, $n$ a minta elemszáma, $\alpha' = 0{,}05/m$ a Holm-korrekció legszigorúbb 
-lépésének szintje egy $m$ elemű családban, $1-\beta$ pedig a próba ereje. Az 
+lépésének szintje egy $m$ elemű családban, az A családban $m = 8$, $1-\beta$ pedig a próba ereje. Az 
 erőt 80\%-ra választottam: egy pontosan MDD nagyságú valódi 
 különbséget a próba 80\% valószínűséggel mutat ki. A SNAPMe adathalmaz ennek a feltételnek nem 
 felelt meg.
