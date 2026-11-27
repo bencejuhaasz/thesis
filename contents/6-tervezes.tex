@@ -8,7 +8,7 @@ adathalmaz valóban az előzményekben ismertetett publikációhoz tartozik, min
 vagy a letöltési oldal nevezi meg a publikációt (címét, szerzőit, arXiv- vagy DOI-azonosítóját), vagy 
 a publikáció hivatkozik a letöltési helyre. Az ASA24-ből csak hiányos változatot találtam, ezért azt nem vizsgáltam 
 tovább. A felhasznált adathalmazok letöltési helyét, licencét és a használt változatot 
-\az{\ref{tab:adathalmaz_forrasok}}.~táblázat foglalja össze.
+\az{\ref{tab:adathalmaz_forrasok}}.~táblázat foglalja össze. Két adathalmaz egy-egy bemeneti képét \az{\ref{fig:mintakepek}}.~ábra mutatja.
 
 \begin{table}[htbp]
 \centering
@@ -29,6 +29,24 @@ NutriBench  & \href{https://huggingface.co/datasets/dongx1997/NutriBench}{huggin
 \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[h]
+\centering
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=5.5cm,keepaspectratio]{minta_nutrition5k.png}
+\end{minipage}\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth,height=5.5cm,keepaspectratio]{minta_dfood_tj.png}
+\end{minipage}
+\caption{Két bemeneti kép a mérésekből. A bal oldali a Nutrition5k \texttt{dish\_1562614158} 
+azonosítójú ételének felülnézeti képe \cite{thames_nutrition5k_2021}, CC BY 4.0 licenccel. A jobb oldali 
+a DFood-Tj 2989-es képe, az étkezés ferde nézete, amelyen a tányér konyhai mérlegen áll 
+\cite{jin2026dfoodtj}, CC0 licenccel.}
+\label{fig:mintakepek}
+\end{figure}
+
 
 Ezután kialakítottam egy mappaszerkezetet, amiben minden adathalmaz külön mappát kapott, és ezekbe elkészítettem egy \texttt{loader.py} Python programot mindegyik számára,
 amelyekben az adatok egységes betöltését és elérhetővé tételét implementáltam. Az adathalmazok fölött a mappaszerkezetben előkészítettem egy \texttt{benchmark.py} nevű Python
