@@ -81,3 +81,17 @@ lenne megvizsgálni, hogy több hívás becsléseinek átlagolása mennyit csök
 ingadozáson, és a konfidenciaintervallumokat a résztvevőnkénti csoportosítás figyelembevételével is 
 kiszámítani. A csúcsszintű modellek teljes körű mérése, valamint a képen látható ismert méretű 
 tárgyak és a felhasználó által megadott adag felhasználása szintén további vizsgálatot igényel.
+
+\paragraph{}\Az{\ref{sec:felismeres}}.~alfejezetben vizsgált tételnév-egyezés több irányban folytatható. 
+Mivel az ACETADA-n és a SNAPMe-n a mérőszámok 
+a két leképezéssel 10,5--16,7 százalékponttal eltértek, a következő lépés a leképezések kézi ellenőrzése lenne a tételnevek egy véletlen mintáján, amelyből kiderülne, melyik leképezés áll közelebb a helyes megfeleltetéshez. A DFood-Tj-n a 
+tételnevek többségéhez egyik leképezés sem rendelt szótári elemet, ezért érdemes lenne a promptban megadni, hogy a modell 
+elkészített fogásokat vagy összetevőket nevezzen meg, és megvizsgálni, hogyan változik ezzel az egyezés. A lefedettség a 
+kihagyott referencianeveket, a találati arány a referenciában nem szereplő tételeket méri, ezért a modellek összehasonlítását 
+egyszerűsítené egy a kettőt egy számban mutató mérőszám, például a Sterling és társai által is használt Jaccard-index \cite{sterling2026vlm}. 
+Az ételenkénti értékek eloszlása pedig azt mutatná meg, hogy az átlagos értéket néhány étel vagy az ételek többsége határozza meg. 
+A modellek közötti különbségek \az{\ref{sec:ertekeles}}.~alfejezetben leírt páros összehasonlítással statisztikailag is 
+vizsgálhatók. Egy kézzel ellenőrzött mintán a referencianevek hiányosságai is elválaszthatók lennének a modellek hibáitól, mivel 
+Sterling és társai a Nutrition5k összetevőlistáit az összetettebb ételeknél gyakran hiányosnak találták. Végül ételenként 
+megvizsgálható lenne, hogy a helyesen megnevezett ételeknél kisebb-e a tápértékbecslés hibája, ez azonban csak leíró 
+összefüggést mutatna, oksági összefüggést nem.
