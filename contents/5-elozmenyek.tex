@@ -1,5 +1,38 @@
 \chapter{Előzmények}
 
+\section{Irodalomkeresés}
+\paragraph{}A kapcsolódó publikációk elsődleges forrásaként a Google Scholar és az IEEE Xplore keresőjét használtam, 
+a Claude Opus 5.5 nagy nyelvi modell a keresésben kiegészítő szerepet kapott. A Google Scholarban négy keresőkifejezéssel kerestem a 2023 óta megjelent munkák között, 
+az IEEE Xplore-ban pedig az összevont kifejezéssel, a 2023 és 2026 közötti évekre szűkítve. A keresőkifejezéseket és azt, hogy melyik feldolgozott publikáció 
+szerepelt a találatok között, \az{\ref{tab:irodalomkereses}}.~táblázat foglalja össze.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{|p{1.2cm}|p{1.8cm}|p{6.6cm}|p{3.2cm}|}
+\hline
+\textbf{Jel} & \textbf{Adatbázis} & \textbf{Keresőkifejezés} & \textbf{Feldolgozott publikáció a találatok között} \\
+\hline
+S1 & Google Scholar & \texttt{("large language model" OR "large multimodal model") food image nutrition estimation} & Coburn és társai, NutriMLLM \\
+\hline
+S2 & Google Scholar & \texttt{"vision language model" calorie OR carbohydrate estimation food} & Sterling és társai \\
+\hline
+S3 & Google Scholar & \texttt{"large language model" meal description nutrient estimation} & NutriMLLM \\
+\hline
+S4 & Google Scholar & \texttt{("large language model" OR "vision language model" OR "multimodal large language model" OR "large multimodal model") AND (nutrition OR calorie OR carbohydrate) AND food} & Coburn és társai, Sterling és társai \\
+\hline
+I1 & IEEE Xplore & az S4 kifejezése & Coburn és társai \\
+\hline
+\end{tabular}
+\caption{Az irodalomkeresés keresőkifejezései.}
+\label{tab:irodalomkereses}
+\end{table}
+
+\paragraph{}A hat feldolgozott publikációból hármat, Coburn és társai, a NutriMLLM és Sterling és társai munkáját 
+a keresés közvetlenül találta meg, a másik hármat a talált munkák hivatkozásainak követésével értem el. 
+A DietAI24 a NutriMLLM hivatkozásai között szerepel, a DietDelta Coburn és társai 
+arXiv-en megjelent cikkére hivatkozik, az Open-KNEAD pedig Coburn és társai konferenciacikkét és a DietAI24-et is idézi.
+
 \section{Kapcsolódó publikációk}
 \subsection{DietAI24 (Yan et al. 2025)}
 \paragraph{}Ennek a tanulmánynak \cite{yan2025dietai24} az volt a célja, hogy az AI-alapú tápértékfelismerés során
