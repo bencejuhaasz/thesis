@@ -439,7 +439,8 @@ az első mérési kör két próbafuttatásában, amelyek még a végső mintav�
 más prompttal, és csak az energiát és a tömeget becsülték, a szénhidrátot nem. Ezen ételek nélkül 
 (225 páron) a különbségek kisebbek, de a következtetés nem változik: Sonnetre $-4{,}9$ ($-6{,}7$; $-3{,}1$), 
 Solra $-7{,}0$ ($-9{,}7$; $-4{,}3$) százalékpont, mindkettő Holm-korrekció után is szignifikáns. A tesztelt minta a Nutrition5k, az 
-ACETADA és a SNAPMe adathalmazon a sorrend 51--250. étele, az OmniFood8k-n a 101--300., a DFood-Tj-n a 351--600. étele. Az előmérésekben 
+ACETADA és a SNAPMe adathalmazon a sorrend 51--250. étele, az OmniFood8k-n a 101--300., a DFood-Tj-n a 351--600. étele, mert a DFood-Tj sorrendjének első 350 ételét egy korábbi, 
+Gemini 3.1 Flash-Lite-tal végzett előmérési futás már feldolgozta. Az előmérésekben 
 már felhasznált ételek eredményeit csak a konzisztencia vizsgálatára használom: ugyanezen ételek 
 korábbi, azonos beállítású futásainak eredményeivel vetem össze őket.
 
@@ -456,12 +457,12 @@ legkisebb különbséget (MDD). Ezt páros összehasonlításra a
 \begin{equation}
   \mathrm{MDD} = \left(z_{1-\alpha'/2} + z_{1-\beta}\right)\frac{\sigma_d}{\sqrt{n}}
 \end{equation}
-összefüggéssel számoltam, ahol $\sigma_d$ az ételenkénti hibakülönbségek szórása az 
-előmérésben, $n$ a minta elemszáma, $\alpha' = 0{,}05/m$ a Holm-korrekció legszigorúbb 
+összefüggéssel számoltam, ahol $\sigma_d$ az ételenkénti abszolúthiba-különbségek szórása az 
+előmérésben, a referenciaértékek átlagának százalékában, $n$ a minta elemszáma, $\alpha' = 0{,}05/m$ a Holm-korrekció legszigorúbb 
 lépésének szintje egy $m$ elemű családban, az A családban $m = 8$, $1-\beta$ pedig a próba ereje. Az 
 erőt 80\%-ra választottam: egy pontosan MDD nagyságú valódi 
 különbséget a próba 80\% valószínűséggel mutat ki. A SNAPMe adathalmaz ennek a feltételnek nem 
-felelt meg.
+felelt meg. A DFood-Tj-n a tesztelt minta 250 elemű, ott a 200 elemmel számolt MDD szigorúbb feltétel.
 
 \paragraph{}Az előmérések nagyszámú páros összehasonlításának áttekintéséhez segédeszközként 
 egy összesített pontszámot is használtam: adathalmazonként megszámoltam, hány összehasonlításban 
@@ -567,7 +568,8 @@ Kérdés & Bemenet és konfiguráció & Adathalmaz & Elsődleges mérőszám & �
 \end{table}
 
 \section{Az utólagos kalibráció elvetése}
-Az első mérési körben a Gemini Flash-Lite becslései szisztematikus torzítást mutattak: 
+Az első mérési körben, a Gemini 3.5 Flash-Lite P3 promptos, adathalmazonként 50 ételes 
+futásában a becslések szisztematikus torzítást mutattak: 
 a nagyobb adagokat a kisebbekhez képest alulbecsülte, és az energiaértékek átlagos előjeles hibája 
 adathalmazonként erősen eltért. Ez a torzítás
 az ACETADA adathalmazon elhanyagolható volt (\mbox{$-1{,}6\%$}), a Nutrition5k-n
@@ -581,8 +583,10 @@ beépíteni.
 \paragraph{}A döntés oka, hogy a korrekció csak abban a helyzetben érvényes, amelyből
 illesztették. A torzítás nagysága és előjele függ az adathalmaztól, az ételek jellegétől, a használt modelltől és az adag méretétől,
 ezért egyetlen rögzített korrekciós függvény az egyik helyzetben javítana, a másikban
-viszont ronthatna. A mérések ezt alátámasztják: ugyanez a korrekció a Nutrition5k-n
-(31,7\%-ról 34,1\%-ra) és az ACETADA-n (22,6\%-ról 23,6\%-ra) rontott az eredményen.
+viszont ronthatna. A korrekció már ugyanazon az adathalmazon belül, kihagyásos illesztéssel is 
+rontott ott, ahol a torzítás kisebb volt, a Nutrition5k-n 31,7\%-ról 34,1\%-ra, az ACETADA-n 
+22,6\%-ról 23,6\%-ra nőtt tőle az energia pMAE-je. Azt, hogy egy adathalmazon illesztett korrekció 
+egy másikon hogyan teljesít, nem mértem.
 Egy valós alkalmazásban a bemenetek
 eloszlása ismeretlen és változó, a kalibrációhoz szükséges címkézett minták pedig nem
 állnak rendelkezésre, így a korrekció nem lenne megbízhatóan beállítható.

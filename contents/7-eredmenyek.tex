@@ -102,8 +102,8 @@ rosszabb nála.
 Minden ételt egy pont ábrázol, amelynek vízszintes koordinátája a referenciaérték, 
 függőleges koordinátája a becslés. A meredekség a pontokra lineáris regresszióval 
 illesztett egyenes meredeksége. Hibátlan becslésnél minden pont a $p = t$ egyenesre 
-esne, és a meredekség $1$ lenne. Ha értéke $1$-nél kisebb, a becslések szűkebb 
-tartományban szóródnak, mint a referenciaértékek: a nagyobb adagokat a modell a 
+esne, és a meredekség $1$ lenne. Ha értéke $1$-nél kisebb, a becslés a referenciaértéknél 
+lassabban nő, vagyis a nagyobb adagokat a modell a 
 kisebbekhez képest alulbecsüli. Ugyanezt a harmadonkénti torzítás közvetlenebbül 
 mutatja: ehhez az ételek a referenciaérték szerint három egyenlő elemszámú csoportba 
 kerülnek, és a százalékos bias mindegyik csoportban külön kerül kiszámításra.
@@ -341,7 +341,8 @@ százalékponttal csökkentette, a SNAPMe-n viszont a szénhidrátét 4,5 (0,3; 
 növelte, a Nutrition5k-n pedig nem változtatott kimutathatóan. A második hívás ára, hogy a költség 
 1,71--1,80-szorosára, a válaszidő mediánja 2,14--2,34-szeresére nő. Az előmérésben a 
 különbség iránya adathalmazonként eltért. Az OmniFood8k-n a P3\_recipe egyetlen hívással is $-8{,}2$ százalékponttal 
-csökkentette a zsír hibáját a P3\_macros-hoz képest (\ref{tab:elomeres_promptok}.~táblázat).
+csökkentette a zsír hibáját a P3\_macros-hoz képest (\ref{tab:elomeres_promptok}.~táblázat). 
+A P3\_prep\_textcalc változatot ezután nem használtam.
 
 \paragraph{}A P3\_density az OmniFood8k-n hat képpel nem változtatta kimutathatóan az energia 
 hibáját a P3\_macros-hoz képest, a DFood-Tj-n (Gemini 3.1 Flash-Lite, két nézet) pedig a P3-hoz 
@@ -353,8 +354,9 @@ képest 6,3 (0,6; 11,9) százalékponttal növelte. A változatot ezután nem ha
 szénhidrát és zsír pMAE), valamint a költség és a válaszidő-medián aránya, 50 ételen 
 (a SNAPMe-n 49). A bemenet a P3\_prep\_textcalc második lépésének kivételével csak kép. Negatív 
 érték esetén a felsorolt változat a pontosabb. Zárójelben a 95\%-os konfidenciaintervallum. A P3 és a 
-P3\_density makrotápanyagot nem becsül; a DFood-Tj P3-futásainál a költséget a program még nem 
-rögzítette. Minden hívás sikeres volt.}
+P3\_density makrotápanyagot nem becsül; a DFood-Tj Gemini 3.5 Flash-Lite P3-futásainál a program a költséget még nem 
+rögzítette, ezért azt a rögzített tokenszámokból, a többi Gemini 3.5 Flash-Lite futással azonos árakkal számoltam. A P3\_density DFood-Tj-sorában a 350 ételes P3-futásból a P3\_density-futással közös 
+első 50 étel szerepel. Minden hívás sikeres volt.}
 \label{tab:elomeres_eljarasok}
 {\linespread{1}\selectfont\footnotesize\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{>{\raggedright\arraybackslash}p{3.3cm}lllll}
@@ -365,8 +367,8 @@ Változat & Energia & Szénhidrát & Zsír & Költség & Válaszidő \\
 \multicolumn{6}{l}{\textit{Több nézet (Flash-Lite)}} \\
 OmniFood8k: 6 kép, nem 1 (P3\_macros) & $-$3,4 ($-$6,7; $-$0,2) & 5,9 ($-$1,9; 13,7) & $-$2,2 ($-$5,1; 0,8) & 2,16 & 1,58 \\
 DFood-Tj: ferde és felülnézet, nem csak ferde (P3\_macros) & 0,9 ($-$1,9; 3,6) & 0,2 ($-$3,1; 3,6) & 1,3 ($-$3,0; 5,7) & 1,30 & 1,18 \\
-DFood-Tj: felülnézet, nem ferde (P3) & 2,0 ($-$1,7; 5,8) & -- & -- & -- & 1,09 \\
-DFood-Tj: ferde és felülnézet, nem csak ferde (P3) & 1,1 ($-$1,9; 4,1) & -- & -- & -- & 2,67 \\
+DFood-Tj: felülnézet, nem ferde (P3) & 2,0 ($-$1,7; 5,8) & -- & -- & 1,01 & 1,09 \\
+DFood-Tj: ferde és felülnézet, nem csak ferde (P3) & 1,1 ($-$1,9; 4,1) & -- & -- & 1,41 & 2,67 \\
 \hline
 \multicolumn{6}{l}{\textit{P3\_prep a P3\_macros-hoz képest (Flash-Lite, 1 kép)}} \\
 Nutrition5k & 2,9 ($-$1,1; 6,9) & 2,6 ($-$2,0; 7,3) & 0,8 ($-$5,1; 6,7) & 1,03 & 0,76 \\
@@ -482,8 +484,7 @@ ACETADA-n és a DFood-Tj-n a két rész hasonló nagyságú volt (16,5--22,1\%).
 erősítheti vagy kiolthatja egymást.
 
 \paragraph{}Az előmérésben a Flash-Lite tömegbecslésének meredeksége mind az öt adathalmazon 
-1-nél kisebb volt (0,53--0,89), vagyis a becsült tömegek szűkebb tartományban szóródtak, mint 
-a referencia-tömegek. Ezzel összhangban a felső harmad tömegtorzítása minden adathalmazon 
+1-nél kisebb volt (0,53--0,89), vagyis a becsült tömeg a referencia-tömegnél lassabban nőtt. Ezzel összhangban a felső harmad tömegtorzítása minden adathalmazon 
 kisebb volt az alsóénál: a nagy adagokat a Flash-Lite a kicsikhez képest alulbecsülte. A 
 különbség a SNAPMe-n volt a legnagyobb ($+34{,}8$ és $-28{,}6\%$), a DFood-Tj-n a legkisebb 
 ($-16{,}7$ és $-20{,}1\%$), ahol a Flash-Lite minden harmadban alulbecsülte a tömeget.
