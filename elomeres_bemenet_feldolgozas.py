@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
+import benchmark as bm
 import significance as sig
 
 HERE = Path(__file__).resolve().parent
@@ -61,10 +62,22 @@ def latency_ratio(dA, dB):
     return b.loc[common, "latency_s"].median() / a.loc[common, "latency_s"].median()
 
 
-def cost_ratio(sA, sB):
-    if not (sA.cost_usd > 0 and sB.cost_usd > 0):
+def cost_per_call(run, s):
+    if s.cost_usd > 0:
+        return s.cost_usd / s.calls
+    rows = [json.loads(l) for l in (RESULTS / run / "results.jsonl").open() if l.strip()]
+    m = next(m for m in bm.MODELS if m["model"] == rows[0]["model"])
+    costs = [bm.cost_of(m, r.get("usage")) for r in rows]
+    if not costs or any(c is None for c in costs):
+        return None
+    return sum(costs) / len(costs)
+
+
+def cost_ratio(a, b, sA, sB):
+    cA, cB = cost_per_call(a, sA), cost_per_call(b, sB)
+    if not (cA and cB):
         return "--"
-    return f"{(sB.cost_usd / sB.calls) / (sA.cost_usd / sA.calls):.2f}"
+    return f"{cB / cA:.2f}"
 
 
 print(f"{'':60s} " + " ".join(f"{k:26s}" for k in TARGETS) + "cost (x)  latency (x)")
@@ -74,4 +87,4 @@ for group, rows in ROWS:
         dA, dB = load(a), load(b)
         sA, sB = summary(a), summary(b)
         print(f"  {name:58s} " + " ".join(f"{paired(dA, dB, k):26s}" for k in TARGETS)
-              + f"{cost_ratio(sA, sB):9s} {latency_ratio(dA, dB):.2f}")
+              + f"{cost_ratio(a, b, sA, sB):9s} {latency_ratio(dA, dB):.2f}")
