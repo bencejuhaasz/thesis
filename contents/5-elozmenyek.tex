@@ -2,8 +2,8 @@
 
 \section{Irodalomkeresés}
 \paragraph{}A kapcsolódó publikációk elsődleges forrásaként a Google Scholar és az IEEE Xplore keresőjét használtam, 
-a Claude Opus 5.5 nagy nyelvi modell a keresésben kiegészítő szerepet kapott. A Google Scholarban négy keresőkifejezéssel kerestem a 2023 óta megjelent munkák között, 
-az IEEE Xplore-ban pedig az összevont kifejezéssel, a 2023 és 2026 közötti évekre szűkítve. A keresőkifejezéseket és azt, hogy melyik feldolgozott publikáció 
+a Claude Opus 5.5 nagy nyelvi modell a keresésben kiegészítő szerepet kapott. A Google Scholarban négy keresőkifejezéssel, az IEEE Xplore-ban pedig ezek közül az S4 jelűvel kerestem, 
+mindkét adatbázisban a 2023 óta megjelent munkák között. A keresőkifejezéseket és azt, hogy melyik feldolgozott publikáció 
 szerepelt a találatok között, \az{\ref{tab:irodalomkereses}}.~táblázat foglalja össze.
 
 \begin{table}[h]
@@ -28,12 +28,16 @@ I1 & IEEE Xplore & az S4 kifejezése & Coburn és társai \\
 \label{tab:irodalomkereses}
 \end{table}
 
-\paragraph{}A hat feldolgozott publikációból hármat, Coburn és társai, a NutriMLLM és Sterling és társai munkáját 
-a keresés közvetlenül találta meg, a másik hármat a talált munkák hivatkozásainak követésével értem el a Google Scholar és a Semantic Scholar segítségével. 
-A DietAI24 a NutriMLLM hivatkozásai között szerepel, a DietDelta Coburn és társai 
-arXiv-en megjelent cikkére hivatkozik, az Open-KNEAD pedig Coburn és társai konferenciacikkét és a DietAI24-et is idézi.
+\paragraph{}\Az{\ref{sec:kapcsolodo_publikaciok}}.~alfejezetben bemutatott hat publikációból hármat a keresés közvetlenül 
+találta meg. Ezek Coburn és társai munkája, amely konferenciacikkként \cite{coburn2025bhi} és bővített 
+arXiv-változatban \cite{coburn2025acetada} is megjelent, a NutriMLLM \cite{yan2026nutrimllm} és Sterling és társai 
+munkája \cite{sterling2026vlm}. A másik hármat a talált munkák hivatkozásainak és idézőinek követésével értem el 
+a Google Scholar és a Semantic Scholar segítségével. A DietAI24 \cite{yan2025dietai24} a NutriMLLM hivatkozásai 
+között szerepel, a DietDelta \cite{vinod2026dietdelta} Coburn és társai munkájának arXiv-változatára hivatkozik, 
+az Open-KNEAD \cite{coburn2026openknead} pedig a konferenciaváltozatot és a DietAI24-et is idézi.
 
 \section{Kapcsolódó publikációk}
+\label{sec:kapcsolodo_publikaciok}
 \subsection{DietAI24 (Yan et al. 2025)}
 \paragraph{}Ennek a tanulmánynak \cite{yan2025dietai24} az volt a célja, hogy az AI-alapú tápértékfelismerés során
 megvizsgálják, hogyan hat a becsült értékek pontosságára, ha egy ellenőrzött adatbázissal támogatják a folyamat során a nagy nyelvi modellt. Az ehhez használt FNDDS adatbázis ételleírásokat és hozzájuk tartozó tápértékeket tartalmaz. A becslési folyamatot úgy tervezték meg, hogy a GPT Vision modellel először leírást készíttettek az ételről beérkező képről, majd a langchain ágens keretrendszert használva lekérdezéseket intéztek az előfeldolgozott FNDDS adatbázis felé.
